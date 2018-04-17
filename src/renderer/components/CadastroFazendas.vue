@@ -16,10 +16,10 @@
               </v-flex>
               <v-flex xs12 sm6 mt-4>
                 <v-select
-                  :items="production_sys_l"
+                :items="production_sys_l"
 
-                  label="Sistema de Produção"
-                  box
+                label="Sistema de Produção"
+                box
                 ></v-select>
 
               </v-flex>
@@ -28,13 +28,15 @@
               <v-flex xs12 sm6>
                 <v-text-field box label="Agronegócio"></v-text-field>
               </v-flex>
+              <v-flex xs12 sm6>
                 <v-text-field box label="Cidade" ></v-text-field>
+              </v-flex>
             </v-layout>
           </v-container>
         </v-card-text>
         <v-card-actions >
           <v-flex xs12 text-xs-center>
-            <v-btn block color="info" large>SALVAR NOVA FAZENDA</v-btn>
+            <v-btn block color="info" large router to="/FazendaView">SALVAR NOVA FAZENDA</v-btn>
           </v-flex>
         </v-card-actions>
       </v-card>
@@ -45,8 +47,11 @@
 <script>
 export default {
   data: () => ({
-    production_sys_l: ["Free Stall", "Compost Barn", "Confinado o ano todo", "Semi-Confinado ou Extensivo"]
-  })
+    production_sys_l: ["Irrigado", "Sequeiro", "Semi-irrigado"]
+  }),
+  methods: {
+
+  }
 }
 </script>
 

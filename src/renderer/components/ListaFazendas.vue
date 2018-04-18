@@ -17,7 +17,7 @@
           <td>{{ props.item.production_sys }}</td>
           <td>{{ props.item.agronegocy }}</td>
           <td>{{ props.item.city }}</td>
-          <td class="text-xs-center"><v-btn small color="primary" dark router to="/FazendaView"><v-icon left dark>info</v-icon> MOSTRAR FAZENDA</v-btn>
+          <td class="text-xs-center"><v-btn small color="primary" dark router to="/FazendaView"><v-icon left dark>info</v-icon> Mostrar fazenda</v-btn>
           </td>
         </tr>
       </template>

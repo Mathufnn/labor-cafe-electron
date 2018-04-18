@@ -14,10 +14,9 @@
       <template slot="items" slot-scope="props">
         <tr>
           <td>{{ props.item.name }}</td>
-          <td>{{ props.item.production_sys }}</td>
-          <td>{{ props.item.agronegocy }}</td>
-          <td>{{ props.item.city }}</td>
-          <td class="text-xs-center"><v-btn small color="primary" dark router to="/FazendaView"><v-icon left dark>info</v-icon> MOSTRAR FAZENDA</v-btn>
+          <td>{{ props.item.producaototal }}</td>
+          <td>{{ props.item.area }}</td>
+          <td class="text-xs-center"><v-btn small color="primary" dark router to="/FazendaView"><v-icon left dark>info</v-icon> Mostrar talhão</v-btn>
           </td>
         </tr>
       </template>
@@ -39,21 +38,17 @@ export default {
     selected: [],
     headers: [
       {
-        text: 'Nome da Fazenda',
+        text: 'Nome do Talhão',
         align: 'left',
         value: 'name'
       },
       {
-        text: 'Sistema de Produção',
-        value: 'production_sys'
+        text: 'Produção total (R$)',
+        value: 'producaototal'
       },
       {
-        text: 'Agronegócio',
-        value: 'agronegocy'
-      },
-      {
-        text: 'Cidade',
-        value: 'city'
+        text: 'Área (m)',
+        value: 'area'
       },
       {
         text: '',
@@ -63,19 +58,25 @@ export default {
     items: [ //itens de teste
       {
         value: false,
-        name: 'Java',
-        production_sys: 'Free Stall',
-        agronegocy: 'Café',
-        city: 'Viçosa',
+        name: 'Talhao do MHF',
+        producaototal: 'mais de 8000',
+        area: '729pi',
         actions: '',
         id: 0
       },
       {
         value: false,
-        name: 'Light Wheat Farm',
-        production_sys: 'Semi-Confinado',
-        agronegocy: 'Café Arábico',
-        city: 'Coimbra',
+        name: 'Talhao do mathu',
+        producaototal: '>9999999 mwahaha',
+        area: 'tende a infinito',
+        actions: '',
+        id: 0
+      },
+      {
+        value: false,
+        name: 'Talhao do gb',
+        producaototal: '6924 temers',
+        area: 'altos metros quadrados',
         actions: '',
         id: 1
       }

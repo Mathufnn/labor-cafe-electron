@@ -14,10 +14,10 @@
       <template slot="items" slot-scope="props">
         <tr>
           <td>{{ props.item.name }}</td>
-          <td>{{ props.item.production_sys }}</td>
-          <td>{{ props.item.agronegocy }}</td>
-          <td>{{ props.item.city }}</td>
-          <td class="text-xs-center"><v-btn small color="primary" dark router to="/FazendaView"><v-icon left dark>info</v-icon> MOSTRAR FAZENDA</v-btn>
+          <td>{{ props.item.areaemproducao }}</td>
+          <td>{{ props.item.producaodasafra }}</td>
+          <td>{{ props.item.precodevenda }}</td>
+          <td class="text-xs-center"><v-btn small color="primary" dark router to="/FazendaView"><v-icon left dark>info</v-icon> Mostrar safra</v-btn>
           </td>
         </tr>
       </template>
@@ -39,21 +39,21 @@ export default {
     selected: [],
     headers: [
       {
-        text: 'Nome da Fazenda',
+        text: 'Nome da safra',
         align: 'left',
         value: 'name'
       },
       {
-        text: 'Sistema de Produção',
-        value: 'production_sys'
+        text: 'Área em produção',
+        value: 'areaemproducao'
       },
       {
-        text: 'Agronegócio',
-        value: 'agronegocy'
+        text: 'Produção',
+        value: 'producaodasafra'
       },
       {
-        text: 'Cidade',
-        value: 'city'
+        text: 'Preço de venda',
+        value: 'precodevenda'
       },
       {
         text: '',
@@ -63,21 +63,21 @@ export default {
     items: [ //itens de teste
       {
         value: false,
-        name: 'Java',
-        production_sys: 'Free Stall',
-        agronegocy: 'Café',
-        city: 'Viçosa',
+        name: 'afssadgas',
+        areaemproducao: 'hauehau',
+        producaodasafra: 'rqwerqw',
+        precodevenda: 'nbmnmnb',        
         actions: '',
         id: 0
       },
       {
         value: false,
-        name: 'Light Wheat Farm',
-        production_sys: 'Semi-Confinado',
-        agronegocy: 'Café Arábico',
-        city: 'Coimbra',
+        name: 'nbxkjs',
+        areaemproducao: '8714298',
+        producaodasafra: '142917',
+        precodevenda: '481279821',        
         actions: '',
-        id: 1
+        id: 0
       }
     ]
   }),

@@ -47,7 +47,7 @@ export default {
         value: 'producaototal'
       },
       {
-        text: 'Área (m)',
+        text: 'Área (m²)',
         value: 'area'
       },
       {

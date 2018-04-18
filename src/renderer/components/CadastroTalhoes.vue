@@ -139,7 +139,7 @@
         </v-card-text>
         <v-card-actions >
           <v-flex xs12 text-xs-center>
-            <v-btn block color="info" large router to="/FazendaView">SALVAR NOVA FAZENDA</v-btn>
+            <v-btn block color="info" large router to="/FazendaView">Salvar novo talhão</v-btn>
           </v-flex>
         </v-card-actions>
       </v-card>

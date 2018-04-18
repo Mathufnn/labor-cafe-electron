@@ -3,7 +3,7 @@
     <v-flex xs11 class="mt-4">
       <v-card>
         <v-card-title class="headline">
-          Cadastrar nova fazenda
+          Cadastrar nova safra
         </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
@@ -12,24 +12,21 @@
           <v-container grid-list-md>
             <v-layout row wrap>
               <v-flex xs12 sm6>
-                <v-text-field box label="Nome da fazenda" ></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 mt-4>
-                <v-select
-                :items="production_sys_l"
-
-                label="Sistema de Produção"
-                box
-                ></v-select>
-
+                <v-text-field box label="Nome da safra" ></v-text-field>
               </v-flex>
             </v-layout>
             <v-layout row wrap>
               <v-flex xs12 sm6>
-                <v-text-field box label="Agronegócio"></v-text-field>
+                <v-text-field box label="Área em produção (ha)"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Cidade" ></v-text-field>
+                <v-text-field box label="Preço médio da terra nua (R$/ha)"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field box label="Produção total da safra (Sc)"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field box label="Preço de venda (R$/Sc)"></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>

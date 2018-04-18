@@ -16,6 +16,11 @@ export default new Router({
       component: require('@/components/CadastroTalhoes').default
     },
     {
+      path: '/CadastroSafras',
+      name: 'CadastroSafras',
+      component: require('@/components/CadastroSafras').default
+    },
+    {
       path: '/ListaFazendas',
       name: 'ListaFazendas',
       component: require('@/components/ListaFazendas').default
@@ -24,6 +29,11 @@ export default new Router({
       path: '/ListaTalhoes',
       name: 'ListaTalhoes',
       component: require('@/components/ListaTalhoes').default
+    },
+    {
+      path: '/ListaSafras',
+      name: 'ListaSafras',
+      component: require('@/components/ListaSafras').default
     },
     {
       path: '/FazendaView',

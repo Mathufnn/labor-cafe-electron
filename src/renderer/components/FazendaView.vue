@@ -21,6 +21,10 @@
       </v-flex>
 
       <v-flex xs11>
+        <indicadores></indicadores>
+      </v-flex>
+
+      <v-flex xs11>
         <relatorios></relatorios>
       </v-flex>
 
@@ -31,10 +35,11 @@
 <script>
 import Relatorios from './FazendaView/Relatorios'
 import Talhoes from './FazendaView/Talhoes'
+import Indicadores from './FazendaView/Indicadores'
 
 export default {
   name: 'FazendaView',
-  components: { Relatorios, Talhoes }
+  components: { Relatorios, Talhoes, Indicadores }
 }
 </script>
 

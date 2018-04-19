@@ -54,7 +54,8 @@
       fixed: false,
       items: [
         { icon: 'add', title: 'Cadastro de fazendas', to: '/' },
-        { icon: 'list', title: 'Lista de Fazendas', to: '/ListaFazendas' }
+        { icon: 'list', title: 'Lista de Fazendas', to: '/ListaFazendas' },
+        { icon: 'backup', title: 'Fazer backup', to: '/Backup' }
       ],
       miniVariant: false,
       right: false,

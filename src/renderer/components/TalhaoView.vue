@@ -25,6 +25,10 @@
         <safras></safras>
       </v-flex>
 
+      <v-flex xs11 >
+        <indicadores></indicadores>
+      </v-flex>
+
 
     </v-layout>
   </v-container>
@@ -32,10 +36,11 @@
 
 <script>
 import Safras from './TalhaoView/Safras'
+import Indicadores from './TalhaoView/Indicadores'
 
 export default {
   name: 'TalhaoView',
-  components: { Safras }
+  components: { Safras, Indicadores }
 }
 </script>
 

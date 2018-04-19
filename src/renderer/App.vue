@@ -54,11 +54,7 @@
       fixed: false,
       items: [
         { icon: 'add', title: 'Cadastro de fazendas', to: '/' },
-        { icon: 'list', title: 'Lista de Fazendas', to: '/ListaFazendas' },
-        { icon: 'add', title: 'Cadastro de Talhões', to: '/CadastroTalhoes' },
-        { icon: 'list', title: 'Lista de Talhões', to: '/ListaTalhoes' },
-        { icon: 'add', title: 'Cadastro de Safras', to: '/CadastroSafras' },
-        { icon: 'list', title: 'Lista de Safras', to: '/ListaSafras' }
+        { icon: 'list', title: 'Lista de Fazendas', to: '/ListaFazendas' }
       ],
       miniVariant: false,
       right: false,

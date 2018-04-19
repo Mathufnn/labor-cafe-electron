@@ -12,8 +12,8 @@
           <v-container grid-list-md>
             <v-layout row wrap>
               <v-layout row wrap>
-                <v-flex xs12 sm6>
-                  <v-text-field box label="Nome da safra" ></v-text-field>
+                <v-flex xs12 sm12>
+                  <v-text-field box label="Identificação da safra" ></v-text-field>
                 </v-flex>
               </v-layout>
               <v-layout row wrap>

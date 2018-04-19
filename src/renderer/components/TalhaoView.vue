@@ -1,0 +1,44 @@
+<template>
+  <v-container grid-list-xl fill-height >
+    <v-layout row wrap justify-space-around id="wrapper">
+      <v-flex xs11>
+        <v-card>
+          <v-card-text>
+            <v-layout id="wrapper">
+              <v-flex xs6>
+                <h1>Talhão A21-3</h1>
+                <b>FAZENDA LIGHT WHEAT</b>
+              </v-flex>
+              <v-flex xs6 class="text-xs-right" >
+                <v-btn small  color="info" slot="activator" router to="/FazendaView"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA FAZENDA</v-btn>
+              </v-flex>
+            </v-layout>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+
+      <v-flex xs11 >
+        <safras></safras>
+      </v-flex>
+
+
+    </v-layout>
+  </v-container>
+</template>
+
+<script>
+import Safras from './TalhaoView/Safras'
+
+export default {
+  name: 'TalhaoView',
+  components: { Safras }
+}
+</script>
+
+<style scoped>
+
+</style>

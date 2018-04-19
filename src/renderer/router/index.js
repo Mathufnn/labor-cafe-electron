@@ -21,6 +21,11 @@ export default new Router({
       component: require('@/components/FazendaView').default
     },
     {
+      path: '/TalhaoView',
+      name: 'TalhaoView',
+      component: require('@/components/TalhaoView').default
+    },
+    {
       path: '*',
       redirect: '/'
     }

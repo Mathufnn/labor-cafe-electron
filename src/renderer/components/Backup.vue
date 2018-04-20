@@ -10,7 +10,7 @@
           <v-container grid-list-md>
             <v-layout row wrap>
               <v-flex xs12 sm6>
-                informações sobre o backupera
+                informações sobre o backup
               </v-flex>
             </v-layout>
           </v-container>

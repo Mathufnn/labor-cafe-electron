@@ -8,7 +8,7 @@
 Execute o comando abaixo para clonar
 ```console 
 $ git clone http://gitlab.nobugs.com.br/projetos/labor-cafe-electron.git
-$ cd labot-cafe-electron
+$ cd labor-cafe-electron
 ```
 
 Logo após, instale as dependências com o comando abaixo
@@ -17,7 +17,17 @@ $ npm install
 ```
 
 ### Como rodar a aplicação
-- `npm run dev`
+
+
+Para rodar a aplicação no modo de desenvolvimento, execute o comando:
+```console
+$ npm run dev
+```
 
 ### Como construir
-- `npm run build`
+
+Para construir a aplicação, execute:
+
+```console
+npm run build
+```

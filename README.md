@@ -29,5 +29,5 @@ $ npm run dev
 Para construir a aplicação, execute:
 
 ```console
-npm run build
+$ npm run build
 ```

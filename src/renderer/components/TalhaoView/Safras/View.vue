@@ -17,7 +17,7 @@
           <td>{{ props.item.areaemproducao }}</td>
           <td>{{ props.item.producaodasafra }}</td>
           <td>{{ props.item.precodevenda }}</td>
-          <td class="text-xs-center"><v-btn small color="primary" dark ><v-icon left dark>info</v-icon> Mostrar safra</v-btn>
+          <td class="text-xs-center"><v-btn small color="primary" dark router to="/SafraView"><v-icon left dark>info</v-icon> Mostrar safra</v-btn>
           </td>
         </tr>
       </template>

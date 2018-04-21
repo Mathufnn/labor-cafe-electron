@@ -1,6 +1,6 @@
 <template>
-  <v-layout row wrap justify-center id="wrapper">
-    <v-flex xs12 class="mt-4">
+  <v-layout  row wrap justify-center id="wrapper">
+    <v-flex xs12 >
       <v-data-table
       v-model="selected"
       :headers="headers"
@@ -14,9 +14,9 @@
       <template slot="items" slot-scope="props">
         <tr>
           <td>{{ props.item.name }}</td>
-          <td>{{ props.item.producaototal }}</td>
-          <td>{{ props.item.area }}</td>
-          <td class="text-xs-center"><v-btn small color="primary" dark router to="/TalhaoView"><v-icon left dark>info</v-icon> Mostrar talhão</v-btn>
+          <td>{{ props.item.areaemproducao }}</td>
+          <td>{{ props.item.producaodasafra }}</td>
+          <td>{{ props.item.precodevenda }}</td>
           </td>
         </tr>
       </template>
@@ -38,17 +38,21 @@ export default {
     selected: [],
     headers: [
       {
-        text: 'Nome do Talhão',
+        text: 'Nome da safra',
         align: 'left',
         value: 'name'
       },
       {
-        text: 'Produção total (R$)',
-        value: 'producaototal'
+        text: 'Área em produção',
+        value: 'areaemproducao'
       },
       {
-        text: 'Área (m²)',
-        value: 'area'
+        text: 'Produção',
+        value: 'producaodasafra'
+      },
+      {
+        text: 'Preço de venda',
+        value: 'precodevenda'
       },
       {
         text: '',
@@ -58,27 +62,21 @@ export default {
     items: [ //itens de teste
       {
         value: false,
-        name: 'Talhao do MHF',
-        producaototal: 'mais de 8000',
-        area: '14234',
+        name: 'afssadgas',
+        areaemproducao: 'hauehau',
+        producaodasafra: 'rqwerqw',
+        precodevenda: 'nbmnmnb',
         actions: '',
         id: 0
       },
       {
         value: false,
-        name: 'Talhao do mathu',
-        producaototal: '235312',
-        area: '3241',
+        name: 'nbxkjs',
+        areaemproducao: '8714298',
+        producaodasafra: '142917',
+        precodevenda: '481279821',
         actions: '',
         id: 0
-      },
-      {
-        value: false,
-        name: 'Talhao do gb',
-        producaototal: '523523',
-        area: '251325213',
-        actions: '',
-        id: 1
       }
     ]
   }),

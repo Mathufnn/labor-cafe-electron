@@ -5,9 +5,22 @@
         <v-card>
           <v-card-text>
             <h1>Fazenda Light Wheat</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p>Donec nec turpis quis enim sodales elementum lobortis id urna. Maecenas porta vehicula ligula eget sollicitudin. Nulla accumsan nunc eget tortor blandit fermentum. Sed id elementum velit</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis dui mollis, ultrices lectus tristique, finibus tellus</p>
+
+            <v-container fluid>
+              <v-layout row wrap subheading>
+                <v-flex xs12 sm4>
+                  <b>SISTEMA DE PRODUÇÃO: </b> Sequeiro
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <b>AGRONEGÓCIO: </b> Brasileiro
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <b>CIDADE: </b> Viçosa, MG
+                </v-flex>
+              </v-layout>
+            </v-container>
+
+
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>

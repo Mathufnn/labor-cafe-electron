@@ -25,7 +25,7 @@ export default {
   data: () => {
     return {
       indicadores: {
-        name: { text: 'Nome da safra', status: 0, value: 'Safra 2017q3' },
+        name: { text: 'Nome da safra', status: 1, value: 'Safra 2017q3' },
         areaprod: { text: 'Área de café em produção (ha)', status: 1, value: 1124.56 },
         precomed: { text: 'Preço médio de terra nua (R$/ha)', status: 4, value: 3124.56 },
         prodtotal: { text: 'Produção total da safra (Sc)', status: 4, value: 3124.56 },
@@ -42,18 +42,18 @@ export default {
   }
 
   .status1 {
-    background-color: #F08080;
+    background-color: #00b0ff;
   }
 
   .status2 {
-    background-color: #FFEC8B;
+    background-color: #00b0ff;
   }
 
   .status3 {
-
+    background-color: #00b0ff;
   }
 
   .status4 {
-    background-color: #98FB98;
+    background-color: #00b0ff;
   }
 </style>

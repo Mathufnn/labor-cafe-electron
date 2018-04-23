@@ -14,7 +14,6 @@
           </v-card>
       </v-tooltip>
     </v-card-title>
-    <img v-if="load" src="" />
     <v-divider></v-divider>
     <v-layout row wrap class="pa-3">
       <v-flex>

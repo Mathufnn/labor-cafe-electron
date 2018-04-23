@@ -36,7 +36,7 @@ export default {
     dobackup: () => {
       remote.dialog.showSaveDialog({title: 'Selecione local para salvar arquivo de backup',defaultPath: 'backup_labor_cafe.json'}, function(filename){
         // :(
-        alert(filename);
+        alert("Arquivo salvo em " + filename);
       });
     }
   }

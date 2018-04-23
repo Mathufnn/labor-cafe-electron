@@ -39,8 +39,8 @@ import Indicadores from './SafraView/Indicadores'
 import EstoqueCapital from './SafraView/EstoqueCapital'
 
 export default {
-  name: 'SafraView',
-  components: { EstoqueCapital, Indicadores }
+  //name: 'SafraView',
+  components: { estoquecapital: EstoqueCapital, Indicadores }
 }
 </script>
 

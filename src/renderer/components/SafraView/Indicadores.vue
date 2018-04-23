@@ -21,19 +21,6 @@
 </template>
 
 <script>
-export default {
-  data: () => {
-    return {
-      indicadores: {
-        name: { text: 'Nome da safra', status: 1, value: 'Safra 2017q3' },
-        areaprod: { text: 'Área de café em produção (ha)', status: 1, value: 1124.56 },
-        precomed: { text: 'Preço médio de terra nua (R$/ha)', status: 4, value: 3124.56 },
-        prodtotal: { text: 'Produção total da safra (Sc)', status: 4, value: 3124.56 },
-        precovenda: { text: 'Preço de venda ou preço do café em estoque', status: 4, value: 3124.56 },
-      }
-    }
-  }
-}
 </script>
 
 <style scoped>

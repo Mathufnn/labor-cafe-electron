@@ -30,6 +30,10 @@
         <estoquecapital></estoquecapital>
       </v-flex>
 
+      <v-flex xs11 >
+        <fluxocaixa></fluxocaixa>
+      </v-flex>
+
     </v-layout>
   </v-container>
 </template>
@@ -37,10 +41,11 @@
 <script>
 import Indicadores from './SafraView/Indicadores'
 import EstoqueCapital from './SafraView/EstoqueCapital'
+import FluxoCaixa from './SafraView/FluxoCaixa'
 
 export default {
   //name: 'SafraView',
-  components: { estoquecapital: EstoqueCapital, Indicadores }
+  components: { fluxocaixa: FluxoCaixa, estoquecapital: EstoqueCapital, Indicadores }
 }
 </script>
 

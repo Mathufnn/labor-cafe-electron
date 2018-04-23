@@ -3,10 +3,18 @@
     <v-card-title class="headline">
       Relatórios
       <v-tooltip right>
-        <v-btn small color="info" slot="activator" v-on:click="gerarelatorio" ><v-icon center dark>description</v-icon>  GERAR RELATÓRIO</v-btn>
-        <span>Gerar Relatório PDF</span>
+          <v-btn small color="info" slot="activator" v-on:click="preview" ><v-icon center dark>description</v-icon>  GERAR RELATÓRIO</v-btn>
+          <span>Gerar Relatório PDF</span>
+          <v-card v-if="load">
+            <img src="../../assets/preview.png" /> <!-- selecionar outra imagem -->
+            <v-card-actions>
+              <v-spacer></v-spacer>
+
+            </v-card-actions>
+          </v-card>
       </v-tooltip>
     </v-card-title>
+    <img v-if="load" src="" />
     <v-divider></v-divider>
     <v-layout row wrap class="pa-3">
       <v-flex>
@@ -17,13 +25,17 @@
 </template>
 
 <script>
+import { BrowserWindow, remote } from 'electron'
+
 export default {
   data: () => ({
-    view: true,
+    load: false,
+
   }),
   methods: {
-    gerarelatorio: function() {
+    preview: function() {
       //inserir código para gerar relatorio em pdf
+      this.load = !this.load;
     },
   }
  }

@@ -1,16 +1,16 @@
 <template>
   <v-card>
     <v-card-title class="headline">
-      Estoque de capital da safra
+      Fluxo de caixa da safra
     </v-card-title>
     <v-divider></v-divider>
     <v-layout>
       <v-container row wrap justify-space-around>
         <v-layout row wrap class="text-xs-center">
 
-          <v-flex xs4 v-for="i in estoquecapital">
+          <v-flex xs4 v-for="i in indicadores">
             <v-card :class="'status' + i.status">
-              <b>{{i.text}}</b><br /><span class="estoque">{{i.value}}</span>
+              <b>{{i.text}}</b><br /><span class="indicator">{{i.value}}</span>
             </v-card>
           </v-flex>
 
@@ -24,11 +24,10 @@
 export default {
   data: () => {
     return {
-      estoquecapital: {
-        terra: { text: 'Estoque de capital em terra (R$)', status: 4, value: 5236 },
-        lavouras: { text: 'Estoque de capital em lavouras (R$)', status: 2, value: 6432.22 },
-        maquinas: { text: 'Estoque de capital em máquinas (R$)', status: 1, value: 3184.44 },
-        benfeitorias: { text: 'Estoque de capital em benfeitorias (R$)', status: 2, value: 8723.06 },
+      indicadores: {
+        lucro: { text: 'Lucro (R$)', status: 1, value: '84993,00' },
+        despesa: { text: 'Despesa (R$)', status: 2, value: '75903,00' },
+        receita: { text: 'Receita (R$)', status: 4, value: '9090,00' },
       }
     }
   }
@@ -36,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-  .estoque {
+  .indicator {
     font-size:41px;
   }
 

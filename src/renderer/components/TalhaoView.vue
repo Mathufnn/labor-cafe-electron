@@ -13,6 +13,19 @@
                 <v-btn small  color="info" slot="activator" router to="/FazendaView"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA FAZENDA</v-btn>
               </v-flex>
             </v-layout>
+            <v-container fluid>
+              <v-layout row wrap subheading>
+                <v-flex xs12 sm4>
+                  <b>IDENTIFICAÇÃO: </b> A21-3
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <b>PRODUÇÃO TOTAL: </b> 
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <b>ÁREA: </b> Viçosa, MG
+                </v-flex>
+              </v-layout>
+            </v-container>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>

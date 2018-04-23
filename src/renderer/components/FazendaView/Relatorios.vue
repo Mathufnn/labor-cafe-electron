@@ -6,7 +6,7 @@
           <v-btn small color="info" slot="activator" v-on:click="preview" ><v-icon center dark>description</v-icon>  GERAR RELATÓRIO</v-btn>
           <span>Gerar Relatório PDF</span>
           <v-card v-if="load">
-            <img src="../../assets/preview.png" /> <!-- selecionar outra imagem -->
+            <img src="../../assets/preview.png" width="600px"/> <!-- selecionar outra imagem -->
             <v-card-actions>
               <v-spacer></v-spacer>
 

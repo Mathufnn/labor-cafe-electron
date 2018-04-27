@@ -58,15 +58,15 @@ export default {
     items: [ //itens de teste
       {
         value: false,
-        name: 'Talhao do MHF',
-        producaototal: 'mais de 8000',
+        name: 'Talhao A1',
+        producaototal: '8000',
         area: '14234',
         actions: '',
         id: 0
       },
       {
         value: false,
-        name: 'Talhao do mathu',
+        name: 'Talhao A3',
         producaototal: '235312',
         area: '3241',
         actions: '',
@@ -74,7 +74,7 @@ export default {
       },
       {
         value: false,
-        name: 'Talhao do gb',
+        name: 'Talhao A5',
         producaototal: '523523',
         area: '251325213',
         actions: '',

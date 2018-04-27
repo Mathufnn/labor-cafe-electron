@@ -63,19 +63,19 @@ export default {
     items: [ //itens de teste
       {
         value: false,
-        name: 'afssadgas',
-        areaemproducao: 'hauehau',
-        producaodasafra: 'rqwerqw',
-        precodevenda: 'nbmnmnb',
+        name: '2017Q3',
+        areaemproducao: '123 ha',
+        producaodasafra: '535',
+        precodevenda: '132',
         actions: '',
         id: 0
       },
       {
         value: false,
-        name: 'nbxkjs',
-        areaemproducao: '8714298',
-        producaodasafra: '142917',
-        precodevenda: '481279821',
+        name: '2017Q2',
+        areaemproducao: '223 ha',
+        producaodasafra: '635',
+        precodevenda: '432',
         actions: '',
         id: 0
       }

@@ -47,7 +47,7 @@
 <script>
 export default {
   data: () => ({
-    production_sys_l: ["Irrigado", "Sequeiro", "Semi-irrigado"]
+    production_sys_l: ["Irrigado", "Sequeiro"]
   }),
   methods: {
 

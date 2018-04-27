@@ -10,7 +10,7 @@
                 <b>FAZENDA LIGHT WHEAT</b>
               </v-flex>
               <v-flex xs6 class="text-xs-right" >
-                <v-btn small  color="info" slot="activator" router to="/FazendaView"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA FAZENDA</v-btn>
+                <v-btn small  color="info" slot="activator" router to="/SafraView"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA SAFRA</v-btn>
               </v-flex>
             </v-layout>
             <v-container fluid>
@@ -19,7 +19,7 @@
                   <b>IDENTIFICAÇÃO: </b> A21-3
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>PRODUÇÃO TOTAL: </b> 
+                  <b>PRODUÇÃO TOTAL: </b>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>ÁREA: </b> Viçosa, MG
@@ -48,12 +48,11 @@
 </template>
 
 <script>
-import Safras from './TalhaoView/Safras'
 import Indicadores from './TalhaoView/Indicadores'
 
 export default {
   name: 'TalhaoView',
-  components: { Safras, Indicadores }
+  components: { Indicadores }
 }
 </script>
 

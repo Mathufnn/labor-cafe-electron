@@ -11,7 +11,7 @@
                 <b>TALHAO A21-3</b>
               </v-flex>
               <v-flex xs6 class="text-xs-right" >
-                <v-btn small  color="info" slot="activator" router to="/TalhaoView"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DO TALHÃO</v-btn>
+                <v-btn small  color="info" slot="activator" router to="/FazendaView"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA FAZENDA</v-btn>
               </v-flex>
             </v-layout>
             <v-container fluid>
@@ -41,13 +41,21 @@
         </v-card>
       </v-flex>
 
+      <v-flex xs11 >
+        <talhoes></talhoes>
+      </v-flex>
 
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import Talhoes from './SafraView/Talhoes'
 
+export default {
+  name: 'SafraView',
+  components: { Talhoes }
+}
 </script>
 
 <style scoped>

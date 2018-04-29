@@ -7,6 +7,9 @@ import materialIcons from 'material-design-icons/iconfont/material-icons.css'
 import App from './App'
 import router from './router'
 import store from './store'
+import backend from './backend'
+
+Vue.use(backend)
 
 Vue.use(Vuetify)
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))

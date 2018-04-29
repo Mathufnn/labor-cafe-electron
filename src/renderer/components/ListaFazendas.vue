@@ -6,7 +6,7 @@
       :headers="headers"
       :items="items"
       :pagination.sync="pagination"
-      item-key="name"
+      item-key="id"
       class="elevation-1"
       rows-per-page-text="Linhas por página"
       :rows-per-page-items="rowsppitems"
@@ -60,26 +60,7 @@ export default {
         value: 'actions'
       }
     ],
-    items: [ //itens de teste
-      {
-        value: false,
-        name: 'Java',
-        production_sys: 'Free Stall',
-        agronegocy: 'Café',
-        city: 'Viçosa',
-        actions: '',
-        id: 0
-      },
-      {
-        value: false,
-        name: 'Light Wheat Farm',
-        production_sys: 'Semi-Confinado',
-        agronegocy: 'Café Arábico',
-        city: 'Coimbra',
-        actions: '',
-        id: 1
-      }
-    ]
+    items: []
   }),
 
   methods: {
@@ -95,6 +76,21 @@ export default {
         this.pagination.descending = false
       }
     }
+  },
+  mounted: function () {
+    this.$backend.getAllFazendas(all_fazendas => {
+      all_fazendas.forEach(fazendaObj => {
+        this.items.push({
+          value: false,
+          name: fazendaObj.NomeFazenda,
+          production_sys: fazendaObj.SistemaProducao==1?'Irrigado':'Sequeiro',
+          agronegocy: fazendaObj.Agronegocio,
+          city: fazendaObj.Cidade,
+          actions: '',
+          id: fazendaObj.id
+        });
+      })
+    });
   }
 }
 </script>

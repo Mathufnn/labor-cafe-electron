@@ -37,8 +37,11 @@ const backend = {
           Cidade: fazendaObj.cidade
         })
         .then(fazenda_created => callback(fazenda_created));
+      },
 
-
+      getAllFazendas(callback){
+        models.Fazenda.findAll()
+        .then(all_fazendas => callback(all_fazendas));
       }
 
     }

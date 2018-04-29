@@ -17,7 +17,7 @@ const backend = {
     const sequelize = new Sequelize('sqlite:laborrural.db');
 
 
-    // callbackhell.com f
+    // callbackhell.com
     const sync = () => sequelize.sync().then(() => synchronized = true, err => fatal_error(err));
     const loadmodels = () => {
       models = require('./models')(sequelize, Sequelize);
@@ -27,9 +27,18 @@ const backend = {
 
 
     Vue.prototype.$backend = {
-      addFazenda(fazendaObj){
-        console.log(fazendaObj);
-        return 123;
+      //os métodos devem ter callbacks. O nodejs é por natureza non blocking pra I/O
+      //para evitar divergencias e erros é recomendando sempre usar funções assicronas com callbacks pra operacoes I/O
+      addFazenda(fazendaObj, callback=null){
+        models.Fazenda.create({
+          NomeFazenda: fazendaObj.nome_fazenda,
+          SistemaProducao: fazendaObj.sistema_producao=='Irrigado'?1:2,
+          Agronegocio: fazendaObj.agronegocio,
+          Cidade: fazendaObj.cidade
+        })
+        .then(fazenda_created => callback(fazenda_created));
+
+
       }
 
     }

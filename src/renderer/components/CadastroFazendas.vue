@@ -12,12 +12,12 @@
           <v-container grid-list-md>
             <v-layout row wrap>
               <v-flex xs12 sm6>
-                <v-text-field box label="Nome da fazenda" ></v-text-field>
+                <v-text-field box label="Nome da fazenda" v-model="nome_fazenda"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 mt-4>
                 <v-select
                 :items="production_sys_l"
-
+                v-model="sistema_producao"
                 label="Sistema de Produção"
                 box
                 ></v-select>
@@ -26,17 +26,17 @@
             </v-layout>
             <v-layout row wrap>
               <v-flex xs12 sm6>
-                <v-text-field box label="Agronegócio"></v-text-field>
+                <v-text-field box label="Agronegócio" v-model="agronegocio"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Cidade" ></v-text-field>
+                <v-text-field box label="Cidade" v-model="cidade"></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
         </v-card-text>
         <v-card-actions >
           <v-flex xs12 text-xs-center>
-            <v-btn block color="info" large router to="/FazendaView">SALVAR NOVA FAZENDA</v-btn>
+            <v-btn block color="info" large @click="SalvarFazenda">SALVAR NOVA FAZENDA</v-btn>
           </v-flex>
         </v-card-actions>
       </v-card>
@@ -47,9 +47,25 @@
 <script>
 export default {
   data: () => ({
-    production_sys_l: ["Irrigado", "Sequeiro"]
+    production_sys_l: ["Irrigado", "Sequeiro"],
+    nome_fazenda: '',
+    sistema_producao: '',
+    agronegocio: '',
+    cidade: ''
   }),
   methods: {
+    SalvarFazenda: function () {
+      let result = this.$backend.addFazenda({
+        nome_fazenda: this.nome_fazenda,
+        sistema_producao: this.sistema_producao,
+        agronegocio: this.agronegocio,
+        cidade: this.cidade
+      }, (created) => {
+        console.log(created.id);
+      });
+    }
+  },
+  mounted: function () {
 
   }
 }

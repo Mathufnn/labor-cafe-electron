@@ -31,11 +31,6 @@ export default new Router({
       component: require('@/components/TalhaoView').default
     },
     {
-        path: '/TalhaoView',
-        name: 'TalhaoView',
-        component: require('@/components/TalhaoView').default
-    },
-    {
         path: '/SafraView',
         name: 'SafraView',
         component: require('@/components/SafraView').default

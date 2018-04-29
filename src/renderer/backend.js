@@ -1,8 +1,5 @@
 const Sequelize = require('sequelize');
 const remote = require('electron').remote;
-const fs = require('fs');
-const path = require('path');
-
 
 //helper functions
 const fatal_error = err => {remote.dialog.showErrorBox('Não foi possível conectar ao banco de dados!', err); remote.getCurrentWindow().close();}

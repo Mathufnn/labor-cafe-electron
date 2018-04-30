@@ -4,5 +4,6 @@
 module.exports = function(sequelize, DataTypes) {
 	var models = {}
 	models.Fazenda = require('./Fazenda')(sequelize, DataTypes);
+	models.Safra = require('./Safra')(sequelize, DataTypes);
 	return models;
 }

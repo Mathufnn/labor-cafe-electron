@@ -62,7 +62,11 @@ export default {
         cidade: this.cidade
       }, (created) => {
         console.log(created.id);
+        this.$router.push("/FazendaView/"+created.id);
       });
+
+
+
     }
   },
   mounted: function () {

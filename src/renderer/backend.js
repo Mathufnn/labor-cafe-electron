@@ -26,6 +26,10 @@ const backend = {
     Vue.prototype.$backend = {
       //os métodos devem ter callbacks. O nodejs é por natureza non blocking pra I/O
       //para evitar divergencias e erros é recomendando sempre usar funções assicronas com callbacks pra operacoes I/O
+
+
+
+
       addFazenda(fazendaObj, callback=null){
         models.Fazenda.create({
           NomeFazenda: fazendaObj.nome_fazenda,
@@ -44,7 +48,22 @@ const backend = {
       getFazenda(fid, callback){
         models.Fazenda.findOne({ where: {id: fid} })
         .then(fazenda => callback(fazenda));
+      },
+
+      // /==================================================/
+
+      addSafra(safraObj, callback=null){
+        models.Safra.create({
+          IdentSafra: safraObj.IdentSafra,
+      		AreaProducao: safraObj.AreaProducao,
+      		PrecoMTerraN: safraObj.PrecoMTerraN,
+      		ProducaoTotal: safraObj.ProducaoTotal,
+      		PrecoVenda: safraObj.PrecoVenda
+        })
+        .then(safra_created => callback(safra_created));
       }
+
+
 
     }
 

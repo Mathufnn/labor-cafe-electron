@@ -64,9 +64,6 @@ export default {
         console.log(created.id);
         this.$router.push("/FazendaView/"+created.id);
       });
-
-
-
     }
   },
   mounted: function () {

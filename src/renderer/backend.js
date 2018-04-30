@@ -27,9 +27,6 @@ const backend = {
       //os métodos devem ter callbacks. O nodejs é por natureza non blocking pra I/O
       //para evitar divergencias e erros é recomendando sempre usar funções assicronas com callbacks pra operacoes I/O
 
-
-
-
       addFazenda(fazendaObj, callback=null){
         models.Fazenda.create({
           NomeFazenda: fazendaObj.nome_fazenda,
@@ -62,11 +59,7 @@ const backend = {
         })
         .then(safra_created => callback(safra_created));
       }
-
-
-
     }
-
   }
 }
 

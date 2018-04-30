@@ -33,7 +33,7 @@ export default new Router({
       props: true
     },
     {
-        path: '/SafraView',
+        path: '/SafraView/:id',
         name: 'SafraView',
         component: require('@/components/SafraView').default,
         props: true

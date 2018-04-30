@@ -66,7 +66,7 @@ export default {
   },
   mounted: function () {
     this.$backend.getFazenda(this.id, (fazendaObj) => {
-      if(fazendaObj==null) {  this.$router.go('/'); return; }
+      if(fazendaObj==null) {  this.$router.push('/'); return; }
 
       this.nome_fazenda = fazendaObj.NomeFazenda;
       this.sistema_producao = fazendaObj.SistemaProducao;

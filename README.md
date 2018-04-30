@@ -6,7 +6,7 @@
 ### Clonando e instalando a aplicação
 
 Execute o comando abaixo para clonar
-```console 
+```console
 $ git clone http://gitlab.nobugs.com.br/projetos/labor-cafe-electron.git
 $ cd labor-cafe-electron
 ```
@@ -15,6 +15,8 @@ Logo após, instale as dependências com o comando abaixo
 ```console
 $ npm install
 ```
+
+Caso encontre erros relacionados ao **SQLITE3**, [tente essas soluções](SQLITE_ELECTRON.md)
 
 ### Como rodar a aplicação
 

@@ -16,9 +16,10 @@ export default new Router({
       component: require('@/components/ListaFazendas').default
     },
     {
-      path: '/FazendaView',
+      path: '/FazendaView/:id',
       name: 'FazendaView',
-      component: require('@/components/FazendaView').default
+      component: require('@/components/FazendaView').default,
+      props: true
     },
     {
       path: '/Backup',
@@ -28,12 +29,14 @@ export default new Router({
     {
       path: '/TalhaoView',
       name: 'TalhaoView',
-      component: require('@/components/TalhaoView').default
+      component: require('@/components/TalhaoView').default,
+      props: true
     },
     {
         path: '/SafraView',
         name: 'SafraView',
-        component: require('@/components/SafraView').default
+        component: require('@/components/SafraView').default,
+        props: true
     },
     {
       path: '*',

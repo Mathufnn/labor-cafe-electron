@@ -4,18 +4,18 @@
       <v-flex xs11>
         <v-card>
           <v-card-text>
-            <h1>Fazenda Light Wheat</h1>
+            <h1>Fazenda {{nome_fazenda}}</h1>
 
             <v-container fluid>
               <v-layout row wrap subheading>
                 <v-flex xs12 sm4>
-                  <b>SISTEMA DE PRODUÇÃO: </b> Sequeiro
+                  <b>SISTEMA DE PRODUÇÃO: </b> {{sistema_producao}}
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>AGRONEGÓCIO: </b> Brasileiro
+                  <b>AGRONEGÓCIO: </b> {{agronegocio}}
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>CIDADE: </b> Viçosa, MG
+                  <b>CIDADE: </b> {{cidade}}
                 </v-flex>
               </v-layout>
             </v-container>
@@ -52,7 +52,29 @@ import Indicadores from './FazendaView/Indicadores'
 
 export default {
   name: 'FazendaView',
-  components: { Relatorios, Safras, Indicadores }
+  components: { Relatorios, Safras, Indicadores },
+  data: () => ({
+    nome_fazenda: '',
+    sistema_producao: '',
+    agronegocio: '',
+    cidade: ''
+  }),
+  props: {
+    id: {
+      default: '-1'
+    }
+  },
+  mounted: function () {
+    this.$backend.getFazenda(this.id, (fazendaObj) => {
+      if(fazendaObj==null) {  this.$router.go('/'); return; }
+
+      this.nome_fazenda = fazendaObj.NomeFazenda;
+      this.sistema_producao = fazendaObj.SistemaProducao;
+      this.agronegocio = fazendaObj.Agronegocio;
+      this.cidade = fazendaObj.Cidade;
+
+    });
+  }
 }
 </script>
 

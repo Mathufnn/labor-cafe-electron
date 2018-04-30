@@ -39,6 +39,11 @@ const backend = {
       getAllFazendas(callback){
         models.Fazenda.findAll()
         .then(all_fazendas => callback(all_fazendas));
+      },
+
+      getFazenda(fid, callback){
+        models.Fazenda.findOne({ where: {id: fid} })
+        .then(fazenda => callback(fazenda));
       }
 
     }

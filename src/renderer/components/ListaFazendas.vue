@@ -33,66 +33,67 @@
 export default {
   data: () => ({
     pagination: {
-      sortBy: 'name'
+      sortBy: "name"
     },
-    rowsppitems: [10,25,50,{"text":"Tudo","value":-1}],
+    rowsppitems: [10, 25, 50, { text: "Tudo", value: -1 }],
     selected: [],
     headers: [
       {
-        text: 'Nome da Fazenda',
-        align: 'left',
-        value: 'name'
+        text: "Nome da Fazenda",
+        align: "left",
+        value: "name"
       },
       {
-        text: 'Sistema de Produção',
-        value: 'production_sys'
+        text: "Sistema de Produção",
+        value: "production_sys"
       },
       {
-        text: 'Agronegócio',
-        value: 'agronegocy'
+        text: "Agronegócio",
+        value: "agronegocy"
       },
       {
-        text: 'Cidade',
-        value: 'city'
+        text: "Cidade",
+        value: "city"
       },
       {
-        text: '',
-        value: 'actions'
+        text: "",
+        value: "actions"
       }
     ],
     items: []
   }),
 
   methods: {
-    toggleAll () {
-      if (this.selected.length) this.selected = []
-      else this.selected = this.items.slice()
+    toggleAll() {
+      if (this.selected.length) this.selected = [];
+      else this.selected = this.items.slice();
     },
-    changeSort (column) {
+    changeSort(column) {
       if (this.pagination.sortBy === column) {
-        this.pagination.descending = !this.pagination.descending
+        this.pagination.descending = !this.pagination.descending;
       } else {
-        this.pagination.sortBy = column
-        this.pagination.descending = false
+        this.pagination.sortBy = column;
+        this.pagination.descending = false;
       }
     }
   },
-  mounted: function () {
+  mounted: function() {
     this.$backend.getAllFazendas(all_fazendas => {
       all_fazendas.forEach(fazendaObj => {
         this.items.push({
           value: false,
           name: fazendaObj.NomeFazenda,
-          production_sys: fazendaObj.SistemaProducao==1?'Irrigado':'Sequeiro',
+          production_sys:
+            fazendaObj.SistemaProducao == 1 ? "Irrigado" : "Sequeiro",
           agronegocy: fazendaObj.Agronegocio,
           city: fazendaObj.Cidade,
-          actions: '',
+          actions: "",
           id: fazendaObj.id
         });
-      })
+      });
     });
   }
-}
+};
 </script>
 
 <style scoped>

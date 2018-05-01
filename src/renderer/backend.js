@@ -51,14 +51,24 @@ const backend = {
 
       addSafra(safraObj, callback=null){
         models.Safra.create({
-          IdentSafra: safraObj.IdentSafra,
+            IdentSafra: safraObj.IdentSafra,
       		AreaProducao: safraObj.AreaProducao,
       		PrecoMTerraN: safraObj.PrecoMTerraN,
       		ProducaoTotal: safraObj.ProducaoTotal,
       		PrecoVenda: safraObj.PrecoVenda
         })
         .then(safra_created => callback(safra_created));
-      }
+      },
+
+      getAllSafras(callback){
+        models.Safra.findAll()
+        .then(all_safras => callback(all_safras));
+      },
+
+      getSafra(fid, callback){
+        models.Safra.findOne({ where: {id: fid} })
+        .then(safra => callback(safra));
+      },
     }
   }
 }

@@ -95,6 +95,23 @@ export default {
         this.pagination.descending = false
       }
     }
+  },
+
+  mounted: function () {
+    this.$backend.getAllSafras(all_safras => {
+      all_safras.forEach(safraObj => {
+        this.items.push({
+          value: false,
+          name: safraObj.IdentSafra,
+          areaemproducao: safraObj.AreaProducao,
+          precomedio: safraObj.PrecoMTerraN,
+          producaodasafra: safraObj.ProducaoTotal,
+          precodevenda: safraObj.PrecoVenda,
+          actions: '',
+          id: safraObj.id
+        });
+      })
+    });
   }
 }
 </script>

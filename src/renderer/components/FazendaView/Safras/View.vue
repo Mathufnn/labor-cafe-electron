@@ -6,7 +6,7 @@
       :headers="headers"
       :items="items"
       :pagination.sync="pagination"
-      item-key="name"
+      item-key="id"
       class="elevation-1"
       rows-per-page-text="Linhas por página"
       :rows-per-page-items="rowsppitems"
@@ -17,7 +17,7 @@
           <td>{{ props.item.areaemproducao }}</td>
           <td>{{ props.item.producaodasafra }}</td>
           <td>{{ props.item.precodevenda }}</td>
-          <td class="text-xs-center"><v-btn small color="primary" dark router to="/SafraView"><v-icon left dark>info</v-icon> Mostrar safra</v-btn>
+          <td class="text-xs-center"><v-btn small color="primary" dark router :to="'/SafraView/' + props.item.id"><v-icon left dark>info</v-icon> Mostrar safra</v-btn>
           </td>
         </tr>
       </template>
@@ -60,26 +60,7 @@ export default {
         value: 'actions'
       }
     ],
-    items: [ //itens de teste
-      {
-        value: false,
-        name: '2017Q3',
-        areaemproducao: '123 ha',
-        producaodasafra: '535',
-        precodevenda: '132',
-        actions: '',
-        id: 0
-      },
-      {
-        value: false,
-        name: '2017Q2',
-        areaemproducao: '223 ha',
-        producaodasafra: '635',
-        precodevenda: '432',
-        actions: '',
-        id: 0
-      }
-    ]
+    items: []
   }),
 
   methods: {

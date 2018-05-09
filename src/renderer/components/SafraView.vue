@@ -7,11 +7,10 @@
             <v-layout id="wrapper">
               <v-flex xs6>
                 <h1>Safra {{nome_safra}}</h1>
-                <b>FAZENDA LIGHT WHEAT</b><br />
-                <b>TALHAO A21-3</b>
+                <b>FAZENDA {{fazenda_name}}</b><br />
               </v-flex>
               <v-flex xs6 class="text-xs-right" >
-                <v-btn small  color="info" slot="activator" router to="/FazendaView/"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA FAZENDA</v-btn>
+                <v-btn small  color="info" slot="activator" router :to="'/FazendaView/'+ fazenda_id"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA FAZENDA</v-btn>
               </v-flex>
             </v-layout>
             <v-container fluid>
@@ -62,7 +61,9 @@ export default {
     area_producao: '',
     preco_terra: '',
     producao_total: '',
-    preco_venda: ''
+    preco_venda: '',
+    fazenda_id: -1,
+    fazenda_name: ''
   }),
 
   props: {
@@ -74,12 +75,23 @@ export default {
   mounted: function () {
     this.$backend.getSafra(this.id, (safraObj) => {
       if(safraObj==null) {  this.$router.push('/'); return; }
-      this.nome_safra = safraObj.IdentSafra,
-      this.area_producao = safraObj.AreaProducao,
-      this.preco_terra = safraObj.PrecoMTerraN,
-      this.producao_total = safraObj.ProducaoTotal,
-      this.preco_venda = safraObj.PrecoVenda
+      this.nome_safra = safraObj.IdentSafra;
+      this.area_producao = safraObj.AreaProducao;
+      this.preco_terra = safraObj.PrecoMTerraN;
+      this.producao_total = safraObj.ProducaoTotal;
+      this.preco_venda = safraObj.PrecoVenda;
+      this.fazenda_id = safraObj.FazendaID;
+
+      //assincrono, logo, tem que ficar aqui dentro, pq precisamos do fazenda_id
+      this.$backend.getFazenda(this.fazenda_id, (fazendaObj) => {
+        this.fazenda_name = fazendaObj.NomeFazenda;
+      });
+
     });
+
+
+
+
   }
 }
 </script>

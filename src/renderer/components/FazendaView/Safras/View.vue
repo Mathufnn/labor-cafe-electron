@@ -62,7 +62,11 @@ export default {
     ],
     items: []
   }),
-
+  props:{
+    fid :{
+      default: '-1'
+    }
+  },
   methods: {
     toggleAll () {
       if (this.selected.length) this.selected = []
@@ -79,7 +83,8 @@ export default {
   },
 
   mounted: function () {
-    this.$backend.getAllSafras(all_safras => {
+    this.$backend.getFazendaSafras(this.fid, all_safras => {
+      if(all_safras!=null)
       all_safras.forEach(safraObj => {
         this.items.push({
           value: false,

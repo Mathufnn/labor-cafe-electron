@@ -54,14 +54,21 @@ export default {
     producao_total: '',
     preco_venda: ''
   }),
+  props:{
+    fid: {
+      default: "-1"
+    }
+  },
   methods: {
     SalvarSafra: function () {
+      if(this.fid==-1) return;
       this.$backend.addSafra({
         IdentSafra: this.identificacao_safra,
         AreaProducao: this.area_producao,
         PrecoMTerraN: this.preco_medio,
         ProducaoTotal: this.producao_total,
-        PrecoVenda: this.preco_venda
+        PrecoVenda: this.preco_venda,
+        FazendaID: this.fid
       }, (created) => {
         console.log(created.id);
         this.$router.push("/SafraView/"+created.id);

@@ -30,7 +30,7 @@
       </v-flex>
 
       <v-flex xs11 >
-        <safras></safras>
+        <safras :fid="id"></safras>
       </v-flex>
 
       <v-flex xs11>

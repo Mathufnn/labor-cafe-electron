@@ -51,7 +51,8 @@ const backend = {
 
       addSafra(safraObj, callback=null){
         models.Safra.create({
-            IdentSafra: safraObj.IdentSafra,
+          FazendaID: safraObj.FazendaID,
+          IdentSafra: safraObj.IdentSafra,
       		AreaProducao: safraObj.AreaProducao,
       		PrecoMTerraN: safraObj.PrecoMTerraN,
       		ProducaoTotal: safraObj.ProducaoTotal,
@@ -60,9 +61,9 @@ const backend = {
         .then(safra_created => callback(safra_created));
       },
 
-      getAllSafras(callback){
-        models.Safra.findAll()
-        .then(all_safras => callback(all_safras));
+      getFazendaSafras(fazendaid, callback){
+        models.Safra.findAll({ where: {FazendaID: fazendaid} })
+        .then(safra => callback(safra));
       },
 
       getSafra(fid, callback){

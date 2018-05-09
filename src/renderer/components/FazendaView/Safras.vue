@@ -11,8 +11,8 @@
     </v-card-title>
     <v-divider></v-divider>
     <v-layout row wrap class="pa-3">
-      <SafrasView v-if="view"></SafrasView>
-      <SafrasAdd v-if="add"></SafrasAdd>
+      <SafrasView v-if="view" :fid="fid"></SafrasView>
+      <SafrasAdd v-if="add" :fid="fid"></SafrasAdd>
     </v-layout>
   </v-card>
 </template>
@@ -22,17 +22,23 @@ import SafrasAdd from './Safras/Add'
 import SafrasView from './Safras/View'
 
 export default {
+  components: { SafrasAdd, SafrasView },
   data: () => ({
     view: true,
     add: false
   }),
+  props: {
+    fid: {
+      default: '-1'
+    }
+  },
   methods: {
     loadtalhaoadd: function () {
       this.add = !this.add
       this.view = !this.view
     }
-  },
-  components: { SafrasAdd, SafrasView }
+  }
+
 }
 </script>
 

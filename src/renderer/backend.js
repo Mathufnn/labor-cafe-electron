@@ -61,6 +61,51 @@ const backend = {
         .then(safra_created => callback(safra_created));
       },
 
+      addTalhao(talhaoObj, callback=NULL){
+        models.Talhao.create({
+          TalhaoID: talhaoObj.TalhaoID,
+          VendaSubP: talhaoObj.VendaSubP,
+          MaoObraF: talhaoObj.MaoObraF,
+          ArrendamentoTerras: talhaoObj.ArrendamentoTerras,
+          AluguelMaquinas: talhaoObj.AluguelMaquinas,
+          Combustivel: talhaoObj.Combustivel,
+          ManutencaoBenf: talhaoObj.ManutencaoBenf,
+          ManutencaoMaq: talhaoObj.ManutencaoMaq,
+          EnergiaEletrica: talhaoObj.EnergiaEletrica,
+          Frete: talhaoObj.Frete,
+          Impostos: talhaoObj.Impostos,
+          MaoObraContratada: talhaoObj.MaoObraContratada,
+          MaoObraFixa: talhaoObj.MaoObraFixa,
+          Despesas: talhaoObj.Despesas,
+          Assistencia: talhaoObj.Assistencia,
+          Certificacao: talhaoObj.Certificacao,
+          AnaliseSolo: talhaoObj.AnaliseSolo,
+          AnaliseFoliar: talhaoObj.AnaliseFoliar,
+          EPi: talhaoObj.EPi,
+          Acidos: talhaoObj.Acidos,
+          Adubos: talhaoObj.Adubos,
+          Acaricida: talhaoObj.Acaricida,
+          Bactericida: talhaoObj.Bactericida,
+          Espalhante: talhaoObj.Espalhante,
+          Fungicida: talhaoObj.Fungicida,
+          Inseticida: talhaoObj.Inseticida,
+          Nematicida: talhaoObj.Nematicida,
+          OleoMineral: talhaoObj.OleoMineral,
+          Herbicida: talhaoObj.Herbicida,
+          Hormonios: talhaoObj.Hormonios,
+          Maturadores: talhaoObj.Maturadores,
+          MaterialColheita: talhaoObj.MaterialColheita,
+          Armazenamento: talhaoObj.Armazenamento,
+          Benficios: talhaoObj.Beneficios,
+          GasLenhaCarvao: talhaoObj.GasLenhaCarvao,
+          PosColheita: talhaoObj.PosColheita,
+          Rebeneficio: talhaoObj.Rebeneficio,
+          Saco: talhaoObj.Saco,
+          Correntagem: talhaoObj.Correntagem
+        })
+        .then(talhao_created => callback(talhao_created));
+      },
+
       getFazendaSafras(fazendaid, callback){
         models.Safra.findAll({ where: {FazendaID: fazendaid} })
         .then(safra => callback(safra));
@@ -70,6 +115,16 @@ const backend = {
         models.Safra.findOne({ where: {id: fid} })
         .then(safra => callback(safra));
       },
+
+      getTalhao(talhaoid, callback){
+        models.Talhao.findOne({where: {TalhaoID: talhaoid} })
+        .then(talhao => callback(talhao));
+      },
+
+      getAllTalhoes(callback){
+        models.Talhao.findAll()
+        .then(all_talhoes => callback(all_talhoes));
+      }
     }
   }
 }

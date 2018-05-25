@@ -56,6 +56,7 @@ export default {
   methods: {
     SalvarSafra: function () {
       if(this.fid==-1) return;
+      console.log(this.fid);
       this.$backend.addSafra({
         IdentSafra: this.identificacao_safra,
         AreaProducao: this.area_producao,

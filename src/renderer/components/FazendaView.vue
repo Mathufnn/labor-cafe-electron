@@ -69,7 +69,7 @@ export default {
       if(fazendaObj==null) {  this.$router.push('/'); return; }
 
       this.nome_fazenda = fazendaObj.NomeFazenda;
-      this.sistema_producao = fazendaObj.SistemaProducao;
+      this.sistema_producao = fazendaObj.SistemaProducao==1?'Irrigado':'Sequeiro';
       this.agronegocio = fazendaObj.Agronegocio;
       this.cidade = fazendaObj.Cidade;
 

@@ -79,7 +79,10 @@ const backend = {
 
       addTalhao(talhaoObj, callback=NULL){
         models.Talhao.create({
+          SafraID: talhaoObj.SafraID,
           TalhaoID: talhaoObj.TalhaoID,
+          ProdTotal: talhaoObj.ProdTotal,
+          Area: talhaoObj.Area,
           VendaSubP: talhaoObj.VendaSubP,
           MaoObraF: talhaoObj.MaoObraF,
           ArrendamentoTerras: talhaoObj.ArrendamentoTerras,

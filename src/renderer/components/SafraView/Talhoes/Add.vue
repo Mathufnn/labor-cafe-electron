@@ -12,124 +12,124 @@
           <v-container grid-list-md>
             <v-layout row wrap>
               <v-flex xs12 sm6>
-                <v-text-field box label="Indentificação do talhão"></v-text-field>
+                <v-text-field box label="Indentificação do talhão" v-model="ident_talhao"></v-text-field>
               </v-flex>
               <v-flex xs12 sm3>
-                <v-text-field box label="Produção Total"></v-text-field>
+                <v-text-field box label="Produção Total" v-model="prod_total"></v-text-field>
               </v-flex>
               <v-flex xs12 sm3>
-                <v-text-field box label="Área"></v-text-field>
+                <v-text-field box label="Área" v-model="area"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Venda de subproduto" ></v-text-field>
+                <v-text-field box label="Venda de subproduto" v-model="venda_subp"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Mão de obra familiar" ></v-text-field>
+                <v-text-field box label="Mão de obra familiar" v-model="mao_familiar"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Arrendamento da terra" ></v-text-field>
+                <v-text-field box label="Arrendamento da terra" v-model="arrend_terra"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Aluguel de máquinas" ></v-text-field>
+                <v-text-field box label="Aluguel de máquinas" v-model="aluguel_maq"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Combustível" ></v-text-field>
+                <v-text-field box label="Combustível"v-model="combustivel" ></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Manutenção de benfeitorias" ></v-text-field>
+                <v-text-field box label="Manutenção de benfeitorias" v-model="manu_benf"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Manutenção de máquinas" ></v-text-field>
+                <v-text-field box label="Manutenção de máquinas" v-model="manu_maq"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Energia elétrica" ></v-text-field>
+                <v-text-field box label="Energia elétrica" v-model="energia"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Frete/Deslocamento" ></v-text-field>
+                <v-text-field box label="Frete/Deslocamento" v-model="frete"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Impostos e taxas" ></v-text-field>
+                <v-text-field box label="Impostos e taxas" v-model="impostos"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Mão de obra contratada" ></v-text-field>
+                <v-text-field box label="Mão de obra contratada" v-model="mao_contratada"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Mão de obra fixa" ></v-text-field>
+                <v-text-field box label="Mão de obra fixa" v-model="mao_fixa"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Despesas gerais de escritório" ></v-text-field>
+                <v-text-field box label="Despesas gerais de escritório" v-model="despesas_gerais"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Assistência técnica e gerencial" ></v-text-field>
+                <v-text-field box label="Assistência técnica e gerencial" v-model="ass_tec"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Certificação" ></v-text-field>
+                <v-text-field box label="Certificação" v-model="certificacao"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Análise de solo" ></v-text-field>
+                <v-text-field box label="Análise de solo" v-model="analise_solo"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Análise foliar" ></v-text-field>
+                <v-text-field box label="Análise foliar" v-model="analise_foliar"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="EPI" ></v-text-field>
+                <v-text-field box label="EPI" v-model="epi"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Ácidos/aminoácidos" ></v-text-field>
+                <v-text-field box label="Ácidos/aminoácidos" v-model="acidos"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Adubos foliares" ></v-text-field>
+                <v-text-field box label="Adubos foliares" v-model="adubos"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Acaricida" ></v-text-field>
+                <v-text-field box label="Acaricida" v-model="acaricida"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Bactericida" ></v-text-field>
+                <v-text-field box label="Bactericida" v-model="bactericida"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Espalhante adesivo" ></v-text-field>
+                <v-text-field box label="Espalhante adesivo" v-model="espalhante"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Fungicida" ></v-text-field>
+                <v-text-field box label="Fungicida" v-model="fungicida"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Nematicida" ></v-text-field>
+                <v-text-field box label="Nematicida" v-model="nematicida"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Óleo mineral" ></v-text-field>
+                <v-text-field box label="Óleo mineral" v-model="oleo_mineral"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Herbicida" ></v-text-field>
+                <v-text-field box label="Herbicida" v-model="herbicida"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Hormônios" ></v-text-field>
+                <v-text-field box label="Hormônios" v-model="hormonios"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Maturadores" ></v-text-field>
+                <v-text-field box label="Maturadores" v-model="maturadores"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Material de colheita" ></v-text-field>
+                <v-text-field box label="Material de colheita"v-model="material_colheita" ></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Armazenamento" ></v-text-field>
+                <v-text-field box label="Armazenamento" v-model="armazenamento"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Benefício" ></v-text-field>
+                <v-text-field box label="Benefício" v-model="beneficio"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Gás/lenha/carvão" ></v-text-field>
+                <v-text-field box label="Gás/lenha/carvão" v-model="gas_lenha"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Materiais pós-colheita" ></v-text-field>
+                <v-text-field box label="Materiais pós-colheita" v-model="materiais_colheita"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Rebenefício" ></v-text-field>
+                <v-text-field box label="Rebenefício" v-model="rebeneficio"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Embalagens" ></v-text-field>
+                <v-text-field box label="Embalagens" v-model="embalagens"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field box label="Corretagem" ></v-text-field>
+                <v-text-field box label="Corretagem" v-model="correntagem"></v-text-field>
               </v-flex>
             </v-layout>
 
@@ -148,6 +148,104 @@
 
 <script>
 export default {
+  data(): => ({
+    ident_talhao: '',
+    prod_total: '',
+    area: '',
+    venda_subp: '',
+    mao_familiar: '',
+    arrend_terra: '',
+    aluguel_maq: '',
+    combustivel: '',
+    manu_benf: '',
+    manu_maq: '',
+    energia: '',
+    frete: '',
+    impostos: '',
+    mao_contratada: '',
+    mao_fixa: '',
+    despesas_gerais: '',
+    ass_tec: '',
+    despesas_gerais: '',
+    certificacao: '',
+    analise_solo: '',
+    analise_foliar: '',
+    epi: '',
+    acidos: '',
+    adubos: '',
+    acaricida: '',
+    bactericida: '',
+    espalhante: '',
+    fungicida: '',
+    nematicida: '',
+    oleo_mineral: '',
+    herbicida: '',
+    hormonios: '',
+    maturadores: '',
+    material_colheita: '',
+    armazenamento: '',
+    beneficio: '',
+    gas_lenha: '',
+    rebeneficio: '',
+    embalagens: '',
+    correntagem: ''
+  }),
+  props:{
+    fid:{
+      default: "-1"
+    }
+  },
+  methods: {
+    SalvarTalhao: function() {
+      if(this.fid == -1) return;
+      this.$backend.addTalhao({
+        TalhaoID: this.ident_talhao,
+        Area: this.area,
+        ProdTotal: this.prod_total
+        VendaSubP: talhaoObj.venda_subp,
+        MaoObraF: talhaoObj.mao_familiar,
+        ArrendamentoTerras: talhaoObj.arrend_terra,
+        AluguelMaquinas: talhaoObj.aluguel_maq,
+        Combustivel: talhaoObj.combustivel,
+        ManutencaoBenf: talhaoObj.manu_benf,
+        ManutencaoMaq: talhaoObj.manu_maq,
+        EnergiaEletrica: talhaoObj.energia,
+        Frete: talhaoObj.frete,
+        Impostos: talhaoObj.impostos,
+        MaoObraContratada: talhaoObj.mao_contratada,
+        MaoObraFixa: talhaoObj.mao_fixa,
+        Despesas: talhaoObj.despesas,
+        Assistencia: talhaoObj.ass_tec,
+        Certificacao: talhaoObj.certificacao,
+        AnaliseSolo: talhaoObj.analise_solo,
+        AnaliseFoliar: talhaoObj.analise_foliar,
+        EPi: talhaoObj.epi,
+        Acidos: talhaoObj.acidos,
+        Adubos: talhaoObj.adubos,
+        Acaricida: talhaoObj.acaricida,
+        Bactericida: talhaoObj.bactericida,
+        Espalhante: talhaoObj.espalhante,
+        Fungicida: talhaoObj.fungicida,
+        Inseticida: talhaoObj.inseticida,
+        Nematicida: talhaoObj.nematicida,
+        OleoMineral: talhaoObj.oleo_mineral,
+        Herbicida: talhaoObj.herbicida,
+        Hormonios: talhaoObj.hormonios,
+        Maturadores: talhaoObj.maturadores,
+        MaterialColheita: talhaoObj.material_colheita,
+        Armazenamento: talhaoObj.armazenamento,
+        Benficios: talhaoObj.beneficios,
+        GasLenhaCarvao: talhaoObj.gas_lenha,
+        PosColheita: talhaoObj.material_colheita,
+        Rebeneficio: talhaoObj.rebeneficio,
+        //  Saco: talhaoObj.Saco,
+        Correntagem: talhaoObj.correntagem
+      }), (created) => {
+        console.log(this.id);
+        this.$router.push("/TalhaoView/"+created.id)
+      }
+    }
+  }
 }
 </script>
 

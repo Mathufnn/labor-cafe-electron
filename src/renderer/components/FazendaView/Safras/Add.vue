@@ -11,28 +11,22 @@
           <v-divider></v-divider>
           <v-container grid-list-md>
             <v-layout row wrap>
-              <v-layout row wrap>
-                <v-flex xs12 sm12>
-                  <v-text-field box label="Identificação da safra" v-model="identificacao_safra"></v-text-field>
-                </v-flex>
-              </v-layout>
-              <v-layout row wrap>
-                <v-flex xs12 sm6>
-                  <v-text-field box label="Área em produção (ha)" v-model="area_producao"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6>
-                  <v-text-field box label="Preço médio da terra nua (R$/ha)" v-model="preco_medio"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6>
-                  <v-text-field box label="Produção total da safra (Sc)" v-model="producao_total"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6>
-                  <v-text-field box label="Preço de venda (R$/Sc)" v-model="preco_venda"></v-text-field>
-                </v-flex>
-              </v-layout>
+              <v-flex xs12 sm12>
+                <v-text-field box label="Identificação da safra" v-model="identificacao_safra"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field box label="Área em produção (ha)" v-model="area_producao"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field box label="Preço médio da terra nua (R$/ha)" v-model="preco_medio"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field box label="Produção total da safra (Sc)" v-model="producao_total"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field box label="Preço de venda (R$/Sc)" v-model="preco_venda"></v-text-field>
+              </v-flex>
             </v-layout>
-
-
           </v-container>
         </v-card-text>
         <v-card-actions >

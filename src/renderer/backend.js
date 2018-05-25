@@ -27,6 +27,8 @@ const backend = {
       //os métodos devem ter callbacks. O nodejs é por natureza non blocking pra I/O
       //para evitar divergencias e erros é recomendando sempre usar funções assicronas com callbacks pra operacoes I/O
 
+      //lembrar de modularizar essas funções
+
       addFazenda(fazendaObj, callback=null){
         models.Fazenda.create({
           NomeFazenda: fazendaObj.nome_fazenda,
@@ -60,6 +62,20 @@ const backend = {
         })
         .then(safra_created => callback(safra_created));
       },
+
+      getFazendaSafras(fazendaid, callback){
+        models.Safra.findAll({ where: {FazendaID: fazendaid} })
+        .then(safra => callback(safra));
+      },
+
+      getSafra(fid, callback){
+        models.Safra.findOne({ where: {id: fid} })
+        .then(safra => callback(safra));
+      },
+
+
+      // /==================================================/
+
 
       addTalhao(talhaoObj, callback=NULL){
         models.Talhao.create({
@@ -106,25 +122,11 @@ const backend = {
         .then(talhao_created => callback(talhao_created));
       },
 
-      getFazendaSafras(fazendaid, callback){
-        models.Safra.findAll({ where: {FazendaID: fazendaid} })
-        .then(safra => callback(safra));
-      },
-
-      getSafra(fid, callback){
-        models.Safra.findOne({ where: {id: fid} })
-        .then(safra => callback(safra));
-      },
-
       getTalhao(talhaoid, callback){
         models.Talhao.findOne({where: {TalhaoID: talhaoid} })
         .then(talhao => callback(talhao));
-      },
-
-      getAllTalhoes(callback){
-        models.Talhao.findAll()
-        .then(all_talhoes => callback(all_talhoes));
       }
+
     }
   }
 }

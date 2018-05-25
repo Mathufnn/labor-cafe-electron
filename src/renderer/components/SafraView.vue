@@ -16,19 +16,19 @@
             <v-container fluid>
               <v-layout row wrap subheading>
                 <v-flex xs12 sm4>
-                  <b>IDENTIFICAÇÃO: </b> {{nome_safra}}
+                  <b>IDENTIFICAÇÃO </b><br /> {{nome_safra}}
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ÁREA EM PRODUÇÃO: </b> {{area_producao}}
+                  <b>ÁREA EM PRODUÇÃO </b><br /> {{area_producao}} <span class="caption">ha</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>PREÇO MÉDIO DA TERRA NUA: </b> {{preco_terra}}
+                  <b>PREÇO MÉDIO TERRA NUA </b><br /> {{preco_terra}} <span class="caption">R$/ha</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>PRODUÇÃO TOTAL DA SAFRA: </b> {{producao_total}}
+                  <b>PRODUÇÃO TOTAL SAFRA </b><br /> {{producao_total}} <span class="caption">Sc</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>PREÇO DE VENDA: </b> {{preco_venda}}
+                  <b>PREÇO DE VENDA </b><br /> {{preco_venda}} <span class="caption">R$/Sc</span>
                 </v-flex>
               </v-layout>
             </v-container>

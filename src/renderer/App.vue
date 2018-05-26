@@ -7,8 +7,9 @@
         :clipped="clipped"
         v-model="drawer"
         app
+        style="background-color:#66BB6A;"
       >
-        <v-list>
+        <v-list id="batata">
           <v-list-tile
             router
             :to="item.to"
@@ -37,15 +38,16 @@
           </v-slide-y-transition>
         </v-container>
       </v-content>
-      <v-footer :fixed="fixed" app>
+      <v-footer :fixed="fixed" app color="green darken-1" class="white--text">
         <v-spacer></v-spacer>
-        <span>&copy; 2017</span>
+        <span>&copy; 2018 &nbsp;</span>
       </v-footer>
     </v-app>
   </div>
 </template>
 
 <script>
+  console.log(__static);
   export default {
     name: 'labor-cafe',
     data: () => ({
@@ -68,4 +70,10 @@
 <style>
    /* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'); */
   /* Global CSS */
+  #batata {
+    background-color: #fff;
+    padding-bottom: 50vh;
+    background-image: url(~@/assets/sidetop.png);
+    background-position: center bottom
+  }
 </style>

@@ -10,7 +10,7 @@
                 <b>FAZENDA {{fazenda_name}}</b><br />
               </v-flex>
               <v-flex xs6 class="text-xs-right" >
-                <v-btn small  color="info" slot="activator" router :to="'/FazendaView/'+ fazenda_id"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA FAZENDA</v-btn>
+                <v-btn small  color="secondary" slot="activator" router :to="'/FazendaView/'+ fazenda_id"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA FAZENDA</v-btn>
               </v-flex>
             </v-layout>
             <v-container fluid>

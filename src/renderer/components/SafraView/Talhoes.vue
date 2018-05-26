@@ -3,8 +3,8 @@
     <v-card-title class="headline">
       Talhões
       <v-tooltip right>
-        <v-btn small color="info" slot="activator" v-on:click="loadtalhaoadd" v-if="view"><v-icon center dark>add</v-icon></v-btn>
-        <v-btn small color="info" slot="activator" v-on:click="loadtalhaoadd" v-if="add"><v-icon center dark>arrow_back</v-icon></v-btn>
+        <v-btn small color="secondary" slot="activator" v-on:click="loadtalhaoadd" v-if="view"><v-icon center dark>add</v-icon></v-btn>
+        <v-btn small color="secondary" slot="activator" v-on:click="loadtalhaoadd" v-if="add"><v-icon center dark>arrow_back</v-icon></v-btn>
         <span v-if="view">Adicionar Novo Talhão</span>
         <span v-if="add">Voltar a lista de talhões</span>
       </v-tooltip>

@@ -17,7 +17,7 @@
         </v-card-text>
         <v-card-actions >
           <v-flex xs12 text-xs-center>
-            <v-btn block color="info" large  v-on:click="dobackup">REALIZAR BACKUP</v-btn>
+            <v-btn block color="primary" large  v-on:click="dobackup">REALIZAR BACKUP</v-btn>
           </v-flex>
         </v-card-actions>
       </v-card>

@@ -11,7 +11,16 @@ import backend from './backend'
 
 Vue.use(backend)
 
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#2E7D32',
+    secondary: '#66BB6A',
+    accent: '#8c9eff',
+    error: '#b71c1c'
+  }
+})
+
+
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false

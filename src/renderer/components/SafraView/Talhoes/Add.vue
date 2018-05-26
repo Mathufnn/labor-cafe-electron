@@ -148,7 +148,7 @@
 
 <script>
 export default {
-  data(): => ({
+  data: () => ({
     ident_talhao: '',
     prod_total: '',
     area: '',
@@ -201,7 +201,7 @@ export default {
       this.$backend.addTalhao({
         TalhaoID: this.ident_talhao,
         Area: this.area,
-        ProdTotal: this.prod_total
+        ProdTotal: this.prod_total,
         VendaSubP: talhaoObj.venda_subp,
         MaoObraF: talhaoObj.mao_familiar,
         ArrendamentoTerras: talhaoObj.arrend_terra,

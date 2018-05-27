@@ -85,7 +85,7 @@ export default {
       all_talhao.forEach(talhaoObj => {
         this.item.push({
           value: false,
-          name: talhaoObj.TalhaoID,
+          name: talhaoObj.NomeTalhao,
           producaototal: talhaoObj.ProdTotal,
           area: talhaoObj.Area,
           actions: '',

@@ -9,7 +9,7 @@
         app
         style="background-color:#66BB6A;"
       >
-        <v-list id="onda">
+        <v-list id="batata">
           <v-list-tile
             router
             :to="item.to"
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+  console.log(__static);
   export default {
     name: 'labor-cafe',
     data: () => ({
@@ -69,7 +70,7 @@
 <style>
    /* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'); */
   /* Global CSS */
-  #onda {
+  #batata {
     background-color: #fff;
     padding-bottom: 50vh;
     background-image: url(~@/assets/sidetop.png);

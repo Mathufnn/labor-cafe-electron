@@ -77,10 +77,10 @@ const backend = {
       // /==================================================/
 
 
-      addTalhao(talhaoObj, callback=NULL){
+      addTalhao(talhaoObj, callback=null){
         models.Talhao.create({
           SafraID: talhaoObj.SafraID,
-          TalhaoID: talhaoObj.TalhaoID,
+          NomeTalhao: talhaoObj.NomeTalhao,
           ProdTotal: talhaoObj.ProdTotal,
           Area: talhaoObj.Area,
           VendaSubP: talhaoObj.VendaSubP,

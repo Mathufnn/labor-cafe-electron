@@ -128,6 +128,11 @@ const backend = {
       getTalhao(talhaoid, callback){
         models.Talhao.findOne({where: {TalhaoID: talhaoid} })
         .then(talhao => callback(talhao));
+      },
+
+      getSafraTalhao(safraid, callback){
+        models.Talhao.findAll({ where: {SafraID: safraid} })
+        .then(talhao => callback(talhao));
       }
 
     }

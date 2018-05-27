@@ -16,7 +16,7 @@
           <td>{{ props.item.name }}</td>
           <td>{{ props.item.producaototal }}</td>
           <td>{{ props.item.area }}</td>
-          <td class="text-xs-center"><v-btn small color="primary" dark router to="/TalhaoView"><v-icon left dark>info</v-icon> Mostrar talhão</v-btn>
+          <td class="text-xs-center"><v-btn small color="primary" dark router :to=" '/TalhaoView/' + props.item.id" ><v-icon left dark>info</v-icon> Mostrar talhão</v-btn>
           </td>
         </tr>
       </template>
@@ -55,33 +55,14 @@ export default {
         value: 'actions'
       }
     ],
-    items: [ //itens de teste
-      {
-        value: false,
-        name: 'Talhao A1',
-        producaototal: '8000',
-        area: '14234',
-        actions: '',
-        id: 0
-      },
-      {
-        value: false,
-        name: 'Talhao A3',
-        producaototal: '235312',
-        area: '3241',
-        actions: '',
-        id: 0
-      },
-      {
-        value: false,
-        name: 'Talhao A5',
-        producaototal: '523523',
-        area: '251325213',
-        actions: '',
-        id: 1
-      }
-    ]
+    items: []
   }),
+
+  props: {
+    fid: {
+      default: '-1'
+    }
+  },
 
   methods: {
     toggleAll () {
@@ -96,6 +77,22 @@ export default {
         this.pagination.descending = false
       }
     }
+  },
+
+  mounted: function(){
+    this.$backend.getSafraTalhao(this.fid, all_talhao => {
+      if(all_talhao != null)
+      all_talhao.forEach(talhaoObj => {
+        this.item.push({
+          value: false,
+          name: talhaoObj.TalhaoID,
+          producaototal: talhaoObj.ProdTotal,
+          area: talhaoObj.Area,
+          actions: '',
+          id: talhaoObj.id
+        })
+      })
+    })
   }
 }
 </script>

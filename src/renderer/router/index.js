@@ -27,7 +27,7 @@ export default new Router({
       component: require('@/components/Backup').default
     },
     {
-      path: '/TalhaoView',
+      path: '/TalhaoView/:id',
       name: 'TalhaoView',
       component: require('@/components/TalhaoView').default,
       props: true

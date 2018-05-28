@@ -38,7 +38,7 @@ export default {
     selected: [],
     headers: [
       {
-        text: 'Nome do Talhão',
+        text: 'Identificação Talhão',
         align: 'left',
         value: 'name'
       },
@@ -59,7 +59,7 @@ export default {
   }),
 
   props: {
-    fid: {
+    sid: {
       default: '-1'
     }
   },
@@ -80,10 +80,10 @@ export default {
   },
 
   mounted: function(){
-    this.$backend.getSafraTalhao(this.fid, all_talhao => {
+    this.$backend.getSafraTalhao(this.sid, all_talhao => {
       if(all_talhao != null)
       all_talhao.forEach(talhaoObj => {
-        this.item.push({
+        this.items.push({
           value: false,
           name: talhaoObj.NomeTalhao,
           producaototal: talhaoObj.ProdTotal,

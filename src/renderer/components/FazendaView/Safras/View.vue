@@ -44,15 +44,15 @@ export default {
         value: 'name'
       },
       {
-        text: 'Área em produção',
+        text: 'Área em produção (ha)',
         value: 'areaemproducao'
       },
       {
-        text: 'Produção',
+        text: 'Produção (R$/ha)',
         value: 'producaodasafra'
       },
       {
-        text: 'Preço de venda',
+        text: 'Preço de venda (R$/ha)',
         value: 'precodevenda'
       },
       {

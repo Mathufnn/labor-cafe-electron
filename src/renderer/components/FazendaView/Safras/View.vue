@@ -16,7 +16,6 @@
           <td>{{ props.item.name }}</td>
           <td>{{ props.item.areaemproducao }}</td>
           <td>{{ props.item.producaodasafra }}</td>
-          <td>{{ props.item.precodevenda }}</td>
           <td class="text-xs-center"><v-btn small color="primary" dark router :to="'/SafraView/' + props.item.id"><v-icon left dark>info</v-icon> Mostrar safra</v-btn>
           </td>
         </tr>
@@ -39,7 +38,7 @@ export default {
     selected: [],
     headers: [
       {
-        text: 'Nome da safra',
+        text: 'Identificação da safra',
         align: 'left',
         value: 'name'
       },
@@ -50,10 +49,6 @@ export default {
       {
         text: 'Produção (R$/ha)',
         value: 'producaodasafra'
-      },
-      {
-        text: 'Preço de venda (R$/ha)',
-        value: 'precodevenda'
       },
       {
         text: '',

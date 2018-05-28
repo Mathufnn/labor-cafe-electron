@@ -205,7 +205,7 @@ export default {
     SalvarTalhao: function() {
       if(this.sid == -1) return;
       this.$backend.addTalhao({
-        TalhaoID: this.ident_talhao,
+        NomeTalhao: this.ident_talhao,
         Area: this.area,
         ProdTotal: this.prod_total,
         VendaSubP: this.venda_subp,

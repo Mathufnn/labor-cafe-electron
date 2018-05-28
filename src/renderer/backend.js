@@ -126,7 +126,7 @@ const backend = {
       },
 
       getTalhao(talhaoid, callback){
-        models.Talhao.findOne({where: {TalhaoID: talhaoid} })
+        models.Talhao.findOne({where: {id: talhaoid} })
         .then(talhao => callback(talhao));
       },
 

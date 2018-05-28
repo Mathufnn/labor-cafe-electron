@@ -18,6 +18,11 @@
           <td>{{ props.item.area }}</td>
           <td class="text-xs-center"><v-btn small color="primary" dark router :to=" '/TalhaoView/' + props.item.id" ><v-icon left dark>info</v-icon> Mostrar talhão</v-btn>
           </td>
+          <td>
+            <v-btn flat icon color="primary" ark>
+              <v-icon>build</v-icon>
+            </v-btn>
+          </td>
         </tr>
       </template>
       <template slot="pageText" slot-scope="item">
@@ -53,6 +58,10 @@ export default {
       {
         text: '',
         value: 'actions'
+      },
+      {
+        text: '',
+        value: 'edit'
       }
     ],
     items: []

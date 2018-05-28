@@ -17,7 +17,7 @@
             <v-container fluid>
               <v-layout row wrap subheading>
                 <v-flex xs12 sm4>
-                  <b>PRODUÇÃO TOTAL: </b> {{producao_total}} <span class="caption">Sc</span>
+                  <v-btn><b>PRODUÇÃO TOTAL: </b> {{producao_total}} <span class="caption">Sc</span></v-btn>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>ÁREA: </b> {{area}} <span class="caption">ha</span>

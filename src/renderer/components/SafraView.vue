@@ -41,7 +41,7 @@
       </v-flex>
 
       <v-flex xs11 >
-        <talhoes></talhoes>
+        <talhoes :sid="id"></talhoes>
       </v-flex>
 
     </v-layout>

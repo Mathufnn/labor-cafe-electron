@@ -11,8 +11,8 @@
     </v-card-title>
     <v-divider></v-divider>
     <v-layout row wrap class="pa-3">
-      <TalhoesView v-if="view"></TalhoesView>
-      <TalhoesAdd v-if="add"></TalhoesAdd>
+      <TalhoesView v-if="view" :sid="sid"></TalhoesView>
+      <TalhoesAdd v-if="add" :sid="sid"></TalhoesAdd>
     </v-layout>
   </v-card>
 </template>
@@ -26,6 +26,11 @@ export default {
     view: true,
     add: false
   }),
+  props: {
+    sid: {
+      default: '-1'
+    }
+  },
   methods: {
     loadtalhaoadd: function () {
       this.add = !this.add

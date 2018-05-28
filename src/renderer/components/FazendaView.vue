@@ -2,7 +2,8 @@
   <v-container grid-list-xl fill-height >
     <v-layout row wrap justify-space-around id="wrapper">
       <v-flex xs11>
-        <v-card>
+        <v-card color="secondary">
+          <!-- TROCAR A FONTE OU DEIXAR EM NEGRITO! -->
           <v-card-text>
             <h1>Fazenda {{nome_fazenda}}</h1>
 

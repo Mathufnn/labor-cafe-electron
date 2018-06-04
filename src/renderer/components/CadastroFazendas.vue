@@ -28,9 +28,8 @@
               <v-flex xs12 sm6 mt-4>
                 <v-select
                 :items="states"
-                v-model="a1"
+                v-model="cidade"
                 label="Cidades"
-                autocomplete
                 ></v-select>
               </v-flex>
             </v-layout>
@@ -55,17 +54,15 @@ export default {
     sistema_producao: '',
     agronegocio: '',
     cidade: '',
-    a1: '',
-    states: require('./cidades.json')['states']
+    states: require('./cidades.json').mg_city_list
   }),
   methods: {
     SalvarFazenda: function () {
-      this.cidade = this.states;
       let result = this.$backend.addFazenda({
         nome_fazenda: this.nome_fazenda,
         sistema_producao: this.sistema_producao,
         agronegocio: this.agronegocio,
-        cidade: this.states
+        cidade: this.cidade
       }, (created) => {
         console.log(created.id);
         this.$router.push("/FazendaView/"+created.id);

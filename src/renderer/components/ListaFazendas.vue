@@ -15,7 +15,6 @@
         <tr>
           <td>{{ props.item.name }}</td>
           <td>{{ props.item.production_sys }}</td>
-          <td>{{ props.item.agronegocy }}</td>
           <td>{{ props.item.city }}</td>
           <td class="text-xs-center"><v-btn small color="primary" dark router :to="'/FazendaView/' + props.item.id"><v-icon left dark>info</v-icon> Mostrar fazenda</v-btn>
           </td>
@@ -46,10 +45,6 @@ export default {
       {
         text: "Sistema de Produção",
         value: "production_sys"
-      },
-      {
-        text: "Agronegócio",
-        value: "agronegocy"
       },
       {
         text: "Cidade",

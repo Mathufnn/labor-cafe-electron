@@ -30,7 +30,7 @@ export default {
         pcv: { text: 'PREÇO MÉDIO DE VENDA', status: 2, value: 500 },
         producao: { text: 'PRODUÇÃO', status: 1, value: 'R$ ' + 21000 },
         aplantada: { text: 'ÁREA PLANTADA', status: 1, value: 1254 + ' ha' },
-        ppaplantada: { text: 'PRODUÇÃO P/ ÁREA PLANTADA', status: 1, value: 12  },
+        ppaplantada: { text: 'PRODUÇÃO PARA ÁREA PLANTADA', status: 1, value: 12  },
         coeap: { text: 'COE POR ÁREA PLANTADA', status: 4, value: 345  },
         coeu: { text: 'COE POR UNIDADE', status: 2, value: 234  },
         cotap: { text: 'COT POR ÁREA PLANTADA', status: 2, value: 532  },
@@ -50,11 +50,21 @@ export default {
         trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', status: 1, value: 12  },
         bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO', status: 1, value: 48  },
         capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', status: 3, value: 8644.41  },
-        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', status: 3, value: 2537  }
+        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', status: 3, value: 2537  },
+        taxagiro: { text: 'TAXA DE GIRO', status: 2, value: 1337  },
+        lucrativ: { text: 'LUCRATIVIDADE', status: 4, value: 993  }
       }
     }
+  },
+  mounted: function() {
+    this.$backend.getAllTalhoes(all_fazendas => {
+      all_talhao.forEach(talhaoObj => {
+        this.items.push({
+          
+        });
+      });
+    });
   }
-
 }
 </script>
 

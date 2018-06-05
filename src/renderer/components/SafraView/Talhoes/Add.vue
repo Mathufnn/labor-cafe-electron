@@ -12,12 +12,6 @@
                 <v-flex xs12 sm12>
                   <v-text-field box label="Identificação do talhão" v-model="ident_talhao"></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6>
-                  <v-text-field box label="Produção Total" suffix="Sc"  v-model="prod_total"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6>
-                  <v-text-field box label="Área" suffix="ha"  v-model="area"></v-text-field>
-                </v-flex>
               </v-layout>
             </v-container>
           </v-card>

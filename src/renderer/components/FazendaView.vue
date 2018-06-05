@@ -13,9 +13,6 @@
                   <b>SISTEMA DE PRODUÇÃO: </b> {{sistema_producao}}
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>AGRONEGÓCIO: </b> {{agronegocio}}
-                </v-flex>
-                <v-flex xs12 sm4>
                   <b>CIDADE: </b> {{cidade}}
                 </v-flex>
               </v-layout>
@@ -57,7 +54,6 @@ export default {
   data: () => ({
     nome_fazenda: '',
     sistema_producao: '',
-    agronegocio: '',
     cidade: ''
   }),
   props: {
@@ -71,7 +67,6 @@ export default {
 
       this.nome_fazenda = fazendaObj.NomeFazenda;
       this.sistema_producao = fazendaObj.SistemaProducao==1?'Irrigado':'Sequeiro';
-      this.agronegocio = fazendaObj.Agronegocio;
       this.cidade = fazendaObj.Cidade;
 
     });

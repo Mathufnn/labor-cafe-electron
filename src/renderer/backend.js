@@ -130,6 +130,11 @@ const backend = {
         .then(talhao => callback(talhao));
       },
 
+      getAllTalhoes(fazendaid, callback){
+        models.Talhao.findAll({ where: {FazendaID: fazendaid} })
+        .then(all_talhao => callback(all_talhao));
+      },
+
       getSafraTalhao(safraid, callback){
         models.Talhao.findAll({ where: {SafraID: safraid} })
         .then(talhao => callback(talhao));

@@ -60,7 +60,7 @@ export default {
     this.$backend.getAllTalhoes(all_fazendas => {
       all_talhao.forEach(talhaoObj => {
         this.items.push({
-          
+
         });
       });
     });

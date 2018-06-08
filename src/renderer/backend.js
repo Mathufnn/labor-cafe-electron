@@ -8,21 +8,19 @@ const fatal_error = err => {remote.dialog.showErrorBox('Não foi possível conec
 var synchronized = false;
 var models;
 
+const sequelize = new Sequelize('sqlite:laborrural.db');
+
+// callbackhell.com
+const sync = () => sequelize.sync().then(() => synchronized = true, err => fatal_error(err));
+const loadmodels = () => {
+  models = require('./models')(sequelize, Sequelize);
+  sync();
+}
+sequelize.authenticate().then(loadmodels, err => fatal_error(err));
+
 // main object
 const backend = {
-  install(Vue, options) {
-    const sequelize = new Sequelize('sqlite:laborrural.db');
-
-
-    // callbackhell.com
-    const sync = () => sequelize.sync().then(() => synchronized = true, err => fatal_error(err));
-    const loadmodels = () => {
-      models = require('./models')(sequelize, Sequelize);
-      sync();
-    }
-    sequelize.authenticate().then(loadmodels, err => fatal_error(err));
-
-
+  install: (Vue, options) => {
     Vue.prototype.$backend = {
       //os métodos devem ter callbacks. O nodejs é por natureza non blocking pra I/O
       //para evitar divergencias e erros é recomendando sempre usar funções assicronas com callbacks pra operacoes I/O
@@ -73,9 +71,7 @@ const backend = {
         .then(safra => callback(safra));
       },
 
-
       // /==================================================/
-
 
       addTalhao(talhaoObj, callback=null){
         models.Talhao.create({

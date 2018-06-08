@@ -17,7 +17,7 @@
             <v-container fluid>
               <v-layout row wrap subheading>
                 <v-flex xs12 sm4>
-                  <b>PRODUÇÃO TOTAL: </b> {{producao_total}} <span class="caption">Sc</span>
+                  <b>PRODUÇÃO TOTAL: </b> <v-text-field type='text' :placeholder="producao_total+'sc'" v-model='producao_total'/><span class="caption">Sc</span>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>ÁREA: </b> {{area}} <span class="caption">ha</span>
@@ -216,7 +216,8 @@ export default {
     }
   },
   mounted: function () {
-    this.$backend.getTalhao(this.id, (talhaoObj) => {
+    alert(this.$route.params.id)
+    this.$backend.getTalhao(this.$route.params.id, (talhaoObj) => {
       if(talhaoObj==null) {  this.$router.push('/'); return; }
       this.talhao_ident = talhaoObj.NomeTalhao;
       this.safra_id = talhaoObj.SafraID;

@@ -32,7 +32,7 @@
       </v-flex>
 
       <v-flex xs11>
-        <indicadores></indicadores>
+        <indicadores :fid="id"></indicadores>
       </v-flex>
 
       <v-flex xs11>

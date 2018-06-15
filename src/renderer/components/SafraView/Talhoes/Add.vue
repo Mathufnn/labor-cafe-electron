@@ -95,6 +95,9 @@
                   <v-text-field box type="number" label="Espalhante adesivo" suffix="R$/safra" v-model="espalhante"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
+                  <v-text-field box type="number" label="Inseticida" suffix="R$/safra" v-model="inseticida"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6>
                   <v-text-field box type="number" label="Fungicida" suffix="R$/safra" v-model="fungicida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
@@ -176,6 +179,7 @@ export default {
     acaricida: '',
     bactericida: '',
     espalhante: '',
+    inseticida: '',
     fungicida: '',
     nematicida: '',
     oleo_mineral: '',

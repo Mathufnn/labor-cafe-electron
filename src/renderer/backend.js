@@ -5,13 +5,12 @@ const remote = require('electron').remote;
 const fatal_error = err => {remote.dialog.showErrorBox('Não foi possível conectar ao banco de dados!', err); remote.getCurrentWindow().close();}
 
 //global vars/objects
-var synchronized = false;
 var models;
 
 const sequelize = new Sequelize('sqlite:laborrural.db');
 
 // callbackhell.com
-const sync = () => sequelize.sync().then(() => synchronized = true, err => fatal_error(err));
+const sync = () => sequelize.sync().then(() => backend.install.synced = true, err => fatal_error(err));
 const loadmodels = () => {
   models = require('./models')(sequelize, Sequelize);
   sync();
@@ -26,6 +25,10 @@ const backend = {
       //para evitar divergencias e erros é recomendando sempre usar funções assicronas com callbacks pra operacoes I/O
 
       //lembrar de modularizar essas funções
+      synced: false,
+
+
+
 
       addFazenda(fazendaObj, callback=null){
         models.Fazenda.create({
@@ -50,6 +53,11 @@ const backend = {
       // /==================================================/
 
       addSafra(safraObj, callback=null){
+        Object.keys(safraObj).forEach(function(key) {
+          if(key=="IdentSafra" || key=="FazendaID") return;
+          if(safraObj[key]=='') safraObj[key] = 0;
+        });
+
         models.Safra.create({
           FazendaID: safraObj.FazendaID,
           IdentSafra: safraObj.IdentSafra,
@@ -74,11 +82,16 @@ const backend = {
       // /==================================================/
 
       addTalhao(talhaoObj, callback=null){
+        Object.keys(talhaoObj).forEach(function(key) {
+          if(key=="SafraID" || key=="NomeTalhao") return;
+          if(talhaoObj[key]=='') talhaoObj[key] = 0;
+        });
+
         models.Talhao.create({
           SafraID: talhaoObj.SafraID,
           NomeTalhao: talhaoObj.NomeTalhao,
           ProdTotal: talhaoObj.ProdTotal,
-          Area: talhaoObj.Area,
+          //Area: talhaoObj.Area,
           VendaSubP: talhaoObj.VendaSubP,
           MaoObraF: talhaoObj.MaoObraF,
           ArrendamentoTerras: talhaoObj.ArrendamentoTerras,
@@ -124,11 +137,6 @@ const backend = {
       getTalhao(talhaoid, callback){
         models.Talhao.findOne({where: {id: talhaoid} })
         .then(talhao => callback(talhao));
-      },
-
-      getAllTalhoes(fazendaid, callback){
-        models.Talhao.findAll({ where: {FazendaID: fazendaid} })
-        .then(all_talhao => callback(all_talhao));
       },
 
       getSafraTalhao(safraid, callback){

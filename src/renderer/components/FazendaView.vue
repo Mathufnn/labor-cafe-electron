@@ -9,11 +9,11 @@
 
             <v-container fluid>
               <v-layout row wrap subheading>
-                <v-flex xs12 sm4>
-                  <b>SISTEMA DE PRODUÇÃO: </b> {{sistema_producao}}
+                <v-flex xs12 sm6>
+                  <b>SISTEMA DE PRODUÇÃO</b><br /> {{sistema_producao}}
                 </v-flex>
-                <v-flex xs12 sm4>
-                  <b>CIDADE: </b> {{cidade}}
+                <v-flex xs12 sm6>
+                  <b>CIDADE</b><br /> {{cidade}}
                 </v-flex>
               </v-layout>
             </v-container>

@@ -65,13 +65,11 @@ export default {
     fazenda_id: -1,
     fazenda_name: ''
   }),
-
   props: {
     id: {
       default: '-1'
     }
   },
-
   mounted: function () {
     this.$backend.getSafra(this.id, (safraObj) => {
       if(safraObj==null) {  this.$router.push('/'); return; }

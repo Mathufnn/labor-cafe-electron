@@ -52,10 +52,6 @@ export default {
         value: 'producaototal'
       },
       {
-        text: 'Área (m²)',
-        value: 'area'
-      },
-      {
         text: '',
         value: 'actions'
       },
@@ -96,7 +92,6 @@ export default {
           value: false,
           name: talhaoObj.NomeTalhao,
           producaototal: talhaoObj.ProdTotal,
-          area: talhaoObj.Area,
           actions: '',
           id: talhaoObj.id
         })

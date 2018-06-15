@@ -20,9 +20,6 @@
                   <b>PRODUÇÃO TOTAL: </b> {{producao_total}} <span class="caption">Sc</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ÁREA: </b> {{area}} <span class="caption">ha</span>
-                </v-flex>
-                <v-flex xs12 sm4>
                   <b>VENDA DUB PRODUTO: </b> {{venda_subp}} <span class="caption">R$</span>
                 </v-flex>
                 <v-flex xs12 sm4>

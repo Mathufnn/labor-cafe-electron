@@ -20,115 +20,118 @@
               <hr/>
               <v-layout row wrap subheading>
                 <v-flex xs12 sm4>
-                  <b>VENDA DUB PRODUTO: </b> {{venda_subp}} <span class="caption">R$/safra</span>
+                  <b>VENDA DUB PRODUTO</b><br /> {{venda_subp}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MAO DE OBRA FAMILIAR: </b> {{mao_familiar}} <span class="caption">R$/safra</span>
+                  <b>MAO DE OBRA FAMILIAR </b><br /> {{mao_familiar}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ARRENDAMENTO TERRAS: </b> {{arrend_terra}} <span class="caption">R$/safra</span>
+                  <b>ARRENDAMENTO TERRAS </b><br /> {{arrend_terra}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ALUGUEL DE MAQUINAS: </b> {{aluguel_maq}} <span class="caption">R$/safra</span>
+                  <b>ALUGUEL DE MAQUINAS </b><br /> {{aluguel_maq}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>COMBUSTIVEL: </b> {{combustivel}} <span class="caption">R$/safra</span>
+                  <b>COMBUSTIVEL </b><br /> {{combustivel}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MANUTENÇÃO MAQUINAS: </b> {{manu_maq}} <span class="caption">R$/safra</span>
+                  <b>MANUTENÇÃO MAQUINAS </b><br /> {{manu_maq}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MANUTENÇÃO BENFEITORIAS: </b> {{manu_benf}} <span class="caption">R$/safra</span>
+                  <b>MANUTENÇÃO BENFEITORIAS </b><br /> {{manu_benf}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ENERGIA: </b> {{energia}} <span class="caption">R$/safra</span>
+                  <b>ENERGIA </b><br /> {{energia}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>FRETE: </b> {{frete}} <span class="caption">R$/safra</span>
+                  <b>FRETE </b><br /> {{frete}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>IMPOSTOS: </b> {{impostos}} <span class="caption">R$/safra</span>
+                  <b>IMPOSTOS </b><br /> {{impostos}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>CONTRATADA: </b> {{mao_contratada}} <span class="caption">R$/safra</span>
+                  <b>CONTRATADA </b><br /> {{mao_contratada}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>FIXA: </b> {{mao_fixa}} <span class="caption">R$/safra</span>
+                  <b>FIXA </b><br /> {{mao_fixa}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>DESPESAS GERAIS: </b> {{despesas_gerais}} <span class="caption">R$/safra</span>
+                  <b>DESPESAS GERAIS </b><br /> {{despesas_gerais}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ASSISTENCIA TECNICA: </b> {{ass_tec}} <span class="caption">R$/safra</span>
+                  <b>ASSISTENCIA TECNICA </b><br /> {{ass_tec}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>CERTIFICAÇÃO: </b> {{certificacao}} <span class="caption">R$/safra</span>
+                  <b>CERTIFICAÇÃO </b><br /> {{certificacao}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ANALISE SOLO: </b> {{analise_solo}} <span class="caption">R$/safra</span>
+                  <b>ANALISE SOLO </b> <br />{{analise_solo}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ANALISE FOLIAR: </b> {{analise_foliar}} <span class="caption">R$/safra</span>
+                  <b>ANALISE FOLIAR </b><br /> {{analise_foliar}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>EPI: </b> {{epi}} <span class="caption">R$/safra</span>
+                  <b>EPI </b><br /> {{epi}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ACIDOS: </b> {{acidos}} <span class="caption">R$/safra</span>
+                  <b>ACIDOS </b><br /> {{acidos}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ADUBOS: </b> {{adubos}} <span class="caption">R$/safra</span>
+                  <b>ADUBOS </b><br /> {{adubos}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ACARICIDAS: </b> {{acaricida}} <span class="caption">R$/safra</span>
+                  <b>ACARICIDAS </b><br /> {{acaricida}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>BACTERICIDAS: </b> {{bactericida}} <span class="caption">R$/safra</span>
+                  <b>BACTERICIDAS </b><br /> {{bactericida}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ESPALHANTE: </b> {{espalhante}} <span class="caption">R$/safra</span>
+                  <b>ESPALHANTE </b> <br />{{espalhante}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>FUNGICIDA: </b> {{fungicida}} <span class="caption">R$/safra</span>
+                  <b>INSETICIDA </b><br /> {{inseticida}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>NEMATICIDA: </b> {{nematicida}} <span class="caption">R$/safra</span>
+                  <b>FUNGICIDA </b><br /> {{fungicida}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>OLEO MINERAL: </b> {{oleo_mineral}} <span class="caption">R$/safra</span>
+                  <b>NEMATICIDA </b><br /> {{nematicida}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>HERBICIDA: </b> {{herbicida}} <span class="caption">R$/safra</span>
+                  <b>OLEO MINERAL </b><br /> {{oleo_mineral}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>HORMONIOS: </b> {{hormonios}} <span class="caption">R$/safra</span>
+                  <b>HERBICIDA </b><br /> {{herbicida}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MATURADORES: </b> {{maturadores}} <span class="caption">R$/safra</span>
+                  <b>HORMONIOS </b><br /> {{hormonios}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MATERIAL COLHEITA: </b> {{material_colheita}} <span class="caption">R$/safra</span>
+                  <b>MATURADORES </b><br />{{maturadores}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ARMAZENAMENTO: </b> {{armazenamento}} <span class="caption">R$/safra</span>
+                  <b>MATERIAL COLHEITA </b><br /> {{material_colheita}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>BENEFICIO: </b> {{beneficio}} <span class="caption">R$/safra</span>
+                  <b>ARMAZENAMENTO </b><br /> {{armazenamento}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>GAS LENHA CARVAO: </b> {{gas_lenha}} <span class="caption">R$/safra</span>
+                  <b>BENEFICIO </b><br /> {{beneficio}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MATERIAIS POS COLHEITA: </b> {{material_colheita}} <span class="caption">R$/safra</span>
+                  <b>GAS LENHA CARVAO </b><br /> {{gas_lenha}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>REBENEFICIO: </b> {{rebeneficio}} <span class="caption">R$/safra</span>
+                  <b>MATERIAIS POS COLHEITA </b><br /> {{material_colheita}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>EMBALAGENS: </b> {{embalagens}} <span class="caption">R$/safra</span>
+                  <b>REBENEFICIO </b><br /> {{rebeneficio}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>CORRETAGEM: </b> {{corretagem}} <span class="caption">R$/safra</span>
+                  <b>EMBALAGENS </b><br /> {{embalagens}} <span class="caption">R$/safra</span>
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <b>CORRETAGEM </b><br /> {{corretagem}} <span class="caption">R$/safra</span>
                 </v-flex>
 
               </v-layout>
@@ -187,6 +190,7 @@ export default {
     bactericida: '',
     espalhante: '',
     fungicida: '',
+    inseticida: '',
     nematicida: '',
     oleo_mineral: '',
     herbicida: '',
@@ -238,6 +242,7 @@ export default {
       this.bactericida = talhaoObj.Bactericida;
       this.espalhante = talhaoObj.Espalhante;
       this.fungicida = talhaoObj.Fungicida;
+      this.inseticida = talhaoObj.Inseticida;
       this.nematicida = talhaoObj.Nematicida;
       this.oleo_mineral = talhaoObj.OleoMineral;
       this.herbicida = talhaoObj.Herbicida;
@@ -245,7 +250,7 @@ export default {
       this.maturadores = talhaoObj.Maturadores;
       this.material_colheita = talhaoObj.MaterialColheita;
       this.armazenamento = talhaoObj.Armazenamento;
-      this.beneficio = talhaoObj.Beneficio;
+      this.beneficio = talhaoObj.Beneficios;
       this.gas_lenha = talhaoObj.GasLenhaCarvao;
       this.rebeneficio = talhaoObj.Rebeneficio;
       this.embalagens = talhaoObj.Saco;

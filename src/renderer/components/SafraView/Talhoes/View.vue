@@ -6,7 +6,7 @@
       :headers="headers"
       :items="items"
       :pagination.sync="pagination"
-      item-key="name"
+      item-key="id"
       class="elevation-1"
       rows-per-page-text="Linhas por página"
       :rows-per-page-items="rowsppitems"
@@ -17,11 +17,6 @@
           <td>{{ props.item.producaototal }}</td>
           <td>{{ props.item.area }}</td>
           <td class="text-xs-center"><v-btn small color="primary" dark router :to=" '/TalhaoView/' + props.item.id" ><v-icon left dark>info</v-icon> Mostrar talhão</v-btn>
-          </td>
-          <td>
-            <v-btn flat icon color="primary" ark>
-              <v-icon>build</v-icon>
-            </v-btn>
           </td>
         </tr>
       </template>
@@ -54,10 +49,6 @@ export default {
       {
         text: '',
         value: 'actions'
-      },
-      {
-        text: '',
-        value: 'edit'
       }
     ],
     items: []
@@ -85,6 +76,7 @@ export default {
   },
 
   mounted: function(){
+    this.items=[];
     this.$backend.getSafraTalhao(this.sid, all_talhao => {
       if(all_talhao != null)
       all_talhao.forEach(talhaoObj => {

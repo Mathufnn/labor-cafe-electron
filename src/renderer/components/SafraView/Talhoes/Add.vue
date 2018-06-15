@@ -13,7 +13,7 @@
                   <v-text-field box label="Identificação do talhão" v-model="ident_talhao"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm12>
-                  <v-text-field box type="number" label="Produção (R$)" v-model="prod"></v-text-field>
+                  <v-text-field box type="number" label="Produção (Sc)" v-model="prod"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -167,7 +167,6 @@ export default {
     mao_fixa: '',
     despesas_gerais: '',
     ass_tec: '',
-    despesas_gerais: '',
     certificacao: '',
     analise_solo: '',
     analise_foliar: '',
@@ -217,7 +216,7 @@ export default {
         Impostos: this.impostos,
         MaoObraContratada: this.mao_contratada,
         MaoObraFixa: this.mao_fixa,
-        Despesas: this.despesas,
+        Despesas: this.despesas_gerais,
         Assistencia: this.ass_tec,
         Certificacao: this.certificacao,
         AnaliseSolo: this.analise_solo,
@@ -237,11 +236,11 @@ export default {
         Maturadores: this.maturadores,
         MaterialColheita: this.material_colheita,
         Armazenamento: this.armazenamento,
-        Benficios: this.beneficios,
+        Beneficios: this.beneficio,
         GasLenhaCarvao: this.gas_lenha,
         PosColheita: this.material_colheita,
         Rebeneficio: this.rebeneficio,
-        //  Saco: this.Saco,
+        Saco: this.embalagens,
         Correntagem: this.corretagem,
         SafraID: this.sid
       }, (created) => {

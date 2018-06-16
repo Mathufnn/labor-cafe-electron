@@ -72,7 +72,7 @@ export default {
     this.$backend.getTalhao(this.tid, (talhaoObj) => {
       this.$backend.getSafra(talhaoObj.SafraID, (safraObj) => {
         //renda bruta
-        this.indicadores.rendabruta.value = Math.floor(talhaoObj.ProdTotal * safraObj.PrecoVenda);
+        this.indicadores.rendabruta.value = Math.floor(talhaoObj.ProdTotal * talhaoObj.PrecoVenda);
         //coe
         this.indicadores.coe.value = Math.floor(talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo + talhaoObj.AnaliseFoliar + talhaoObj.EPi + talhaoObj.Acidos + talhaoObj.Adubos + talhaoObj.Acaricida  + talhaoObj.Bactericida + talhaoObj.Espalhante + talhaoObj.Fungicida + talhaoObj.Inseticida + talhaoObj.Nematicida + talhaoObj.OleoMineral + talhaoObj.Herbicida + talhaoObj.Hormonios + talhaoObj.Maturadores + talhaoObj.MaterialColheita + talhaoObj.Armazenamento + talhaoObj.Beneficios + talhaoObj.GasLenhaCarvao + talhaoObj.PosColheita + talhaoObj.Rebeneficio + talhaoObj.Saco + talhaoObj.Correntagem);
 
@@ -83,13 +83,13 @@ export default {
         this.indicadores.ct.value = Math.floor(this.indicadores.cot.value) /* + CAPITALESTOQUE REMUNERACAO CAPITAL */;
 
         //pcv
-        this.indicadores.pcv.value = Math.floor(safraObj.PrecoVenda);
+        this.indicadores.pcv.value = Math.floor(talhaoObj.PrecoVenda);
 
         //producao
         this.indicadores.producao.value = Math.floor(talhaoObj.ProdTotal);
 
         //aplantada
-        this.indicadores.aplantada.value = Math.floor(safraObj.AreaProducao);
+        this.indicadores.aplantada.value = Math.floor(talhaoObj.Area);
 
         //ppaplantada
         this.indicadores.ppaplantada.value = Math.floor(this.indicadores.producao.value / this.indicadores.aplantada.value);

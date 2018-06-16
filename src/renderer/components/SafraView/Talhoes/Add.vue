@@ -12,8 +12,14 @@
                 <v-flex xs12 sm12>
                   <v-text-field box label="Identificação do talhão" v-model="ident_talhao"></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm12>
-                  <v-text-field box type="number" label="Produção (Sc)" v-model="prod"></v-text-field>
+                <v-flex xs12 sm4>
+                  <v-text-field box type="number" label="Área em produção (ha)" v-model="area_prod"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <v-text-field box type="number" label="Produção Total (Sc)" v-model="prod"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <v-text-field box type="number" label="Preço de venda (R$/Sc)" v-model="preco_venda"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -155,7 +161,8 @@ export default {
   data: () => ({
     ident_talhao: '',
     prod: '',
-    area: '',
+    area_prod: '',
+    preco_venda: '',
     venda_subp: '',
     mao_familiar: '',
     arrend_terra: '',
@@ -206,8 +213,9 @@ export default {
       if(this.sid == -1) return;
       this.$backend.addTalhao({
         NomeTalhao: this.ident_talhao,
-        Area: this.area,
+        Area: this.area_prod,
         ProdTotal: this.prod,
+        PrecoVenda: this.preco_venda,
         VendaSubP: this.venda_subp,
         MaoObraF: this.mao_familiar,
         ArrendamentoTerras: this.arrend_terra,

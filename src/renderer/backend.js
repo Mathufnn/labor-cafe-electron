@@ -91,7 +91,8 @@ const backend = {
           SafraID: talhaoObj.SafraID,
           NomeTalhao: talhaoObj.NomeTalhao,
           ProdTotal: talhaoObj.ProdTotal,
-          //Area: talhaoObj.Area,
+          Area: talhaoObj.Area,
+          PrecoVenda: talhaoObj.PrecoVenda,
           VendaSubP: talhaoObj.VendaSubP,
           MaoObraF: talhaoObj.MaoObraF,
           ArrendamentoTerras: talhaoObj.ArrendamentoTerras,
@@ -142,6 +143,28 @@ const backend = {
       getSafraTalhao(safraid, callback){
         models.Talhao.findAll({ where: {SafraID: safraid} })
         .then(talhao => callback(talhao));
+      },
+
+      //==============================================================/
+
+
+      dogetBackupData(callback){
+        let bdata = {};
+
+        //callbackhellllllllllllllll
+        models.Fazenda.findAll()
+        .then(all_fazendas => {
+          bdata.Fazenda = all_fazendas;
+          models.Safra.findAll()
+          .then(all_safras => {
+            bdata.Safra = all_safras;
+            models.Talhao.findAll()
+            .then(all_talhao => {
+              bdata.Talhao = all_talhao;
+              callback(JSON.stringify(bdata));
+            });
+          });
+        });
       }
 
     }

@@ -19,7 +19,7 @@
                   <b>IDENTIFICAÇÃO </b><br /> {{nome_safra}}
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ÁREA EM PRODUÇÃO </b><br /> {{area_producao}} <span class="caption">ha</span>
+                  <b>ÁREA TOTAL EM PRODUÇÃO </b><br /> {{area_producao}} <span class="caption">ha</span>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>PREÇO MÉDIO TERRA NUA </b><br /> {{preco_terra}} <span class="caption">R$/ha</span>

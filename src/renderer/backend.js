@@ -147,6 +147,21 @@ const backend = {
 
       //==============================================================/
 
+      ClearEverything(callback){ //CUIDADO ATTETION WARNINGG ATTECION ATETUTE JOEL
+        models.Fazenda.destroy({
+          truncate: true
+        }).then(() => {
+          models.Safra.destroy({
+            truncate: true
+          }).then(() => {
+            models.Talhao.destroy({
+              truncate: true
+            }).then(() => {
+              callback();
+            });
+          });
+        });
+      },
 
       dogetBackupData(callback){
         let bdata = {};
@@ -164,6 +179,46 @@ const backend = {
               callback(JSON.stringify(bdata));
             });
           });
+        });
+      },
+
+      getHighestIDs(callback){
+        Promise.all([models.Fazenda.max('id'),models.Safra.max('id'),models.Talhao.max('id')]).then((result) => { callback(result) });
+      },
+
+      doimportBackup(data, reorderids, callback){
+        let promises = [];
+        this.getHighestIDs((hids) => {
+
+          //coeficientes
+          let coef_faz = isNaN(hids[0])?0:hids[0]+1;
+          let coef_safra = isNaN(hids[0])?0:hids[1]+1;
+          let coef_talhao = isNaN(hids[0])?0:hids[2]+1;
+
+          data.Fazenda.forEach((itm) => {
+            if(reorderids) {
+              itm.id += coef_faz;
+            }
+            promises.push(models.Fazenda.create(itm));
+          });
+
+          data.Safra.forEach((itm) => {
+            if(reorderids) {
+              itm.id += coef_safra;
+              itm.FazendaID += coef_faz;
+            }
+            promises.push(models.Safra.create(itm));
+          });
+
+          data.Talhao.forEach((itm) => {
+            if(reorderids) {
+              itm.id += coef_talhao;
+              itm.SafraID += coef_safra;
+            }
+            promises.push(models.Talhao.create(itm));
+          });
+
+          Promise.all(promises).then(() => callback(true)).catch(() => callback(false));
         });
       }
 

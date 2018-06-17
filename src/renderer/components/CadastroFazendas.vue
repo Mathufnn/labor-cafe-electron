@@ -29,7 +29,7 @@
                 <v-select
                 :items="states"
                 v-model="cidade"
-                label="Cidades"
+                label="Cidade"
                 autocomplete
                 ></v-select>
               </v-flex>

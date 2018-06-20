@@ -36,7 +36,7 @@
       </v-flex>
 
       <v-flex xs11>
-        <relatorios></relatorios>
+        <relatorios :fid="id"></relatorios>
       </v-flex>
 
     </v-layout>

@@ -105,47 +105,62 @@ export default {
         }
 
         myDoc.pipe(fs.createWriteStream(filename+".pdf"));
+        this.errorCatch();
 
         let linha=160;
         let linhaOpacity=160;
 
-        //pos(coluna, linha)
+        //posicao(coluna, linha)
+        let nome;
+        this.$backend.getFazenda(this.fid, (fazendaObj) => {
+          if(fazendaObj==null) console.log("Fazenda não encontrada!");
 
-        myDoc.font('Times-Roman')
-             .fontSize(20)
-        myDoc.text("Relatório dos indicadores de Fazenda", 100, 100)
-             .text("--Nome Fazenda--")
-             .fontSize(12);
-        myDoc.moveTo(80,150)
-             .lineTo(560,150)
-             .stroke()
-             .text("Valor", 460, 140);
+          myDoc.font('Times-Roman')
+               .fontSize(20)
+          myDoc.text("Relatório dos indicadores de Fazenda", 100, 100)
+               .text(fazendaObj.NomeFazenda)
+               .fontSize(12);
+          myDoc.moveTo(80,150)
+               .lineTo(560,150)
+               .stroke()
+              .text("Valor", 460, 140);
 
-        Object.keys(i).forEach(function(key) {
+          Object.keys(i).forEach(function(key) {
 
-          if(linhaOpacity <= 580){
-            myDoc.rect(80, linhaOpacity-4, 480, 16)
-                 .fillOpacity(0.8)
-                 .fillAndStroke("grey");
-          }
+            if(linhaOpacity <= 580){
+              myDoc.rect(80, linhaOpacity-4, 480, 16)
+                  .fillOpacity(0.8)
+                  .fillAndStroke("grey");
+                }
 
-          myDoc.fillAndStroke("black")
-          myDoc.text(i[key].text + ": ", 100, linha)
-               .text(i[key].value + " " + i[key].unidade, 460, linha)
+            myDoc.fillAndStroke("black")
+            myDoc.text(i[key].text + ": ", 100, linha)
+                 .text(i[key].value + " " + i[key].unidade, 460, linha)
 
-          linha+=15;
-          linhaOpacity+=30;
+            linha+=15;
+            linhaOpacity+=30;
 
-          //console.log(i[key].text, i[key].value);
+            //console.log(i[key].text, i[key].value);
+
+          });
+
+          myDoc.end();
+          //console.log(this.indicadores.rendabruta.value);
+          //this.load = !this.load;
 
         });
 
-        myDoc.end();
-        //console.log(this.indicadores.rendabruta.value);
-        //this.load = !this.load;
-
       })
 
+    },
+    errorCatch: function(){
+      window.addEventListener("error", handleError, true);
+
+      function handleError(evt) {
+        if (evt.message) { // Chrome sometimes provides this
+          alert("Ocorreu um erro durante a geração do PDF.")
+        }
+      }
     },
   },
   mounted: function() {

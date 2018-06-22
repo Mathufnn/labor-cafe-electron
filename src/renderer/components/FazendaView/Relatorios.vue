@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     preview: function() {
-      remote.dialog.showSaveDialog({title: 'Selecione local para salvar arquivo de backup',defaultPath: 'Relatorio.pdf'}, (filename) => {
+      remote.dialog.showSaveDialog({title: 'Selecione local para salvar o PDF',defaultPath: 'Relatorio.pdf'}, (filename) => {
 
         var pdf = require('pdfkit');
         var fs = require('fs');
@@ -111,7 +111,7 @@ export default {
         let linhaOpacity=160;
 
         //posicao(coluna, linha)
-        let nome;
+
         this.$backend.getFazenda(this.fid, (fazendaObj) => {
           if(fazendaObj==null) console.log("Fazenda não encontrada!");
 
@@ -123,7 +123,7 @@ export default {
           myDoc.moveTo(80,150)
                .lineTo(560,150)
                .stroke()
-              .text("Valor", 460, 140);
+               .text("Valor/unidade", 460, 140);
 
           Object.keys(i).forEach(function(key) {
 
@@ -131,7 +131,7 @@ export default {
               myDoc.rect(80, linhaOpacity-4, 480, 16)
                   .fillOpacity(0.8)
                   .fillAndStroke("grey");
-                }
+            }
 
             myDoc.fillAndStroke("black")
             myDoc.text(i[key].text + ": ", 100, linha)

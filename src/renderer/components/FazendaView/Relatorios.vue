@@ -158,7 +158,7 @@ export default {
 
       function handleError(evt) {
         if (evt.message) { // Chrome sometimes provides this
-          alert("Ocorreu um erro durante a geração do PDF.")
+          remote.dialog.showErrorBox('Ocorreu um error ao gerar o PDF.', 'Tente novamente.');
         }
       }
     },

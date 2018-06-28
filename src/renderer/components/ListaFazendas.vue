@@ -16,7 +16,21 @@
           <td>{{ props.item.name }}</td>
           <td>{{ props.item.production_sys }}</td>
           <td>{{ props.item.city }}</td>
-          <td class="text-xs-center"><v-btn small color="primary" dark router :to="'/FazendaView/' + props.item.id"><v-icon left dark>info</v-icon> Mostrar fazenda</v-btn>
+          <td class="text-xs-center">
+            <v-btn small color="primary" dark router :to="'/FazendaView/' + props.item.id"><v-icon left dark>info</v-icon> Mostrar fazenda</v-btn>
+            <v-menu right color="primary">
+              <v-btn slot="activator" icon>
+                <v-icon>more_vert</v-icon>
+              </v-btn>
+              <v-list>
+                <v-list-tile @click="">
+                  <v-list-tile-title>Editar</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile @click="removeF(props.item.id)">
+                  <v-list-tile-title>Remover</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
           </td>
         </tr>
       </template>
@@ -70,6 +84,9 @@ export default {
         this.pagination.sortBy = column;
         this.pagination.descending = false;
       }
+    },
+    removeF(FrID) {
+      alert(FrID);
     }
   },
   mounted: function() {

@@ -17,6 +17,19 @@
           <td>{{ props.item.areaemproducao }}</td>
           <td>{{ props.item.producaodasafra }}</td>
           <td class="text-xs-center"><v-btn small color="primary" dark router :to="'/SafraView/' + props.item.id"><v-icon left dark>info</v-icon> Mostrar safra</v-btn>
+            <v-menu right color="primary">
+              <v-btn slot="activator" icon>
+                <v-icon>more_vert</v-icon>
+              </v-btn>
+              <v-list>
+                <v-list-tile @click="">
+                  <v-list-tile-title>Editar</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile @click="removeS(props.item.id)">
+                  <v-list-tile-title>Remover</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
           </td>
         </tr>
       </template>
@@ -29,6 +42,7 @@
 </template>
 
 <script>
+import { remote } from 'electron'
 export default {
   data: () => ({
     pagination: {
@@ -74,25 +88,39 @@ export default {
         this.pagination.sortBy = column
         this.pagination.descending = false
       }
+    },
+    atualizaSafras() {
+      this.items = [];
+      this.$backend.getFazendaSafras(this.fid, all_safras => {
+        if(all_safras!=null)
+        all_safras.forEach(safraObj => {
+          this.items.push({
+            value: false,
+            name: safraObj.IdentSafra,
+            areaemproducao: safraObj.AreaProducao,
+            precomedio: safraObj.PrecoMTerraN,
+            producaodasafra: safraObj.ProducaoTotal,
+            precodevenda: safraObj.PrecoVenda,
+            actions: '',
+            id: safraObj.id
+          });
+        })
+      });
+    },
+    removeS(StRID){
+      remote.dialog.showMessageBox({type:'warning', title:'Você tem certeza?', message: 'Todos os dados relacionados a essa safra serão excluídos, incluindo, todos os talhões associados à ela.\nVocê tem certeza que deseja fazer isso?',
+                                    buttons: ['Sim, eu tenho certeza.', 'Não! Eu não quero fazer isso!']}, (idx)=>{
+                                      if(idx==0){
+                                        this.$backend.deleteSafra(StRID, () => {
+                                          this.atualizaSafras();
+                                        });
+                                      }
+                                    });
     }
   },
 
   mounted: function () {
-    this.$backend.getFazendaSafras(this.fid, all_safras => {
-      if(all_safras!=null)
-      all_safras.forEach(safraObj => {
-        this.items.push({
-          value: false,
-          name: safraObj.IdentSafra,
-          areaemproducao: safraObj.AreaProducao,
-          precomedio: safraObj.PrecoMTerraN,
-          producaodasafra: safraObj.ProducaoTotal,
-          precodevenda: safraObj.PrecoVenda,
-          actions: '',
-          id: safraObj.id
-        });
-      })
-    });
+    this.atualizaSafras();
   }
 }
 </script>

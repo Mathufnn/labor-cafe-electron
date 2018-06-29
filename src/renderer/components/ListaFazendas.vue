@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { remote } from 'electron'
 export default {
   data: () => ({
     pagination: {
@@ -85,25 +86,36 @@ export default {
         this.pagination.descending = false;
       }
     },
+    atualizaFazendas() {
+      this.items = [];
+      this.$backend.getAllFazendas(all_fazendas => {
+        all_fazendas.forEach(fazendaObj => {
+          this.items.push({
+            value: false,
+            name: fazendaObj.NomeFazenda,
+            production_sys:
+              fazendaObj.SistemaProducao == 1 ? "Irrigado" : "Sequeiro",
+            agronegocy: fazendaObj.Agronegocio,
+            city: fazendaObj.Cidade,
+            actions: "",
+            id: fazendaObj.id
+          });
+        });
+      });
+    },
     removeF(FrID) {
-      alert(FrID);
+      remote.dialog.showMessageBox({type:'warning', title:'Você tem certeza?', message: 'Todos os dados relacionados a essa fazenda serão excluídos, incluindo, todas respectivas safras e talhões associadas à ela.\nVocê tem certeza que deseja fazer isso?',
+                                    buttons: ['Sim, eu tenho certeza.', 'Não! Eu não quero fazer isso!']}, (idx)=>{
+                                      if(idx==0){
+                                        this.$backend.deleteFazenda(FrID, () => {
+                                          this.atualizaFazendas();
+                                        });
+                                      }
+                                    });
     }
   },
   mounted: function() {
-    this.$backend.getAllFazendas(all_fazendas => {
-      all_fazendas.forEach(fazendaObj => {
-        this.items.push({
-          value: false,
-          name: fazendaObj.NomeFazenda,
-          production_sys:
-            fazendaObj.SistemaProducao == 1 ? "Irrigado" : "Sequeiro",
-          agronegocy: fazendaObj.Agronegocio,
-          city: fazendaObj.Cidade,
-          actions: "",
-          id: fazendaObj.id
-        });
-      });
-    });
+    this.atualizaFazendas();
   }
 };
 </script>

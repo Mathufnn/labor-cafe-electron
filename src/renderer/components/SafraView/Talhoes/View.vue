@@ -15,8 +15,20 @@
         <tr>
           <td>{{ props.item.name }}</td>
           <td>{{ props.item.producaototal }}</td>
-          <td>{{ props.item.area }}</td>
           <td class="text-xs-center"><v-btn small color="primary" dark router :to=" '/TalhaoView/' + props.item.id" ><v-icon left dark>info</v-icon> Mostrar talhão</v-btn>
+            <v-menu right color="primary">
+              <v-btn slot="activator" icon>
+                <v-icon>more_vert</v-icon>
+              </v-btn>
+              <v-list>
+                <v-list-tile @click="">
+                  <v-list-tile-title>Editar</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile @click="removeT(props.item.id)">
+                  <v-list-tile-title>Remover</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
           </td>
         </tr>
       </template>
@@ -29,6 +41,7 @@
 </template>
 
 <script>
+import { remote } from 'electron'
 export default {
   data: () => ({
     pagination: {
@@ -72,23 +85,36 @@ export default {
         this.pagination.sortBy = column
         this.pagination.descending = false
       }
+    },
+    atualizaTalhoes() {
+      this.items=[];
+      this.$backend.getSafraTalhao(this.sid, all_talhao => {
+        if(all_talhao != null)
+        all_talhao.forEach(talhaoObj => {
+          this.items.push({
+            value: false,
+            name: talhaoObj.NomeTalhao,
+            producaototal: talhaoObj.ProdTotal,
+            actions: '',
+            id: talhaoObj.id
+          })
+        })
+      })
+    },
+    removeT(TtoRID){
+      remote.dialog.showMessageBox({type:'warning', title:'Você tem certeza?', message: 'Todos os dados relacionados a esse talhão serão excluídos.\nVocê tem certeza que deseja fazer isso?',
+                                    buttons: ['Sim, eu tenho certeza.', 'Não! Eu não quero fazer isso!']}, (idx)=>{
+                                      if(idx==0){
+                                        this.$backend.deleteTalhao(TtoRID, () => {
+                                          this.atualizaTalhoes();
+                                        });
+                                      }
+                                    });
     }
   },
 
   mounted: function(){
-    this.items=[];
-    this.$backend.getSafraTalhao(this.sid, all_talhao => {
-      if(all_talhao != null)
-      all_talhao.forEach(talhaoObj => {
-        this.items.push({
-          value: false,
-          name: talhaoObj.NomeTalhao,
-          producaototal: talhaoObj.ProdTotal,
-          actions: '',
-          id: talhaoObj.id
-        })
-      })
-    })
+    this.atualizaTalhoes();
   }
 }
 </script>

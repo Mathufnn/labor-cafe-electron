@@ -112,11 +112,13 @@ export default {
             i_obj = JSON.parse(data);
           }
           catch(e) {
+            this.loading2 = false;
             remote.dialog.showErrorBox('Arquivo inválido!', 'O arquivo é inválido!. 1');
             return;
           }
 
           if(typeof i_obj.Fazenda=='undefined' || typeof i_obj.Safra=='undefined' || typeof i_obj.Talhao=='undefined') {
+            this.loading2 = false;
             remote.dialog.showErrorBox('Arquivo inválido!', 'O arquivo é inválido!. 2');
             return;
           }

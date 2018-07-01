@@ -39,6 +39,12 @@ export default new Router({
         props: true
     },
     {
+      path: '/TalhaoEdit/:id',
+      name: 'TalhaoEdit',
+      component: require('@/components/TalhaoEdit').default,
+      props: true
+    },
+    {
       path: '*',
       redirect: '/'
     }

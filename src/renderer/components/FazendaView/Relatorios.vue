@@ -124,7 +124,7 @@ export default {
                .lineTo(560,150)
                .stroke()
                .text("Valor/unidade", 460, 140);
-
+          console.log("mlu "+this.indicadores.mlu.value);
           Object.keys(i).forEach(function(key) {
 
             if(linhaOpacity <= 580){
@@ -164,94 +164,153 @@ export default {
     },
   },
   mounted: function() {
+    var novo_rendabruta=0;
+    var novo_coe = 0;
+    var novo_cot = 0;
+    var novo_ct = 0;
+    var novo_pcv =0;
+    var novo_producao = 0;
+    var novo_aplantada = 0;
+    var novo_ppaplantada = 0;
+    var novo_coeap = 0;
+    var novo_coeu =0;
+    var novo_cotap =0;
+    var novo_cotu =0;
+    var novo_ctap = 0;
+    var novo_ctu = 0;
+    var novo_mb = 0;
+    var novo_mbap = 0;
+    var novo_mbu = 0;
+    var novo_ml = 0;
+    var novo_mlap = 0;
+    var novo_mlu = 0;
+    var novo_lucro = 0;
+    var novo_lucroap = 0;
+    var novo_lucrou =0;
+    var novo_trcst = 0;
+    var novo_trcct = 0;
+    var novo_bencusto = 0;
+    var novo_capitalest = 0;
+    var novo_capitalct = 0;
+    var novo_taxagiro = 0;
+    var novo_lucrativ = 0;
   //  this.$backend.getFazenda(this.fid, (fazendaObj) => {
-      this.$backend.getFazendaSafras(this.fid, all_safras => {
-        if(all_safras!=null)
-        all_safras.forEach(safraObj => {
-          this.$backend.getSafraTalhao(safraObj.id, all_talhao => {
-            if(all_talhao != null)
-            all_talhao.forEach(talhaoObj => {
-              //renda bruta
-              this.indicadores.rendabruta.value += Math.floor(talhaoObj.ProdTotal * talhaoObj.PrecoVenda);
-              //coe
-              this.indicadores.coe.value += Math.floor(talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo + talhaoObj.AnaliseFoliar + talhaoObj.EPi + talhaoObj.Acidos + talhaoObj.Adubos + talhaoObj.Acaricida  + talhaoObj.Bactericida + talhaoObj.Espalhante + talhaoObj.Fungicida + talhaoObj.Inseticida + talhaoObj.Nematicida + talhaoObj.OleoMineral + talhaoObj.Herbicida + talhaoObj.Hormonios + talhaoObj.Maturadores + talhaoObj.MaterialColheita + talhaoObj.Armazenamento + talhaoObj.Beneficios + talhaoObj.GasLenhaCarvao + talhaoObj.PosColheita + talhaoObj.Rebeneficio + talhaoObj.Saco + talhaoObj.Correntagem);
+  this.$backend.getFazendaSafras(this.fid, all_safras => {
+    if(all_safras!=null)
+    all_safras.forEach(safraObj => {
+      this.$backend.getSafraTalhao(safraObj.id, all_talhao => {
+        if(all_talhao != null)
+        Object.keys(all_talhao).forEach(function(key){
+          //renda bruta
+          novo_rendabruta += Math.floor(all_talhao[key].ProdTotal * all_talhao[key].PrecoVenda);
 
-              //cot
-              this.indicadores.cot.value += Math.floor(this.indicadores.coe.value + talhaoObj.MaoObraF) /* + CAPITALESTOQUE DEPRECIACAO */;
+          // //coe
+           novo_coe += Math.floor(all_talhao[key].ArrendamentoTerras + all_talhao[key].AluguelMaquinas + all_talhao[key].Combustivel + all_talhao[key].ManutencaoBenf + all_talhao[key].ManutencaoMaq + all_talhao[key].EnergiaEletrica + all_talhao[key].Frete + all_talhao[key].Impostos + all_talhao[key].MaoObraContratada + all_talhao[key].MaoObraFixa + all_talhao[key].Despesas + all_talhao[key].Assistencia + all_talhao[key].Certificacao + all_talhao[key].AnaliseSolo + all_talhao[key].AnaliseFoliar + all_talhao[key].EPi + all_talhao[key].Acidos + all_talhao[key].Adubos + all_talhao[key].Acaricida  + all_talhao[key].Bactericida + all_talhao[key].Espalhante + all_talhao[key].Fungicida + all_talhao[key].Inseticida + all_talhao[key].Nematicida + all_talhao[key].OleoMineral + all_talhao[key].Herbicida + all_talhao[key].Hormonios + all_talhao[key].Maturadores + all_talhao[key].MaterialColheita + all_talhao[key].Armazenamento + all_talhao[key].Beneficios + all_talhao[key].GasLenhaCarvao + all_talhao[key].PosColheita + all_talhao[key].Rebeneficio + all_talhao[key].Saco + all_talhao[key].Correntagem);
 
-              //ct
-              this.indicadores.ct.value += Math.floor(this.indicadores.cot.value) /* + CAPITALESTOQUE REMUNERACAO CAPITAL */;
+          //cot
+          novo_cot += Math.floor(novo_coe + all_talhao[key].MaoObraF) /* + CAPITALESTOQUE DEPRECIACAO */;
 
-              //pcv
-              this.indicadores.pcv.value += Math.floor(talhaoObj.PrecoVenda);
+          //ct
+           novo_ct += Math.floor(novo_cot) /* + CAPITALESTOQUE REMUNERACAO CAPITAL */;
 
-              //producao
-              this.indicadores.producao.value += Math.floor(talhaoObj.ProdTotal);
+          //pcv
+          novo_pcv+= Math.floor(all_talhao[key].PrecoVenda);
 
-              //aplantada
-              this.indicadores.aplantada.value += Math.floor(talhaoObj.Area);
+          //producao
+          novo_producao += Math.floor(all_talhao[key].ProdTotal);
 
-              //ppaplantada
-              this.indicadores.ppaplantada.value += Math.floor(this.indicadores.producao.value / this.indicadores.aplantada.value);
+          //aplantada
+          novo_aplantada += Math.floor(all_talhao[key].Area);
 
-              //coeap
-              this.indicadores.coeap.value += Math.floor(this.indicadores.coe.value / this.indicadores.aplantada.value);
+          //ppaplantada
+          novo_ppaplantada += Math.floor(novo_producao / novo_aplantada);
 
-              //coeu
-              this.indicadores.coeu.value +=Math.floor( this.indicadores.coe.value / this.indicadores.producao.value);
+          //coeap
+          novo_coeap += Math.floor(novo_coe / novo_aplantada);
 
-              //cotap
-              this.indicadores.cotap.value += Math.floor(this.indicadores.cot.value / this.indicadores.aplantada.value);
+          //coeu
+          novo_coeu +=Math.floor( novo_coe / novo_producao);
 
-              //cotu
-              this.indicadores.cotu.value += Math.floor(this.indicadores.cot.value / this.indicadores.producao.value);
+          //cotap
+          novo_cotap += Math.floor(novo_cot / novo_aplantada);
 
-              //ctap
-              this.indicadores.ctap.value += Math.floor(this.indicadores.ct.value / this.indicadores.aplantada.value);
+          //cotu
+          novo_cotu += Math.floor(novo_cot / novo_producao);
 
-              //ctu
-              this.indicadores.ctu.value += Math.floor(this.indicadores.ct.value / this.indicadores.producao.value);
+          //ctap
+          novo_ctap += Math.floor(novo_ct / novo_aplantada);
 
-              //mb
-              this.indicadores.mb.value += Math.floor(this.indicadores.rendabruta.value - this.indicadores.coe.value);
+          //ctu
+          novo_ctu += Math.floor(novo_ct / novo_producao);
 
-              //mbap
-              this.indicadores.mbap.value += Math.floor(this.indicadores.mb.value / this.indicadores.aplantada.value);
+          //mb
+          novo_mb += Math.floor(novo_rendabruta - novo_coe);
+
+          //mbap
+          novo_mbap += Math.floor(novo_mb / novo_aplantada);
 
 
-              this.indicadores.mbu.value += Math.floor(this.indicadores.mb.value / this.indicadores.producao.value);
+          novo_mbu += Math.floor(novo_mb/ novo_producao);
 
-              this.indicadores.ml.value += Math.floor(this.indicadores.rendabruta.value - this.indicadores.cot.value);
+          novo_ml  += Math.floor(novo_rendabruta - novo_cot);
 
-              this.indicadores.mlap.value += Math.floor(this.indicadores.ml.value / this.indicadores.aplantada.value);
+          novo_mlap  += Math.floor(novo_ml / novo_aplantada);
 
-              this.indicadores.mlu.value +=Math.floor( this.indicadores.ml.value / this.indicadores.producao.value);
+          novo_mlu  +=Math.floor( novo_ml/ novo_producao);
 
-              this.indicadores.lucro.value += Math.floor(this.indicadores.rendabruta.value - this.indicadores.ct.value);
+          novo_lucro  += Math.floor(novo_rendabruta - novo_ct);
 
-              this.indicadores.lucroap.value += Math.floor(this.indicadores.lucro.value / this.indicadores.aplantada.value);
+          novo_lucroap  += Math.floor(novo_lucro / novo_aplantada);
 
-              this.indicadores.lucrou.value += Math.floor(this.indicadores.lucro.value / this.indicadores.producao.value);
+          novo_lucrou  += Math.floor(novo_lucro / novo_producao);
 
-              this.indicadores.trcst.value +=Math.floor( this.indicadores.ml.value); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS */ ;
+          novo_trcst  +=Math.floor( novo_ml); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS */ ;
 
-              this.indicadores.trcct.value +=Math.floor( this.indicadores.ml.value); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
+          novo_trcct  +=Math.floor( novo_ml); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
 
-              this.indicadores.vbencusto.value += Math.floor(this.indicadores.rendabruta.value / this.indicadores.ct.value);
+          novo_bencusto  += Math.floor(novo_rendabruta  / novo_ct );
 
-              this.indicadores.capitalest.value +=  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  Math.floor(this.indicadores.producao.value);
+          novo_capitalest  +=  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  Math.floor(novo_producao );
 
-              this.indicadores.capitalct.value +=   /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ Math.floor(this.indicadores.producao.value);
+          novo_capitalct  +=   /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ Math.floor(novo_producao );
 
-              this.indicadores.taxagiro.value += Math.floor((this.indicadores.rendabruta.value / this.indicadores.producao.value) / this.indicadores.capitalct.value);
+          novo_taxagiro  += Math.floor((novo_rendabruta  / novo_producao ) / novo_capitalct );
 
-              this.indicadores.lucrativ.value += Math.floor(this.indicadores.mlu.value / this.indicadores.capitalct.value);
-
-            });
-          });
-        });
+          novo_lucrativ  += Math.floor(novo_mlu  / novo_capitalct);
+        }),
+        this.indicadores.rendabruta.value  = novo_rendabruta;
+        this.indicadores.coe.value = novo_coe;
+        this.indicadores.cot.value = novo_cot;
+        this.indicadores.ct.value = novo_ct;
+        this.indicadores.pcv.value = novo_pcv;
+        this.indicadores.producao.value = novo_producao;
+        this.indicadores.aplantada.value = novo_aplantada;
+        this.indicadores.ppaplantada.value = novo_ppaplantada;
+        this.indicadores.coeap.value = novo_coeap;
+        this.indicadores.coeu.value = novo_coeu;
+        this.indicadores.cotap.value = novo_cotap;
+        this.indicadores.cotu.value = novo_cotu;
+        this.indicadores.ctap.value = novo_ctap;
+        this.indicadores.ctu.value = novo_ctu;
+        this.indicadores.mb.value = novo_mb;
+        this.indicadores.mbap.value = novo_mbap;
+        this.indicadores.mbu.value = novo_mbu;
+        this.indicadores.ml.value = novo_ml;
+        this.indicadores.mlap.value = novo_mlap;
+        this.indicadores.mlu.value = novo_mlu;
+        this.indicadores.lucro.value = novo_lucro;
+        this.indicadores.lucroap.value = novo_lucroap;
+        this.indicadores.lucrou.value = novo_lucrou;
+        this.indicadores.trcst.value = novo_trcst;
+        this.indicadores.trcct.value = novo_trcct;
+        this.indicadores.bencusto.value = novo_bencusto;
+        this.indicadores.capitalest.value = novo_capitalest;
+        this.indicadores.capitalct.value = novo_capitalct;
+        this.indicadores.taxagiro.value = novo_taxagiro;
+        this.indicadores.lucrativ.value = novo_lucrativ;
       });
-  //  });
+    });
+  });
   }
 
  }

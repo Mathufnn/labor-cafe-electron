@@ -108,13 +108,13 @@ export default {
           novo_rendabruta += Math.floor(all_talhao[key].ProdTotal * all_talhao[key].PrecoVenda);
 
           // //coe
-           novo_coe += Math.floor(all_talhao[key].ArrendamentoTerras + all_talhao[key].AluguelMaquinas + all_talhao[key].Combustivel + all_talhao[key].ManutencaoBenf + all_talhao[key].ManutencaoMaq + all_talhao[key].EnergiaEletrica + all_talhao[key].Frete + all_talhao[key].Impostos + all_talhao[key].MaoObraContratada + all_talhao[key].MaoObraFixa + all_talhao[key].Despesas + all_talhao[key].Assistencia + all_talhao[key].Certificacao + all_talhao[key].AnaliseSolo + all_talhao[key].AnaliseFoliar + all_talhao[key].EPi + all_talhao[key].Acidos + all_talhao[key].Adubos + all_talhao[key].Acaricida  + all_talhao[key].Bactericida + all_talhao[key].Espalhante + all_talhao[key].Fungicida + all_talhao[key].Inseticida + all_talhao[key].Nematicida + all_talhao[key].OleoMineral + all_talhao[key].Herbicida + all_talhao[key].Hormonios + all_talhao[key].Maturadores + all_talhao[key].MaterialColheita + all_talhao[key].Armazenamento + all_talhao[key].Beneficios + all_talhao[key].GasLenhaCarvao + all_talhao[key].PosColheita + all_talhao[key].Rebeneficio + all_talhao[key].Saco + all_talhao[key].Correntagem);
-
+          novo_coe += Math.floor(all_talhao[key].ArrendamentoTerras + all_talhao[key].AluguelMaquinas + all_talhao[key].Combustivel + all_talhao[key].ManutencaoBenf + all_talhao[key].ManutencaoMaq + all_talhao[key].EnergiaEletrica + all_talhao[key].Frete + all_talhao[key].Impostos + all_talhao[key].MaoObraContratada + all_talhao[key].MaoObraFixa + all_talhao[key].Despesas + all_talhao[key].Assistencia + all_talhao[key].Certificacao + all_talhao[key].AnaliseSolo + all_talhao[key].AnaliseFoliar + all_talhao[key].EPi + all_talhao[key].Acidos + all_talhao[key].Adubos + all_talhao[key].Acaricida  + all_talhao[key].Bactericida + all_talhao[key].Espalhante + all_talhao[key].Fungicida + all_talhao[key].Inseticida + all_talhao[key].Nematicida + all_talhao[key].OleoMineral + all_talhao[key].Herbicida + all_talhao[key].Hormonios + all_talhao[key].Maturadores + all_talhao[key].MaterialColheita + all_talhao[key].Armazenamento + all_talhao[key].Beneficios + all_talhao[key].GasLenhaCarvao + all_talhao[key].PosColheita + all_talhao[key].Rebeneficio + all_talhao[key].Saco + all_talhao[key].Correntagem);
+          console.log("novo_coe "+novo_coe);
           //cot
           novo_cot += Math.floor(novo_coe + all_talhao[key].MaoObraF) /* + CAPITALESTOQUE DEPRECIACAO */;
 
           //ct
-           novo_ct += Math.floor(novo_cot) /* + CAPITALESTOQUE REMUNERACAO CAPITAL */;
+          novo_ct += Math.floor(novo_cot) /* + CAPITALESTOQUE REMUNERACAO CAPITAL */;
 
           //pcv
           novo_pcv+= Math.floor(all_talhao[key].PrecoVenda);
@@ -147,39 +147,39 @@ export default {
           novo_ctu += Math.floor(novo_ct / novo_producao);
 
           //mb
-          novo_mb += Math.floor(novo_rendabruta - novo_coe);
+          novo_mb = Math.floor(novo_rendabruta - novo_coe);
 
           //mbap
-          novo_mbap += Math.floor(novo_mb / novo_aplantada);
+          novo_mbap = Math.floor(novo_mb / novo_aplantada);
 
 
-          novo_mbu += Math.floor(novo_mb/ novo_producao);
+          novo_mbu = Math.floor(novo_mb/ novo_producao);
 
-          novo_ml  += Math.floor(novo_rendabruta - novo_cot);
+          novo_ml  = Math.floor(novo_rendabruta - novo_cot);
 
-          novo_mlap  += Math.floor(novo_ml / novo_aplantada);
+          novo_mlap  = Math.floor(novo_ml / novo_aplantada);
 
-          novo_mlu  +=Math.floor( novo_ml/ novo_producao);
+          novo_mlu  =Math.floor( novo_ml/ novo_producao);
 
-          novo_lucro  += Math.floor(novo_rendabruta - novo_ct);
+          novo_lucro  = Math.floor(novo_rendabruta - novo_ct);
 
-          novo_lucroap  += Math.floor(novo_lucro / novo_aplantada);
+          novo_lucroap  = Math.floor(novo_lucro / novo_aplantada);
 
-          novo_lucrou  += Math.floor(novo_lucro / novo_producao);
+          novo_lucrou  = Math.floor(novo_lucro / novo_producao);
 
           novo_trcst  +=Math.floor( novo_ml); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS */ ;
 
           novo_trcct  +=Math.floor( novo_ml); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
 
-          novo_bencusto  += Math.floor(novo_rendabruta  / novo_ct );
+          novo_bencusto  = Math.floor(novo_rendabruta  / novo_ct );
 
-          novo_capitalest  +=  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  Math.floor(novo_producao );
+          novo_capitalest  =  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  Math.floor(novo_producao );
 
-          novo_capitalct  +=   /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ Math.floor(novo_producao );
+          novo_capitalct  =   /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ Math.floor(novo_producao );
 
-          novo_taxagiro  += Math.floor((novo_rendabruta  / novo_producao ) / novo_capitalct );
+          novo_taxagiro  = Math.floor((novo_rendabruta  / novo_producao ) / novo_capitalct );
 
-          novo_lucrativ  += Math.floor(novo_mlu  / novo_capitalct);
+          novo_lucrativ  = Math.floor(novo_mlu  / novo_capitalct);
         }),
         this.indicadores.rendabruta.value  = novo_rendabruta;
         this.indicadores.coe.value = novo_coe;

@@ -56,7 +56,7 @@ export default {
         value: 'name'
       },
       {
-        text: 'Produção total (R$)',
+        text: 'Produção total (Sc)',
         value: 'producaototal'
       },
       {

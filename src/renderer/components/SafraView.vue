@@ -71,13 +71,18 @@ export default {
     }
   },
   mounted: function () {
+
+    let preco=0;
+    let prodtotal=0;
+    let area=0;
+
     this.$backend.getSafra(this.id, (safraObj) => {
       if(safraObj==null) {  this.$router.push('/'); return; }
       this.nome_safra = safraObj.IdentSafra;
-      this.area_producao = safraObj.AreaProducao;
+      //this.area_producao = safraObj.AreaProducao;
       this.preco_terra = safraObj.PrecoMTerraN;
-      this.producao_total = safraObj.ProducaoTotal;
-      this.preco_venda = safraObj.PrecoVenda;
+      //this.producao_total = safraObj.ProducaoTotal;
+      //this.preco_venda = safraObj.PrecoVenda;
       this.fazenda_id = safraObj.FazendaID;
 
       //assincrono, logo, tem que ficar aqui dentro, pq precisamos do fazenda_id
@@ -85,9 +90,25 @@ export default {
         this.fazenda_name = fazendaObj.NomeFazenda;
       });
 
+      this.$backend.getSafraTalhao(safraObj.id, all_talhao => {
+        if(all_talhao != null)
+        all_talhao.forEach(talhaoObj => {
+          console.log(preco, prodtotal, preco);
+          //pcv
+          preco += Math.floor(talhaoObj.PrecoVenda);
+          this.preco_venda = preco;
+
+          //producao
+          prodtotal += Math.floor(talhaoObj.ProdTotal);
+          this.producao_total = prodtotal;
+
+          //aplantada
+          area += Math.floor(talhaoObj.Area);
+          this.area_producao = area;
+        });
+      });
+
     });
-
-
 
 
   }

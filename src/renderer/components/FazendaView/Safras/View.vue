@@ -58,7 +58,7 @@ export default {
         value: 'areaemproducao'
       },
       {
-        text: 'Produção (R$/ha)',
+        text: 'Produção (Sc)',
         value: 'producaodasafra'
       },
       {
@@ -87,19 +87,33 @@ export default {
       }
     },
     atualizaSafras() {
+      let area=0;
+      let prodtotal=0;
       this.items = [];
       this.$backend.getFazendaSafras(this.fid, all_safras => {
         if(all_safras!=null)
         all_safras.forEach(safraObj => {
-          this.items.push({
-            value: false,
-            name: safraObj.IdentSafra,
-            areaemproducao: safraObj.AreaProducao,
-            precomedio: safraObj.PrecoMTerraN,
-            producaodasafra: safraObj.ProducaoTotal,
-            precodevenda: safraObj.PrecoVenda,
-            actions: '',
-            id: safraObj.id
+          this.$backend.getSafraTalhao(safraObj.id, all_talhao => {
+            if(all_talhao != null)
+            all_talhao.forEach(talhaoObj => {
+              //producao
+              prodtotal += Math.floor(talhaoObj.ProdTotal);
+
+              //aplantada
+              area += Math.floor(talhaoObj.Area);
+            });
+            this.items.push({
+              value: false,
+              name: safraObj.IdentSafra,
+              areaemproducao: area,
+              precomedio: safraObj.PrecoMTerraN,
+              producaodasafra: prodtotal,
+              precodevenda: safraObj.PrecoVenda,
+              actions: '',
+              id: safraObj.id
+            });
+            prodtotal=0;
+            area=0;
           });
         })
       });
@@ -117,6 +131,7 @@ export default {
   },
 
   mounted: function () {
+
     this.atualizaSafras();
   }
 }

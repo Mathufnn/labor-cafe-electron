@@ -1,0 +1,23 @@
+{
+	"Cerrado": {
+		"estoquelavouras": 0,
+		"estoquemaquinas": 0,
+		"estoquebenfeitorias": 0,
+		"depreciacao": 0,
+		"remuneracao": 0
+	},
+	"Sul de Minas": {
+		"estoquelavouras": 0,
+		"estoquemaquinas": 0,
+		"estoquebenfeitorias": 0,
+		"depreciacao": 0,
+		"remuneracao": 0
+	},
+	"Matas de Minas": {
+		"estoquelavouras": 0,
+		"estoquemaquinas": 0,
+		"estoquebenfeitorias": 0,
+		"depreciacao": 0,
+		"remuneracao": 0
+	}
+}

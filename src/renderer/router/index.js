@@ -45,6 +45,12 @@ export default new Router({
       props: true
     },
     {
+      path: '/Estoque',
+      name: 'Estoque',
+      component: require('@/components/EstoqueImport').default,
+      props: true
+    },
+    {
       path: '*',
       redirect: '/'
     }

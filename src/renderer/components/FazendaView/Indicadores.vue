@@ -67,6 +67,8 @@ export default {
     }
   },
   mounted: function() {
+    let estoqueCapitalObj = require('../../../../estoquecapital.json');
+
     var novo_rendabruta= this.indicadores.rendabruta.value;
     var novo_coe = this.indicadores.coe.value;
     var novo_cot = this.indicadores.cot.value;

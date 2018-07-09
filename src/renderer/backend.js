@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const remote = require('electron').remote;
+const fs = require('fs')
 
 //helper functions
 const fatal_error = err => {remote.dialog.showErrorBox('Não foi possível conectar ao banco de dados!', err); remote.getCurrentWindow().close();}
@@ -16,6 +17,18 @@ const loadmodels = () => {
   sync();
 }
 sequelize.authenticate().then(loadmodels, err => fatal_error(err));
+
+//Estoque de capital
+//Cria o arquivo no diretorio root da aplicação
+fs.access('estoquecapital.json', fs.constants.F_OK, (err) => {
+  if(err) {
+    let estoqueCapitalObj = require('./estoque_repo/estoquecapital.json');
+    fs.writeFile('estoquecapital.json', JSON.stringify(estoqueCapitalObj), (err) => {
+      if(err) fatal_error('Não foi possível criar estoque de capital.');
+    });
+  }
+});
+
 
 // main object
 const backend = {
@@ -494,6 +507,10 @@ const backend = {
 
             Promise.all(promises).then(() => callback(true)).catch(() => callback(false));
           });
+        },
+
+        doImportEstoque(data, callback){
+          fs.writeFile('estoquecapital.json', JSON.stringify(data), err => callback(err));
         }
 
       }

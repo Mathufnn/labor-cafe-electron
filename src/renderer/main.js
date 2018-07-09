@@ -38,5 +38,4 @@ Vue.config.productionTip = false;
   else setTimeout(ignition, 5);
 })();
 
-
 /* eslint-disable no-new */

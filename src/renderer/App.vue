@@ -57,7 +57,8 @@
       items: [
         { icon: 'add', title: 'Cadastro de fazendas', to: '/' },
         { icon: 'list', title: 'Lista de Fazendas', to: '/ListaFazendas' },
-        { icon: 'backup', title: 'Fazer backup', to: '/Backup' }
+        { icon: 'backup', title: 'Fazer backup', to: '/Backup' },
+        { icon: 'get_app', title: 'Estoque de Capital', to: '/Estoque' }
       ],
       miniVariant: false,
       right: false,
@@ -72,7 +73,7 @@
   /* Global CSS */
   #batata {
     background-color: #fff;
-    padding-bottom: 50vh;
+    padding-bottom: 40vh;
     background-image: url(~@/assets/sidetop.png);
     background-position: center bottom
   }

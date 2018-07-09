@@ -50,10 +50,10 @@
                   <b>IMPOSTOS </b><br /> {{impostos}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>CONTRATADA </b><br /> {{mao_contratada}} <span class="caption">R$/safra</span>
+                  <b>MÃO DE OBRA CONTRATADA </b><br /> {{mao_contratada}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>FIXA </b><br /> {{mao_fixa}} <span class="caption">R$/safra</span>
+                  <b>MÃO DE OBRA FIXA </b><br /> {{mao_fixa}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>DESPESAS GERAIS </b><br /> {{despesas_gerais}} <span class="caption">R$/safra</span>
@@ -74,7 +74,7 @@
                   <b>EPI </b><br /> {{epi}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ACIDOS </b><br /> {{acidos}} <span class="caption">R$/safra</span>
+                  <b>ÁCIDOS </b><br /> {{acidos}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>ADUBOS </b><br /> {{adubos}} <span class="caption">R$/safra</span>
@@ -98,7 +98,7 @@
                   <b>NEMATICIDA </b><br /> {{nematicida}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>OLEO MINERAL </b><br /> {{oleo_mineral}} <span class="caption">R$/safra</span>
+                  <b>ÓLEO MINERAL </b><br /> {{oleo_mineral}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>HERBICIDA </b><br /> {{herbicida}} <span class="caption">R$/safra</span>
@@ -119,10 +119,10 @@
                   <b>BENEFICIO </b><br /> {{beneficio}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>GAS LENHA CARVAO </b><br /> {{gas_lenha}} <span class="caption">R$/safra</span>
+                  <b>GÁS LENHA CARVAO </b><br /> {{gas_lenha}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MATERIAIS POS COLHEITA </b><br /> {{material_colheita}} <span class="caption">R$/safra</span>
+                  <b>MATERIAIS PÓS COLHEITA </b><br /> {{material_colheita}} <span class="caption">R$/safra</span>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>REBENEFICIO </b><br /> {{rebeneficio}} <span class="caption">R$/safra</span>

@@ -69,6 +69,7 @@ export default {
     }
   },
   mounted: function() {
+    var pacoca =0;
     this.$backend.getTalhao(this.tid, (talhaoObj) => {
       this.$backend.getSafra(talhaoObj.SafraID, (safraObj) => {
         //renda bruta
@@ -137,7 +138,7 @@ export default {
 
         this.indicadores.trcct.value = this.indicadores.ml.value /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
 
-        this.indicadores.vbencusto.value = this.indicadores.rendabruta.value / this.indicadores.ct.value;
+        this.indicadores.bencusto.value = this.indicadores.rendabruta.value / this.indicadores.ct.value;
 
         this.indicadores.capitalest.value =  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  this.indicadores.producao.value;
 

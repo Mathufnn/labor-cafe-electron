@@ -68,7 +68,6 @@ export default {
   },
   mounted: function() {
     var novo_rendabruta= this.indicadores.rendabruta.value;
-    var antigo_rendabruta =-1;
     var novo_coe = this.indicadores.coe.value;
     var novo_cot = this.indicadores.cot.value;
     var novo_ct = this.indicadores.ct.value;

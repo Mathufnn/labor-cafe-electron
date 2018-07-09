@@ -7,7 +7,7 @@
         </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
-          <h2 class="subheading mb-5 grey--text lighten-2" >texto informativo.......</h2>
+          <h2 class="subheading mb-5 grey--text lighten-2" >Nesta página você pode cadastrar sua fazenda no sistema! <br> Preencha os campos abaixo.</h2>
           <v-divider></v-divider>
           <v-container grid-list-md>
             <v-layout row wrap>

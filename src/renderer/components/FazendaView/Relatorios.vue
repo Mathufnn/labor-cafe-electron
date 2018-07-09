@@ -10,7 +10,7 @@
     <v-divider></v-divider>
     <v-layout row wrap class="pa-3">
       <v-flex>
-        lorem ipsum
+        O relatório é gerado em pdf na pasta especificada. Tal relatório contém todas as informações de indicadores da fazenda em questão.
       </v-flex>
     </v-layout>
   </v-card>

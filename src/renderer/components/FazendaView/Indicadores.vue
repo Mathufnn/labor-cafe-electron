@@ -9,7 +9,16 @@
         <v-layout row wrap class="text-xs-center">
           <v-flex xs4 v-for="i in indicadores" v-bind:key="i.text">
             <v-card :class="'status' + i.status">
-              <b>{{i.text}}</b><br /><span class="indicator">{{formatN(i.value)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
+              <b>{{i.text}} <v-btn flat icon v-on:click="dialog = true, msg=i.help"><v-icon>help</v-icon></v-btn></b>
+                <v-dialog max-width="290" v-model="dialog" :class="'status' + i.status">
+                  <v-card>
+                    <v-card-text>
+                    <b>{{msg}}</b>
+                    </v-card-text>
+                    <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
+                  </v-card>
+                </v-dialog>
+              <span class="indicator">{{formatN(i.value)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
             </v-card>
           </v-flex>
         </v-layout>
@@ -23,37 +32,39 @@ export default {
   data: () => {
     return {
       indicadores: {
-        rendabruta: { text: 'RENDA BRUTA', status: 3, value: 0, unidade: 'R$/Ano' },
-        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  status: 3, value: 0, unidade: 'R$/Ano' },
-        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',status: 3, value: 0, unidade: 'R$/Ano' },
-        ct: { text: 'CUSTO TOTAL (CT)', status: 3, value: 0, unidade: 'R$/Ano'},
-        pcv: { text: 'PREÇO MÉDIO DE VENDA', status: 3, value: 0, unidade: 'R$/Sc' },
-        producao: { text: 'PRODUÇÃO',status: 3, value: 0, unidade: 'Sacas' },
-        aplantada: { text: 'ÁREA PLANTADA', status: 3, value: 0, unidade: 'Ha' },
-        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'Und/Ha'  },
-        coeap: { text: 'COE POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha' },
-        coeu: { text: 'COE POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc'  },
-        cotap: { text: 'COT POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha' },
-        cotu: { text: 'COT POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc' },
-        ctap: { text: 'CT POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha' },
-        ctu: { text: 'CT POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc' },
-        mb: { text: 'MARGEM BRUTA', status: 3, value: 0, unidade: 'R$/Ano'  },
-        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha'  },
-        mbu: { text: 'MARGEM BRUTA POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc' },
-        ml: { text: 'MARGEM LÍQUIDA',status: 3, value: 0, unidade: 'R$/Ano'  },
-        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha'},
-        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',status: 3, value: 0, unidade: 'R$/Sc'  },
-        lucro: { text: 'LUCRO',status: 3, value: 0, unidade: 'R$/Ano'},
-        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha'},
-        lucrou: { text: 'LUCRO POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc'  },
-        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',status: 3, value: 0, unidade: '%'  },
-        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', status: 3, value: 0, unidade: '%'  },
-        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',status: 3, value: 0, unidade: 'R$' },
-        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', status: 3, value: 0, unidade: 'R$/Sc' },
-        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', status: 3, value: 0, unidade: 'R$/Sc'  },
-        taxagiro: { text: 'TAXA DE GIRO', status: 3, value: 0, unidade: '%a.a' },
-        lucrativ: { text: 'LUCRATIVIDADE', status: 3, value: 0, unidade: '%a.a' }
-      }
+        rendabruta: { text: 'RENDA BRUTA', status: 3, value: 0, unidade: 'R$/Ano', help: 'Renda Bruta é o somatório de (Produção Total x Preço de Venda).' },
+        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  status: 3, value: 0, unidade: 'R$/Ano', help: 'O Custo Operacional Efetivo é calculado pelo somatório de todas despesas.' },
+        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',status: 3, value: 0, unidade: 'R$/Ano', help: 'O Custo Operacional Total é calculado pelo somatório do COE + Mão de Obra Familiar + Capital Estoque Depreciação.' },
+        ct: { text: 'CUSTO TOTAL (CT)', status: 3, value: 0, unidade: 'R$/Ano', help: 'O Custo Total é calculado pelo soma do COT + Capital Estoque Remuneração de Capital.'},
+        pcv: { text: 'PREÇO MÉDIO DE VENDA', status: 3, value: 0, unidade: 'R$/Sc', help: '4' },
+        producao: { text: 'PRODUÇÃO',status: 3, value: 0, unidade: 'Sacas', help: '5' },
+        aplantada: { text: 'ÁREA PLANTADA', status: 3, value: 0, unidade: 'Ha', help: '6' },
+        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'Und/Ha', help: '7'  },
+        coeap: { text: 'COE POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: '8' },
+        coeu: { text: 'COE POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: '9'  },
+        cotap: { text: 'COT POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: '10' },
+        cotu: { text: 'COT POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: '11' },
+        ctap: { text: 'CT POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: '12' },
+        ctu: { text: 'CT POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: '13' },
+        mb: { text: 'MARGEM BRUTA', status: 3, value: 0, unidade: 'R$/Ano', help: '14'  },
+        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: '15'  },
+        mbu: { text: 'MARGEM BRUTA POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: '16' },
+        ml: { text: 'MARGEM LÍQUIDA',status: 3, value: 0, unidade: 'R$/Ano', help: '17'  },
+        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: '18'},
+        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',status: 3, value: 0, unidade: 'R$/Sc', help: '19'  },
+        lucro: { text: 'LUCRO',status: 3, value: 0, unidade: 'R$/Ano', help: '20'},
+        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: '21'},
+        lucrou: { text: 'LUCRO POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: '22'  },
+        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',status: 3, value: 0, unidade: '%', help: '23'  },
+        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', status: 3, value: 0, unidade: '%', help: '24'  },
+        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',status: 3, value: 0, unidade: 'R$', help: '25' },
+        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', status: 3, value: 0, unidade: 'R$/Sc', help: '26' },
+        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', status: 3, value: 0, unidade: 'R$/Sc', help: '27'  },
+        taxagiro: { text: 'TAXA DE GIRO', status: 3, value: 0, unidade: '%a.a', help: '28' },
+        lucrativ: { text: 'LUCRATIVIDADE', status: 3, value: 0, unidade: '%a.a', help: '29' }
+      },
+      dialog: false,
+      msg: ''
     }
   },
   props: {
@@ -64,6 +75,7 @@ export default {
   methods: {
     formatN(vr){
       return vr.toLocaleString('pt-BR');
+      // return vr;
     }
   },
   mounted: function() {
@@ -99,7 +111,6 @@ export default {
     var novo_capitalct = this.indicadores.capitalct.value;
     var novo_taxagiro = this.indicadores.taxagiro.value;
     var novo_lucrativ = this.indicadores.lucrativ.value;
-    console.log(novo_rendabruta,novo_coe,novo_cot,novo_ct,novo_pcv,novo_producao,novo_aplantada,novo_ppaplantada,novo_coeap,novo_coeu,novo_cotap,novo_cotu,novo_ctap,novo_ctu,novo_mb,novo_mbap,novo_mbu,novo_ml,novo_mlap,novo_mlu,novo_lucro,novo_lucroap,novo_lucrou,novo_trcst,novo_trcct,novo_bencusto,novo_capitalct,novo_capitalest,novo_taxagiro,novo_lucrativ);
 
     this.$backend.getFazendaSafras(this.fid, all_safras => {
       if(all_safras!=null)
@@ -107,44 +118,27 @@ export default {
         this.$backend.getSafraTalhao(safraObj.id, all_talhao => {
           if(all_talhao != null)
           Object.keys(all_talhao).forEach(function(key){
-            console.log(all_talhao[key].id);
             //renda bruta
-            console.log("antes renda "+novo_rendabruta);
-            console.log("preco venda" + all_talhao[key].PrecoVenda);
-            console.log("prod total "+all_talhao[key].ProdTotal);
-            //antigo_rendabruta = novo_rendabruta;
+
             novo_rendabruta += Math.floor(all_talhao[key].ProdTotal * all_talhao[key].PrecoVenda);
-            console.log("dps renda " + novo_rendabruta);
 
             // //coe
-            console.log("antes coe" + novo_coe)
             novo_coe += Math.floor(all_talhao[key].ArrendamentoTerras + all_talhao[key].AluguelMaquinas + all_talhao[key].Combustivel + all_talhao[key].ManutencaoBenf + all_talhao[key].ManutencaoMaq + all_talhao[key].EnergiaEletrica + all_talhao[key].Frete + all_talhao[key].Impostos + all_talhao[key].MaoObraContratada + all_talhao[key].MaoObraFixa + all_talhao[key].Despesas + all_talhao[key].Assistencia + all_talhao[key].Certificacao + all_talhao[key].AnaliseSolo + all_talhao[key].AnaliseFoliar + all_talhao[key].EPi + all_talhao[key].Acidos + all_talhao[key].Adubos + all_talhao[key].Acaricida  + all_talhao[key].Bactericida + all_talhao[key].Espalhante + all_talhao[key].Fungicida + all_talhao[key].Inseticida + all_talhao[key].Nematicida + all_talhao[key].OleoMineral + all_talhao[key].Herbicida + all_talhao[key].Hormonios + all_talhao[key].Maturadores + all_talhao[key].MaterialColheita + all_talhao[key].Armazenamento + all_talhao[key].Beneficios + all_talhao[key].GasLenhaCarvao + all_talhao[key].PosColheita + all_talhao[key].Rebeneficio + all_talhao[key].Saco + all_talhao[key].Correntagem);
-            console.log("dps coe" + novo_coe)
 
             //cot
-            console.log("antes cot "+novo_cot)
             novo_cot += Math.floor(novo_coe + all_talhao[key].MaoObraF) /* + CAPITALESTOQUE DEPRECIACAO */;
-            console.log("dps cot" + novo_cot)
 
             //ct
-            console.log("antes cot "+novo_ct)
             novo_ct += Math.floor(novo_cot) /* + CAPITALESTOQUE REMUNERACAO CAPITAL */;
-            console.log("dps ct "+novo_ct)
 
             //pcv
-            console.log("antes cot "+novo_pcv)
             novo_pcv+= Math.floor(all_talhao[key].PrecoVenda);
-            console.log("dps pcv "+novo_pcv)
 
             //producao
-            console.log("antes producao "+novo_producao)
             novo_producao += Math.floor(all_talhao[key].ProdTotal);
-            console.log("dps producao "+novo_producao)
 
             //aplantada
-            console.log("antes area "+novo_aplantada)
             novo_aplantada += Math.floor(all_talhao[key].Area);
-            console.log("dps area "+novo_aplantada)
 
             //ppaplantada
             novo_ppaplantada = novo_producao / novo_aplantada;
@@ -204,7 +198,6 @@ export default {
 
             novo_lucrativ  = novo_mlu  / novo_capitalct;
           });
-          console.log("novo_rendabruta "+novo_rendabruta);
           this.indicadores.rendabruta.value  = novo_rendabruta;
           this.indicadores.coe.value = novo_coe;
           this.indicadores.cot.value = novo_cot;

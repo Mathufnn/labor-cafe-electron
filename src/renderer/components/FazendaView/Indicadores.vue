@@ -109,7 +109,7 @@ export default {
             console.log(all_talhao[key].id);
             //renda bruta
             console.log("antes renda "+novo_rendabruta);
-            console.log("preco venda e prodTotal" + all_talhao[key].PrecoVenda);
+            console.log("preco venda" + all_talhao[key].PrecoVenda);
             console.log("prod total "+all_talhao[key].ProdTotal);
             //antigo_rendabruta = novo_rendabruta;
             novo_rendabruta += Math.floor(all_talhao[key].ProdTotal * all_talhao[key].PrecoVenda);
@@ -146,62 +146,62 @@ export default {
             console.log("dps area "+novo_aplantada)
 
             //ppaplantada
-            novo_ppaplantada += Math.floor(novo_producao / novo_aplantada);
+            novo_ppaplantada = novo_producao / novo_aplantada;
 
             //coeap
-            novo_coeap += Math.floor(novo_coe / novo_aplantada);
+            novo_coeap = novo_coe / novo_aplantada;
 
             //coeu
-            novo_coeu +=Math.floor( novo_coe / novo_producao);
+            novo_coeu = novo_coe / novo_producao;
 
             //cotap
-            novo_cotap += Math.floor(novo_cot / novo_aplantada);
+            novo_cotap = novo_cot / novo_aplantada;
 
             //cotu
-            novo_cotu += Math.floor(novo_cot / novo_producao);
+            novo_cotu = novo_cot / novo_producao;
 
             //ctap
-            novo_ctap += Math.floor(novo_ct / novo_aplantada);
+            novo_ctap = novo_ct / novo_aplantada;
 
             //ctu
-            novo_ctu += Math.floor(novo_ct / novo_producao);
+            novo_ctu = novo_ct / novo_producao;
 
             //mb
             //if(antigo_rendabruta != novo_rendabruta){
-              novo_mb = Math.floor(novo_rendabruta - novo_coe);
+              novo_mb = novo_rendabruta - novo_coe;
             //}
 
             //mbap
-            novo_mbap += Math.floor(novo_mb / novo_aplantada);
+            novo_mbap = novo_mb / novo_aplantada;
 
 
-            novo_mbu += Math.floor(novo_mb/ novo_producao);
+            novo_mbu = novo_mb/ novo_producao;
 
-            novo_ml  += Math.floor(novo_rendabruta - novo_cot);
+            novo_ml  = novo_rendabruta - novo_cot;
 
-            novo_mlap  += Math.floor(novo_ml / novo_aplantada);
+            novo_mlap  = novo_ml / novo_aplantada;
 
-            novo_mlu  +=Math.floor( novo_ml/ novo_producao);
+            novo_mlu  = novo_ml/ novo_producao;
 
-            novo_lucro  += Math.floor(novo_rendabruta - novo_ct);
+            novo_lucro  = novo_rendabruta - novo_ct;
 
-            novo_lucroap  += Math.floor(novo_lucro / novo_aplantada);
+            novo_lucroap  = novo_lucro / novo_aplantada;
 
-            novo_lucrou  += Math.floor(novo_lucro / novo_producao);
+            novo_lucrou  = novo_lucro / novo_producao;
 
-            novo_trcst  +=Math.floor( novo_ml); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS */ ;
+            novo_trcst  = novo_ml; /* / ESTOQC EM LAVOURAS +   BENFEITORIAS */ ;
 
-            novo_trcct  +=Math.floor( novo_ml); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
+            novo_trcct  = novo_ml; /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
 
-            novo_bencusto  += Math.floor(novo_rendabruta  / novo_ct );
+            novo_bencusto  = novo_rendabruta  / novo_ct ;
 
-            novo_capitalest  +=  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  Math.floor(novo_producao );
+            novo_capitalest  =  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  novo_producao;
 
-            novo_capitalct  +=   /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ Math.floor(novo_producao );
+            novo_capitalct  =   /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ novo_producao;
 
-            novo_taxagiro  = Math.floor((novo_rendabruta  / novo_producao ) / novo_capitalct );
+            novo_taxagiro  = (novo_rendabruta  / novo_producao ) / novo_capitalct ;
 
-            novo_lucrativ  = Math.floor(novo_mlu  / novo_capitalct);
+            novo_lucrativ  = novo_mlu  / novo_capitalct;
           });
           console.log("novo_rendabruta "+novo_rendabruta);
           this.indicadores.rendabruta.value  = novo_rendabruta;

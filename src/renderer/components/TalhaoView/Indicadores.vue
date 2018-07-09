@@ -69,6 +69,7 @@ export default {
     }
   },
   mounted: function() {
+    var pacoca =0;
     this.$backend.getTalhao(this.tid, (talhaoObj) => {
       this.$backend.getSafra(talhaoObj.SafraID, (safraObj) => {
         //renda bruta
@@ -92,60 +93,60 @@ export default {
         this.indicadores.aplantada.value = Math.floor(talhaoObj.Area);
 
         //ppaplantada
-        this.indicadores.ppaplantada.value = Math.floor(this.indicadores.producao.value / this.indicadores.aplantada.value);
+        this.indicadores.ppaplantada.value = this.indicadores.producao.value / this.indicadores.aplantada.value;
 
         //coeap
-        this.indicadores.coeap.value = Math.floor(this.indicadores.coe.value / this.indicadores.aplantada.value);
+        this.indicadores.coeap.value = this.indicadores.coe.value / this.indicadores.aplantada.value;
 
         //coeu
-        this.indicadores.coeu.value = Math.floor(this.indicadores.coe.value / this.indicadores.producao.value);
+        this.indicadores.coeu.value = this.indicadores.coe.value / this.indicadores.producao.value;
 
         //cotap
-        this.indicadores.cotap.value = Math.floor(this.indicadores.cot.value / this.indicadores.aplantada.value);
+        this.indicadores.cotap.value = this.indicadores.cot.value / this.indicadores.aplantada.value;
 
         //cotu
-        this.indicadores.cotu.value = Math.floor(this.indicadores.cot.value / this.indicadores.producao.value);
+        this.indicadores.cotu.value = this.indicadores.cot.value / this.indicadores.producao.value;
 
         //ctap
-        this.indicadores.ctap.value = Math.floor(this.indicadores.ct.value / this.indicadores.aplantada.value);
+        this.indicadores.ctap.value = this.indicadores.ct.value / this.indicadores.aplantada.value;
 
         //ctu
-        this.indicadores.ctu.value = Math.floor(this.indicadores.ct.value / this.indicadores.producao.value);
+        this.indicadores.ctu.value = this.indicadores.ct.value / this.indicadores.producao.value;
 
         //mb
-        this.indicadores.mb.value = Math.floor(this.indicadores.rendabruta.value - this.indicadores.coe.value);
+        this.indicadores.mb.value = this.indicadores.rendabruta.value - this.indicadores.coe.value;
 
         //mbap
-        this.indicadores.mbap.value = Math.floor(this.indicadores.mb.value / this.indicadores.aplantada.value);
+        this.indicadores.mbap.value = this.indicadores.mb.value / this.indicadores.aplantada.value;
 
 
-        this.indicadores.mbu.value = Math.floor(this.indicadores.mb.value / this.indicadores.producao.value);
+        this.indicadores.mbu.value = this.indicadores.mb.value / this.indicadores.producao.value;
 
-        this.indicadores.ml.value = Math.floor(this.indicadores.rendabruta.value - this.indicadores.cot.value);
+        this.indicadores.ml.value = this.indicadores.rendabruta.value - this.indicadores.cot.value;
 
-        this.indicadores.mlap.value = Math.floor(this.indicadores.ml.value / this.indicadores.aplantada.value);
+        this.indicadores.mlap.value = this.indicadores.ml.value / this.indicadores.aplantada.value;
 
-        this.indicadores.mlu.value = Math.floor(this.indicadores.ml.value / this.indicadores.producao.value);
+        this.indicadores.mlu.value = this.indicadores.ml.value / this.indicadores.producao.value;
 
-        this.indicadores.lucro.value = Math.floor(this.indicadores.rendabruta.value - this.indicadores.ct.value);
+        this.indicadores.lucro.value = this.indicadores.rendabruta.value - this.indicadores.ct.value;
 
-        this.indicadores.lucroap.value = Math.floor(this.indicadores.lucro.value / this.indicadores.aplantada.value);
+        this.indicadores.lucroap.value = this.indicadores.lucro.value / this.indicadores.aplantada.value;
 
-        this.indicadores.lucrou.value = Math.floor(this.indicadores.lucro.value / this.indicadores.producao.value);
+        this.indicadores.lucrou.value = this.indicadores.lucro.value / this.indicadores.producao.value;
 
-        this.indicadores.trcst.value = Math.floor(this.indicadores.ml.value) /* / ESTOQC EM LAVOURAS +   BENFEITORIAS */ ;
+        this.indicadores.trcst.value = this.indicadores.ml.value /* / ESTOQC EM LAVOURAS +   BENFEITORIAS */ ;
 
-        this.indicadores.trcct.value = Math.floor(this.indicadores.ml.value) /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
+        this.indicadores.trcct.value = this.indicadores.ml.value /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
 
-        this.indicadores.vbencusto.value = Math.floor(this.indicadores.rendabruta.value / this.indicadores.ct.value);
+        this.indicadores.bencusto.value = this.indicadores.rendabruta.value / this.indicadores.ct.value;
 
-        this.indicadores.capitalest.value =  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  Math.floor(this.indicadores.producao.value);
+        this.indicadores.capitalest.value =  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  this.indicadores.producao.value;
 
-        this.indicadores.capitalct.value =   /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ Math.floor(this.indicadores.producao.value)
+        this.indicadores.capitalct.value =   /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ this.indicadores.producao.value;
 
-        this.indicadores.taxagiro.value = Math.floor((this.indicadores.rendabruta.value / this.indicadores.producao.value) / this.indicadores.capitalct.value);
+        this.indicadores.taxagiro.value = (this.indicadores.rendabruta.value / this.indicadores.producao.value) / this.indicadores.capitalct.value;
 
-        this.indicadores.lucrativ.value = Math.floor(this.indicadores.mlu.value / this.indicadores.capitalct.value);
+        this.indicadores.lucrativ.value = this.indicadores.mlu.value / this.indicadores.capitalct.value;
 
       });
     });

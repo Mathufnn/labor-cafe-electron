@@ -28,6 +28,9 @@
 </template>
 
 <script>
+import fs from 'fs'
+import path from 'path'
+
 export default {
   data: () => {
     return {
@@ -79,7 +82,7 @@ export default {
     }
   },
   mounted: function() {
-    let estoqueCapitalObj = require('../../../../estoquecapital.json');
+    let estoqueCapitalObj = JSON.parse(fs.readFileSync('estoquecapital.json', 'utf8'));
 
     var novo_rendabruta= this.indicadores.rendabruta.value;
     var novo_coe = this.indicadores.coe.value;

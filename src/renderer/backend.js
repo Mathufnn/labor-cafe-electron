@@ -11,7 +11,16 @@ var models;
 const sequelize = new Sequelize('sqlite:laborrural.db');
 
 // callbackhell.com
-const sync = () => sequelize.sync().then(() => backend.install.synced = true, err => fatal_error(err));
+const sync_estoque = () => fs.access('estoquecapital.json', fs.constants.F_OK, (err) => {
+  if(err) {
+    let estoqueCapitalObj = require('./estoque_repo/estoquecapital.json');
+    fs.writeFile('estoquecapital.json', JSON.stringify(estoqueCapitalObj), (err) => {
+      if(err) fatal_error('Não foi possível criar estoque de capital.');
+      else backend.install.synced = true;
+    });
+  } else backend.install.synced = true;
+});
+const sync = () => sequelize.sync().then(() => sync_estoque(), err => fatal_error(err));
 const loadmodels = () => {
   models = require('./models')(sequelize, Sequelize);
   sync();
@@ -20,14 +29,7 @@ sequelize.authenticate().then(loadmodels, err => fatal_error(err));
 
 //Estoque de capital
 //Cria o arquivo no diretorio root da aplicação
-fs.access('estoquecapital.json', fs.constants.F_OK, (err) => {
-  if(err) {
-    let estoqueCapitalObj = require('./estoque_repo/estoquecapital.json');
-    fs.writeFile('estoquecapital.json', JSON.stringify(estoqueCapitalObj), (err) => {
-      if(err) fatal_error('Não foi possível criar estoque de capital.');
-    });
-  }
-});
+
 
 
 // main object

@@ -188,250 +188,270 @@ const backend = {
           .then(() => callback());
         },
 
-        updateTalhao(Tid, tObj, callback){
-          this.getTalhao(Tid, () => {
-            if(tObj.producao_total != "") {
-              models.Talhao.update(
-                {ProdTotal: tObj.producao_total},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.area != "") {
-              models.Talhao.update(
-                {Area: tObj.area},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.venda_subp != "") {
-              models.Talhao.update(
-                {VendaSubP: tObj.venda_subp},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.mao_familiar != "") {
-              models.Talhao.update(
-                {MaoObraF: tObj.mao_familiar},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.arrend_terra != "") {
-              models.Talhao.update(
-                {ArrendamentoTerras: tObj.arrend_terra},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.aluguel_maq != "") {
-              models.Talhao.update(
-                {AluguelMaquinas: tObj.aluguel_maq},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.combustivel != "") {
-              models.Talhao.update(
-                {Combustivel: tObj.combustivel},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.manu_benf != "") {
-              models.Talhao.update(
-                {ManutencaoBenf: tObj.manu_benf},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.manu_maq != "") {
-              models.Talhao.update(
-                {ManutencaoMaq: tObj.manu_maq},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.energia != "") {
-              models.Talhao.update(
-                {EnergiaEletrica: tObj.energia},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.frete != "") {
-              models.Talhao.update(
-                {Frete: tObj.frete},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.impostos != "") {
-              models.Talhao.update(
-                {Impostos: tObj.impostos},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.mao_contratada != "") {
-              models.Talhao.update(
-                {MaoObraContratada: tObj.mao_contratada},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.mao_fixa != "") {
-              models.Talhao.update(
-                {MaoObraFixa: tObj.mao_fixa},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.despesas_gerais != "") {
-              models.Talhao.update(
-                {Despesas: tObj.despesas_gerais},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.ass_tec != "") {
-              models.Talhao.update(
-                {Assistencia: tObj.ass_tec},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.certificacao != "") {
-              models.Talhao.update(
-                {Certificacao: tObj.certificacao},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.analise_solo != "") {
-              models.Talhao.update(
-                {AnaliseSolo: tObj.analise_solo},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.analise_foliar != "") {
-              models.Talhao.update(
-                {AnaliseFoliar: tObj.analise_foliar},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.epi != "") {
-              models.Talhao.update(
-                {EPi: tObj.epi},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.acidos != "") {
-              models.Talhao.update(
-                {Acidos: tObj.acidos},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.adubos != "") {
-              models.Talhao.update(
-                {Adubos: tObj.adubos},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.acaricida != "") {
-              models.Talhao.update(
-                {Acaricida: tObj.acaricida},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.bactericida != "") {
-              models.Talhao.update(
-                {Bactericida: tObj.bactericida},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.espalhante != "") {
-              models.Talhao.update(
-                {Espalhante: tObj.espalhante},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.fungicida != "") {
-              models.Talhao.update(
-                {Fungicida: tObj.fungicida},
-                {where: {id: Tid}}
-              )
-            }
-            // if(tObj.inseticida != "") {
-            //   models.Talhao.update(
-            //     {Inseticida: tObj.inseticida},
-            //     {where: {id: Tid}}
-            //   )
-            // }
-            if(tObj.nematicida != "") {
-              models.Talhao.update(
-                {Nematicida: tObj.nematicida},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.oleo_mineral != "") {
-              models.Talhao.update(
-                {OleoMineral: tObj.oleo_mineral},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.herbicida != "") {
-              models.Talhao.update(
-                {Herbicida: tObj.herbicida},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.hormonios != "") {
-              models.Talhao.update(
-                {Hormonios: tObj.hormonios},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.maturadores != "") {
-              models.Talhao.update(
-                {Maturadores: tObj.maturadores},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.material_colheita != "") {
-              models.Talhao.update(
-                {MaterialColheita: tObj.material_colheita},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.armazenamento != "") {
-              models.Talhao.update(
-                {Armazenamento: tObj.armazenamento},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.beneficio != "") {
-              models.Talhao.update(
-                {Beneficios: tObj.beneficio},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.gas_lenha != "") {
-              models.Talhao.update(
-                {GasLenhaCarvao: tObj.gas_lenha},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.materiais_colheita != "") {
-              models.Talhao.update(
-                {PosColheita: tObj.materiais_colheita},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.rebeneficio != "") {
-              models.Talhao.update(
-                {Rebeneficio: tObj.rebeneficio},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.embalagens != "") {
-              models.Talhao.update(
-                {Saco: tObj.embalagens},
-                {where: {id: Tid}}
-              )
-            }
-            if(tObj.corretagem != "") {
-              models.Talhao.update(
-                {Correntagem: tObj.corretagem},
-                {where: {id: Tid}}
-              )
-            }
-
+        updateTalhao(Tid, tObj, Fid, Sid ,callback){
+          this.getFazenda(Fid, () => {
+            this.getTalhao(Tid, () => {
+              if(tObj.fazenda_ident != "") {
+                models.Fazenda.update(
+                  {NomeFazenda: tObj.fazenda_ident},
+                  {where: {id: Fid}}
+                )
+              }
+              if(tObj.safra_ident != "") {
+                models.Safra.update(
+                  {IdentSafra: tObj.safra_ident},
+                  {where: {id: Sid}}
+                )
+              }
+              if(tObj.talhao_ident != "") {
+                models.Talhao.update(
+                  {NomeTalhao: tObj.talhao_ident},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.producao_total != "") {
+                models.Talhao.update(
+                  {ProdTotal: tObj.producao_total},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.area != "") {
+                models.Talhao.update(
+                  {Area: tObj.area},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.venda_subp != "") {
+                models.Talhao.update(
+                  {VendaSubP: tObj.venda_subp},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.mao_familiar != "") {
+                models.Talhao.update(
+                  {MaoObraF: tObj.mao_familiar},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.arrend_terra != "") {
+                models.Talhao.update(
+                  {ArrendamentoTerras: tObj.arrend_terra},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.aluguel_maq != "") {
+                models.Talhao.update(
+                  {AluguelMaquinas: tObj.aluguel_maq},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.combustivel != "") {
+                models.Talhao.update(
+                  {Combustivel: tObj.combustivel},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.manu_benf != "") {
+                models.Talhao.update(
+                  {ManutencaoBenf: tObj.manu_benf},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.manu_maq != "") {
+                models.Talhao.update(
+                  {ManutencaoMaq: tObj.manu_maq},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.energia != "") {
+                models.Talhao.update(
+                  {EnergiaEletrica: tObj.energia},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.frete != "") {
+                models.Talhao.update(
+                  {Frete: tObj.frete},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.impostos != "") {
+                models.Talhao.update(
+                  {Impostos: tObj.impostos},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.mao_contratada != "") {
+                models.Talhao.update(
+                  {MaoObraContratada: tObj.mao_contratada},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.mao_fixa != "") {
+                models.Talhao.update(
+                  {MaoObraFixa: tObj.mao_fixa},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.despesas_gerais != "") {
+                models.Talhao.update(
+                  {Despesas: tObj.despesas_gerais},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.ass_tec != "") {
+                models.Talhao.update(
+                  {Assistencia: tObj.ass_tec},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.certificacao != "") {
+                models.Talhao.update(
+                  {Certificacao: tObj.certificacao},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.analise_solo != "") {
+                models.Talhao.update(
+                  {AnaliseSolo: tObj.analise_solo},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.analise_foliar != "") {
+                models.Talhao.update(
+                  {AnaliseFoliar: tObj.analise_foliar},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.epi != "") {
+                models.Talhao.update(
+                  {EPi: tObj.epi},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.acidos != "") {
+                models.Talhao.update(
+                  {Acidos: tObj.acidos},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.adubos != "") {
+                models.Talhao.update(
+                  {Adubos: tObj.adubos},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.acaricida != "") {
+                models.Talhao.update(
+                  {Acaricida: tObj.acaricida},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.bactericida != "") {
+                models.Talhao.update(
+                  {Bactericida: tObj.bactericida},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.espalhante != "") {
+                models.Talhao.update(
+                  {Espalhante: tObj.espalhante},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.fungicida != "") {
+                models.Talhao.update(
+                  {Fungicida: tObj.fungicida},
+                  {where: {id: Tid}}
+                )
+              }
+              // if(tObj.inseticida != "") {
+              //   models.Talhao.update(
+              //     {Inseticida: tObj.inseticida},
+              //     {where: {id: Tid}}
+              //   )
+              // }
+              if(tObj.nematicida != "") {
+                models.Talhao.update(
+                  {Nematicida: tObj.nematicida},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.oleo_mineral != "") {
+                models.Talhao.update(
+                  {OleoMineral: tObj.oleo_mineral},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.herbicida != "") {
+                models.Talhao.update(
+                  {Herbicida: tObj.herbicida},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.hormonios != "") {
+                models.Talhao.update(
+                  {Hormonios: tObj.hormonios},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.maturadores != "") {
+                models.Talhao.update(
+                  {Maturadores: tObj.maturadores},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.material_colheita != "") {
+                models.Talhao.update(
+                  {MaterialColheita: tObj.material_colheita},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.armazenamento != "") {
+                models.Talhao.update(
+                  {Armazenamento: tObj.armazenamento},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.beneficio != "") {
+                models.Talhao.update(
+                  {Beneficios: tObj.beneficio},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.gas_lenha != "") {
+                models.Talhao.update(
+                  {GasLenhaCarvao: tObj.gas_lenha},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.materiais_colheita != "") {
+                models.Talhao.update(
+                  {PosColheita: tObj.materiais_colheita},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.rebeneficio != "") {
+                models.Talhao.update(
+                  {Rebeneficio: tObj.rebeneficio},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.embalagens != "") {
+                models.Talhao.update(
+                  {Saco: tObj.embalagens},
+                  {where: {id: Tid}}
+                )
+              }
+              if(tObj.corretagem != "") {
+                models.Talhao.update(
+                  {Correntagem: tObj.corretagem},
+                  {where: {id: Tid}}
+                )
+              }
+            })
           })
+
         },
 
         //==============================================================/

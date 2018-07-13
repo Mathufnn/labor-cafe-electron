@@ -17,6 +17,18 @@
             <v-container fluid>
               <v-layout row wrap subheading>
                 <v-flex xs12 sm4>
+                  <b>FAZENDA: </b>
+                  <v-text-field type="string" :placeholder="fazenda_ident" suffix="Sc" v-model="novo_fazenda_ident"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <b>TALHÃO: </b>
+                  <v-text-field type="string" :placeholder="talhao_ident" suffix="Sc" v-model="novo_talhao_ident"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <b>SAFRA: </b>
+                  <v-text-field type="string" :placeholder="safra_ident" suffix="Sc" v-model="novo_safra_ident"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
                   <b>PRODUÇÃO TOTAL: </b>
                   <v-text-field type="number" :placeholder="producao_total" suffix="Sc" v-model="novo_producao_total"></v-text-field>
                 </v-flex>
@@ -247,6 +259,11 @@ export default {
     corretagem: '',
     e6: 0,
 
+    idFazenda: '',
+    idSafra: '',
+    novo_talhao_ident: '',
+    novo_safra_ident: '',
+    novo_fazenda_ident: '',
     novo_producao_total: '',
     novo_area: '',
     novo_venda_subp: '',
@@ -296,7 +313,11 @@ export default {
   },
   methods: {
     editarTalhao(){
+      console.log("IdFazenda: "+this.idFazenda);
       let obj = {
+        talhao_ident: this.novo_talhao_ident,
+        safra_ident: this.novo_safra_ident,
+        fazenda_ident: this.novo_fazenda_ident,
         producao_total: this.novo_producao_total,
         area: this.novo_area,
         venda_subp: this.novo_venda_subp,
@@ -342,7 +363,7 @@ export default {
       remote.dialog.showMessageBox({type:'warning', title:'Você tem certeza?', message: 'Os dados serão alterados. É recomendavel fazer um backup antes de alterar valores.\nVocê tem certeza que deseja fazer isso?',
                                       buttons: ['Sim, eu tenho certeza.', 'Não! Eu não quero fazer isso!']}, (idx)=>{
                                         if(idx==0){
-                                          this.$backend.updateTalhao(this.id, obj);
+                                          this.$backend.updateTalhao(this.id, obj, this.idFazenda, this.idSafra);
                                           this.$router.push("/TalhaoView/" + this.id);
                                         }
                                       });
@@ -392,9 +413,12 @@ export default {
       this.embalagens = talhaoObj.Embalagens;
       this.corretagem = talhaoObj.Corretagem;
 
+      this.idSafra = talhaoObj.SafraID;
+
       //assincrono, logo, tem que ficar aqui dentro
       this.$backend.getSafra(talhaoObj.SafraID, (safraObj) => {
         this.safra_ident = safraObj.IdentSafra;
+        this.idFazenda = safraObj.FazendaID;
         //aqui tambem
         this.$backend.getFazenda(safraObj.FazendaID, (fazendaObj) => {
           this.fazenda_ident = fazendaObj.NomeFazenda;

@@ -209,6 +209,12 @@ const backend = {
                   {where: {id: Tid}}
                 )
               }
+              if(tObj.preco_venda != "") {
+                models.Talhao.update(
+                  {PrecoVenda: tObj.preco_venda},
+                  {where: {id: Tid}}
+                )
+              }
               if(tObj.producao_total != "") {
                 models.Talhao.update(
                   {ProdTotal: tObj.producao_total},

@@ -201,7 +201,9 @@ export default {
     rebeneficio: '',
     embalagens: '',
     corretagem: '',
-    e6: 0
+    e6: 0,
+    dialog: false,
+    msg: ''
   }),
   props:{
     sid:{

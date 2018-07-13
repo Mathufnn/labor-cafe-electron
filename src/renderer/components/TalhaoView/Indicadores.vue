@@ -10,7 +10,7 @@
 
           <v-flex xs4 v-for="i in indicadores" v-bind:key="i.text">
             <v-card :class="'status' + i.status">
-              <b>{{i.text}} <v-btn small flat icon v-on:click="dialog = true, msg=i.help"><v-icon>help</v-icon></v-btn></b>
+              <b>{{i.text}} <v-btn small flat icon v-on:click="dialog = true, msg=i.help" style="text-align:right; float:right; margin:0;"><v-icon>help</v-icon></v-btn></b>
                 <v-dialog max-width="290" v-model="dialog" :class="'status' + i.status">
                   <v-card>
                     <v-card-text>

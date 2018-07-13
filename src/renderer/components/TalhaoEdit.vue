@@ -37,6 +37,10 @@
                     <v-text-field type="number" :placeholder="area" suffix="ha" v-model="novo_area"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
+                  <b>PREÇO DE VENDA: </b>
+                    <v-text-field type="number" :placeholder="preco_venda" suffix="ha" v-model="novo_preco_venda"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
                   <b>VENDA DUB PRODUTO: </b>
                   <v-text-field type="number" :placeholder="venda_subp" suffix="R$" v-model="novo_venda_subp"></v-text-field>
                 </v-flex>
@@ -216,6 +220,7 @@ export default {
     safra_ident: '',
     fazenda_ident: '',
     safra_id: -1,
+    preco_venda: '',
     producao_total: '',
     area: '',
     venda_subp: '',
@@ -264,6 +269,7 @@ export default {
     novo_talhao_ident: '',
     novo_safra_ident: '',
     novo_fazenda_ident: '',
+    novo_preco_venda: '',
     novo_producao_total: '',
     novo_area: '',
     novo_venda_subp: '',
@@ -319,6 +325,7 @@ export default {
         safra_ident: this.novo_safra_ident,
         fazenda_ident: this.novo_fazenda_ident,
         producao_total: this.novo_producao_total,
+        preco_venda: this.novo_preco_venda,
         area: this.novo_area,
         venda_subp: this.novo_venda_subp,
         mao_familiar: this.novo_mao_familiar,
@@ -375,6 +382,7 @@ export default {
       this.talhao_ident = talhaoObj.NomeTalhao;
       this.safra_id = talhaoObj.SafraID;
       this.producao_total = talhaoObj.ProdTotal;
+      this.preco_venda = talhaoObj.PrecoVenda;
       this.area = talhaoObj.Area;
       this.venda_subp = talhaoObj.VendaSubP;
       this.mao_familiar = talhaoObj.MaoObraF;

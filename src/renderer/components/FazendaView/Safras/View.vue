@@ -13,6 +13,7 @@
       >
       <template slot="items" slot-scope="props">
         <tr>
+          <td><v-checkbox v-model="checked" :value="props.item.name"></v-checkbox></td>
           <td>{{ props.item.name }}</td>
           <td>{{ props.item.areaemproducao }}</td>
           <td>{{ props.item.producaodasafra }}</td>
@@ -40,6 +41,7 @@
 
 <script>
 import { remote } from 'electron'
+
 export default {
   data: () => ({
     pagination: {
@@ -49,8 +51,12 @@ export default {
     selected: [],
     headers: [
       {
-        text: 'Identificação da safra',
+        text: '',
         align: 'left',
+        value: 'checkbox'
+      },
+      {
+        text: 'Identificação da safra',
         value: 'name'
       },
       {
@@ -66,6 +72,7 @@ export default {
         value: 'actions'
       }
     ],
+    checked: [],
     items: []
   }),
   props:{
@@ -131,7 +138,7 @@ export default {
   },
 
   mounted: function () {
-
+    console.log(this.selecionado)
     this.atualizaSafras();
   }
 }

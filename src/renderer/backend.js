@@ -109,6 +109,11 @@ const backend = {
           .then(safra => callback(safra));
         },
 
+        getSafraByName(nome, callback){
+          models.Safra.findOne({ where: {IdentSafra: nome} })
+          .then(safra => callback(safra));
+        },
+
         deleteSafra(sid, callback){
           models.Talhao.destroy({ where: {SafraID: sid} })
           .then(() => {

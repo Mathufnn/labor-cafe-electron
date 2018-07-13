@@ -195,7 +195,7 @@ export default {
     var novo_capitalct = this.indicadores.capitalct.value;
     var novo_taxagiro = this.indicadores.taxagiro.value;
     var novo_lucrativ = this.indicadores.lucrativ.value;
-    console.log(novo_rendabruta,novo_coe,novo_cot,novo_ct,novo_pcv,novo_producao,novo_aplantada,novo_ppaplantada,novo_coeap,novo_coeu,novo_cotap,novo_cotu,novo_ctap,novo_ctu,novo_mb,novo_mbap,novo_mbu,novo_ml,novo_mlap,novo_mlu,novo_lucro,novo_lucroap,novo_lucrou,novo_trcst,novo_trcct,novo_bencusto,novo_capitalct,novo_capitalest,novo_taxagiro,novo_lucrativ);
+    //console.log(novo_rendabruta,novo_coe,novo_cot,novo_ct,novo_pcv,novo_producao,novo_aplantada,novo_ppaplantada,novo_coeap,novo_coeu,novo_cotap,novo_cotu,novo_ctap,novo_ctu,novo_mb,novo_mbap,novo_mbu,novo_ml,novo_mlap,novo_mlu,novo_lucro,novo_lucroap,novo_lucrou,novo_trcst,novo_trcct,novo_bencusto,novo_capitalct,novo_capitalest,novo_taxagiro,novo_lucrativ);
 
     this.$backend.getFazendaSafras(this.fid, all_safras => {
       if(all_safras!=null)
@@ -203,44 +203,27 @@ export default {
         this.$backend.getSafraTalhao(safraObj.id, all_talhao => {
           if(all_talhao != null)
           Object.keys(all_talhao).forEach(function(key){
-            console.log(all_talhao[key].id);
             //renda bruta
-            console.log("antes renda "+novo_rendabruta);
-            console.log("preco venda" + all_talhao[key].PrecoVenda);
-            console.log("prod total "+all_talhao[key].ProdTotal);
             //antigo_rendabruta = novo_rendabruta;
             novo_rendabruta += Math.floor(all_talhao[key].ProdTotal * all_talhao[key].PrecoVenda);
-            console.log("dps renda " + novo_rendabruta);
 
             // //coe
-            console.log("antes coe" + novo_coe)
             novo_coe += Math.floor(all_talhao[key].ArrendamentoTerras + all_talhao[key].AluguelMaquinas + all_talhao[key].Combustivel + all_talhao[key].ManutencaoBenf + all_talhao[key].ManutencaoMaq + all_talhao[key].EnergiaEletrica + all_talhao[key].Frete + all_talhao[key].Impostos + all_talhao[key].MaoObraContratada + all_talhao[key].MaoObraFixa + all_talhao[key].Despesas + all_talhao[key].Assistencia + all_talhao[key].Certificacao + all_talhao[key].AnaliseSolo + all_talhao[key].AnaliseFoliar + all_talhao[key].EPi + all_talhao[key].Acidos + all_talhao[key].Adubos + all_talhao[key].Acaricida  + all_talhao[key].Bactericida + all_talhao[key].Espalhante + all_talhao[key].Fungicida + all_talhao[key].Inseticida + all_talhao[key].Nematicida + all_talhao[key].OleoMineral + all_talhao[key].Herbicida + all_talhao[key].Hormonios + all_talhao[key].Maturadores + all_talhao[key].MaterialColheita + all_talhao[key].Armazenamento + all_talhao[key].Beneficios + all_talhao[key].GasLenhaCarvao + all_talhao[key].PosColheita + all_talhao[key].Rebeneficio + all_talhao[key].Saco + all_talhao[key].Correntagem);
-            console.log("dps coe" + novo_coe)
 
             //cot
-            console.log("antes cot "+novo_cot)
             novo_cot += Math.floor(novo_coe + all_talhao[key].MaoObraF) /* + CAPITALESTOQUE DEPRECIACAO */;
-            console.log("dps cot" + novo_cot)
 
             //ct
-            console.log("antes cot "+novo_ct)
             novo_ct += Math.floor(novo_cot) /* + CAPITALESTOQUE REMUNERACAO CAPITAL */;
-            console.log("dps ct "+novo_ct)
 
             //pcv
-            console.log("antes cot "+novo_pcv)
             novo_pcv+= Math.floor(all_talhao[key].PrecoVenda);
-            console.log("dps pcv "+novo_pcv)
 
             //producao
-            console.log("antes producao "+novo_producao)
             novo_producao += Math.floor(all_talhao[key].ProdTotal);
-            console.log("dps producao "+novo_producao)
 
             //aplantada
-            console.log("antes area "+novo_aplantada)
             novo_aplantada += Math.floor(all_talhao[key].Area);
-            console.log("dps area "+novo_aplantada)
 
             //ppaplantada
             novo_ppaplantada = Math.floor(novo_producao / novo_aplantada);
@@ -300,7 +283,6 @@ export default {
 
             novo_lucrativ  = Math.floor(novo_mlu  / novo_capitalct);
           });
-          console.log("novo_rendabruta "+novo_rendabruta);
           this.indicadores.rendabruta.value  = novo_rendabruta;
           this.indicadores.coe.value = novo_coe;
           this.indicadores.cot.value = novo_cot;

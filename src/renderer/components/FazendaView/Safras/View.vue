@@ -96,10 +96,15 @@ export default {
     atualizaSafras() {
       let area=0;
       let prodtotal=0;
+      let cont=0;
       this.items = [];
       this.$backend.getFazendaSafras(this.fid, all_safras => {
         if(all_safras!=null)
         all_safras.forEach(safraObj => {
+          if(cont < 4){
+            this.checked[cont] = safraObj.IdentSafra;
+            cont++;
+          }
           this.$backend.getSafraTalhao(safraObj.id, all_talhao => {
             if(all_talhao != null)
             all_talhao.forEach(talhaoObj => {

@@ -36,10 +36,10 @@
             <hr/>
             <v-layout row wrap subheading>
               <v-flex xs12 sm4>
-                <b>VENDA DUB PRODUTO</b><br /> {{venda_subp}} <span class="caption">R$/safra</span>
+                <b>VENDA SUB PRODUTO</b><br /> {{venda_subp}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
-                <b>MAO DE OBRA FAMILIAR </b><br /> {{mao_familiar}} <span class="caption">R$/safra</span>
+                <b>MÃO DE OBRA FAMILIAR </b><br /> {{mao_familiar}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
                 <b>ARRENDAMENTO TERRAS </b><br /> {{arrend_terra}} <span class="caption">R$/safra</span>
@@ -48,10 +48,10 @@
                 <b>ALUGUEL DE MAQUINAS </b><br /> {{aluguel_maq}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
-                <b>COMBUSTIVEL </b><br /> {{combustivel}} <span class="caption">R$/safra</span>
+                <b>COMBUSTÍVEL </b><br /> {{combustivel}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
-                <b>MANUTENÇÃO MAQUINAS </b><br /> {{manu_maq}} <span class="caption">R$/safra</span>
+                <b>MANUTENÇÃO MÁQUINAS </b><br /> {{manu_maq}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
                 <b>MANUTENÇÃO BENFEITORIAS </b><br /> {{manu_benf}} <span class="caption">R$/safra</span>
@@ -75,16 +75,16 @@
                 <b>DESPESAS GERAIS </b><br /> {{despesas_gerais}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
-                <b>ASSISTENCIA TECNICA </b><br /> {{ass_tec}} <span class="caption">R$/safra</span>
+                <b>ASSISTÊNCIA TÉCNICA </b><br /> {{ass_tec}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
                 <b>CERTIFICAÇÃO </b><br /> {{certificacao}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
-                <b>ANALISE SOLO </b> <br />{{analise_solo}} <span class="caption">R$/safra</span>
+                <b>ANÁLISE SOLO </b> <br />{{analise_solo}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
-                <b>ANALISE FOLIAR </b><br /> {{analise_foliar}} <span class="caption">R$/safra</span>
+                <b>ANÁLISE FOLIAR </b><br /> {{analise_foliar}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
                 <b>EPI </b><br /> {{epi}} <span class="caption">R$/safra</span>
@@ -120,7 +120,7 @@
                 <b>HERBICIDA </b><br /> {{herbicida}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
-                <b>HORMONIOS </b><br /> {{hormonios}} <span class="caption">R$/safra</span>
+                <b>HORMÔNIOS </b><br /> {{hormonios}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
                 <b>MATURADORES </b><br />{{maturadores}} <span class="caption">R$/safra</span>
@@ -132,7 +132,7 @@
                 <b>ARMAZENAMENTO </b><br /> {{armazenamento}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
-                <b>BENEFICIO </b><br /> {{beneficio}} <span class="caption">R$/safra</span>
+                <b>BENEFÍCIO </b><br /> {{beneficio}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
                 <b>GÁS LENHA CARVAO </b><br /> {{gas_lenha}} <span class="caption">R$/safra</span>
@@ -141,7 +141,7 @@
                 <b>MATERIAIS PÓS COLHEITA </b><br /> {{material_colheita}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
-                <b>REBENEFICIO </b><br /> {{rebeneficio}} <span class="caption">R$/safra</span>
+                <b>REBENEFÍCIO </b><br /> {{rebeneficio}} <span class="caption">R$/safra</span>
               </v-flex>
               <v-flex xs12 sm4>
                 <b>EMBALAGENS </b><br /> {{embalagens}} <span class="caption">R$/safra</span>

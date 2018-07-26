@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import fs from 'fs'
+
 export default {
   data: () => {
     return {
@@ -80,28 +82,37 @@ export default {
     }
   },
   mounted: function() {
-    var pacoca =0;
+    let estoqueCapitalObj = JSON.parse(fs.readFileSync('estoquecapital.json', 'utf8'));
+    let CidadeTipoEstoque = require('./../cidades_estoque.json');
+
+
     this.$backend.getTalhao(this.tid, (talhaoObj) => {
       this.$backend.getSafra(talhaoObj.SafraID, (safraObj) => {
+      this.$backend.getFazenda(safraObj.FazendaID, (fazendaObj) => {
+        let EstoqueCapital = estoqueCapitalObj[CidadeTipoEstoque[fazendaObj.Cidade]];
+
+
         //renda bruta
-        this.indicadores.rendabruta.value = Math.floor(talhaoObj.ProdTotal * talhaoObj.PrecoVenda);
+        this.indicadores.rendabruta.value = Math.round((talhaoObj.ProdTotal * talhaoObj.PrecoVenda) + talhaoObj.VendaSubP);
         //coe
-        this.indicadores.coe.value = Math.floor(talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo + talhaoObj.AnaliseFoliar + talhaoObj.EPi + talhaoObj.Acidos + talhaoObj.Adubos + talhaoObj.Acaricida  + talhaoObj.Bactericida + talhaoObj.Espalhante + talhaoObj.Fungicida + talhaoObj.Inseticida + talhaoObj.Nematicida + talhaoObj.OleoMineral + talhaoObj.Herbicida + talhaoObj.Hormonios + talhaoObj.Maturadores + talhaoObj.MaterialColheita + talhaoObj.Armazenamento + talhaoObj.Beneficios + talhaoObj.GasLenhaCarvao + talhaoObj.PosColheita + talhaoObj.Rebeneficio + talhaoObj.Saco + talhaoObj.Correntagem);
+        this.indicadores.coe.value = Math.round(talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo +
+          talhaoObj.AnaliseFoliar + talhaoObj.EPi + talhaoObj.Fertilizantes + talhaoObj.Acidos + talhaoObj.Adubos + talhaoObj.Acaricida  + talhaoObj.Bactericida + talhaoObj.Espalhante + talhaoObj.Fungicida + talhaoObj.Inseticida + talhaoObj.Nematicida + talhaoObj.OleoMineral + talhaoObj.Herbicida + talhaoObj.Hormonios + talhaoObj.Maturadores + talhaoObj.MaterialColheita + talhaoObj.Armazenamento + talhaoObj.Beneficios
+          + talhaoObj.GasLenhaCarvao + talhaoObj.PosColheita + talhaoObj.Rebeneficio + talhaoObj.Saco + talhaoObj.Correntagem);
 
         //cot
-        this.indicadores.cot.value = Math.floor(this.indicadores.coe.value + talhaoObj.MaoObraF) /* + CAPITALESTOQUE DEPRECIACAO */;
+        this.indicadores.cot.value = Math.round(this.indicadores.coe.value + talhaoObj.MaoObraF + (EstoqueCapital["depreciacao"] * talhaoObj.Area));
 
         //ct
-        this.indicadores.ct.value = Math.floor(this.indicadores.cot.value) /* + CAPITALESTOQUE REMUNERACAO CAPITAL */;
+        this.indicadores.ct.value = Math.round(this.indicadores.cot.value + (EstoqueCapital["remuneracao"] * talhaoObj.Area));
 
         //pcv
-        this.indicadores.pcv.value = Math.floor(talhaoObj.PrecoVenda);
+        this.indicadores.pcv.value = Math.round(talhaoObj.PrecoVenda);
 
         //producao
-        this.indicadores.producao.value = Math.floor(talhaoObj.ProdTotal);
+        this.indicadores.producao.value = Math.round(talhaoObj.ProdTotal);
 
         //aplantada
-        this.indicadores.aplantada.value = Math.floor(talhaoObj.Area);
+        this.indicadores.aplantada.value = Math.round(talhaoObj.Area);
 
         //ppaplantada
         this.indicadores.ppaplantada.value = this.indicadores.producao.value / this.indicadores.aplantada.value;
@@ -145,20 +156,24 @@ export default {
 
         this.indicadores.lucrou.value = this.indicadores.lucro.value / this.indicadores.producao.value;
 
-        this.indicadores.trcst.value = this.indicadores.ml.value /* / ESTOQC EM LAVOURAS +   BENFEITORIAS */ ;
+        this.indicadores.trcst.value = (this.indicadores.ml.value / ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * talhaoObj.Area))*100 ;
 
-        this.indicadores.trcct.value = this.indicadores.ml.value /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
+
+        //verificar isso aqui
+        //estou usando a área do talhao atual, contudo, parece que ela quer a área TOTAL DE TODOS TALHOES DA SAFRA
+        this.indicadores.trcct.value = (this.indicadores.ml.value / ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * talhaoObj.Area + talhaoObj.Area*safraObj.PrecoMTerraN))*100 ;
 
         this.indicadores.bencusto.value = this.indicadores.rendabruta.value / this.indicadores.ct.value;
 
-        this.indicadores.capitalest.value =  /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  this.indicadores.producao.value;
+        this.indicadores.capitalest.value =  ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * talhaoObj.Area) / this.indicadores.producao.value;
 
-        this.indicadores.capitalct.value =   /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ this.indicadores.producao.value;
+        this.indicadores.capitalct.value =  ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * talhaoObj.Area + talhaoObj.Area*safraObj.PrecoMTerraN ) / this.indicadores.producao.value;
 
-        this.indicadores.taxagiro.value = (this.indicadores.rendabruta.value / this.indicadores.producao.value) / this.indicadores.capitalct.value;
+        this.indicadores.taxagiro.value = ((this.indicadores.rendabruta.value / this.indicadores.producao.value) / this.indicadores.capitalct.value ) * 100;
 
-        this.indicadores.lucrativ.value = this.indicadores.mlu.value / this.indicadores.capitalct.value;
+        this.indicadores.lucrativ.value = (this.indicadores.mlu.value / this.indicadores.capitalct.value) * 100;
 
+      });
       });
     });
 //

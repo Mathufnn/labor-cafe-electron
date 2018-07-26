@@ -24,6 +24,7 @@ module.exports = function(sequelize, DataTypes) {
     AnaliseSolo: DataTypes.INTEGER,
     AnaliseFoliar: DataTypes.INTEGER,
     EPi: DataTypes.INTEGER,
+    Fertilizantes: DataTypes.INTEGER,
     Acidos: DataTypes.INTEGER,
     Adubos: DataTypes.INTEGER,
     Acaricida: DataTypes.INTEGER,

@@ -78,7 +78,8 @@ export default {
   },
   methods: {
     formatN(vr){
-      return vr.toLocaleString('pt-BR');
+      console.log(vr.toFixed(2));
+      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
     }
   },
   mounted: function() {
@@ -93,26 +94,26 @@ export default {
 
 
         //renda bruta
-        this.indicadores.rendabruta.value = Math.round((talhaoObj.ProdTotal * talhaoObj.PrecoVenda) + talhaoObj.VendaSubP);
+        this.indicadores.rendabruta.value = (talhaoObj.ProdTotal * talhaoObj.PrecoVenda) + talhaoObj.VendaSubP;
         //coe
-        this.indicadores.coe.value = Math.round(talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo +
+        this.indicadores.coe.value = talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo +
           talhaoObj.AnaliseFoliar + talhaoObj.EPi + talhaoObj.Fertilizantes + talhaoObj.Acidos + talhaoObj.Adubos + talhaoObj.Acaricida  + talhaoObj.Bactericida + talhaoObj.Espalhante + talhaoObj.Fungicida + talhaoObj.Inseticida + talhaoObj.Nematicida + talhaoObj.OleoMineral + talhaoObj.Herbicida + talhaoObj.Hormonios + talhaoObj.Maturadores + talhaoObj.MaterialColheita + talhaoObj.Armazenamento + talhaoObj.Beneficios
-          + talhaoObj.GasLenhaCarvao + talhaoObj.PosColheita + talhaoObj.Rebeneficio + talhaoObj.Saco + talhaoObj.Correntagem);
+          + talhaoObj.GasLenhaCarvao + talhaoObj.PosColheita + talhaoObj.Rebeneficio + talhaoObj.Saco + talhaoObj.Correntagem;
 
         //cot
-        this.indicadores.cot.value = Math.round(this.indicadores.coe.value + talhaoObj.MaoObraF + (EstoqueCapital["depreciacao"] * talhaoObj.Area));
+        this.indicadores.cot.value = this.indicadores.coe.value + talhaoObj.MaoObraF + (EstoqueCapital["depreciacao"] * talhaoObj.Area);
 
         //ct
-        this.indicadores.ct.value = Math.round(this.indicadores.cot.value + (EstoqueCapital["remuneracao"] * talhaoObj.Area));
+        this.indicadores.ct.value = this.indicadores.cot.value + (EstoqueCapital["remuneracao"] * talhaoObj.Area);
 
         //pcv
-        this.indicadores.pcv.value = Math.round(talhaoObj.PrecoVenda);
+        this.indicadores.pcv.value = talhaoObj.PrecoVenda;
 
         //producao
-        this.indicadores.producao.value = Math.round(talhaoObj.ProdTotal);
+        this.indicadores.producao.value = talhaoObj.ProdTotal;
 
         //aplantada
-        this.indicadores.aplantada.value = Math.round(talhaoObj.Area);
+        this.indicadores.aplantada.value = talhaoObj.Area;
 
         //ppaplantada
         this.indicadores.ppaplantada.value = this.indicadores.producao.value / this.indicadores.aplantada.value;

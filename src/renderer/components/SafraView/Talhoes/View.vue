@@ -14,7 +14,7 @@
       <template slot="items" slot-scope="props">
         <tr>
           <td>{{ props.item.name }}</td>
-          <td>{{ props.item.producaototal }}</td>
+          <td>{{ formatN(props.item.producaototal) }} Sc</td>
           <td class="text-xs-center"><v-btn small color="primary" dark router :to=" '/TalhaoView/' + props.item.id" ><v-icon left dark>info</v-icon> Mostrar talhão</v-btn>
             <v-menu right color="primary">
               <v-btn slot="activator" icon>
@@ -56,7 +56,7 @@ export default {
         value: 'name'
       },
       {
-        text: 'Produção total (Sc)',
+        text: 'Produção total',
         value: 'producaototal'
       },
       {
@@ -100,6 +100,9 @@ export default {
           })
         })
       })
+    },
+    formatN(vr){
+      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
     },
     removeT(TtoRID){
       remote.dialog.showMessageBox({type:'warning', title:'Você tem certeza?', message: 'Todos os dados relacionados a esse talhão serão excluídos.\nVocê tem certeza que deseja fazer isso?',

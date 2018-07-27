@@ -78,7 +78,6 @@ export default {
   },
   methods: {
     formatN(vr){
-      console.log(vr.toFixed(2));
       return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
     }
   },
@@ -94,7 +93,7 @@ export default {
 
 
         //renda bruta
-        this.indicadores.rendabruta.value = (talhaoObj.ProdTotal * talhaoObj.PrecoVenda) + talhaoObj.VendaSubP;
+        this.indicadores.rendabruta.value = (talhaoObj.ProdTotal * safraObj.PrecoVenda) + talhaoObj.VendaSubP;
         //coe
         this.indicadores.coe.value = talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo +
           talhaoObj.AnaliseFoliar + talhaoObj.EPi + talhaoObj.Fertilizantes + talhaoObj.Acidos + talhaoObj.Adubos + talhaoObj.Acaricida  + talhaoObj.Bactericida + talhaoObj.Espalhante + talhaoObj.Fungicida + talhaoObj.Inseticida + talhaoObj.Nematicida + talhaoObj.OleoMineral + talhaoObj.Herbicida + talhaoObj.Hormonios + talhaoObj.Maturadores + talhaoObj.MaterialColheita + talhaoObj.Armazenamento + talhaoObj.Beneficios
@@ -107,7 +106,7 @@ export default {
         this.indicadores.ct.value = this.indicadores.cot.value + (EstoqueCapital["remuneracao"] * talhaoObj.Area);
 
         //pcv
-        this.indicadores.pcv.value = talhaoObj.PrecoVenda;
+        this.indicadores.pcv.value = safraObj.PrecoVenda;
 
         //producao
         this.indicadores.producao.value = talhaoObj.ProdTotal;

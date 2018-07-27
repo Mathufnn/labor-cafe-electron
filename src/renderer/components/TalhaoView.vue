@@ -9,7 +9,8 @@
                 <h1>Talhão {{talhao_ident}}</h1>
                 <h2>Safra {{safra_ident}}</h2>
                 <b>Fazenda {{fazenda_ident}}</b><br /><br />
-                <b>PRODUÇÃO TOTAL:</b> {{producao_total}} <span class="caption">R$/safra</span>
+                <b>PRODUÇÃO TOTAL:</b> {{producao_total}} <span class="caption">Sc</span><br />
+                <b>ÁREA DE PRODUÇÃO:</b> {{area}} <span class="caption">Ha</span>
               </v-flex>
               <v-flex xs6 class="text-xs-right" >
                 <v-btn small  color="secondary" slot="activator" router :to="'/SafraView/'+ safra_id"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA SAFRA</v-btn>

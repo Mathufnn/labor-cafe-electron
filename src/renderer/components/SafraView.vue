@@ -19,16 +19,16 @@
                   <b>IDENTIFICAÇÃO </b><br /> {{nome_safra}}
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ÁREA TOTAL EM PRODUÇÃO </b><br /> {{area_producao}} <span class="caption">ha</span>
+                  <b>ÁREA TOTAL EM PRODUÇÃO </b><br /> {{formatN(area_producao)}} <span class="caption">ha</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>PREÇO MÉDIO TERRA NUA </b><br /> {{preco_terra}} <span class="caption">R$/ha</span>
+                  <b>PREÇO MÉDIO TERRA NUA </b><br /> R$ {{formatN(preco_terra)}} <span class="caption">/ha</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>PRODUÇÃO TOTAL SAFRA </b><br /> {{producao_total}} <span class="caption">Sc</span>
+                  <b>PRODUÇÃO TOTAL </b><br /> {{formatN(producao_total)}} <span class="caption">Sc</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>PREÇO DE VENDA </b><br /> {{preco_venda}} <span class="caption">R$/Sc</span>
+                  <b>PREÇO DE VENDA </b><br /> R$ {{formatN(preco_venda)}} <span class="caption">/Sc</span>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -70,6 +70,11 @@ export default {
       default: '-1'
     }
   },
+  methods: {
+    formatN(vr){
+      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
+    }
+  },
   mounted: function () {
 
     let preco=0;
@@ -82,7 +87,7 @@ export default {
       //this.area_producao = safraObj.AreaProducao;
       this.preco_terra = safraObj.PrecoMTerraN;
       //this.producao_total = safraObj.ProducaoTotal;
-      //this.preco_venda = safraObj.PrecoVenda;
+      this.preco_venda = safraObj.PrecoVenda;
       this.fazenda_id = safraObj.FazendaID;
 
       //assincrono, logo, tem que ficar aqui dentro, pq precisamos do fazenda_id
@@ -95,8 +100,8 @@ export default {
         all_talhao.forEach(talhaoObj => {
           console.log(preco, prodtotal, preco);
           //pcv
-          preco += Math.floor(talhaoObj.PrecoVenda);
-          this.preco_venda = preco;
+        //  preco += Math.floor(talhaoObj.PrecoVenda);
+        //  this.preco_venda = preco;
 
           //producao
           prodtotal += Math.floor(talhaoObj.ProdTotal);

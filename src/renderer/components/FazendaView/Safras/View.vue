@@ -2,7 +2,7 @@
   <v-layout  row wrap justify-center id="wrapper">
     <v-flex xs12 >
       <v-data-table
-      v-model="selected"
+
       :headers="headers"
       :items="items"
       :pagination.sync="pagination"
@@ -13,11 +13,13 @@
       >
       <template slot="items" slot-scope="props">
         <tr>
-          <td><v-checkbox v-model="checked" :value="props.item.name"></v-checkbox></td>
-          <td>{{ props.item.name }}</td>
-          <td>{{ props.item.areaemproducao }}</td>
-          <td>{{ props.item.producaodasafra }}</td>
+          <td><v-checkbox v-model="checked" :value="props.item.id"></v-checkbox></td>
+          <td>{{ props.item.name }}</td> <!--
+          <td>{{ formatN(props.item.areaemproducao) }} ha</td> -->
+          <td>{{ formatN(props.item.producaodasafra) }} Sc</td>
           <td class="text-xs-center"><v-btn small color="primary" dark router :to="'/SafraView/' + props.item.id"><v-icon left dark>info</v-icon> Mostrar safra</v-btn>
+          </td>
+          <td>
             <v-menu right color="primary">
               <v-btn slot="activator" icon>
                 <v-icon>more_vert</v-icon>
@@ -51,25 +53,32 @@ export default {
     selected: [],
     headers: [
       {
-        text: '',
-        align: 'left',
-        value: 'checkbox'
+        text: 'Indicadores',
+        align: 'center',
+        value: 'checkbox',
+        sortable: false
       },
       {
-        text: 'Identificação da safra',
+        text: 'Identificação',
         value: 'name'
-      },
+      }, /*
       {
-        text: 'Área em produção (ha)',
+        text: 'Área total',
         value: 'areaemproducao'
-      },
+      }, */
       {
-        text: 'Produção (Sc)',
+        text: 'Produção total',
         value: 'producaodasafra'
       },
       {
         text: '',
-        value: 'actions'
+        value: 'actions',
+        sortable: false
+      },
+      {
+        text: '',
+        value: 'actionsrm',
+        sortable: false
       }
     ],
     checked: [],
@@ -97,25 +106,18 @@ export default {
       let area=0;
       let prodtotal=0;
       let cont=0;
-      let array = [];
       this.items = [];
       this.$backend.getFazendaSafras(this.fid, all_safras => {
         if(all_safras!=null)
         all_safras.forEach(safraObj => {
-          array[cont] = safraObj.IdentSafra;
           cont++;
           this.$backend.getSafraTalhao(safraObj.id, all_talhao => {
-            for(var i = array.length-1; i>=array.length-4; i--){
-              this.checked[i] = array[i];
-            }
-            //this.checked[i] = array[i];
             if(all_talhao != null)
             all_talhao.forEach(talhaoObj => {
               //producao
-              prodtotal += Math.floor(talhaoObj.ProdTotal);
-
+              prodtotal += talhaoObj.ProdTotal;
               //aplantada
-              area += Math.floor(talhaoObj.Area);
+              area += talhaoObj.Area;
             });
             this.items.push({
               value: false,
@@ -133,6 +135,10 @@ export default {
         });
       });
     },
+    formatN(vr){
+      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
+      // return vr;
+    },
     removeS(StRID){
       remote.dialog.showMessageBox({type:'warning', title:'Você tem certeza?', message: 'Todos os dados relacionados a essa safra serão excluídos, incluindo, todos os talhões associados à ela.\nVocê tem certeza que deseja fazer isso?',
                                     buttons: ['Sim, eu tenho certeza.', 'Não! Eu não quero fazer isso!']}, (idx)=>{
@@ -144,10 +150,13 @@ export default {
                                     });
     }
   },
-
   mounted: function () {
-    console.log(this.selecionado)
     this.atualizaSafras();
+  },
+  watch: {
+    checked: function (newV, oldV) {
+      this.$emit('checkeds', this.checked);
+    }
   }
 }
 </script>

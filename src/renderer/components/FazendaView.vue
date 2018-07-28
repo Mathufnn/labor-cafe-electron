@@ -28,11 +28,11 @@
       </v-flex>
 
       <v-flex xs11 >
-        <safras :fid="id"></safras>
+        <safras :fid="id" @checkeds="onCheckedsChange"></safras>
       </v-flex>
 
       <v-flex xs11>
-        <indicadores :fid="id"></indicadores>
+        <indicadores :fid="id" :checkeds="checkeds_safras"></indicadores>
       </v-flex>
 
       <v-flex xs11>
@@ -54,11 +54,17 @@ export default {
   data: () => ({
     nome_fazenda: '',
     sistema_producao: '',
-    cidade: ''
+    cidade: '',
+    checkeds_safras: []
   }),
   props: {
     id: {
       default: '-1'
+    }
+  },
+  methods: {
+    onCheckedsChange (checkeds) {
+      this.checkeds_safras = checkeds;
     }
   },
   mounted: function () {

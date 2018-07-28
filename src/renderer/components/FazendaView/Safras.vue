@@ -11,7 +11,7 @@
     </v-card-title>
     <v-divider></v-divider>
     <v-layout row wrap class="pa-3">
-      <SafrasView v-if="view" :fid="fid"></SafrasView>
+      <SafrasView v-if="view" :fid="fid" @checkeds="onCheckedsChange"></SafrasView>
       <SafrasAdd v-if="add" :fid="fid"></SafrasAdd>
     </v-layout>
   </v-card>
@@ -36,6 +36,9 @@ export default {
     loadtalhaoadd: function () {
       this.add = !this.add
       this.view = !this.view
+    },
+    onCheckedsChange (checkeds) {
+      this.$emit('checkeds', checkeds);
     }
   }
 

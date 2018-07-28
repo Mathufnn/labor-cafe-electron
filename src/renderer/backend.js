@@ -109,8 +109,8 @@ const backend = {
           .then(safra => callback(safra));
         },
 
-        getSafraByName(nome, callback){
-          models.Safra.findOne({ where: {IdentSafra: nome} })
+        getSafras(sids, callback){
+          models.Safra.findAll({ where: {id: sids} })
           .then(safra => callback(safra));
         },
 

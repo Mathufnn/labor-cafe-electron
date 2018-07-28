@@ -84,9 +84,9 @@ export default {
     this.$backend.getSafra(this.id, (safraObj) => {
       if(safraObj==null) {  this.$router.push('/'); return; }
       this.nome_safra = safraObj.IdentSafra;
-      //this.area_producao = safraObj.AreaProducao;
+      this.area_producao = safraObj.AreaProducao;
       this.preco_terra = safraObj.PrecoMTerraN;
-      //this.producao_total = safraObj.ProducaoTotal;
+      this.producao_total = safraObj.ProducaoTotal;
       this.preco_venda = safraObj.PrecoVenda;
       this.fazenda_id = safraObj.FazendaID;
 
@@ -104,11 +104,11 @@ export default {
         //  this.preco_venda = preco;
 
           //producao
-          prodtotal += Math.floor(talhaoObj.ProdTotal);
+          prodtotal += talhaoObj.ProdTotal;
           this.producao_total = prodtotal;
 
           //aplantada
-          area += Math.floor(talhaoObj.Area);
+          area += talhaoObj.Area;
           this.area_producao = area;
         });
       });

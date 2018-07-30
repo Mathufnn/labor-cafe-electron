@@ -160,6 +160,10 @@
         <indicadores :tid="id"></indicadores>
       </v-flex>
 
+      <v-flex xs11 >
+        <relatorios :tid="id"></relatorios>
+      </v-flex>
+
 
     </v-layout>
   </v-container>
@@ -167,10 +171,12 @@
 
 <script>
 import Indicadores from './TalhaoView/Indicadores'
+import Relatorios from './TalhaoView/Relatorios'
+import fs from 'fs'
 
 export default {
   name: 'TalhaoView',
-  components: { Indicadores },
+  components: { Indicadores, Relatorios },
   data: () => ({
     talhao_ident: '',
     safra_ident: '',
@@ -229,7 +235,8 @@ export default {
       this.view = !this.view
     },
     formatN(vr){
-      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
+      return parseFloat(vr).toFixed(2).toLocaleString('pt-BR');
+      // return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
     }
   },
   mounted: function () {

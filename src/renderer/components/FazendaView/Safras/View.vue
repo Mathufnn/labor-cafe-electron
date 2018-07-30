@@ -91,8 +91,8 @@ export default {
   },
   methods: {
     toggleAll () {
-      if (this.selected.length) this.selected = []
-      else this.selected = this.items.slice()
+    //  if (this.selected.length) this.selected = []
+    //  else this.selected = this.items.slice()
     },
     changeSort (column) {
       if (this.pagination.sortBy === column) {
@@ -107,7 +107,9 @@ export default {
       let prodtotal=0;
       let cont=0;
       this.items = [];
+      this.checked = [];
       this.$backend.getFazendaSafras(this.fid, all_safras => {
+        let checked_temp = [];
         if(all_safras!=null)
         all_safras.forEach(safraObj => {
           cont++;
@@ -132,8 +134,13 @@ export default {
             prodtotal=0;
             area=0;
           });
+
+          if(checked_temp.length<4) checked_temp.push(safraObj.id);
         });
+
+        this.checked = checked_temp;
       });
+
     },
     formatN(vr){
       return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
@@ -155,7 +162,8 @@ export default {
   },
   watch: {
     checked: function (newV, oldV) {
-      this.$emit('checkeds', this.checked);
+      console.log(JSON.stringify(this.checked));
+        this.$emit('checkeds', this.checked);
     }
   }
 }

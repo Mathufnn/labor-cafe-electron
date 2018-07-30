@@ -185,12 +185,11 @@ export default {
 
 <style scoped>
   .indicator {
-    font-size:41px;
+    font-size:25px;
   }
 
   .unidade {
-    font-size:15px;
-
+    font-size:13px;
   }
 
   .status1 {

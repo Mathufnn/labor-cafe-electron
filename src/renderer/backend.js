@@ -100,7 +100,7 @@ const backend = {
         },
 
         getFazendaSafras(fazendaid, callback){
-          models.Safra.findAll({ where: {FazendaID: fazendaid} })
+          models.Safra.findAll({ where: {FazendaID: fazendaid}, order: [['id', 'DESC']]  })
           .then(safra => callback(safra));
         },
 
@@ -185,7 +185,7 @@ const backend = {
         },
 
         getSafraTalhao(safraid, callback){
-          models.Talhao.findAll({ where: {SafraID: safraid} })
+          models.Talhao.findAll({ where: {SafraID: safraid}, order: [['id', 'DESC']] })
           .then(talhao => callback(talhao));
         },
 

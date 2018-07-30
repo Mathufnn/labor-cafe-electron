@@ -9,21 +9,21 @@
         <v-layout row wrap class="text-xs-center">
           <v-flex xs4 v-for="i in indicadores" v-bind:key="i.text">
             <v-card :class="'status' + i.status">
-              <b>{{i.text}} <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b>
-              <v-dialog max-width="290" v-model="dialog" :class="'status' + i.status">
-                <v-card>
-                  <v-card-text>
-                    <b>{{msg}}</b>
-                  </v-card-text>
-                  <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
-                </v-card>
-              </v-dialog>
+              <b>{{i.text}} <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b><br />
               <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
             </v-card>
           </v-flex>
         </v-layout>
       </v-container>
     </v-layout>
+    <v-dialog max-width="390" v-model="dialog">
+      <v-card>
+        <v-card-text>
+          <b>{{msg}}</b>
+        </v-card-text>
+        <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -31,9 +31,6 @@
 import fs from 'fs'
 import path from 'path'
 import { remote } from 'electron'
-
-let estoqueCapitalObj = JSON.parse(fs.readFileSync('estoquecapital.json', 'utf8'));
-let CidadeTipoEstoque = require('./../cidades_estoque.json');
 
 export default {
   data: () => {
@@ -104,6 +101,7 @@ export default {
 
       if(this.indicadores.ml.value>0 && this.indicadores.lucro.value<0) this.indicadores.lucro.help = 'Sua atividade não é atrativa economicamente, uma vez que não há saldo equivalente a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança . No longo prazo a atividade poderá ser comprometida pela baixa capacidade de investimento na mesma.';
       if(this.indicadores.lucro.value==0) this.indicadores.lucro.help = 'A sua atividade apresenta lucro normal. A atividade está no ponto de cobertura total, ou seja, paga todo seu custo de desembolso direto (a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança) e todos os seus custos fixos (depreciações, pró-labore e remunerações), porém você deve focar no aumento do lucro para aumentar a atratividade do empreendimento, garantindo assim o seu crescimento na atividade.';
+<<<<<<< HEAD
       if(this.indicadores.lucro.value>0) this.indicadores.lucro.help = 'A sua atividade apresenta lucro supernormal. A renda obtida na atividade é suficiente para pagar todos custos gerados e ainda proporciona uma remuneração superior às alternativas de investimento. Isso garante que parte do lucro possa ser reinvestido na atividade, garantindo sua competitividade no longo prazo. ';
     
       this.indicadores.coe.help = 'COE, é o custo referente aos desembolsos diretos de capital (pagamento de fertilizantes, energia, mão de obra, defensivos, etc.) destinados a toda atividade cafeeira. Por via de regra, são aqueles que variam de acordo com a produção, podendo aumentar ou diminuir.';
@@ -160,6 +158,29 @@ export default {
       if(this.indicadores.bencusto.value<1) this.indicadores.bencusto.help = 'Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade. ';
       if(this.indicadores.bencusto.value>=1) this.indicadores.bencusto.help = 'Quando a relação benefício/custo é maior que 1, significa que o custo é menor que a renda obtida na atividade. Este resultado mostra o quanto você estáganhando a cada R$1,00 investido na atividade. Quanto maior a relação benefício custo, melhor, uma vez que ao conseguir cobrir todos os custos com a renda, você se mantêm na atividade de forma viável e atrativa economicamente.';
       
+=======
+      if(this.indicadores.lucro.value>0) this.indicadores.lucro.help = 'A sua atividade apresenta lucro super normal. A renda obtida na atividade é suficiente para pagar todos custos gerados e ainda proporciona uma remuneração superior às alternativas de investimento. Isso garante que parte do lucro possa ser reinvestido na atividade, garantindo sua competitividade no longo prazo. ';
+
+      // A PLANILHA DO WALTER COM AS INTERPRETAÇÕES TÁ MUITO ZOADA!
+
+      // this.indicadores.coe.help = 'COE, é o custo referente aos desembolsos diretos de capital (pagamento de concentrado, energia, mão de obra, volumosos etc) destinados a toda atividade leiteira. Por via de regra, são aqueles que variam de acordo com a produção, podendo aumentar ou diminuir.';
+      // this.indicadores.cot.help = 'COT, engloba os custos diretos e parte dos custos fixos da atividade. É o somatório do COE, custos com mão de obra familiar e depreciações.';
+      // this.indicadores.ct.help = 'CT, é o custo referente ao COE + COT + o custo de oportunidade sobre o capital investido na atividade. Nele estão contemplados todos os custos gerados na atividade.';
+
+      // if(this.indicadores.lucrativ.value>=20) this.indicadores.lucrativ.help = 'A lucratividade mede o quanto você ganhou sobre as vendas realizadas no ano. A sua interpretação está ligada ao risco de ter prejuízos com a atividade. Quanto menor a lucratividade, maior o risco de prejuízos. Quando igual ou maior que 20%, significa que você suporta uma redução de 20% no volume de leite produzido ou uma redução de 20% no preço recebido pelo leite ou até mesmo um aumento de 20% no custo total de produção. Este indicador representa o seu fôlego financeiro!';
+      // if(this.indicadores.lucrativ.value<20) this.indicadores.lucrativ.help = 'A lucratividade mede o quanto você ganhou sobre as vendas realizadas no ano. A sua interpretação está ligada ao risco de ter prejuízos com a atividade. Quanto menor a lucratividade, maior o risco de redução do lucro. Quando menor que 20%, significa que você suporta poucas oscilações negativas no volume de leite produzido, no preço do leite e/ou no custo de produção. A porcentagem da lucratividade demonstra qual a redução no volume produzido ou qual a redução no preço recebido pelo leite ou até mesmo qual o aumento no custo total de produção você suporta. Este indicador representa o seu fôlego financeiro!';
+
+      // if(this.indicadores..value) this.indicadores..help = '';
+
+      // if(this.indicadores.taxagiro.value>=50) this.indicadores.taxagiro.help = 'Representa a sua capacidade em transformar patrimônio em receita bruta. Deve-se buscar no mínimo o resultado de 50% para este indicador, ou seja, nesta situação a receita bruta alcançada com a atividade se equivale a metade do seu patrimônio, o que proporciona giro de capital eficiente para desenvolver a sua atividade.';
+      // if(this.indicadores.taxagiro.value<50) this.indicadores.taxagiro.help = 'Representa a sua capacidade em transformar patrimônio em receita bruta. Deve-se buscar no mínimo 50% para este indicador, ou seja, nesta situação a receita bruta alcançada com a atividade se equivale a metade do seu patrimônio, o que proporciona giro de capital eficiente para desenvolver a sua atividade.';
+
+      // this.indicadores.trcct.help = 'O seu resultado se equivale a quanto de todo o capital imobilizado na atividade está gerando de margem líquida e retornando para o bolso do produtor. Este resultado está ligado com a eficiência no uso do capital e a atratividade econômica do empreendimento. Para a atividade leiteira consideramos como satisfatório um resultado de no mímimo 10% ao ano.';
+      // this.indicadores.trcst.help = 'O seu resultado se equivale a quanto de todo o capital imobilizado na atividade está gerando de margem líquida e retornando para o bolso do produtor. Este resultado está ligado com a eficiência no uso do capital e a atratividade econômica do empreendimento. Para a atividade leiteira consideramos como satisfatório um resultado de no mímimo 15% ao ano.';
+
+      // if(this.indicadores..value) this.indicadores..help = '';
+
+>>>>>>> 7ab3176e7fc920c62ee516d0276963f301178eef
     },
     geraIndicadores(SafraIDs){
       if(SafraIDs.length==0){
@@ -169,6 +190,9 @@ export default {
         this.limpaInterpretacoes();
         return;
       }
+
+      let estoqueCapitalObj = JSON.parse(fs.readFileSync('estoquecapital.json', 'utf8'));
+      let CidadeTipoEstoque = require('./../cidades_estoque.json');
 
       let thisindicadores = {};
       Object.assign(thisindicadores, this.indicadores);

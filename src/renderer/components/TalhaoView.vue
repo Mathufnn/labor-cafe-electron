@@ -9,8 +9,8 @@
                 <h1>Talhão {{talhao_ident}}</h1>
                 <h2>Safra {{safra_ident}}</h2>
                 <b>Fazenda {{fazenda_ident}}</b><br /><br />
-                <b>PRODUÇÃO TOTAL:</b> {{producao_total}} <span class="caption">Sc</span><br />
-                <b>ÁREA DE PRODUÇÃO:</b> {{area}} <span class="caption">Ha</span>
+                <b>PRODUÇÃO TOTAL:</b> {{formatN(producao_total,0)}} <span class="caption">Sc</span><br />
+                <b>ÁREA DE PRODUÇÃO:</b> {{formatN(area)}} <span class="caption">Ha</span>
               </v-flex>
               <v-flex xs6 class="text-xs-right" >
                 <v-btn small  color="secondary" slot="activator" router :to="'/SafraView/'+ safra_id"><v-icon center dark>arrow_back</v-icon> VOLTAR ÀS INFORMAÇÕES DA SAFRA</v-btn>
@@ -231,6 +231,9 @@ export default {
   methods: {
     showElementos: function(){
       this.view = !this.view
+    },
+    formatN(vr,minimium=2){
+      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR', {maximumFractionDigits: 2, minimumFractionDigits: minimium});
     }
   },
   mounted: function () {

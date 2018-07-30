@@ -1,23 +1,23 @@
 {
 	"Cerrado": {
-		"estoquelavouras": 0,
-		"estoquemaquinas": 0,
-		"estoquebenfeitorias": 0,
-		"depreciacao": 0,
-		"remuneracao": 0
+		"estoquelavouras": 10563.71,
+		"estoquemaquinas": 3893,
+		"estoquebenfeitorias": 1491.78,
+		"depreciacao": 1595.61,
+		"remuneracao": 1253.53
 	},
 	"Sul de Minas": {
-		"estoquelavouras": 0,
-		"estoquemaquinas": 0,
-		"estoquebenfeitorias": 0,
-		"depreciacao": 0,
-		"remuneracao": 0
+		"estoquelavouras": 11201.67,
+		"estoquemaquinas": 2456.17,
+		"estoquebenfeitorias": 2198.35,
+		"depreciacao": 1039.22,
+		"remuneracao": 1162.11
 	},
 	"Matas de Minas": {
-		"estoquelavouras": 0,
-		"estoquemaquinas": 0,
-		"estoquebenfeitorias": 0,
-		"depreciacao": 0,
-		"remuneracao": 0
+		"estoquelavouras": 9955.17,
+		"estoquemaquinas": 1992.37,
+		"estoquebenfeitorias": 1776.01,
+		"depreciacao": 1197.47,
+		"remuneracao": 1024.10
 	}
 }

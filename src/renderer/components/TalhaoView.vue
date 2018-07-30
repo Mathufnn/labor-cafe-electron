@@ -33,7 +33,6 @@
             </v-tooltip>
           </v-card-title>
           <v-container fluid v-if="view">
-            <h2>ELEMENTOS DE DESPESA:</h2><br />
             <hr/>
             <v-layout row wrap subheading>
               <v-flex xs12 sm4>

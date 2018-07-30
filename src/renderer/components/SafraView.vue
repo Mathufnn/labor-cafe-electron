@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     formatN(vr){
-      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
+      return parseFloat(vr).toFixed(2).toLocaleString('pt-BR');
     }
   },
   mounted: function () {

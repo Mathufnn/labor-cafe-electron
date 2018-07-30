@@ -328,7 +328,6 @@ export default {
 
         //renda bruta
         this.indicadores.rendabruta.value = (talhaoObj.ProdTotal * safraObj.PrecoVenda) + talhaoObj.VendaSubP;
-        console.log("renda bruta"+ this.indicadores.rendabruta.value);
         //coe
         this.indicadores.coe.value = talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo +
           talhaoObj.AnaliseFoliar + talhaoObj.EPi + talhaoObj.Fertilizantes + talhaoObj.Acidos + talhaoObj.Adubos + talhaoObj.Acaricida  + talhaoObj.Bactericida + talhaoObj.Espalhante + talhaoObj.Fungicida + talhaoObj.Inseticida + talhaoObj.Nematicida + talhaoObj.OleoMineral + talhaoObj.Herbicida + talhaoObj.Hormonios + talhaoObj.Maturadores + talhaoObj.MaterialColheita + talhaoObj.Armazenamento + talhaoObj.Beneficios
@@ -348,7 +347,6 @@ export default {
 
         //aplantada
         this.indicadores.aplantada.value = talhaoObj.Area;
-        console.log("area plantada "+ this.indicadores.aplantada.value);
 
         //ppaplantada
         this.indicadores.ppaplantada.value = this.indicadores.producao.value / this.indicadores.aplantada.value;

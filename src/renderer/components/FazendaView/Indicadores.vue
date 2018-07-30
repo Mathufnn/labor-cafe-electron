@@ -10,7 +10,7 @@
           <v-flex xs4 v-for="i in indicadores" v-bind:key="i.text">
             <v-card :class="'status' + i.status">
               <b>{{i.text}} <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b>
-              <v-dialog max-width="290" v-model="dialog" :class="'status' + i.status">
+              <v-dialog max-width="390" v-model="dialog" :class="'status' + i.status">
                 <v-card>
                   <v-card-text>
                     <b>{{msg}}</b>
@@ -31,9 +31,6 @@
 import fs from 'fs'
 import path from 'path'
 import { remote } from 'electron'
-
-let estoqueCapitalObj = JSON.parse(fs.readFileSync('estoquecapital.json', 'utf8'));
-let CidadeTipoEstoque = require('./../cidades_estoque.json');
 
 export default {
   data: () => {
@@ -115,6 +112,9 @@ export default {
         this.limpaInterpretacoes();
         return;
       }
+      
+      let estoqueCapitalObj = JSON.parse(fs.readFileSync('estoquecapital.json', 'utf8'));
+      let CidadeTipoEstoque = require('./../cidades_estoque.json');
 
       let thisindicadores = {};
       Object.assign(thisindicadores, this.indicadores);

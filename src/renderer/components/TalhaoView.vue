@@ -9,7 +9,7 @@
                 <h1>Talhão {{talhao_ident}}</h1>
                 <h2>Safra {{safra_ident}}</h2>
                 <b>Fazenda {{fazenda_ident}}</b><br /><br />
-                <b>PRODUÇÃO TOTAL:</b> {{formatN(producao_total)}} <span class="caption">Sc</span><br />
+                <b>PRODUÇÃO TOTAL:</b> {{formatN(producao_total,0)}} <span class="caption">Sc</span><br />
                 <b>ÁREA DE PRODUÇÃO:</b> {{formatN(area)}} <span class="caption">Ha</span>
               </v-flex>
               <v-flex xs6 class="text-xs-right" >
@@ -233,9 +233,8 @@ export default {
     showElementos: function(){
       this.view = !this.view
     },
-    formatN(vr){
-      return parseFloat(vr).toFixed(2).toLocaleString('pt-BR');
-      // return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
+    formatN(vr,minimium=2){
+      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR', {maximumFractionDigits: 2, minimumFractionDigits: minimium});
     }
   },
   mounted: function () {

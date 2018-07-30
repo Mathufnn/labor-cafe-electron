@@ -58,10 +58,10 @@ export default {
 
   data: () => ({
     nome_safra: '',
-    area_producao: '',
-    preco_terra: '',
-    producao_total: '',
-    preco_venda: '',
+    area_producao: 0,
+    preco_terra: 0,
+    producao_total: 0,
+    preco_venda: 0,
     fazenda_id: -1,
     fazenda_name: ''
   }),
@@ -84,9 +84,9 @@ export default {
     this.$backend.getSafra(this.id, (safraObj) => {
       if(safraObj==null) {  this.$router.push('/'); return; }
       this.nome_safra = safraObj.IdentSafra;
-      this.area_producao = safraObj.AreaProducao;
+      this.area_producao = 0;
       this.preco_terra = safraObj.PrecoMTerraN;
-      this.producao_total = safraObj.ProducaoTotal;
+      this.producao_total = 0;
       this.preco_venda = safraObj.PrecoVenda;
       this.fazenda_id = safraObj.FazendaID;
 

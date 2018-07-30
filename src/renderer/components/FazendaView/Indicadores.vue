@@ -9,7 +9,7 @@
         <v-layout row wrap class="text-xs-center">
           <v-flex xs4 v-for="i in indicadores" v-bind:key="i.text">
             <v-card :class="'status' + i.status">
-              <b>{{i.text}} <v-btn flat icon v-on:click="dialog = true, msg=i.help" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b>
+              <b>{{i.text}} <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b>
               <v-dialog max-width="290" v-model="dialog" :class="'status' + i.status">
                 <v-card>
                   <v-card-text>
@@ -87,11 +87,33 @@ export default {
       return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
       // return vr;
     },
+    limpaInterpretacoes(){
+      Object.keys(this.indicadores).forEach(key => {
+        //this.indicadores[key].help = 'Para visualizar as interpretações é preciso selecionar pelo menos 1 safra para geração de indicadores.';
+        this.indicadores[key].help = '';
+      });
+    },
+    calculaInterpretacoes(){
+      this.limpaInterpretacoes();
+      if(this.indicadores.mb.value<0) this.indicadores.mb.help='Ponto de fechamento da empresa. A propriedade não está conseguindo saldar o custo operacional efetivo (custeio).';
+      if(this.indicadores.mb.value==0) this.indicadores.mb.help='A propriedade consegue saldar todo o custo operacional efetivo (custeio), porém não possui sobras para pagamento de depreciação de lavouras, máquinas, equipamentos e benfeitorias e também o pró-labore do empresário. Se a empresa manter este resultado nas próximas safras, pode sair da atividade por não ter a capacidade de renovar os bens para produção.';
+      if(this.indicadores.mb.value>0) this.indicadores.mb.help='A propriedade consegue pagar todo o custo operacional efetivo (custeio) e ainda tem sobras para saldar os custos fixos. No curto prazo se mantém na atividade, mas para melhor avaliação, deve-se avançar para a análise da margem líquida.';
+
+      if(this.indicadores.mb.value>0 && this.indicadores.ml.value<0){
+        this.indicadores.mb.help+='\n A propriedade consegue pagar todo o custo operacional efetivo (custeio), porém não consegue saldar todo o custo operacional total. Se permanecer com este resultado a empresa sai da atividade no médio prazo.';
+        this.indicadores.ml.help+='\n A propriedade consegue pagar todo o custo operacional efetivo (custeio), porém não consegue saldar todo o custo operacional total. Se permanecer com este resultado a empresa sai da atividade no médio prazo.';
+      }
+
+      if(this.indicadores.ml.value==0) this.indicadores.ml.help = 'A propriedade consegue saldar todo o custo operacional total (custeio + depreciações + pró-labore), porém não possui sobras para pagamento do custo do capital investido em lavouras, máquinas, equipamentos e benfeitorias. Com este resultado a empresa se mantém na atividade no médio prazo, porém sem atratividade econômica.';
+      
+
+    },
     geraIndicadores(SafraIDs){
       if(SafraIDs.length==0){
         Object.keys(this.indicadores).forEach(key => {
           this.indicadores[key].value = 0;
         });
+        this.limpaInterpretacoes();
         return;
       }
 
@@ -235,6 +257,7 @@ export default {
             //  this.indicadores = thisindicadores;
             this.indicadores = {}
             Object.assign(this.indicadores, thisindicadores);
+            this.calculaInterpretacoes();
             });
           });
 

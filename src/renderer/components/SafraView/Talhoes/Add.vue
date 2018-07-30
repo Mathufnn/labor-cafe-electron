@@ -13,7 +13,7 @@
                   <v-text-field box label="Identificação do talhão" v-model="ident_talhao"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0' label="Área em produção" suffix="ha" v-model="area_prod"></v-text-field>
+                  <v-text-field box type="number" min='0' label="Área de produção + reserva legal e APP" suffix="ha" v-model="area_prod"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-text-field box type="number"  min='0' label="Produção Total" suffix="Sc" v-model="prod"></v-text-field>

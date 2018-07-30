@@ -18,15 +18,15 @@
               <v-layout row wrap subheading>
                 <v-flex xs12 sm4>
                   <b>FAZENDA: </b>
-                  <v-text-field type="string" :placeholder="fazenda_ident" suffix="Sc" v-model="novo_fazenda_ident"></v-text-field>
+                  <v-text-field type="string" :placeholder="fazenda_ident" suffix="" v-model="novo_fazenda_ident"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>TALHÃO: </b>
-                  <v-text-field type="string" :placeholder="talhao_ident" suffix="Sc" v-model="novo_talhao_ident"></v-text-field>
+                  <v-text-field type="string" :placeholder="talhao_ident" suffix="" v-model="novo_talhao_ident"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>SAFRA: </b>
-                  <v-text-field type="string" :placeholder="safra_ident" suffix="Sc" v-model="novo_safra_ident"></v-text-field>
+                  <v-text-field type="string" :placeholder="safra_ident" suffix="" v-model="novo_safra_ident"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>PRODUÇÃO TOTAL: </b>
@@ -37,156 +37,160 @@
                     <v-text-field type="number" :placeholder="area" suffix="ha" v-model="novo_area"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>PREÇO DE VENDA: </b>
-                    <v-text-field type="number" :placeholder="preco_venda" suffix="ha" v-model="novo_preco_venda"></v-text-field>
+                  <b>VENDA DE SUB PRODUTO: </b>
+                  <v-text-field type="number" :placeholder="venda_subp" suffix="R$/safra" v-model="novo_venda_subp"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>VENDA DUB PRODUTO: </b>
-                  <v-text-field type="number" :placeholder="venda_subp" suffix="R$" v-model="novo_venda_subp"></v-text-field>
+                  <b>MÃO DE OBRA FAMILIAR: </b>
+                  <v-text-field type="number" :placeholder="mao_familiar" suffix="R$/safra" v-model="novo_mao_familiar"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MAO DE OBRA FAMILIAR: </b>
-                  <v-text-field type="number" :placeholder="mao_familiar" suffix="R$" v-model="novo_mao_familiar"></v-text-field>
+                  <b>ARRENDAMENTO DE TERRAS: </b>
+                  <v-text-field type="number" :placeholder="arrend_terra" suffix="R$/safra" v-model="novo_arrend_terra"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ARRENDAMENTO TERRAS: </b>
-                  <v-text-field type="number" :placeholder="arrend_terra" suffix="Sc" v-model="novo_arrend_terra"></v-text-field>
+                  <b>ALUGUEL DE MÁQUINAS: </b>
+                  <v-text-field type="number" :placeholder="aluguel_maq" suffix="R$/safra" v-model="novo_aluguel_maq"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ALUGUEL DE MAQUINAS: </b>
-                  <v-text-field type="number" :placeholder="aluguel_maq" suffix="Sc" v-model="novo_aluguel_maq"></v-text-field>
+                  <b>COMBUSTÍVEL: </b>
+                  <v-text-field type="number" :placeholder="combustivel" suffix="R$/safra" v-model="novo_combustivel"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>COMBUSTIVEL: </b>
-                  <v-text-field type="number" :placeholder="combustivel" suffix="Sc" v-model="novo_combustivel"></v-text-field>
+                  <b>MANUTENÇÃO DE MÁQUINAS: </b>
+                  <v-text-field type="number" :placeholder="manu_maq" suffix="R$/safra" v-model="novo_manu_maq"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MANUTENÇÃO MAQUINAS: </b>
-                  <v-text-field type="number" :placeholder="manu_maq" suffix="Sc" v-model="novo_manu_maq"></v-text-field>
+                  <b>MANUTENÇÃO DE BENFEITORIAS: </b>
+                  <v-text-field type="number" :placeholder="manu_benf" suffix="R$/safra" v-model="novo_manu_benf"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MANUTENÇÃO BENFEITORIAS: </b>
-                  <v-text-field type="number" :placeholder="manu_benf" suffix="Sc" v-model="novo_manu_benf"></v-text-field>
+                  <b>ENERGIA ELÉTRICA: </b>
+                  <v-text-field type="number" :placeholder="energia" suffix="R$/safra" v-model="novo_energia"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ENERGIA: </b>
-                  <v-text-field type="number" :placeholder="energia" suffix="Sc" v-model="novo_energia"></v-text-field>
+                  <b>FRETE E DESLOCAMENTO: </b>
+                  <v-text-field type="number" :placeholder="frete" suffix="R$/safra" v-model="novo_frete"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>FRETE: </b>
-                  <v-text-field type="number" :placeholder="frete" suffix="Sc" v-model="novo_frete"></v-text-field>
+                  <b>IMPOSTOS E TAXAS: </b>
+                  <v-text-field type="number" :placeholder="impostos" suffix="R$/safra" v-model="novo_impostos"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>IMPOSTOS: </b>
-                  <v-text-field type="number" :placeholder="impostos" suffix="Sc" v-model="novo_impostos"></v-text-field>
+                  <b>MÃO DE OBRA CONTRATADA: </b>
+                  <v-text-field type="number" :placeholder="mao_contratada" suffix="R$/safra" v-model="novo_mao_contratada"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>CONTRATADA: </b>
-                  <v-text-field type="number" :placeholder="mao_contratada" suffix="Sc" v-model="novo_mao_contratada"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm4>
-                  <b>FIXA: </b>
-                  <v-text-field type="number" :placeholder="mao_fixa" suffix="Sc" v-model="novo_mao_fixa"></v-text-field>
+                  <b>MÃO DE OBRA FIXA: </b>
+                  <v-text-field type="number" :placeholder="mao_fixa" suffix="R$/safra" v-model="novo_mao_fixa"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>DESPESAS GERAIS: </b>
-                  <v-text-field type="number" :placeholder="despesas_gerais" suffix="Sc" v-model="novo_despesas_gerais"></v-text-field>
+                  <v-text-field type="number" :placeholder="despesas_gerais" suffix="R$/safra" v-model="novo_despesas_gerais"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ASSISTENCIA TECNICA: </b>
-                  <v-text-field type="number" :placeholder="ass_tec" suffix="Sc" v-model="novo_ass_tec"></v-text-field>
+                  <b>ASSISTÊNCIA TÉCNICA: </b>
+                  <v-text-field type="number" :placeholder="ass_tec" suffix="R$/safra" v-model="novo_ass_tec"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>CERTIFICAÇÃO: </b>
-                  <v-text-field type="number" :placeholder="certificacao" suffix="Sc" v-model="novo_certificacao"></v-text-field>
+                  <v-text-field type="number" :placeholder="certificacao" suffix="R$/safra" v-model="novo_certificacao"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ANALISE SOLO: </b>
-                  <v-text-field type="number" :placeholder="analise_solo" suffix="Sc" v-model="novo_analise_solo"></v-text-field>
+                  <b>ANÁLISE DE SOLO: </b>
+                  <v-text-field type="number" :placeholder="analise_solo" suffix="R$/safra" v-model="novo_analise_solo"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>ANALISE FOLIAR: </b>
-                  <v-text-field type="number" :placeholder="analise_foliar" suffix="Sc" v-model="novo_analise_foliar"></v-text-field>
+                  <v-text-field type="number" :placeholder="analise_foliar" suffix="R$/safra" v-model="novo_analise_foliar"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>EPI: </b>
-                  <v-text-field type="number" :placeholder="epi" suffix="Sc" v-model="novo_epi"></v-text-field>
+                  <v-text-field type="number" :placeholder="epi" suffix="R$/safra" v-model="novo_epi"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ACIDOS: </b>
-                  <v-text-field type="number" :placeholder="acidos" suffix="Sc" v-model="novo_acidos"></v-text-field>
+                  <b>FERTILIZANTES DE SOLO: </b>
+                  <v-text-field type="number" :placeholder="fertilizantes" suffix="R$/safra" v-model="novo_epi"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ADUBOS: </b>
-                  <v-text-field type="number" :placeholder="adubos" suffix="Sc" v-model="novo_adubos"></v-text-field>
+                  <b>ÁCIDOS/AMINOÁCIDOS: </b>
+                  <v-text-field type="number" :placeholder="acidos" suffix="R$/safra" v-model="novo_acidos"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ACARICIDAS: </b>
-                  <v-text-field type="number" :placeholder="acaricida" suffix="Sc" v-model="novo_acaricida"></v-text-field>
+                  <b>ADUBOS FOLIARES: </b>
+                  <v-text-field type="number" :placeholder="adubos" suffix="R$/safra" v-model="novo_adubos"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>BACTERICIDAS: </b>
-                  <v-text-field type="number" :placeholder="bactericida" suffix="Sc" v-model="novo_bactericida"></v-text-field>
+                  <b>ACARICIDA: </b>
+                  <v-text-field type="number" :placeholder="acaricida" suffix="R$/safra" v-model="novo_acaricida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>ESPALHANTE: </b>
-                  <v-text-field type="number" :placeholder="espalhante" suffix="Sc" v-model="novo_espalhante"></v-text-field>
+                  <b>BACTERICIDA: </b>
+                  <v-text-field type="number" :placeholder="bactericida" suffix="R$/safra" v-model="novo_bactericida"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <b>ESPALHANTE ADESIVO: </b>
+                  <v-text-field type="number" :placeholder="espalhante" suffix="R$/safra" v-model="novo_espalhante"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>FUNGICIDA: </b>
-                  <v-text-field type="number" :placeholder="fungicida" suffix="Sc" v-model="novo_fungicida"></v-text-field>
+                  <v-text-field type="number" :placeholder="fungicida" suffix="R$/safra" v-model="novo_fungicida"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <b>INSETICIDA: </b>
+                  <v-text-field type="number" :placeholder="inseticida" suffix="R$/safra" v-model="novo_inseticida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>NEMATICIDA: </b>
-                  <v-text-field type="number" :placeholder="nematicida" suffix="Sc" v-model="novo_nematicida"></v-text-field>
+                  <v-text-field type="number" :placeholder="nematicida" suffix="R$/safra" v-model="novo_nematicida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>OLEO MINERAL: </b>
-                  <v-text-field type="number" :placeholder="oleo_mineral" suffix="Sc" v-model="novo_oleo_mineral"></v-text-field>
+                  <b>ÓLEO MINERAL: </b>
+                  <v-text-field type="number" :placeholder="oleo_mineral" suffix="R$/safra" v-model="novo_oleo_mineral"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>HERBICIDA: </b>
-                  <v-text-field type="number" :placeholder="herbicida" suffix="Sc" v-model="novo_herbicida"></v-text-field>
+                  <v-text-field type="number" :placeholder="herbicida" suffix="R$/safra" v-model="novo_herbicida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>HORMONIOS: </b>
-                  <v-text-field type="number" :placeholder="hormonios" suffix="Sc" v-model="novo_hormonios"></v-text-field>
+                  <b>HORMÔNIOS: </b>
+                  <v-text-field type="number" :placeholder="hormonios" suffix="R$/safra" v-model="novo_hormonios"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>MATURADORES: </b>
-                  <v-text-field type="number" :placeholder="maturadores" suffix="Sc" v-model="novo_maturadores"></v-text-field>
+                  <v-text-field type="number" :placeholder="maturadores" suffix="R$/safra" v-model="novo_maturadores"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MATERIAL COLHEITA: </b>
-                  <v-text-field type="number" :placeholder="material_colheita" suffix="Sc" v-model="novo_material_colheita"></v-text-field>
+                  <b>MATERIAL DE COLHEITA: </b>
+                  <v-text-field type="number" :placeholder="material_colheita" suffix="R$/safra" v-model="novo_material_colheita"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>ARMAZENAMENTO: </b>
-                  <v-text-field type="number" :placeholder="armazenamento" suffix="Sc" v-model="novo_armazenamento"></v-text-field>
+                  <v-text-field type="number" :placeholder="armazenamento" suffix="R$/safra" v-model="novo_armazenamento"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>BENEFICIO: </b>
-                  <v-text-field type="number" :placeholder="beneficio" suffix="Sc" v-model="novo_beneficio"></v-text-field>
+                  <b>BENEFÍCIO: </b>
+                  <v-text-field type="number" :placeholder="beneficio" suffix="R$/safra" v-model="novo_beneficio"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>GAS LENHA CARVAO: </b>
-                  <v-text-field type="number" :placeholder="gas_lenha" suffix="Sc" v-model="novo_gas_lenha"></v-text-field>
+                  <b>GÁS/LENHA/CARVÃO: </b>
+                  <v-text-field type="number" :placeholder="gas_lenha" suffix="R$/safra" v-model="novo_gas_lenha"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>MATERIAIS POS COLHEITA: </b>
-                  <v-text-field type="number" :placeholder="material_colheita" suffix="Sc" v-model="novo_material_colheita"></v-text-field>
+                  <b>MATERIAIS DE PÓS COLHEITA: </b>
+                  <v-text-field type="number" :placeholder="material_colheita" suffix="R$/safra" v-model="novo_material_colheita"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>REBENEFICIO: </b>
-                  <v-text-field type="number" :placeholder="rebeneficio" suffix="Sc" v-model="novo_rebeneficio"></v-text-field>
+                  <b>REBENEFÍCIO: </b>
+                  <v-text-field type="number" :placeholder="rebeneficio" suffix="R$/safra" v-model="novo_rebeneficio"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>EMBALAGENS: </b>
-                  <v-text-field type="number" :placeholder="embalagens" suffix="Sc" v-model="novo_embalagens"></v-text-field>
+                  <b>SACOS/EMBALAGENS: </b>
+                  <v-text-field type="number" :placeholder="embalagens" suffix="R$/safra" v-model="novo_embalagens"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>CORRETAGEM: </b>
-                  <v-text-field type="number" :placeholder="corretagem" suffix="Sc" v-model="novo_corretagem"></v-text-field>
+                  <v-text-field type="number" :placeholder="corretagem" suffix="R$/safra" v-model="novo_corretagem"></v-text-field>
                 </v-flex>
                 <v-flex>
                   <v-btn block color="primary" large @click="editarTalhao">SALVAR ALTERAÇÕES</v-btn>
@@ -248,7 +252,7 @@ export default {
     bactericida: '',
     espalhante: '',
     fungicida: '',
-    // inseticida: '',
+    inseticida: '',
     nematicida: '',
     oleo_mineral: '',
     herbicida: '',
@@ -297,7 +301,7 @@ export default {
     novo_bactericida: '',
     novo_espalhante: '',
     novo_fungicida: '',
-    // novo_inseticida: '',
+    novo_inseticida: '',
     novo_nematicida: '',
     novo_oleo_mineral: '',
     novo_herbicida: '',
@@ -351,7 +355,7 @@ export default {
         bactericida: this.novo_bactericida,
         espalhante: this.novo_espalhante,
         fungicida: this.novo_fungicida,
-        // inseticida: this.novo_inseticida,
+        inseticida: this.novo_inseticida,
         nematicida: this.novo_nematicida,
         oleo_mineral: this.novo_oleo_mineral,
         herbicida: this.novo_herbicida,
@@ -408,6 +412,7 @@ export default {
       this.bactericida = talhaoObj.Bactericida;
       this.espalhante = talhaoObj.Espalhante;
       this.fungicida = talhaoObj.Fungicida;
+      this.inseticida = talhaoObj.Inseticida;
       this.nematicida = talhaoObj.Nematicida;
       this.oleo_mineral = talhaoObj.OleoMineral;
       this.herbicida = talhaoObj.Herbicida;

@@ -9,21 +9,21 @@
         <v-layout row wrap class="text-xs-center">
           <v-flex xs4 v-for="i in indicadores" v-bind:key="i.text">
             <v-card :class="'status' + i.status">
-              <b>{{i.text}} <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b>
-              <v-dialog max-width="390" v-model="dialog" :class="'status' + i.status">
-                <v-card>
-                  <v-card-text>
-                    <b>{{msg}}</b>
-                  </v-card-text>
-                  <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
-                </v-card>
-              </v-dialog>
+              <b>{{i.text}} <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b><br />
               <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
             </v-card>
           </v-flex>
         </v-layout>
       </v-container>
     </v-layout>
+    <v-dialog max-width="390" v-model="dialog">
+      <v-card>
+        <v-card-text>
+          <b>{{msg}}</b>
+        </v-card-text>
+        <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -101,8 +101,8 @@ export default {
 
       if(this.indicadores.ml.value>0 && this.indicadores.lucro.value<0) this.indicadores.lucro.help = 'Sua atividade não é atrativa economicamente, uma vez que não há saldo equivalente a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança . No longo prazo a atividade poderá ser comprometida pela baixa capacidade de investimento na mesma.';
       if(this.indicadores.lucro.value==0) this.indicadores.lucro.help = 'A sua atividade apresenta lucro normal. A atividade está no ponto de cobertura total, ou seja, paga todo seu custo de desembolso direto (a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança) e todos os seus custos fixos (depreciações, pró-labore e remunerações), porém você deve focar no aumento do lucro para aumentar a atratividade do empreendimento, garantindo assim o seu crescimento na atividade.';
-      if(this.indicadores.lucro.value>0) this.indicadores.lucro.help = 'A sua atividade apresneta lucro supernormal. A renda obtida na atividade é suficiente para pagar todos custos gerados e ainda proporciona uma remuneração superior às alternativas de investimento. Isso garante que parte do lucro possa ser reinvestido na atividade, garantindo sua competitividade no longo prazo. ';
-    
+      if(this.indicadores.lucro.value>0) this.indicadores.lucro.help = 'A sua atividade apresenta lucro super normal. A renda obtida na atividade é suficiente para pagar todos custos gerados e ainda proporciona uma remuneração superior às alternativas de investimento. Isso garante que parte do lucro possa ser reinvestido na atividade, garantindo sua competitividade no longo prazo. ';
+
       // A PLANILHA DO WALTER COM AS INTERPRETAÇÕES TÁ MUITO ZOADA!
 
       // this.indicadores.coe.help = 'COE, é o custo referente aos desembolsos diretos de capital (pagamento de concentrado, energia, mão de obra, volumosos etc) destinados a toda atividade leiteira. Por via de regra, são aqueles que variam de acordo com a produção, podendo aumentar ou diminuir.';
@@ -131,7 +131,7 @@ export default {
         this.limpaInterpretacoes();
         return;
       }
-      
+
       let estoqueCapitalObj = JSON.parse(fs.readFileSync('estoquecapital.json', 'utf8'));
       let CidadeTipoEstoque = require('./../cidades_estoque.json');
 

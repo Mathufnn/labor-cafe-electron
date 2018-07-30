@@ -18,7 +18,7 @@
                   <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
                 </v-card>
               </v-dialog>
-              <span class="indicator">{{formatN(i.value)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
+              <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
             </v-card>
           </v-flex>
         </v-layout>
@@ -39,36 +39,36 @@ export default {
   data: () => {
     return {
       indicadores: {
-        rendabruta: { text: 'RENDA BRUTA', status: 3, value: 0, unidade: 'R$/Ano', help: '' },
-        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  status: 3, value: 0, unidade: 'R$/Ano', help: '' },
-        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',status: 3, value: 0, unidade: 'R$/Ano', help: '' },
-        ct: { text: 'CUSTO TOTAL (CT)', status: 3, value: 0, unidade: 'R$/Ano', help: ''},
-        pcv: { text: 'PREÇO MÉDIO DE VENDA', status: 3, value: 0, unidade: 'R$/Sc', help: '' },
-        producao: { text: 'PRODUÇÃO',status: 3, value: 0, unidade: 'Sacas', help: '' },
-        aplantada: { text: 'ÁREA PLANTADA', status: 3, value: 0, unidade: 'Ha', help: '' },
-        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'Und/Ha', help: ''  },
-        coeap: { text: 'COE POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: '' },
-        coeu: { text: 'COE POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: ''  },
-        cotap: { text: 'COT POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: '' },
-        cotu: { text: 'COT POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: '' },
-        ctap: { text: 'CT POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: '' },
-        ctu: { text: 'CT POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: '' },
-        mb: { text: 'MARGEM BRUTA', status: 3, value: 0, unidade: 'R$/Ano', help: ''  },
-        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: ''  },
-        mbu: { text: 'MARGEM BRUTA POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: '' },
-        ml: { text: 'MARGEM LÍQUIDA',status: 3, value: 0, unidade: 'R$/Ano', help: ''  },
-        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: ''},
-        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',status: 3, value: 0, unidade: 'R$/Sc', help: ''  },
-        lucro: { text: 'LUCRO',status: 3, value: 0, unidade: 'R$/Ano', help: ''},
-        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha', help: ''},
-        lucrou: { text: 'LUCRO POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc', help: ''  },
-        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',status: 3, value: 0, unidade: '%', help: ''  },
-        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', status: 3, value: 0, unidade: '%', help: ''  },
-        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',status: 3, value: 0, unidade: 'R$', help: '' },
-        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', status: 3, value: 0, unidade: 'R$/Sc', help: '' },
-        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', status: 3, value: 0, unidade: 'R$/Sc', help: ''  },
-        taxagiro: { text: 'TAXA DE GIRO', status: 3, value: 0, unidade: '%a.a', help: '' },
-        lucrativ: { text: 'LUCRATIVIDADE', status: 3, value: 0, unidade: '%a.a', help: '' }
+        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, unidade: 'R$/Ano', help: '' },
+        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, unidade: 'R$/Ano', help: '' },
+        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, unidade: 'R$/Ano', help: '' },
+        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, unidade: 'R$/Ano', help: ''},
+        pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, unidade: 'Sacas', help: '' },
+        aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'Ha', help: '' },
+        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'Und/Ha', help: ''  },
+        coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
+        coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
+        cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
+        cotu: { text: 'COT POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        ctap: { text: 'CT POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
+        ctu: { text: 'CT POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, unidade: 'R$/Ano', help: ''  },
+        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''  },
+        mbu: { text: 'MARGEM BRUTA POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, unidade: 'R$/Ano', help: ''  },
+        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''},
+        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
+        lucro: { text: 'LUCRO',decimals: 2, value: 0, unidade: 'R$/Ano', help: ''},
+        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''},
+        lucrou: { text: 'LUCRO POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
+        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',decimals: 2, value: 0, unidade: '%', help: ''  },
+        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', decimals: 2, value: 0, unidade: '%', help: ''  },
+        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',decimals: 2, value: 0, unidade: 'R$', help: '' },
+        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
+        taxagiro: { text: 'TAXA DE GIRO', decimals: 2, value: 0, unidade: '%a.a', help: '' },
+        lucrativ: { text: 'LUCRATIVIDADE', decimals: 2, value: 0, unidade: '%a.a', help: '' }
       },
       dialog: false,
       msg: ''
@@ -83,9 +83,8 @@ export default {
     }
   },
   methods: {
-    formatN(vr){
-      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR');
-      // return vr;
+    formatN(vr,minimium=2){
+      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR', {maximumFractionDigits: 2, minimumFractionDigits: minimium});
     },
     limpaInterpretacoes(){
       Object.keys(this.indicadores).forEach(key => {
@@ -105,7 +104,7 @@ export default {
       }
 
       if(this.indicadores.ml.value==0) this.indicadores.ml.help = 'A propriedade consegue saldar todo o custo operacional total (custeio + depreciações + pró-labore), porém não possui sobras para pagamento do custo do capital investido em lavouras, máquinas, equipamentos e benfeitorias. Com este resultado a empresa se mantém na atividade no médio prazo, porém sem atratividade econômica.';
-      
+
 
     },
     geraIndicadores(SafraIDs){

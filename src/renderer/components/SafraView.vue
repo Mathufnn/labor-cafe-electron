@@ -25,7 +25,7 @@
                   <b>PREÇO MÉDIO TERRA NUA </b><br /> R$ {{formatN(preco_terra)}} <span class="caption">/ha</span>
                 </v-flex>
                 <v-flex xs12 sm4>
-                  <b>PRODUÇÃO TOTAL </b><br /> {{formatN(producao_total)}} <span class="caption">Sc</span>
+                  <b>PRODUÇÃO TOTAL </b><br /> {{formatN(producao_total,0)}} <span class="caption">Sc</span>
                 </v-flex>
                 <v-flex xs12 sm4>
                   <b>PREÇO DE VENDA </b><br /> R$ {{formatN(preco_venda)}} <span class="caption">/Sc</span>
@@ -71,8 +71,8 @@ export default {
     }
   },
   methods: {
-    formatN(vr){
-      return parseFloat(vr).toFixed(2).toLocaleString('pt-BR');
+    formatN(vr,minimium=2){
+      return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR', {maximumFractionDigits: 2, minimumFractionDigits: minimium});
     }
   },
   mounted: function () {

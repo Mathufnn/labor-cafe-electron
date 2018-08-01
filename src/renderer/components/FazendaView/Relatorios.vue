@@ -18,41 +18,43 @@
 
 <script>
 import { BrowserWindow, remote } from 'electron'
+var pdf = require('pdfkit');
+var fs = require('fs');
 
 export default {
   data: () => {
     return {
       indicadores: {
-        rendabruta: { text: 'RENDA BRUTA', status: 3, value: 0, unidade: 'R$/Ano' },
-        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  status: 3, value: 0, unidade: 'R$/Ano' },
-        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',status: 3, value: 0, unidade: 'R$/Ano' },
-        ct: { text: 'CUSTO TOTAL (CT)', status: 3, value: 0, unidade: 'R$/Ano'},
-        pcv: { text: 'PREÇO MÉDIO DE VENDA', status: 3, value: 0, unidade: 'R$/Sc' },
-        producao: { text: 'PRODUÇÃO',status: 3, value: 0, unidade: 'Sacas' },
-        aplantada: { text: 'ÁREA PLANTADA', status: 3, value: 0, unidade: 'Ha' },
-        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'Und/Ha'  },
-        coeap: { text: 'COE POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha' },
-        coeu: { text: 'COE POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc'  },
-        cotap: { text: 'COT POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha' },
-        cotu: { text: 'COT POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc' },
-        ctap: { text: 'CT POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha' },
-        ctu: { text: 'CT POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc' },
-        mb: { text: 'MARGEM BRUTA', status: 3, value: 0, unidade: 'R$/Ano'  },
-        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha'  },
-        mbu: { text: 'MARGEM BRUTA POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc' },
-        ml: { text: 'MARGEM LÍQUIDA',status: 3, value: 0, unidade: 'R$/Ano'  },
-        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha'},
-        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',status: 3, value: 0, unidade: 'R$/Sc'  },
-        lucro: { text: 'LUCRO',status: 3, value: 0, unidade: 'R$/Ano'},
-        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', status: 3, value: 0, unidade: 'R$/Ha'},
-        lucrou: { text: 'LUCRO POR UNIDADE', status: 3, value: 0, unidade: 'R$/Sc'  },
-        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',status: 3, value: 0, unidade: '%'  },
-        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', status: 3, value: 0, unidade: '%'  },
-        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',status: 3, value: 0, unidade: 'R$' },
-        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', status: 3, value: 0, unidade: 'R$/Sc' },
-        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', status: 3, value: 0, unidade: 'R$/Sc'  },
-        taxagiro: { text: 'TAXA DE GIRO', status: 3, value: 0, unidade: '%a.a' },
-        lucrativ: { text: 'LUCRATIVIDADE', status: 3, value: 0, unidade: '%a.a' }
+        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, unidade: 'R$/Ano', help: '' },
+        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, unidade: 'R$/Ano', help: '' },
+        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, unidade: 'R$/Ano', help: '' },
+        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, unidade: 'R$/Ano', help: ''},
+        pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, unidade: 'Sacas', help: '' },
+        aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'Ha', help: '' },
+        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'Und/Ha', help: ''  },
+        coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
+        coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
+        cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
+        cotu: { text: 'COT POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        ctap: { text: 'CT POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
+        ctu: { text: 'CT POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, unidade: 'R$/Ano', help: ''  },
+        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''  },
+        mbu: { text: 'MARGEM BRUTA POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, unidade: 'R$/Ano', help: ''  },
+        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''},
+        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
+        lucro: { text: 'LUCRO',decimals: 2, value: 0, unidade: 'R$/Ano', help: ''},
+        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''},
+        lucrou: { text: 'LUCRO POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
+        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',decimals: 2, value: 0, unidade: '%', help: ''  },
+        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', decimals: 2, value: 0, unidade: '%', help: ''  },
+        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',decimals: 2, value: 0, unidade: 'R$', help: '' },
+        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
+        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
+        taxagiro: { text: 'TAXA DE GIRO', decimals: 2, value: 0, unidade: '%a.a', help: '' },
+        lucrativ: { text: 'LUCRATIVIDADE', decimals: 2, value: 0, unidade: '%a.a', help: '' }
       }
     }
 
@@ -60,15 +62,14 @@ export default {
   props: {
     fid: {
       default: '-1'
+    },
+    checkeds: {
+      default: []
     }
   },
   methods: {
     preview: function() {
-      remote.dialog.showSaveDialog({title: 'Selecione local para salvar o PDF',defaultPath: 'Relatorio.pdf'}, (filename) => {
-
-        var pdf = require('pdfkit');
-        var fs = require('fs');
-
+      remote.dialog.showSaveDialog({title: 'Selecione local para salvar o PDF',defaultPath: 'Relatorio'}, (filename) => {
         var myDoc = new pdf;
 
         var i = {
@@ -162,161 +163,178 @@ export default {
         }
       }
     },
-  },
-  mounted: function() {
-    var novo_rendabruta= this.indicadores.rendabruta.value;
-    var antigo_rendabruta =-1;
-    var novo_coe = this.indicadores.coe.value;
-    var novo_cot = this.indicadores.cot.value;
-    var novo_ct = this.indicadores.ct.value;
-    var novo_pcv =this.indicadores.pcv.value;
-    var novo_producao = this.indicadores.producao.value;
-    var novo_aplantada = this.indicadores.aplantada.value;
-    var novo_ppaplantada = this.indicadores.ppaplantada.value;
-    var novo_coeap = this.indicadores.coeap.value;
-    var novo_coeu =this.indicadores.coeu.value;
-    var novo_cotap =this.indicadores.cotap.value;
-    var novo_cotu =this.indicadores.cotu.value;
-    var novo_ctap = this.indicadores.ctap.value;
-    var novo_ctu = this.indicadores.ctu.value;
-    var novo_mb = this.indicadores.mb.value;
-    var novo_mbap = this.indicadores.mbap.value;
-    var novo_mbu = this.indicadores.mbu.value;
-    var novo_ml = this.indicadores.ml.value;
-    var novo_mlap = this.indicadores.mlap.value;
-    var novo_mlu = this.indicadores.mlu.value;
-    var novo_lucro = this.indicadores.lucro.value;
-    var novo_lucroap = this.indicadores.lucroap.value;
-    var novo_lucrou =this.indicadores.lucrou.value;
-    var novo_trcst = this.indicadores.trcst.value;
-    var novo_trcct = this.indicadores.trcct.value;
-    var novo_bencusto = this.indicadores.bencusto.value;
-    var novo_capitalest = this.indicadores.capitalest.value;
-    var novo_capitalct = this.indicadores.capitalct.value;
-    var novo_taxagiro = this.indicadores.taxagiro.value;
-    var novo_lucrativ = this.indicadores.lucrativ.value;
-    //console.log(novo_rendabruta,novo_coe,novo_cot,novo_ct,novo_pcv,novo_producao,novo_aplantada,novo_ppaplantada,novo_coeap,novo_coeu,novo_cotap,novo_cotu,novo_ctap,novo_ctu,novo_mb,novo_mbap,novo_mbu,novo_ml,novo_mlap,novo_mlu,novo_lucro,novo_lucroap,novo_lucrou,novo_trcst,novo_trcct,novo_bencusto,novo_capitalct,novo_capitalest,novo_taxagiro,novo_lucrativ);
+    geraIndicadores(SafraIDs){
+      if(SafraIDs.length==0){
+        Object.keys(this.indicadores).forEach(key => {
+          this.indicadores[key].value = 0;
+        });
+        this.limpaInterpretacoes();
+        return;
+      }
 
-    this.$backend.getFazendaSafras(this.fid, all_safras => {
-      if(all_safras!=null)
-      all_safras.forEach(safraObj => {
-        this.$backend.getSafraTalhao(safraObj.id, all_talhao => {
-          if(all_talhao != null)
-          Object.keys(all_talhao).forEach(function(key){
-            //renda bruta
-            //antigo_rendabruta = novo_rendabruta;
-            novo_rendabruta += Math.floor(all_talhao[key].ProdTotal * all_talhao[key].PrecoVenda);
+      let estoqueCapitalObj = JSON.parse(fs.readFileSync('estoquecapital.json', 'utf8'));
+      let CidadeTipoEstoque = require('./../cidades_estoque.json');
 
-            // //coe
-            novo_coe += Math.floor(all_talhao[key].ArrendamentoTerras + all_talhao[key].AluguelMaquinas + all_talhao[key].Combustivel + all_talhao[key].ManutencaoBenf + all_talhao[key].ManutencaoMaq + all_talhao[key].EnergiaEletrica + all_talhao[key].Frete + all_talhao[key].Impostos + all_talhao[key].MaoObraContratada + all_talhao[key].MaoObraFixa + all_talhao[key].Despesas + all_talhao[key].Assistencia + all_talhao[key].Certificacao + all_talhao[key].AnaliseSolo + all_talhao[key].AnaliseFoliar + all_talhao[key].EPi + all_talhao[key].Acidos + all_talhao[key].Adubos + all_talhao[key].Acaricida  + all_talhao[key].Bactericida + all_talhao[key].Espalhante + all_talhao[key].Fungicida + all_talhao[key].Inseticida + all_talhao[key].Nematicida + all_talhao[key].OleoMineral + all_talhao[key].Herbicida + all_talhao[key].Hormonios + all_talhao[key].Maturadores + all_talhao[key].MaterialColheita + all_talhao[key].Armazenamento + all_talhao[key].Beneficios + all_talhao[key].GasLenhaCarvao + all_talhao[key].PosColheita + all_talhao[key].Rebeneficio + all_talhao[key].Saco + all_talhao[key].Correntagem);
+      let thisindicadores = {};
+      Object.assign(thisindicadores, this.indicadores);
+      Object.keys(thisindicadores).forEach(key => {
+        thisindicadores[key].value = 0;
+      });
 
-            //cot
-            novo_cot += Math.floor(novo_coe + all_talhao[key].MaoObraF) /* + CAPITALESTOQUE DEPRECIACAO */;
+      this.$backend.getFazenda(this.fid, (fazendaObj) => {
+        let EstoqueCapital = estoqueCapitalObj[CidadeTipoEstoque[fazendaObj.Cidade]];
+        this.$backend.getSafras(this.checkeds, safras => {
+          let SafraCount = 0;
+          if(safras!=null)
+          safras.forEach(safraObj => {
+            SafraCount++;
+            //PRECO MEDIO DE VENDA
+            //EH MEDIA, TEM QUE DIVIDR DEPOIS
+            thisindicadores.pcv.value += safraObj.PrecoVenda;
 
-            //ct
-            novo_ct += Math.floor(novo_cot) /* + CAPITALESTOQUE REMUNERACAO CAPITAL */;
+            this.$backend.getSafraTalhao(safraObj.id, (talhoes) => {
+              if(talhoes!=null)
+              talhoes.forEach(talhaoObj => {
+                let IndicadoresTalhao = {};
+                //renda bruta
+                thisindicadores.rendabruta.value += (talhaoObj.ProdTotal * safraObj.PrecoVenda) + talhaoObj.VendaSubP;
+                IndicadoresTalhao.rendabruta = (talhaoObj.ProdTotal * safraObj.PrecoVenda) + talhaoObj.VendaSubP;
 
-            //pcv
-            novo_pcv+= Math.floor(all_talhao[key].PrecoVenda);
+                //coe
+                thisindicadores.coe.value += talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo +
+                talhaoObj.AnaliseFoliar + talhaoObj.EPi + talhaoObj.Fertilizantes + talhaoObj.Acidos + talhaoObj.Adubos + talhaoObj.Acaricida  + talhaoObj.Bactericida + talhaoObj.Espalhante + talhaoObj.Fungicida + talhaoObj.Inseticida + talhaoObj.Nematicida + talhaoObj.OleoMineral + talhaoObj.Herbicida + talhaoObj.Hormonios + talhaoObj.Maturadores + talhaoObj.MaterialColheita + talhaoObj.Armazenamento + talhaoObj.Beneficios
+                + talhaoObj.GasLenhaCarvao + talhaoObj.PosColheita + talhaoObj.Rebeneficio + talhaoObj.Saco + talhaoObj.Correntagem;
 
-            //producao
-            novo_producao += Math.floor(all_talhao[key].ProdTotal);
-
-            //aplantada
-            novo_aplantada += Math.floor(all_talhao[key].Area);
-
-            //ppaplantada
-            novo_ppaplantada = Math.floor(novo_producao / novo_aplantada);
-
-            //coeap
-            novo_coeap = Math.floor(novo_coe / novo_aplantada);
-
-            //coeu
-            novo_coeu = Math.floor(novo_coe / novo_producao);
-
-            //cotap
-            novo_cotap = Math.floor(novo_cot / novo_aplantada);
-
-            //cotu
-            novo_cotu = Math.floor(novo_cot / novo_producao);
-
-            //ctap
-            novo_ctap = Math.floor(novo_ct / novo_aplantada);
-
-            //ctu
-            novo_ctu = Math.floor(novo_ct / novo_producao);
-
-            //mb
-            //if(antigo_rendabruta != Math.floor(novo_rendabruta){
-              novo_mb = Math.floor(novo_rendabruta - novo_coe);
-            //}
-
-            //mbap)
-            novo_mbap = Math.floor(novo_mb / novo_aplantada);
+                IndicadoresTalhao.coe = talhaoObj.ArrendamentoTerras + talhaoObj.AluguelMaquinas + talhaoObj.Combustivel + talhaoObj.ManutencaoBenf + talhaoObj.ManutencaoMaq + talhaoObj.EnergiaEletrica + talhaoObj.Frete + talhaoObj.Impostos + talhaoObj.MaoObraContratada + talhaoObj.MaoObraFixa + talhaoObj.Despesas + talhaoObj.Assistencia + talhaoObj.Certificacao + talhaoObj.AnaliseSolo +
+                talhaoObj.AnaliseFoliar + talhaoObj.EPi + talhaoObj.Fertilizantes + talhaoObj.Acidos + talhaoObj.Adubos + talhaoObj.Acaricida  + talhaoObj.Bactericida + talhaoObj.Espalhante + talhaoObj.Fungicida + talhaoObj.Inseticida + talhaoObj.Nematicida + talhaoObj.OleoMineral + talhaoObj.Herbicida + talhaoObj.Hormonios + talhaoObj.Maturadores + talhaoObj.MaterialColheita + talhaoObj.Armazenamento + talhaoObj.Beneficios
+                + talhaoObj.GasLenhaCarvao + talhaoObj.PosColheita + talhaoObj.Rebeneficio + talhaoObj.Saco + talhaoObj.Correntagem;
 
 
-            novo_mbu = Math.floor(novo_mb/ novo_producao);
+                //cot
+                thisindicadores.cot.value += IndicadoresTalhao.coe + talhaoObj.MaoObraF + (EstoqueCapital["depreciacao"] * talhaoObj.Area);
+                IndicadoresTalhao.cot = IndicadoresTalhao.coe + talhaoObj.MaoObraF + (EstoqueCapital["depreciacao"] * talhaoObj.Area);
 
-            novo_ml  = Math.floor(novo_rendabruta - novo_cot);
+                //ct
+                thisindicadores.ct.value += IndicadoresTalhao.cot + (EstoqueCapital["remuneracao"] * talhaoObj.Area);
+                IndicadoresTalhao.ct = IndicadoresTalhao.cot + (EstoqueCapital["remuneracao"] * talhaoObj.Area);
 
-            novo_mlap  = Math.floor(novo_ml / novo_aplantada);
+                //producao
+                thisindicadores.producao.value += talhaoObj.ProdTotal;
+                IndicadoresTalhao.producao = talhaoObj.ProdTotal;
 
-            novo_mlu  = Math.floor(novo_ml/ novo_producao);
+                //aplantada
+                thisindicadores.aplantada.value += talhaoObj.Area;
+                IndicadoresTalhao.aplantada = talhaoObj.Area;
 
-            novo_lucro  = Math.floor(novo_rendabruta - novo_ct);
+                //ppaplantada
+                thisindicadores.ppaplantada.value = thisindicadores.producao.value / thisindicadores.aplantada.value;
+                IndicadoresTalhao.ppaplantada = IndicadoresTalhao.producao / IndicadoresTalhao.aplantada;
 
-            novo_lucroap  = Math.floor(novo_lucro / novo_aplantada);
+                //coeap
+                thisindicadores.coeap.value = thisindicadores.coe.value / thisindicadores.aplantada.value;
+                IndicadoresTalhao.coeap = IndicadoresTalhao.coe / IndicadoresTalhao.aplantada;
 
-            novo_lucrou  = Math.floor(novo_lucro / novo_producao);
+                //coeu
+                thisindicadores.coeu.value = thisindicadores.coe.value / thisindicadores.producao.value;
+                IndicadoresTalhao.coeu = IndicadoresTalhao.coe / IndicadoresTalhao.producao;
 
-            novo_trcst  = Math.floor(novo_ml); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS */ ;
+                //cotap
+                thisindicadores.cotap.value = thisindicadores.cot.value / thisindicadores.aplantada.value;
+                IndicadoresTalhao.cotap = IndicadoresTalhao.cot / IndicadoresTalhao.aplantada;
 
-            novo_trcct  = Math.floor(novo_ml); /* / ESTOQC EM LAVOURAS +   BENFEITORIAS  +  estoque capital em terra */;
+                //cotu
+                thisindicadores.cotu.value = thisindicadores.cot.value / thisindicadores.producao.value;
+                IndicadoresTalhao.cotu = IndicadoresTalhao.cot / IndicadoresTalhao.producao;
 
-            novo_bencusto  = Math.floor(novo_rendabruta  / novo_ct) ;
+                //ctap
+                thisindicadores.ctap.value = thisindicadores.ct.value / thisindicadores.aplantada.value;
+                IndicadoresTalhao.ctap = IndicadoresTalhao.ct / IndicadoresTalhao.aplantada;
 
-            novo_capitalest  = Math.floor( /* ESTOQC EM LAVOURAS +   BENFEITORIAS  / */  novo_producao);
+                //ctu
+                thisindicadores.ctu.value = thisindicadores.ct.value / thisindicadores.producao.value;
+                IndicadoresTalhao.ctu = IndicadoresTalhao.ct / IndicadoresTalhao.producao;
 
-            novo_capitalct  = Math.floor(  /* ESTOQC EM LAVOURAS +   BENFEITORIAS + estoque de capital em terra / */ novo_producao);
+                //mb
+                thisindicadores.mb.value = thisindicadores.rendabruta.value - thisindicadores.coe.value;
+                IndicadoresTalhao.mb = IndicadoresTalhao.rendabruta - IndicadoresTalhao.coe;
 
-            novo_taxagiro  = Math.floor((novo_rendabruta  / novo_producao ) / novo_capitalct) ;
+                //mbap
+                thisindicadores.mbap.value = thisindicadores.mb.value / thisindicadores.aplantada.value;
+                IndicadoresTalhao.mbap  = IndicadoresTalhao.mb / IndicadoresTalhao.aplantada;
 
-            novo_lucrativ  = Math.floor(novo_mlu  / novo_capitalct);
+
+                thisindicadores.mbu.value = thisindicadores.mb.value / thisindicadores.producao.value;
+                IndicadoresTalhao.mbu = IndicadoresTalhao.mb / IndicadoresTalhao.producao;
+
+                thisindicadores.ml.value = thisindicadores.rendabruta.value - thisindicadores.cot.value;
+                IndicadoresTalhao.ml = IndicadoresTalhao.rendabruta - IndicadoresTalhao.cot;
+
+                thisindicadores.mlap.value = thisindicadores.ml.value / thisindicadores.aplantada.value;
+                IndicadoresTalhao.mlap = IndicadoresTalhao.ml / IndicadoresTalhao.aplantada;
+
+                thisindicadores.mlu.value = thisindicadores.ml.value / thisindicadores.producao.value;
+                IndicadoresTalhao.mlu = IndicadoresTalhao.ml / IndicadoresTalhao.producao;
+
+                thisindicadores.lucro.value = thisindicadores.rendabruta.value - thisindicadores.ct.value;
+                IndicadoresTalhao.lucro = IndicadoresTalhao.rendabruta - IndicadoresTalhao.ct;
+
+                thisindicadores.lucroap.value = thisindicadores.lucro.value / thisindicadores.aplantada.value;
+                IndicadoresTalhao.lucroap = IndicadoresTalhao.lucro / IndicadoresTalhao.aplantada;
+
+                thisindicadores.lucrou.value = thisindicadores.lucro.value / thisindicadores.producao.value;
+                IndicadoresTalhao.lucrou = IndicadoresTalhao.lucro / IndicadoresTalhao.producao;
+
+                thisindicadores.trcst.value = (thisindicadores.ml.value / ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * thisindicadores.aplantada.value))*100 ;
+                IndicadoresTalhao.trcst = (IndicadoresTalhao.ml / ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * talhaoObj.Area))*100 ;
+
+
+                //verificar isso aqui
+                //estou usando a área do talhao atual, contudo, parece que ela quer a área TOTAL DE TODOS TALHOES DA SAFRA
+                thisindicadores.trcct.value = (thisindicadores.ml.value / ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * thisindicadores.aplantada.value + thisindicadores.aplantada.value*safraObj.PrecoMTerraN))*100 ;
+                IndicadoresTalhao.trcct = (IndicadoresTalhao.ml / ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * talhaoObj.Area + talhaoObj.Area*safraObj.PrecoMTerraN))*100 ;
+
+
+                thisindicadores.bencusto.value = thisindicadores.rendabruta.value / thisindicadores.ct.value;
+                IndicadoresTalhao.bencusto = IndicadoresTalhao.rendabruta / IndicadoresTalhao.ct;
+
+                thisindicadores.capitalest.value =  ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * thisindicadores.aplantada.value) / thisindicadores.producao.value;
+                IndicadoresTalhao.capitalest = ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * talhaoObj.Area) / IndicadoresTalhao.producao;
+
+
+                thisindicadores.capitalct.value =  ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * thisindicadores.aplantada.value + thisindicadores.aplantada.value*safraObj.PrecoMTerraN ) / thisindicadores.producao.value;
+                IndicadoresTalhao.capitalct =  ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * talhaoObj.Area + talhaoObj.Area*safraObj.PrecoMTerraN ) / IndicadoresTalhao.producao;
+
+
+                thisindicadores.taxagiro.value = ((thisindicadores.rendabruta.value / thisindicadores.producao.value) / thisindicadores.capitalct.value ) * 100;
+                IndicadoresTalhao.taxagiro = ((IndicadoresTalhao.rendabruta / IndicadoresTalhao.producao) / IndicadoresTalhao.capitalct ) * 100;
+
+                thisindicadores.lucrativ.value = (thisindicadores.mlu.value / thisindicadores.capitalct.value) * 100;
+                IndicadoresTalhao.lucrativ  = (IndicadoresTalhao.mlu / IndicadoresTalhao.capitalct) * 100;
+              });
+
+            //  this.indicadores = thisindicadores;
+            this.indicadores = {}
+            Object.assign(this.indicadores, thisindicadores);
+            this.calculaInterpretacoes();
+            });
           });
-          this.indicadores.rendabruta.value  = novo_rendabruta;
-          this.indicadores.coe.value = novo_coe;
-          this.indicadores.cot.value = novo_cot;
-          this.indicadores.ct.value = novo_ct;
-          this.indicadores.pcv.value = novo_pcv;
-          this.indicadores.producao.value = novo_producao;
-          this.indicadores.aplantada.value = novo_aplantada;
-          this.indicadores.ppaplantada.value = novo_ppaplantada;
-          this.indicadores.coeap.value = novo_coeap;
-          this.indicadores.coeu.value = novo_coeu;
-          this.indicadores.cotap.value = novo_cotap;
-          this.indicadores.cotu.value = novo_cotu;
-          this.indicadores.ctap.value = novo_ctap;
-          this.indicadores.ctu.value = novo_ctu;
-          this.indicadores.mb.value = novo_mb;
-          this.indicadores.mbap.value = novo_mbap;
-          this.indicadores.mbu.value = novo_mbu;
-          this.indicadores.ml.value = novo_ml;
-          this.indicadores.mlap.value = novo_mlap;
-          this.indicadores.mlu.value = novo_mlu;
-          this.indicadores.lucro.value = novo_lucro;
-          this.indicadores.lucroap.value = novo_lucroap;
-          this.indicadores.lucrou.value = novo_lucrou;
-          this.indicadores.trcst.value = novo_trcst;
-          this.indicadores.trcct.value = novo_trcct;
-          this.indicadores.bencusto.value = novo_bencusto;
-          this.indicadores.capitalest.value = novo_capitalest;
-          this.indicadores.capitalct.value = novo_capitalct;
-          this.indicadores.taxagiro.value = novo_taxagiro;
-          this.indicadores.lucrativ.value = novo_lucrativ;
+
+          //media preco venda
+          thisindicadores.pcv.value = thisindicadores.pcv.value / SafraCount;
+
         });
       });
-    });
+    }
+  },
+  mounted: function() {
 
+
+  },
+  watch: {
+    checkeds: function (newV, oldV) {
+      console.log(121312);
+      this.geraIndicadores(this.checkeds);
+    }
   }
 
 }

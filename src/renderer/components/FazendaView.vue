@@ -34,11 +34,11 @@
       <v-flex xs11>
         <indicadores :fid="id" :checkeds="checkeds_safras"></indicadores>
       </v-flex>
-
+<!--
       <v-flex xs11>
-        <relatorios :fid="id"></relatorios>
+        <relatorios :fid="id" :checkeds="checkeds_safras"></relatorios>
       </v-flex>
-
+-->
     </v-layout>
   </v-container>
 </template>

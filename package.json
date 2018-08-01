@@ -1,5 +1,5 @@
 {
-  "name": "labor-cafe",
+  "name": "Cafe",
   "version": "0.0.0",
   "author": "No Bugs <projetos@nobugs.com.br>",
   "description": "An electron-vue project",
@@ -18,8 +18,8 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "labor-cafe",
-    "appId": "com.laborrural.nobugs",
+    "productName": "Café",
+    "appId": "com.laborrural.cafe",
     "directories": {
       "output": "build"
     },

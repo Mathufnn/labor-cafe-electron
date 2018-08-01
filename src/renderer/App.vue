@@ -49,7 +49,7 @@
 <script>
   console.log(__static);
   export default {
-    name: 'labor-cafe',
+    name: 'Café',
     data: () => ({
       clipped: false,
       drawer: true,
@@ -63,7 +63,7 @@
       miniVariant: false,
       right: false,
       rightDrawer: false,
-      title: 'Labor Café'
+      title: 'Café'
     })
   }
 </script>

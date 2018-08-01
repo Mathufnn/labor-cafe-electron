@@ -36,10 +36,10 @@ export default {
   data: () => {
     return {
       indicadores: {
-        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, unidade: 'R$/Ano', help: '' },
-        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, unidade: 'R$/Ano', help: '' },
-        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, unidade: 'R$/Ano', help: '' },
-        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, unidade: 'R$/Ano', help: ''},
+        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, unidade: 'R$/safra', help: '' },
+        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, unidade: 'R$/safra', help: '' },
+        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, unidade: 'R$/safra', help: '' },
+        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, unidade: 'R$/safra', help: ''},
         pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
         producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, unidade: 'Sacas', help: '' },
         aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'Ha', help: '' },
@@ -50,13 +50,13 @@ export default {
         cotu: { text: 'COT POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
         ctap: { text: 'CT POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
         ctu: { text: 'CT POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
-        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, unidade: 'R$/Ano', help: ''  },
+        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, unidade: 'R$/safra', help: ''  },
         mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''  },
         mbu: { text: 'MARGEM BRUTA POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
-        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, unidade: 'R$/Ano', help: ''  },
+        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, unidade: 'R$/safra', help: ''  },
         mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''},
         mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
-        lucro: { text: 'LUCRO',decimals: 2, value: 0, unidade: 'R$/Ano', help: ''},
+        lucro: { text: 'LUCRO',decimals: 2, value: 0, unidade: 'R$/safra', help: ''},
         lucroap: { text: 'LUCRO POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''},
         lucrou: { text: 'LUCRO POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
         trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',decimals: 2, value: 0, unidade: '%', help: ''  },
@@ -120,9 +120,13 @@ export default {
       this.indicadores.trcct.help = 'O seu resultado se equivale a quanto de todo o capital imobilizado na atividade está gerando de margem líquida e retornando para o bolso do produtor. Este resultado está ligado com a eficiência no uso do capital e a atratividade econômica do empreendimento. Para a atividade cafeeira consideramos como satisfatório um resultado de no mímimo 10% ao ano.';
       this.indicadores.trcst.help = 'O seu resultado se equivale a quanto de todo o capital imobilizado na atividade está gerando de margem líquida e retornando para o bolso do produtor. Este resultado está ligado com a eficiência no uso do capital e a atratividade econômica do empreendimento. Para a atividade cafeeira consideramos como satisfatório um resultado de no mímimo 15% ao ano.';
 
-      this.indicadores.coeu.help = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada litro de leite produzido. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
+      this.indicadores.coeu.help = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada saca de café produzida. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
       this.indicadores.cotu.help = 'COT/unidade, permite ao produtor comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE + os custos com mão de obra familiar e depreciações gastos para produzir 1 saca de café.';
       this.indicadores.ctu.help = 'CT/unidade, permite ao produtor comparar o seu custo referente ao COT + o custo de oportunidade sobre o capital investido na atividade com outras propriedades. É o somatório que contempla todos os custos envolvidos na atividade cafeeira para produzir 1 saca de café.';
+
+      this.indicadores.coeap.help = 'COE/hectare permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por área demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada saca de café produzida. Deve-se buscar valores menores que R$ 10.000,00/hectare neste indicador.';
+      this.indicadores.cotap.help = 'COT/hectare, permite ao produtor comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE + os custos com mão de obra familiar e depreciações gastos para produzir em 1 hectare de café.';
+      this.indicadores.ctap.help = 'CT/hectare, permite ao produtor comparar o seu custo referente ao COT + o custo de oportunidade sobre o capital investido na atividade com outras propriedades. É o somatório que contempla todos os custos envolvidos na atividade cafeeira para produzir em 1 hectare de café.';
 
       if(this.indicadores.mbu.value<0) this.indicadores.mbu.help = 'A margem bruta unitária permite ao produtor comparar seu resultado com outras propriedades. A margem bruta menor que zero indica que o produtor não está pagando seus custos de desembolso direto (custeio). Em curto prazo a atividade não sobrevive, portanto, se continuar com este resultado, é melhor parar com a atividade.';
       if(this.indicadores.mbu.value==0) this.indicadores.mbu.help = 'A margem bruta unitária permite ao produtor comparar seu resultado com outras propriedades. A margem bruta igual a zero indica que a propriedade consegue saldar todo o seu custo operacional efetivo (custeio), porém não possui sobras para pagamento de depreciação de lavouras, máquinas, equipamentos e benfeitorias e também o pró-labore do empresário. Se a empresa mantiver este resultado, no médio prazo a sua atividade estará comprometida.';
@@ -155,7 +159,7 @@ export default {
       this.indicadores.pcv.help = 'Média do preço do café da safra comercializado.';
       
       if(this.indicadores.bencusto.value<1) this.indicadores.bencusto.help = 'Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade. ';
-      if(this.indicadores.bencusto.value>=1) this.indicadores.bencusto.help = 'Quando a relação benefício/custo é maior que 1, significa que o custo é menor que a renda obtida na atividade. Este resultado mostra o quanto você estáganhando a cada R$1,00 investido na atividade. Quanto maior a relação benefício custo, melhor, uma vez que ao conseguir cobrir todos os custos com a renda, você se mantêm na atividade de forma viável e atrativa economicamente.';
+      if(this.indicadores.bencusto.value>=1) this.indicadores.bencusto.help = 'Quando a relação benefício/custo é maior que 1, significa que o custo é menor que a renda obtida na atividade. Este resultado mostra o quanto você está ganhando a cada R$1,00 investido na atividade. Quanto maior a relação benefício custo, melhor, uma vez que ao conseguir cobrir todos os custos com a renda, você se mantêm na atividade de forma viável e atrativa economicamente.';
       
     },
     geraIndicadores(SafraIDs){
@@ -303,8 +307,9 @@ export default {
                 thisindicadores.taxagiro.value = ((thisindicadores.rendabruta.value / thisindicadores.producao.value) / thisindicadores.capitalct.value ) * 100;
                 IndicadoresTalhao.taxagiro = ((IndicadoresTalhao.rendabruta / IndicadoresTalhao.producao) / IndicadoresTalhao.capitalct ) * 100;
 
-                thisindicadores.lucrativ.value = (thisindicadores.mlu.value / thisindicadores.capitalct.value) * 100;
-                IndicadoresTalhao.lucrativ  = (IndicadoresTalhao.mlu / IndicadoresTalhao.capitalct) * 100;
+                // alteracao proposta dia 31/07
+                thisindicadores.lucrativ.value = (thisindicadores.mlu.value / thisindicadores.rendabruta.value);
+                IndicadoresTalhao.lucrativ  = (IndicadoresTalhao.mlu / IndicadoresTalhao.rendabruta);
               });
 
             //  this.indicadores = thisindicadores;

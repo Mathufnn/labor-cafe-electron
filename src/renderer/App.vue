@@ -7,7 +7,8 @@
         :clipped="clipped"
         v-model="drawer"
         app
-        style="background-color:#66BB6A;"
+        style="background-color:#66BB6A; overflow: hidden;  padding-bottom:0;"
+
       >
         <v-list id="batata">
           <v-list-tile
@@ -25,6 +26,11 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
+        <div id="deseinhos">
+          <center>
+            <img v-bind:src="fazendeiro_image" class="fazendeiro" :style="'-webkit-filter: drop-shadow(0px 0px 5px ' + cor_sombra +'); filter: drop-shadow(0px 0px 5px ' + cor_sombra + ');'">
+          </center>
+        </div>
       </v-navigation-drawer>
       <v-toolbar fixed app :clipped-left="clipped">
         <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -63,8 +69,22 @@
       miniVariant: false,
       right: false,
       rightDrawer: false,
-      title: 'Café'
-    })
+      title: 'Café',
+      fazendeiro_image: 'static/fazendeiro_normal.png',
+      cor_sombra: '#222'
+    }),
+    mounted: function (){
+      this.$root.$on('fazendeiro_muda_estado', (status) => {
+        if(!status.iit){ this.fazendeiro_image = "static/fazendeiro_normal.png"; this.cor_sombra ='#222';  }
+        else if(status.estado==0){ this.fazendeiro_image = "static/fazendeiro_normal.png"; this.cor_sombra ='#222';  }
+        else if(status.estado==1){ this.fazendeiro_image = "static/fazendeiro_desapontado.png"; this.cor_sombra ='#CFCFCF';  }
+        else if(status.estado==2){ this.fazendeiro_image = "static/fazendeiro_apontado.png"; this.cor_sombra ='#CFCFCF';  }
+        else if(status.estado==3){ this.fazendeiro_image = "static/fazendeiro_olhaisso.png"; this.cor_sombra ='#CFCFCF';  }
+        else if(status.estado==4){ this.fazendeiro_image = "static/fazendeiro_rico.png"; this.cor_sombra ='#CFCFCF';  }
+        else if(status.estado==5){ this.fazendeiro_image = "static/fazendeiro_chorando.png"; this.cor_sombra ='#CFCFCF';  }
+        else if(status.estado==6){ this.fazendeiro_image = "static/fazendeiro_assustado.png"; this.cor_sombra ='#CFCFCF';  }
+      })
+    }
   }
 </script>
 
@@ -73,8 +93,21 @@
   /* Global CSS */
   #batata {
     background-color: #fff;
-    padding-bottom: 40vh;
+    padding-bottom: 30vh;
     background-image: url(~@/assets/sidetop.png);
+    background-position: center bottom;
+    height: 60vh;
+  }
+
+  #deseinhos {
+    height:32%;
+    background-image: url(~@/assets/fundoreal.png);
     background-position: center bottom
+  }
+
+  .fazendeiro {
+    position: fixed;
+    bottom:8%;
+    right:92px;
   }
 </style>

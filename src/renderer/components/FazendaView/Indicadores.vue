@@ -1,7 +1,28 @@
 <template>
   <v-card>
     <v-card-title class="headline">
-      Indicadores da fazenda
+      <v-layout align-center justify-space-between row fill-height>
+        <v-flex xs5>
+            Indicadores da fazenda
+        </v-flex>
+        <v-flex xs5 style="text-align:left; font-size:10px; line-height:17px;">
+          <v-tooltip bottom>
+            <div slot="activator">
+            <span style="font-size:8px;">LEGENDA:</span><br />
+            <span ><v-icon style="color:red;">info</v-icon></span> Indicador abaixo do recomendável<br />
+            <span><v-icon style="color:yellow;">info</v-icon></span> Indicador no limite recomendável<br />
+            <span><v-icon style="color:green;">info</v-icon></span> Indicador acima do recomendável<br />
+            </div>
+            <span>Clicando sobre o ícone 'i' em um indicador específico você obtém a interpretação detalhada desse indicador.</span>
+          </v-tooltip>
+        </v-flex>
+        <v-flex xs2 style="text-align:right;">
+          <v-tooltip top>
+            <v-btn icon slot="activator" color="primary"> <v-icon>publish</v-icon></v-btn>
+            <span>Exportar dados</span>
+          </v-tooltip>
+        </v-flex>
+      </v-layout>
     </v-card-title>
     <v-divider></v-divider>
     <v-layout>

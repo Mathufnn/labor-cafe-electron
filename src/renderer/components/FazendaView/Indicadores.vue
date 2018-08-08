@@ -8,7 +8,8 @@
       <v-container row wrap justify-space-around>
         <v-layout row wrap class="text-xs-center">
           <v-flex xs4 v-for="i in indicadores" v-bind:key="i.text">
-            <v-card :class="'status' + i.status">
+            <!-- <v-card :class="'status' + i.status" > -->
+            <v-card @mouseover.native="fazendeiro_muda(i.fazendeiro,true)" @mouseleave.native="fazendeiro_muda(i.fazendeiro,false)">
               <b>{{i.text}} <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b><br />
               <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
             </v-card>
@@ -36,36 +37,36 @@ export default {
   data: () => {
     return {
       indicadores: {
-        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, unidade: 'R$/safra', help: '' },
-        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, unidade: 'R$/safra', help: '' },
-        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, unidade: 'R$/safra', help: '' },
-        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, unidade: 'R$/safra', help: ''},
-        pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
-        producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, unidade: 'Sacas', help: '' },
-        aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'Ha', help: '' },
-        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'Und/Ha', help: ''  },
-        coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
-        coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
-        cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
-        cotu: { text: 'COT POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
-        ctap: { text: 'CT POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: '' },
-        ctu: { text: 'CT POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
-        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, unidade: 'R$/safra', help: ''  },
-        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''  },
-        mbu: { text: 'MARGEM BRUTA POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
-        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, unidade: 'R$/safra', help: ''  },
-        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''},
-        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
-        lucro: { text: 'LUCRO',decimals: 2, value: 0, unidade: 'R$/safra', help: ''},
-        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', decimals: 2, value: 0, unidade: 'R$/Ha', help: ''},
-        lucrou: { text: 'LUCRO POR UNIDADE', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
-        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',decimals: 2, value: 0, unidade: '%', help: ''  },
-        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', decimals: 2, value: 0, unidade: '%', help: ''  },
-        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',decimals: 2, value: 0, unidade: 'R$', help: '' },
-        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', decimals: 2, value: 0, unidade: 'R$/Sc', help: '' },
-        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', decimals: 2, value: 0, unidade: 'R$/Sc', help: ''  },
-        taxagiro: { text: 'TAXA DE GIRO', decimals: 2, value: 0, unidade: '%a.a', help: '' },
-        lucrativ: { text: 'LUCRATIVIDADE', decimals: 2, value: 0, unidade: '%a.a', help: '' }
+        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: '' },
+        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: '' },
+        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: '' },
+        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: ''},
+        pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
+        producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, status:4, fazendeiro:0, unidade: 'Sacas', help: '' },
+        aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'Ha', help: '' },
+        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'Und/Ha', help: ''  },
+        coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: '' },
+        coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: ''  },
+        cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: '' },
+        cotu: { text: 'COT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
+        ctap: { text: 'CT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: '' },
+        ctu: { text: 'CT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
+        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: ''  },
+        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: ''  },
+        mbu: { text: 'MARGEM BRUTA POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
+        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: ''  },
+        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: ''},
+        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: ''  },
+        lucro: { text: 'LUCRO',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: ''},
+        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: ''},
+        lucrou: { text: 'LUCRO POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: ''  },
+        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: '%', help: ''  },
+        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: '%', help: ''  },
+        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$', help: '' },
+        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
+        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: ''  },
+        taxagiro: { text: 'TAXA DE GIRO', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: '%a.a', help: '' },
+        lucrativ: { text: 'LUCRATIVIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: '%a.a', help: '' }
       },
       dialog: false,
       msg: ''
@@ -89,31 +90,53 @@ export default {
         this.indicadores[key].help = '';
       });
     },
+    fazendeiro_muda(estado, iit){
+      this.$root.$emit('fazendeiro_muda_estado', {estado, iit});
+    },
     calculaInterpretacoes(){
+      //0 - normal / 1 - desapontado / 2- apontado / 3-olhaisso / 4- rico / 5- chorando / 6- assustado
       this.limpaInterpretacoes();
-      if(this.indicadores.mb.value<0) this.indicadores.mb.help='Atenção! Os custos de desembolso direto (pagamento de fertilizantes, energia, mão de obra, combustíveis, etc.) estão maiores que a renda obtida na atividade. Em curto prazo a atividade não sobrevive, portanto, ajuste seus desembolsos de acordo com a renda obtida, pois se continuar com este resultado, é melhor parar com a atividade.';
-      if(this.indicadores.mb.value==0) this.indicadores.mb.help='Com a renda obtida na atividade, você consegue saldar todo o custo operacional efetivo (pagamento de fertilizantes, energia, mão de obra, defensivos, etc.), porém não sobra dinheiro para cobrir os custos de depreciação das máquinas, equipamentos e benfeitorias, bem como o seu pró-labore (custo de oportunidade do trabalho desempenhado pelo empresário rural). Se a empresa mantiver este resultado, no médio prazo a atividade estará comprometida, pois não haverá dinheiro para repor bens sucateados e não haverá remuneração pelo seu trabalho na propriedade.';
-      if(this.indicadores.mb.value>0) this.indicadores.mb.help='Com a renda obtida na atividade, você consegue saldar todo o custo operacional efetivo (pagamento de fertilizantes, energia, mão de obra, defensivos, etc.) e ainda há sobras para saldar parte (ou a totalidade dos custos fixos). Nesta situação, no curto prazo você se mantém na atividade, mas para melhor avaliação, avance para a análise da margem líquida, pois ela mostrará se você consegue pagar todo o custo fixo, ou apenas parte dele.';
+      if(this.indicadores.mb.value<0){
+        this.indicadores.mb.help='Atenção! Os custos de desembolso direto (pagamento de fertilizantes, energia, mão de obra, combustíveis, etc.) estão maiores que a renda obtida na atividade. Em curto prazo a atividade não sobrevive, portanto, ajuste seus desembolsos de acordo com a renda obtida, pois se continuar com este resultado, é melhor parar com a atividade.';
+        this.indicadores.mb.fazendeiro=1;
+      }
+      if(this.indicadores.mb.value==0){
+        this.indicadores.mb.help='Com a renda obtida na atividade, você consegue saldar todo o custo operacional efetivo (pagamento de fertilizantes, energia, mão de obra, defensivos, etc.), porém não sobra dinheiro para cobrir os custos de depreciação das máquinas, equipamentos e benfeitorias, bem como o seu pró-labore (custo de oportunidade do trabalho desempenhado pelo empresário rural). Se a empresa mantiver este resultado, no médio prazo a atividade estará comprometida, pois não haverá dinheiro para repor bens sucateados e não haverá remuneração pelo seu trabalho na propriedade.';
+        this.indicadores.mb.fazendeiro=3;
+      }
+      if(this.indicadores.mb.value>0){
+         this.indicadores.mb.help='Com a renda obtida na atividade, você consegue saldar todo o custo operacional efetivo (pagamento de fertilizantes, energia, mão de obra, defensivos, etc.) e ainda há sobras para saldar parte (ou a totalidade dos custos fixos). Nesta situação, no curto prazo você se mantém na atividade, mas para melhor avaliação, avance para a análise da margem líquida, pois ela mostrará se você consegue pagar todo o custo fixo, ou apenas parte dele.';
+         this.indicadores.mb.fazendeiro=2;
+       }
 
-      if(this.indicadores.mb.value>0 && this.indicadores.ml.value<0) this.indicadores.ml.help='Você está se descapitalizando com o passar do tempo, uma vez que a renda obtida não é suficiente para saldar todos os custos com depreciações e remuneração da mão de obra familiar (custos fixos). Se continuar com este resultado, você estará empobrecendo a cada dia e no médio prazo será forçado a deixar a atividade, uma vez que não terá capital para repor os bens sucateados e indispensáveis para produção.';
-      if(this.indicadores.ml.value==0) this.indicadores.ml.help = 'Com a renda obtida na atividade, você consegue saldar todo o custo operacional total (desembolso direto + depreciações + pró-labore), porém não possui sobras equivalentes a remuneração de todo o capital investido na atividade quando aplicado em um fundo de investimento, como a poupança. Com este resultado você se mantém na atividade, porém sem atratividade econômica.';
-      if(this.indicadores.ml.value>0) this.indicadores.ml.help = 'Com a renda obtida na atividade, você consegue saldar todo o custo operacional total e também parte (ou a totalidade) do custo de oportunidade sobre o capital investido na atividade. Para melhor avaliação, avance para a análise do lucro, pois ele mostrará se você tem saldo equivalente a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança, ou apenas parte dele. ';
+      if(this.indicadores.mb.value>0 && this.indicadores.ml.value<0){
+        this.indicadores.ml.help='Você está se descapitalizando com o passar do tempo, uma vez que a renda obtida não é suficiente para saldar todos os custos com depreciações e remuneração da mão de obra familiar (custos fixos). Se continuar com este resultado, você estará empobrecendo a cada dia e no médio prazo será forçado a deixar a atividade, uma vez que não terá capital para repor os bens sucateados e indispensáveis para produção.';
+        this.indicadores.ml.fazendeiro=1;
+      }
+      if(this.indicadores.ml.value==0){
+        this.indicadores.ml.help = 'Com a renda obtida na atividade, você consegue saldar todo o custo operacional total (desembolso direto + depreciações + pró-labore), porém não possui sobras equivalentes a remuneração de todo o capital investido na atividade quando aplicado em um fundo de investimento, como a poupança. Com este resultado você se mantém na atividade, porém sem atratividade econômica.';
+        this.indicadores.ml.fazendeiro=3;
+      }
+      if(this.indicadores.ml.value>0){
+        this.indicadores.ml.help = 'Com a renda obtida na atividade, você consegue saldar todo o custo operacional total e também parte (ou a totalidade) do custo de oportunidade sobre o capital investido na atividade. Para melhor avaliação, avance para a análise do lucro, pois ele mostrará se você tem saldo equivalente a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança, ou apenas parte dele. ';
+        this.indicadores.ml.fazendeiro=4;
+      }
 
       if(this.indicadores.ml.value>0 && this.indicadores.lucro.value<0) this.indicadores.lucro.help = 'Sua atividade não é atrativa economicamente, uma vez que não há saldo equivalente a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança . No longo prazo a atividade poderá ser comprometida pela baixa capacidade de investimento na mesma.';
       if(this.indicadores.lucro.value==0) this.indicadores.lucro.help = 'A sua atividade apresenta lucro normal. A atividade está no ponto de cobertura total, ou seja, paga todo seu custo de desembolso direto (a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança) e todos os seus custos fixos (depreciações, pró-labore e remunerações), porém você deve focar no aumento do lucro para aumentar a atratividade do empreendimento, garantindo assim o seu crescimento na atividade.';
       if(this.indicadores.lucro.value>0) this.indicadores.lucro.help = 'A sua atividade apresenta lucro supernormal. A renda obtida na atividade é suficiente para pagar todos custos gerados e ainda proporciona uma remuneração superior às alternativas de investimento. Isso garante que parte do lucro possa ser reinvestido na atividade, garantindo sua competitividade no longo prazo. ';
-    
+
       this.indicadores.coe.help = 'COE, é o custo referente aos desembolsos diretos de capital (pagamento de fertilizantes, energia, mão de obra, defensivos, etc.) destinados a toda atividade cafeeira. Por via de regra, são aqueles que variam de acordo com a produção, podendo aumentar ou diminuir.';
       this.indicadores.cot.help = 'COT, engloba os custos diretos e parte dos custos fixos da atividade. É o somatório do COE, custo com mão de obra familiar e depreciações.';
       this.indicadores.ct.help = 'CT, é o custo referente ao COT + o custo de oportunidade sobre o capital investido na atividade. Nele estão contemplados todos os custos gerados na atividade.';
 
       this.indicadores.capitalest.help = 'Mede a eficiência no uso de todo capital imobilizado, excluindo a terra nua, para produzir 1 saca de café. É a capacidade e eficiência que você possui em transformar patrimônio em produção de café. Quanto menor for o capital empatado a cada saca de café, maior é a sua eficiência no uso dos recursos da propriedade.';
-      
+
       this.indicadores.capitalct.help = 'Mede a eficiência no uso de todo capital imobilizado, incluindo todo o valor da terra nua, para produzir 1 saca de café. É a capacidade e eficiência que você possui em transformar todo o patrimônio em produção de café. Quanto menor for o capital empatado a cada saca de café, maior é a sua eficiência no uso dos recursos da propriedade.';
 
       if(this.indicadores.lucrativ.value>=20) this.indicadores.lucrativ.help = 'A lucratividade mede o quanto você ganhou sobre as vendas realizadas no ano. A sua interpretação está ligada ao risco de ter prejuízos com a atividade. Quanto menor a lucratividade, maior o risco de prejuízos. Quando igual ou maior que 20%, significa que você suporta uma redução de 20% no volume de café produzido ou uma redução de 20% no preço recebido pela saca de café ou até mesmo um aumento de 20% no custo operacional total de produção. Este indicador representa o seu fôlego financeiro!';
       if(this.indicadores.lucrativ.value<20) this.indicadores.lucrativ.help = 'A lucratividade mede o quanto você ganhou sobre as vendas realizadas no ano. A sua interpretação está ligada ao risco de ter prejuízos com a atividade. Quanto menor a lucratividade, maior o risco de redução do lucro. Quando menor que 20%, significa que você suporta poucas oscilações negativas no volume de café produzido, no preço da saca de café e/ou no custo de produção. A porcentagem da lucratividade demonstra qual a redução no volume produzido ou qual a redução no preço recebido pela saca de café ou até mesmo qual o aumento no custo operacional total de produção você suporta. Este indicador representa o seu fôlego financeiro!';
-      
+
       if(this.indicadores.taxagiro.value>=50) this.indicadores.taxagiro.help = 'Representa a sua capacidade em transformar patrimônio em receita bruta. Deve-se buscar no mínimo o resultado de 50% para este indicador, ou seja, nesta situação a receita bruta alcançada com a atividade se equivale a metade do seu patrimônio, o que proporciona giro de capital eficiente para desenvolver a sua atividade.';
       if(this.indicadores.taxagiro.value<50) this.indicadores.taxagiro.help = 'Representa a sua capacidade em transformar patrimônio em receita bruta. Deve-se buscar no mínimo 50% para este indicador, ou seja, nesta situação a receita bruta alcançada com a atividade se equivale a metade do seu patrimônio, o que proporciona giro de capital eficiente para desenvolver a sua atividade.';
 
@@ -157,10 +180,10 @@ export default {
       this.indicadores.ppaplantada.help = 'Representa a produtividade das lavouras em produção';
       this.indicadores.rendabruta.help = 'Soma da venda de café, venda do café escolha e de todas as outras rendas originadas da atividade cafeeira no período de uma safra ou mais.';
       this.indicadores.pcv.help = 'Média do preço do café da safra comercializado.';
-      
+
       if(this.indicadores.bencusto.value<1) this.indicadores.bencusto.help = 'Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade. ';
       if(this.indicadores.bencusto.value>=1) this.indicadores.bencusto.help = 'Quando a relação benefício/custo é maior que 1, significa que o custo é menor que a renda obtida na atividade. Este resultado mostra o quanto você está ganhando a cada R$1,00 investido na atividade. Quanto maior a relação benefício custo, melhor, uma vez que ao conseguir cobrir todos os custos com a renda, você se mantêm na atividade de forma viável e atrativa economicamente.';
-      
+
     },
     geraIndicadores(SafraIDs){
       if(SafraIDs.length==0){

@@ -161,7 +161,7 @@ export default {
       else if(type==1){
         remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo pdf',defaultPath: 'indicadores.pdf'}, (filename) => {
           if(typeof filename == 'undefined') return;
-          let pdf = require('html-pdf');
+        //  let pdf = require('html-pdf');
 
           //this.loading = true;
           let data = `<body style='font-family: Verdana, Geneva, sans-serif; margin:38px;'>`;
@@ -173,12 +173,12 @@ export default {
           });
           data += `</body>`;
           this.exporting = true;
-
+/*
           pdf.create(data, {"phantomPath": "./resources/app.asar.unpacked/node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs.exe"}).toFile(filename, (err, res) => {
             this.exporting = false;
             if (err) remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local. ' + err.message);
             else remote.dialog.showMessageBox({type:'info', title:'Arquivo pdf criado com sucesso!', message: 'O arquivo pdf foi salvo no local escolhido com sucesso!'});
-          });
+          }); */
         });
       }
     },

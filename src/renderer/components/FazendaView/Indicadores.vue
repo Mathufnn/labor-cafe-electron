@@ -18,7 +18,7 @@
         </v-flex>
         <v-flex xs2 style="text-align:right;">
           <v-tooltip top>
-            <v-btn icon slot="activator" color="primary"> <v-icon>publish</v-icon></v-btn>
+            <v-btn icon slot="activator" @click="export_dialog = true" color="primary"> <v-icon>publish</v-icon></v-btn>
             <span>Exportar dados</span>
           </v-tooltip>
         </v-flex>
@@ -44,6 +44,25 @@
           <b>{{msg}}</b>
         </v-card-text>
         <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
+      </v-card>
+    </v-dialog>
+    <v-dialog max-width="400" v-model="export_dialog">
+      <v-card>
+        <v-card-text>
+          <b>Selecione o formato para qual deseja exportar esses dados:</b><br /><br />
+          <v-layout align-center justify-space-between row fill-height>
+            <v-flex v-if="!exporting" xs6 class="text-xs-center">
+              <v-btn color="primary" big  @click="exportdata(1)">PDF</v-btn>
+            </v-flex>
+            <v-flex v-if="!exporting" xs6 class="text-xs-center">
+              <v-btn color="primary" big @click="exportdata(2)">CSV</v-btn>
+            </v-flex>
+            <v-flex v-if="exporting" xs12 text-xs-center>
+              <v-progress-circular :size="70" :width="7" indeterminate color="green"></v-progress-circular>
+            </v-flex>
+          </v-layout>
+        </v-card-text>
+        <v-btn color="green darken-1" flat="flat" @click="export_dialog = false">CANCELAR</v-btn>
       </v-card>
     </v-dialog>
   </v-card>
@@ -90,6 +109,8 @@ export default {
         lucrativ: { text: 'LUCRATIVIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: '%a.a', help: '' }
       },
       dialog: false,
+      export_dialog: false,
+      exporting: false,
       msg: ''
     }
   },
@@ -113,6 +134,53 @@ export default {
     },
     fazendeiro_muda(estado, iit){
       this.$root.$emit('fazendeiro_muda_estado', {estado, iit});
+    },
+    exportdata(type){
+        //=============================================================  csv
+      if(type==2){
+        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo csv',defaultPath: 'indicadores.csv'}, (filename) => {
+          if(typeof filename == 'undefined') return;
+          //this.loading = true;
+          let data = 'INDICADOR,VALOR\n';
+          Object.keys(this.indicadores).forEach(key => {
+            //this.indicadores[key].help = 'Para visualizar as interpretações é preciso selecionar pelo menos 1 safra para geração de indicadores.';
+            data += this.indicadores[key].text + ',';
+            data += parseFloat(this.indicadores[key].value.toFixed(2)) + '\n';
+          });
+
+          fs.writeFile(filename, data, 'UTF-8', (err) => {
+            if (err) remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local.');
+            else remote.dialog.showMessageBox({type:'info', title:'Arquivo csv criado com sucesso!', message: 'O arquivo csv foi salvo no local escolhido com sucesso!'});
+            //  this.loading = false;
+          });
+        });
+      }
+
+      //============================================================= PDF
+
+      else if(type==1){
+        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo pdf',defaultPath: 'indicadores.pdf'}, (filename) => {
+          if(typeof filename == 'undefined') return;
+          let pdf = require('html-pdf');
+
+          //this.loading = true;
+          let data = `<body style='font-family: Verdana, Geneva, sans-serif; margin:38px;'>`;
+          Object.keys(this.indicadores).forEach(key => {
+            //this.indicadores[key].help = 'Para visualizar as interpretações é preciso selecionar pelo menos 1 safra para geração de indicadores.';
+            data += this.indicadores[key].text + ',';
+            data += parseFloat(this.indicadores[key].value.toFixed(2)) + '<br />';
+            data += ``;
+          });
+          data += `</body>`;
+          this.exporting = true;
+
+          pdf.create(data, {"phantomPath": "./resources/app.asar.unpacked/node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs.exe"}).toFile(filename, (err, res) => {
+            this.exporting = false;
+            if (err) remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local. ' + err.message);
+            else remote.dialog.showMessageBox({type:'info', title:'Arquivo pdf criado com sucesso!', message: 'O arquivo pdf foi salvo no local escolhido com sucesso!'});
+          });
+        });
+      }
     },
     calculaInterpretacoes(){
       //0 - normal / 1 - desapontado / 2- apontado / 3-olhaisso / 4- rico / 5- chorando / 6- assustado

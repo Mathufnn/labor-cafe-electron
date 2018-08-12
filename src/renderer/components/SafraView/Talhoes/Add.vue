@@ -13,14 +13,14 @@
                   <v-text-field box label="Identificação do talhão" v-model="ident_talhao"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0' label="Área de produção + reserva legal e APP" suffix="ha" v-model="area_prod"></v-text-field>
+                  <v-text-field box type="text" min='0' label="Área de produção + reserva legal e APP" suffix="ha" v-model="area_prod"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Produção Total" suffix="Sc" v-model="prod"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Produção Total" suffix="Sc" v-model="prod"></v-text-field>
                 </v-flex>
                 <!--
                 <v-flex xs12 sm4>
-                  <v-text-field box type="number" min='0'  label="Preço de venda (R$/Sc)" v-model="preco_venda"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Preço de venda (R$/Sc)" v-model="preco_venda"></v-text-field>
                 </v-flex> -->
               </v-layout>
             </v-container>
@@ -33,121 +33,121 @@
             <v-container grid-list-md>
               <v-layout row wrap>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Venda de subproduto" prefix="R$" suffix="/safra" v-model="venda_subp"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Venda de subproduto" prefix="R$" suffix="/safra" v-model="venda_subp"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Mão de obra familiar" prefix="R$" suffix="/safra" v-model="mao_familiar"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Mão de obra familiar" prefix="R$" suffix="/safra" v-model="mao_familiar"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Arrendamento da terra" prefix="R$" suffix="/safra" v-model="arrend_terra"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Arrendamento da terra" prefix="R$" suffix="/safra" v-model="arrend_terra"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Aluguel de máquinas" prefix="R$" suffix="/safra" v-model="aluguel_maq"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Aluguel de máquinas" prefix="R$" suffix="/safra" v-model="aluguel_maq"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'   label="Combustível" prefix="R$" suffix="/safra" v-model="combustivel" ></v-text-field>
+                  <v-text-field box type="text" min='0'   label="Combustível" prefix="R$" suffix="/safra" v-model="combustivel" ></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Manutenção de benfeitorias" prefix="R$" suffix="/safra" v-model="manu_benf"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Manutenção de benfeitorias" prefix="R$" suffix="/safra" v-model="manu_benf"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Manutenção de máquinas" prefix="R$" suffix="/safra" v-model="manu_maq"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Manutenção de máquinas" prefix="R$" suffix="/safra" v-model="manu_maq"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Energia elétrica" prefix="R$" suffix="/safra" v-model="energia"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Energia elétrica" prefix="R$" suffix="/safra" v-model="energia"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Frete/Deslocamento" prefix="R$" suffix="/safra" v-model="frete"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Frete/Deslocamento" prefix="R$" suffix="/safra" v-model="frete"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Impostos e taxas" prefix="R$" suffix="/safra" v-model="impostos"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Impostos e taxas" prefix="R$" suffix="/safra" v-model="impostos"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Mão de obra contratada" prefix="R$" suffix="/safra" v-model="mao_contratada"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Mão de obra contratada" prefix="R$" suffix="/safra" v-model="mao_contratada"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Mão de obra fixa" prefix="R$" suffix="/safra" v-model="mao_fixa"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Mão de obra fixa" prefix="R$" suffix="/safra" v-model="mao_fixa"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Despesas gerais de escritório" prefix="R$" suffix="/safra" v-model="despesas_gerais"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Despesas gerais de escritório" prefix="R$" suffix="/safra" v-model="despesas_gerais"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Assistência técnica e gerencial" prefix="R$" suffix="/safra" v-model="ass_tec"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Assistência técnica e gerencial" prefix="R$" suffix="/safra" v-model="ass_tec"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Certificação" prefix="R$" suffix="/safra" v-model="certificacao"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Certificação" prefix="R$" suffix="/safra" v-model="certificacao"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Análise de solo" prefix="R$" suffix="/safra" v-model="analise_solo"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Análise de solo" prefix="R$" suffix="/safra" v-model="analise_solo"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Análise foliar" prefix="R$" suffix="/safra" v-model="analise_foliar"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Análise foliar" prefix="R$" suffix="/safra" v-model="analise_foliar"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="EPI" prefix="R$" suffix="/safra" v-model="epi"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="EPI" prefix="R$" suffix="/safra" v-model="epi"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Fertilizantes de solo" prefix="R$" suffix="/safra" v-model="fertilizantes"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Fertilizantes de solo" prefix="R$" suffix="/safra" v-model="fertilizantes"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Ácidos/aminoácidos" prefix="R$" suffix="/safra"  v-model="acidos"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Ácidos/aminoácidos" prefix="R$" suffix="/safra"  v-model="acidos"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Adubos foliares" prefix="R$" suffix="/safra" v-model="adubos"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Adubos foliares" prefix="R$" suffix="/safra" v-model="adubos"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Acaricida" prefix="R$" suffix="/safra" v-model="acaricida"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Acaricida" prefix="R$" suffix="/safra" v-model="acaricida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Bactericida"  prefix="R$" suffix="/safra" v-model="bactericida"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Bactericida"  prefix="R$" suffix="/safra" v-model="bactericida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Espalhante adesivo" prefix="R$" suffix="/safra" v-model="espalhante"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Espalhante adesivo" prefix="R$" suffix="/safra" v-model="espalhante"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Inseticida" prefix="R$" suffix="/safra" v-model="inseticida"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Inseticida" prefix="R$" suffix="/safra" v-model="inseticida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Fungicida" prefix="R$" suffix="/safra" v-model="fungicida"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Fungicida" prefix="R$" suffix="/safra" v-model="fungicida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Nematicida" prefix="R$" suffix="/safra" v-model="nematicida"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Nematicida" prefix="R$" suffix="/safra" v-model="nematicida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Óleo mineral" prefix="R$" suffix="/safra" v-model="oleo_mineral"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Óleo mineral" prefix="R$" suffix="/safra" v-model="oleo_mineral"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Herbicida" prefix="R$" suffix="/safra" v-model="herbicida"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Herbicida" prefix="R$" suffix="/safra" v-model="herbicida"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Hormônios" prefix="R$" suffix="/safra" v-model="hormonios"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Hormônios" prefix="R$" suffix="/safra" v-model="hormonios"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Maturadores" prefix="R$" suffix="/safra" v-model="maturadores"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Maturadores" prefix="R$" suffix="/safra" v-model="maturadores"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Material de colheita" prefix="R$" suffix="/safra" v-model="material_colheita" ></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Material de colheita" prefix="R$" suffix="/safra" v-model="material_colheita" ></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Armazenamento" prefix="R$" suffix="/safra" v-model="armazenamento"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Armazenamento" prefix="R$" suffix="/safra" v-model="armazenamento"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Benefício" prefix="R$" suffix="/safra" v-model="beneficio"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Benefício" prefix="R$" suffix="/safra" v-model="beneficio"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Gás/lenha/carvão" prefix="R$" suffix="/safra" v-model="gas_lenha"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Gás/lenha/carvão" prefix="R$" suffix="/safra" v-model="gas_lenha"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Materiais pós-colheita" prefix="R$" suffix="/safra" v-model="poscolheita"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Materiais pós-colheita" prefix="R$" suffix="/safra" v-model="poscolheita"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number" min='0'  label="Rebenefício" prefix="R$" suffix="/safra" v-model="rebeneficio"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Rebenefício" prefix="R$" suffix="/safra" v-model="rebeneficio"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Saco/Embalagens" prefix="R$" suffix="/safra" v-model="embalagens"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Saco/Embalagens" prefix="R$" suffix="/safra" v-model="embalagens"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="number"  min='0' label="Corretagem" prefix="R$" suffix="/safra" v-model="corretagem"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Corretagem" prefix="R$" suffix="/safra" v-model="corretagem"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -206,9 +206,7 @@ export default {
     rebeneficio: '',
     embalagens: '',
     corretagem: '',
-    e6: 0,
-    dialog: false,
-    msg: ''
+    e6: 0
   }),
   props:{
     sid:{
@@ -218,6 +216,9 @@ export default {
   methods: {
     SalvarTalhao: function() {
       if(this.sid == -1) return;
+      Object.keys(this.$data).forEach((key, original_values) => {
+        this.$data[key] = this.$data[key].toString().replace(/\./g,'').replace(/,/g,'.');
+      });
       this.$backend.addTalhao({
         NomeTalhao: this.ident_talhao,
         Area: this.area_prod,
@@ -268,7 +269,21 @@ export default {
         this.$router.push("/TalhaoView/"+created.id)
       });
     }
-  }
+  },
+  created: function(){
+    Object.keys(this.$data).forEach((key, original_values) => {
+      if(key=='e6' || key=='msg' || key=='dialog' || key=='ident_talhao') return;
+      this.$watch(() => (this.$data[key]),function (newVal, oldVal) {
+        if(newVal=='' || oldVal=='') return;
+        if(this.$data[key].toString().replace(/\./g,'').replace(/,/g,'')==oldVal.toString().replace(/\./g,'').replace(/,/g,'')) return;
+        let tmp = this.$data[key];
+        tmp = tmp.toString().replace(/\./g,'').replace(/,/g,'.');
+        tmp = parseFloat(tmp).toLocaleString('pt-BR', {maximumFractionDigits: 2, minimumFractionDigits: 0});
+        this.$data[key] = tmp.toString();
+      },{ deep: true });
+    });
+
+  },
 }
 </script>
 

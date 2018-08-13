@@ -70,7 +70,7 @@
 <script>
 import fs from 'fs'
 import path from 'path'
-import { remote } from 'electron'
+import { remote, ipcRenderer } from 'electron'
 
 export default {
   data: () => {
@@ -137,7 +137,7 @@ export default {
     exportdata(type){
         //=============================================================  csv
       if(type==2){
-        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo csv',defaultPath: 'indicadores.csv'}, (filename) => {
+        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo csv',filters:[{name: 'Arquivo CSV (comma separeted values)', extensions: ['csv']}]}, (filename) => {
           if(typeof filename == 'undefined') return;
           //this.loading = true;
           let data = 'INDICADOR,VALOR\n';
@@ -158,27 +158,14 @@ export default {
       //============================================================= PDF
 
       else if(type==1){
-        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo pdf',defaultPath: 'indicadores.pdf'}, (filename) => {
-          if(typeof filename == 'undefined') return;
-        //  let pdf = require('html-pdf');
-
-          //this.loading = true;
-          let data = `<body style='font-family: Verdana, Geneva, sans-serif; margin:38px;'>`;
-          Object.keys(this.indicadores).forEach(key => {
-            //this.indicadores[key].help = 'Para visualizar as interpretações é preciso selecionar pelo menos 1 safra para geração de indicadores.';
-            data += this.indicadores[key].text + ',';
-            data += parseFloat(this.indicadores[key].value.toFixed(2)) + '<br />';
-            data += ``;
-          });
-          data += `</body>`;
-          this.exporting = true;
-/*
-          pdf.create(data, {"phantomPath": "./resources/app.asar.unpacked/node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs.exe"}).toFile(filename, (err, res) => {
-            this.exporting = false;
-            if (err) remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local. ' + err.message);
-            else remote.dialog.showMessageBox({type:'info', title:'Arquivo pdf criado com sucesso!', message: 'O arquivo pdf foi salvo no local escolhido com sucesso!'});
-          }); */
+        let data = 'INDICADOR,VALOR\n';
+        Object.keys(this.indicadores).forEach(key => {
+          //this.indicadores[key].help = 'Para visualizar as interpretações é preciso selecionar pelo menos 1 safra para geração de indicadores.';
+          data += this.indicadores[key].text + ',';
+          data += parseFloat(this.indicadores[key].value.toFixed(2)) + '\n';
         });
+
+        ipcRenderer.send('print-pdf', data);
       }
     },
     calculaInterpretacoes(){

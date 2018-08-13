@@ -29,7 +29,6 @@
       <v-container row wrap justify-space-around>
         <v-layout row wrap class="text-xs-center">
           <v-flex xs4 v-for="i in indicadores" v-bind:key="i.text">
-            <!-- <v-card :class="'status' + i.status" > -->
             <v-card @mouseover.native="fazendeiro_muda(i.fazendeiro,true)" @mouseleave.native="fazendeiro_muda(i.fazendeiro,false)">
               <b>{{i.text}} <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help " :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b><br />
               <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
@@ -257,13 +256,13 @@ export default {
 
       if(this.indicadores.taxagiro.value>=50){
         this.indicadores.taxagiro.help = 'Representa a sua capacidade em transformar patrimônio em receita bruta. Deve-se buscar no mínimo o resultado de 50% para este indicador, ou seja, nesta situação a receita bruta alcançada com a atividade se equivale a metade do seu patrimônio, o que proporciona giro de capital eficiente para desenvolver a sua atividade.';
-        this.indicadores.lucrativ.fazendeiro=2;
-        this.indicadores.lucrativ.status=3;
+        this.indicadores.taxagiro.fazendeiro=2;
+        this.indicadores.taxagiro.status=3;
       }
       if(this.indicadores.taxagiro.value<50){
         this.indicadores.taxagiro.help = 'Representa a sua capacidade em transformar patrimônio em receita bruta. Deve-se buscar no mínimo 50% para este indicador, ou seja, nesta situação a receita bruta alcançada com a atividade se equivale a metade do seu patrimônio, o que proporciona giro de capital eficiente para desenvolver a sua atividade.';
-        this.indicadores.lucrativ.fazendeiro=5;
-        this.indicadores.lucrativ.status=1;
+        this.indicadores.taxagiro.fazendeiro=5;
+        this.indicadores.taxagiro.status=1;
       }
 
       this.indicadores.trcct.help = 'O seu resultado se equivale a quanto de todo o capital imobilizado na atividade está gerando de margem líquida e retornando para o bolso do produtor. Este resultado está ligado com a eficiência no uso do capital e a atratividade econômica do empreendimento. Para a atividade cafeeira consideramos como satisfatório um resultado de no mímimo 10% ao ano.';

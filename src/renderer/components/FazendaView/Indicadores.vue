@@ -207,7 +207,7 @@ export default {
          this.indicadores.mb.fazendeiro=4;
        }
 
-      if(this.indicadores.mb.value>0 && this.indicadores.ml.value<0){
+      if(this.indicadores.ml.value<0){
         this.indicadores.ml.help='Você está se descapitalizando com o passar do tempo, uma vez que a renda obtida não é suficiente para saldar todos os custos com depreciações e remuneração da mão de obra familiar (custos fixos). Se continuar com este resultado, você estará empobrecendo a cada dia e no médio prazo será forçado a deixar a atividade, uma vez que não terá capital para repor os bens sucateados e indispensáveis para produção.';
         this.indicadores.ml.status=1;
         this.indicadores.ml.fazendeiro=1;
@@ -223,7 +223,7 @@ export default {
         this.indicadores.ml.fazendeiro=4;
       }
 
-      if(this.indicadores.ml.value>0 && this.indicadores.lucro.value<0){
+      if(this.indicadores.lucro.value<0){
         this.indicadores.lucro.help = 'Sua atividade não é atrativa economicamente, uma vez que não há saldo equivalente a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança . No longo prazo a atividade poderá ser comprometida pela baixa capacidade de investimento na mesma.';
         this.indicadores.lucro.status=1;
         this.indicadores.lucro.fazendeiro=1;
@@ -312,7 +312,7 @@ export default {
         this.indicadores.mbap.fazendeiro=4;
       }
 
-      if(this.indicadores.mbu.value>0 && this.indicadores.mlu.value<0){
+      if(this.indicadores.mlu.value<0){
         this.indicadores.mlu.help = 'A margem líquida unitária permite ao produtor comparar seu resultado com outras propriedades. Com a margem líquida menor que zero, o produtor está descapitalizando. Consegue arcar com os custos de desembolso direto e somente parte dos custos fixos. Caso o resultado continuar desta forma, no médio prazo haverá um empobrecimento do produtor e ele poderá deixar a atividade.';
         this.indicadores.mlu.status=1;
         this.indicadores.mlu.fazendeiro=1;
@@ -328,7 +328,7 @@ export default {
         this.indicadores.mlu.fazendeiro=4;
       }
 
-      if(this.indicadores.mbap.value>0 && this.indicadores.mlap.value<0){
+      if(this.indicadores.mlap.value<0){
         this.indicadores.mlap.help = 'A margem líquida por área demonstra quanto de capital sobra ao bolso do produtor após pagar os custos diretos e parte dos custos fixos por hectare utilizado na propriedade para a atividade cafeeira. Este indicador permite avaliar a eficiência de utilização do tamanho da área para gerar dinheiro para o produtor e compará-la com outras atividades. Com a margem líquida menor que zero, o produtor está descapitalizando. Consegue arcar com os custos de desembolso direto e somente parte dos custos fixos. Caso o resultado continuar desta forma, no médio prazo haverá um empobrecimento do produtor e ele poderá deixar a atividade.';
         this.indicadores.mlap.status=1;
         this.indicadores.mlap.fazendeiro=1;
@@ -344,7 +344,7 @@ export default {
         this.indicadores.mlap.fazendeiro=4;
       }
 
-      if(this.indicadores.mlu.value>0 && this.indicadores.lucrou.value<0){
+      if(this.indicadores.lucrou.value<0){
         this.indicadores.lucrou.help = 'O lucro unitário permite ao produtor comparar o seu indicador com outras propriedades na atividade cafeeira. Com o lucro unitário menor que zero, o produtor paga todo seu custo operacional total, mas em um valor que proporcionou baixa atratividade econômica para a atividade. No longo prazo a atividade poderá ser comprometida pela baixa capacidade de investimento.';
         this.indicadores.lucrou.status=1;
         this.indicadores.lucrou.fazendeiro=1;
@@ -360,7 +360,7 @@ export default {
         this.indicadores.lucrou.fazendeiro=4;
       }
 
-      if(this.indicadores.mlap.value>0 && this.indicadores.lucroap.value<0){
+      if(this.indicadores.lucroap.value<0){
         this.indicadores.lucroap.help = 'O lucro por área permite a avaliação do produtor do quanto de renda sobrou após pagar todos os custos da atividade por área utilizada. Sendo assim, é possível avaliar a eficiência do uso da área pela atividade cafeeira em gerar lucro. Com o lucro menor que zero, o produtor paga todo seu custo operacional total, mas em um valor que proporcionou baixa atratividade econômica para a atividade. No longo prazo a atividade poderá ser comprometida pela baixa capacidade de investimento.';
         this.indicadores.lucroap.status=1;
         this.indicadores.lucroap.fazendeiro=1;

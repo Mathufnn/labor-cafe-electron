@@ -398,6 +398,7 @@ export default {
       if(SafraIDs.length==0){
         Object.keys(this.indicadores).forEach(key => {
           this.indicadores[key].value = 0;
+          this.indicadores[key].fazendeiro = 3;
         });
         this.limpaInterpretacoes();
         return;

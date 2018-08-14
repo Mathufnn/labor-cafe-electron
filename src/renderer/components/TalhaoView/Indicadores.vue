@@ -30,9 +30,16 @@
         <v-layout row wrap class="text-xs-center">
 
           <v-flex xs4 v-for="i in indicadores" v-bind:key="i.text">
-            <v-card @mouseover.native="fazendeiro_muda(i.fazendeiro,true)" @mouseleave.native="fazendeiro_muda(i.fazendeiro,false)">
-              <b>{{i.text}} <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help" :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn></b><br />
-              <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
+            <v-card style="margin-bottom:20px;" @mouseover.native="fazendeiro_muda(i.fazendeiro,true)" @mouseleave.native="fazendeiro_muda(i.fazendeiro,false)">
+              <v-layout >
+                <v-flex xs11>
+                  <b>{{i.text}}</b><br />
+                  <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
+                </v-flex>
+                <v-flex xs1>
+                  <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help " :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn>
+                </v-flex>
+              </v-layout>
             </v-card>
           </v-flex>
 
@@ -479,7 +486,7 @@ export default {
 
 <style scoped>
   .indicator {
-    font-size:25px;
+    font-size:23px;
   }
 
   .unidade {

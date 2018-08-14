@@ -80,7 +80,10 @@ ipcMain.on('print-pdf', (event, arg) => {
   __PRINT_WINDOW__.once('ready-to-show', () => {
     //__PRINT_WINDOW__.show();
     dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo pdf',filters:[{name: 'Arquivo PDF', extensions: ['pdf']}]}, (filename) => {
-      if(typeof filename == 'undefined') return;
+      if(typeof filename == 'undefined') {
+        __PRINT_WINDOW__.close();
+        return;
+      }
       __PRINT_WINDOW__.webContents.printToPDF({}, (error, data) => {
         if (error) dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local.');
         fs.writeFile(filename, data, (error) => {

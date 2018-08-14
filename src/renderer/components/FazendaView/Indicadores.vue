@@ -110,7 +110,8 @@ export default {
       dialog: false,
       export_dialog: false,
       exporting: false,
-      msg: ''
+      msg: '',
+      nome_fazenda: ''
     }
   },
   props: {
@@ -158,13 +159,22 @@ export default {
       //============================================================= PDF
 
       else if(type==1){
-        let data = 'INDICADOR,VALOR\n';
+        let data = `<body style="font-family: Arial, Helvetica, sans-serif; margin:20px; line-height:10px;">
+          <h1>Fazenda ${this.nome_fazenda}</h1>
+          <h2>INDICADORES</h2><br />
+          <div style="width:100%;  line-height:24px;"> `;
+
+
         Object.keys(this.indicadores).forEach(key => {
-          //this.indicadores[key].help = 'Para visualizar as interpretações é preciso selecionar pelo menos 1 safra para geração de indicadores.';
-          data += this.indicadores[key].text + ',';
-          data += parseFloat(this.indicadores[key].value.toFixed(2)) + '\n';
+          let tmp = this.formatN(this.indicadores[key].value, this.indicadores[key].decimals);
+          data += `<div style="width:28%; vertical-align: middle; height:90px; border: 1px solid black; display:inline-block; background-color:#E8E8E8; text-align:center; padding:5px; margin:5px;">
+            <span style="font-size:14px;"><b>${this.indicadores[key].text}</b></span><br />
+            <span style="font-size:21px;">${tmp}</span> <span style="font-size:14px;">${this.indicadores[key].unidade}</span>
+          </div>`;
         });
 
+        data += `</div>
+        </body>`;
         ipcRenderer.send('print-pdf', data);
       }
     },
@@ -397,6 +407,7 @@ export default {
 
       this.$backend.getFazenda(this.fid, (fazendaObj) => {
         let EstoqueCapital = estoqueCapitalObj[CidadeTipoEstoque[fazendaObj.Cidade]];
+        this.nome_fazenda = fazendaObj.NomeFazenda;
         this.$backend.getSafras(this.checkeds, safras => {
           let SafraCount = 0;
           if(safras!=null)

@@ -46,8 +46,8 @@
         </v-layout>
       </v-container>
     </v-layout>
-    <v-dialog max-width="390" v-model="dialog">
-      <v-card>
+    <v-dialog max-width="400" v-model="dialog">
+      <v-card id="dialog_interp">
         <v-card-text>
           <b>{{msg}}</b>
         </v-card-text>
@@ -507,5 +507,11 @@ export default {
 
   .status4 {
     color: black;
+  }
+
+  #dialog_interp {
+    background-image: url(~@/assets/fundo_dialog.png);
+    background-position: center bottom;
+    padding-bottom:180px;
   }
 </style>

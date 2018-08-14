@@ -1,7 +1,28 @@
 <template>
   <v-card>
     <v-card-title class="headline">
-      Indicadores do talhão
+      <v-layout align-center justify-space-between row fill-height>
+        <v-flex xs5>
+            Indicadores do talhão
+        </v-flex>
+        <v-flex xs5 style="text-align:left; font-size:10px; line-height:17px;">
+          <v-tooltip bottom>
+            <div slot="activator">
+            <span style="font-size:8px;">LEGENDA:</span><br />
+            <span><v-icon style="color:#32CD32;">info</v-icon></span> Indicador positivo<br />
+            <span ><v-icon style="color:#FF0000;">info</v-icon></span> Indicador negativo<br />
+            <span><v-icon style="color:black;">info</v-icon></span> Indicador descritivo<br />
+            </div>
+            <span>Clicando sobre o ícone 'i' em um indicador específico você obtém a interpretação detalhada desse indicador.</span>
+          </v-tooltip>
+        </v-flex>
+        <v-flex xs2 style="text-align:right;">
+          <v-tooltip top>
+            <v-btn icon slot="activator" @click="export_dialog = true" color="primary"> <v-icon>publish</v-icon></v-btn>
+            <span>Exportar dados</span>
+          </v-tooltip>
+        </v-flex>
+      </v-layout>
     </v-card-title>
     <v-divider></v-divider>
     <v-layout>
@@ -26,48 +47,71 @@
         <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
       </v-card>
     </v-dialog>
+    <v-dialog max-width="400" v-model="export_dialog">
+      <v-card>
+        <v-card-text>
+          <b>Selecione o formato para qual deseja exportar esses dados:</b><br /><br />
+          <v-layout align-center justify-space-between row fill-height>
+            <v-flex v-if="!exporting" xs6 class="text-xs-center">
+              <v-btn color="primary" big  @click="exportdata(1)">PDF</v-btn>
+            </v-flex>
+            <v-flex v-if="!exporting" xs6 class="text-xs-center">
+              <v-btn color="primary" big @click="exportdata(2)">CSV</v-btn>
+            </v-flex>
+            <v-flex v-if="exporting" xs12 text-xs-center>
+              <v-progress-circular :size="70" :width="7" indeterminate color="green"></v-progress-circular>
+            </v-flex>
+          </v-layout>
+        </v-card-text>
+        <v-btn color="green darken-1" flat="flat" @click="export_dialog = false">CANCELAR</v-btn>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
 <script>
 import fs from 'fs'
+import { remote, ipcRenderer } from 'electron'
 
 export default {
   data: () => {
     return {
       indicadores: {
-        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: '' },
-        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: '' },
-        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: '' },
-        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: ''},
-        pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
-        producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, status:4, fazendeiro:0, unidade: 'Sacas', help: '' },
-        aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'Ha', help: '' },
-        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'Und/Ha', help: ''  },
-        coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: '' },
-        coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: ''  },
-        cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: '' },
-        cotu: { text: 'COT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
-        ctap: { text: 'CT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: '' },
-        ctu: { text: 'CT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
-        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: ''  },
-        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: ''  },
-        mbu: { text: 'MARGEM BRUTA POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
-        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: ''  },
-        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: ''},
-        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: ''},
-        lucro: { text: 'LUCRO',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/safra', help: ''},
-        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Ha', help: ''},
-        lucrou: { text: 'LUCRO POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: ''  },
-        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: '%', help: ''  },
-        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: '%', help: ''  },
-        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$', help: '' },
-        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: '' },
-        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: 'R$/Sc', help: ''  },
-        taxagiro: { text: 'TAXA DE GIRO', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: '%a.a', help: '' },
-        lucrativ: { text: 'LUCRATIVIDADE', decimals: 2, value: 0, status:4, fazendeiro:0, unidade: '%a.a', help: '' }
+        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '' },
+        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '' },
+        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '' },
+        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: ''},
+        pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
+        producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, status:4, fazendeiro:3, unidade: 'Sacas', help: '' },
+        aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Ha', help: '' },
+        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Und/Ha', help: ''  },
+        coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '' },
+        coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: ''  },
+        cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '' },
+        cotu: { text: 'COT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
+        ctap: { text: 'CT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '' },
+        ctu: { text: 'CT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
+        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: ''  },
+        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: ''  },
+        mbu: { text: 'MARGEM BRUTA POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
+        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: ''  },
+        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: ''},
+        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: ''},
+        lucro: { text: 'LUCRO',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: ''},
+        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: ''},
+        lucrou: { text: 'LUCRO POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: ''  },
+        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%', help: ''  },
+        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%', help: ''  },
+        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$', help: '' },
+        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
+        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: ''  },
+        taxagiro: { text: 'TAXA DE GIRO', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%a.a', help: '' },
+        lucrativ: { text: 'LUCRATIVIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%a.a', help: '' }
       },
       dialog: false,
+      export_dialog: false,
+      nome_fazenda: '',
+      nome_talhao: '',
       msg: ''
     }
   },
@@ -82,6 +126,50 @@ export default {
     },
     fazendeiro_muda(estado, iit){
       this.$root.$emit('fazendeiro_muda_estado', {estado, iit});
+    },
+    exportdata(type){
+        //=============================================================  csv
+      if(type==2){
+        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo csv',filters:[{name: 'Arquivo CSV (comma separeted values)', extensions: ['csv']}]}, (filename) => {
+          if(typeof filename == 'undefined') return;
+          //this.loading = true;
+          let data = 'INDICADOR,VALOR\n';
+          Object.keys(this.indicadores).forEach(key => {
+            //this.indicadores[key].help = 'Para visualizar as interpretações é preciso selecionar pelo menos 1 safra para geração de indicadores.';
+            data += this.indicadores[key].text + ',';
+            data += parseFloat(this.indicadores[key].value.toFixed(2)) + '\n';
+          });
+
+          fs.writeFile(filename, data, 'UTF-8', (err) => {
+            if (err) remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local.');
+            else remote.dialog.showMessageBox({type:'info', title:'Arquivo csv criado com sucesso!', message: 'O arquivo csv foi salvo no local escolhido com sucesso!'});
+            //  this.loading = false;
+          });
+        });
+      }
+
+      //============================================================= PDF
+
+      else if(type==1){
+        let data = `<body style="font-family: Arial, Helvetica, sans-serif; margin:20px; line-height:10px;">
+          <h1>Fazenda ${this.nome_fazenda}</h1>
+          <h2>Talhão ${this.nome_talhao}</h2>
+          <b>INDICADORES</b><br /><br />
+          <div style="width:100%;  line-height:24px;"> `;
+
+
+        Object.keys(this.indicadores).forEach(key => {
+          let tmp = this.formatN(this.indicadores[key].value, this.indicadores[key].decimals);
+          data += `<div style="width:28%; vertical-align: middle; height:90px; border: 1px solid black; display:inline-block; background-color:#E8E8E8; text-align:center; padding:5px; margin:5px;">
+            <span style="font-size:14px;"><b>${this.indicadores[key].text}</b></span><br />
+            <span style="font-size:21px;">${tmp}</span> <span style="font-size:14px;">${this.indicadores[key].unidade}</span>
+          </div>`;
+        });
+
+        data += `</div>
+        </body>`;
+        ipcRenderer.send('print-pdf', data);
+      }
     },
     calculaInterpretacoes(){
       if(this.indicadores.mb.value<0){
@@ -296,7 +384,8 @@ export default {
       this.$backend.getSafra(talhaoObj.SafraID, (safraObj) => {
       this.$backend.getFazenda(safraObj.FazendaID, (fazendaObj) => {
         let EstoqueCapital = estoqueCapitalObj[CidadeTipoEstoque[fazendaObj.Cidade]];
-
+        this.nome_fazenda = fazendaObj.NomeFazenda;
+        this.nome_talhao = talhaoObj.NomeTalhao;
 
         //renda bruta
         this.indicadores.rendabruta.value = (talhaoObj.ProdTotal * safraObj.PrecoVenda) + talhaoObj.VendaSubP;
@@ -379,11 +468,11 @@ export default {
 
         // alteracao proposta dia 31/07
         this.indicadores.lucrativ.value = (this.indicadores.ml.value / this.indicadores.mb.value) * 100;
-        
+
+        this.calculaInterpretacoes();
       });
       });
     });
-    this.calculaInterpretacoes();
   }
 }
 </script>
@@ -398,18 +487,18 @@ export default {
   }
 
   .status1 {
-    background-color: #F08080;
+    color: #FF0000;
   }
 
   .status2 {
-    background-color: #FFEC8B;
+    color: #FFFF00;
   }
 
   .status3 {
-
+    color: #32CD32;
   }
 
   .status4 {
-    background-color: #98FB98;
+    color: black;
   }
 </style>

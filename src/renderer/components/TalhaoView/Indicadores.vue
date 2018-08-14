@@ -181,50 +181,50 @@ export default {
     calculaInterpretacoes(){
       if(this.indicadores.mb.value<0){
         this.indicadores.mb.help='Atenção! Os custos de desembolso direto (pagamento de fertilizantes, energia, mão de obra, combustíveis, etc.) estão maiores que a renda obtida na atividade. Em curto prazo a atividade não sobrevive, portanto, ajuste seus desembolsos de acordo com a renda obtida, pois se continuar com este resultado, é melhor parar com a atividade.';
-        this.indicadores.mb.fazendeiro=1;
         this.indicadores.mb.status=1;
+        this.indicadores.mb.fazendeiro=1;
       }
       if(this.indicadores.mb.value==0){
         this.indicadores.mb.help='Com a renda obtida na atividade, você consegue saldar todo o custo operacional efetivo (pagamento de fertilizantes, energia, mão de obra, defensivos, etc.), porém não sobra dinheiro para cobrir os custos de depreciação das máquinas, equipamentos e benfeitorias, bem como o seu pró-labore (custo de oportunidade do trabalho desempenhado pelo empresário rural). Se a empresa mantiver este resultado, no médio prazo a atividade estará comprometida, pois não haverá dinheiro para repor bens sucateados e não haverá remuneração pelo seu trabalho na propriedade.';
-        this.indicadores.mb.fazendeiro=6;
         this.indicadores.mb.status=2;
+        this.indicadores.mb.fazendeiro=6;
       }
       if(this.indicadores.mb.value>0){
          this.indicadores.mb.help='Com a renda obtida na atividade, você consegue saldar todo o custo operacional efetivo (pagamento de fertilizantes, energia, mão de obra, defensivos, etc.) e ainda há sobras para saldar parte (ou a totalidade dos custos fixos). Nesta situação, no curto prazo você se mantém na atividade, mas para melhor avaliação, avance para a análise da margem líquida, pois ela mostrará se você consegue pagar todo o custo fixo, ou apenas parte dele.';
-         this.indicadores.mb.fazendeiro=4;
          this.indicadores.mb.status=3;
+         this.indicadores.mb.fazendeiro=4;
        }
 
-      if(this.indicadores.mb.value>0 && this.indicadores.ml.value<0){
+      if(this.indicadores.ml.value<0){
         this.indicadores.ml.help='Você está se descapitalizando com o passar do tempo, uma vez que a renda obtida não é suficiente para saldar todos os custos com depreciações e remuneração da mão de obra familiar (custos fixos). Se continuar com este resultado, você estará empobrecendo a cada dia e no médio prazo será forçado a deixar a atividade, uma vez que não terá capital para repor os bens sucateados e indispensáveis para produção.';
-        this.indicadores.ml.fazendeiro=1;
         this.indicadores.ml.status=1;
+        this.indicadores.ml.fazendeiro=1;
       }
       if(this.indicadores.ml.value==0){
         this.indicadores.ml.help = 'Com a renda obtida na atividade, você consegue saldar todo o custo operacional total (desembolso direto + depreciações + pró-labore), porém não possui sobras equivalentes a remuneração de todo o capital investido na atividade quando aplicado em um fundo de investimento, como a poupança. Com este resultado você se mantém na atividade, porém sem atratividade econômica.';
-        this.indicadores.ml.fazendeiro=6;
         this.indicadores.ml.status=2;
+        this.indicadores.ml.fazendeiro=6;
       }
       if(this.indicadores.ml.value>0){
         this.indicadores.ml.help = 'Com a renda obtida na atividade, você consegue saldar todo o custo operacional total e também parte (ou a totalidade) do custo de oportunidade sobre o capital investido na atividade. Para melhor avaliação, avance para a análise do lucro, pois ele mostrará se você tem saldo equivalente a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança, ou apenas parte dele. ';
-        this.indicadores.ml.fazendeiro=4;
         this.indicadores.ml.status=3;
+        this.indicadores.ml.fazendeiro=4;
       }
 
-      if(this.indicadores.ml.value>0 && this.indicadores.lucro.value<0){
+      if(this.indicadores.lucro.value<0){
         this.indicadores.lucro.help = 'Sua atividade não é atrativa economicamente, uma vez que não há saldo equivalente a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança . No longo prazo a atividade poderá ser comprometida pela baixa capacidade de investimento na mesma.';
-        this.indicadores.lucro.fazendeiro=1;
         this.indicadores.lucro.status=1;
+        this.indicadores.lucro.fazendeiro=1;
       }
       if(this.indicadores.lucro.value==0){
         this.indicadores.lucro.help = 'A sua atividade apresenta lucro normal. A atividade está no ponto de cobertura total, ou seja, paga todo seu custo de desembolso direto (a remuneração do capital investido na atividade quando aplicado em um fundo de investimento, como a poupança) e todos os seus custos fixos (depreciações, pró-labore e remunerações), porém você deve focar no aumento do lucro para aumentar a atratividade do empreendimento, garantindo assim o seu crescimento na atividade.';
-        this.indicadores.lucro.fazendeiro=6;
         this.indicadores.lucro.status=2;
+        this.indicadores.lucro.fazendeiro=6;
       }
       if(this.indicadores.lucro.value>0){
         this.indicadores.lucro.help = 'A sua atividade apresenta lucro supernormal. A renda obtida na atividade é suficiente para pagar todos custos gerados e ainda proporciona uma remuneração superior às alternativas de investimento. Isso garante que parte do lucro possa ser reinvestido na atividade, garantindo sua competitividade no longo prazo. ';
-        this.indicadores.lucro.fazendeiro=4;
         this.indicadores.lucro.status=3;
+        this.indicadores.lucro.fazendeiro=4;
       }
 
       this.indicadores.coe.help = 'COE, é o custo referente aos desembolsos diretos de capital (pagamento de fertilizantes, energia, mão de obra, defensivos, etc.) destinados a toda atividade cafeeira. Por via de regra, são aqueles que variam de acordo com a produção, podendo aumentar ou diminuir.';
@@ -237,24 +237,24 @@ export default {
 
       if(this.indicadores.lucrativ.value>=20){
         this.indicadores.lucrativ.help = 'A lucratividade mede o quanto você ganhou sobre as vendas realizadas no ano. A sua interpretação está ligada ao risco de ter prejuízos com a atividade. Quanto menor a lucratividade, maior o risco de prejuízos. Quando igual ou maior que 20%, significa que você suporta uma redução de 20% no volume de café produzido ou uma redução de 20% no preço recebido pela saca de café ou até mesmo um aumento de 20% no custo operacional total de produção. Este indicador representa o seu fôlego financeiro!';
-        this.indicadores.lucrativ.fazendeiro=2;
         this.indicadores.lucrativ.status=3;
+        this.indicadores.lucrativ.fazendeiro=2;
       }
       if(this.indicadores.lucrativ.value<20){
         this.indicadores.lucrativ.help = 'A lucratividade mede o quanto você ganhou sobre as vendas realizadas no ano. A sua interpretação está ligada ao risco de ter prejuízos com a atividade. Quanto menor a lucratividade, maior o risco de redução do lucro. Quando menor que 20%, significa que você suporta poucas oscilações negativas no volume de café produzido, no preço da saca de café e/ou no custo de produção. A porcentagem da lucratividade demonstra qual a redução no volume produzido ou qual a redução no preço recebido pela saca de café ou até mesmo qual o aumento no custo operacional total de produção você suporta. Este indicador representa o seu fôlego financeiro!';
-        this.indicadores.lucrativ.fazendeiro=5;
         this.indicadores.lucrativ.status=1;
+        this.indicadores.lucrativ.fazendeiro=5;
       }
 
       if(this.indicadores.taxagiro.value>=50){
         this.indicadores.taxagiro.help = 'Representa a sua capacidade em transformar patrimônio em receita bruta. Deve-se buscar no mínimo o resultado de 50% para este indicador, ou seja, nesta situação a receita bruta alcançada com a atividade se equivale a metade do seu patrimônio, o que proporciona giro de capital eficiente para desenvolver a sua atividade.';
-        this.indicadores.taxagiro.fazendeiro=2;
         this.indicadores.taxagiro.status=3;
+        this.indicadores.taxagiro.fazendeiro=2;
       }
       if(this.indicadores.taxagiro.value<50){
         this.indicadores.taxagiro.help = 'Representa a sua capacidade em transformar patrimônio em receita bruta. Deve-se buscar no mínimo 50% para este indicador, ou seja, nesta situação a receita bruta alcançada com a atividade se equivale a metade do seu patrimônio, o que proporciona giro de capital eficiente para desenvolver a sua atividade.';
-        this.indicadores.taxagiro.fazendeiro=5;
         this.indicadores.taxagiro.status=1;
+        this.indicadores.taxagiro.fazendeiro=5;
       }
 
       this.indicadores.trcct.help = 'O seu resultado se equivale a quanto de todo o capital imobilizado na atividade está gerando de margem líquida e retornando para o bolso do produtor. Este resultado está ligado com a eficiência no uso do capital e a atratividade econômica do empreendimento. Para a atividade cafeeira consideramos como satisfatório um resultado de no mímimo 10% ao ano.';
@@ -270,98 +270,98 @@ export default {
 
       if(this.indicadores.mbu.value<0){
         this.indicadores.mbu.help = 'A margem bruta unitária permite ao produtor comparar seu resultado com outras propriedades. A margem bruta menor que zero indica que o produtor não está pagando seus custos de desembolso direto (custeio). Em curto prazo a atividade não sobrevive, portanto, se continuar com este resultado, é melhor parar com a atividade.';
-        this.indicadores.mbu.fazendeiro=1;
         this.indicadores.mbu.status=1;
+        this.indicadores.mbu.fazendeiro=1;
       }
       if(this.indicadores.mbu.value==0){
         this.indicadores.mbu.help = 'A margem bruta unitária permite ao produtor comparar seu resultado com outras propriedades. A margem bruta igual a zero indica que a propriedade consegue saldar todo o seu custo operacional efetivo (custeio), porém não possui sobras para pagamento de depreciação de lavouras, máquinas, equipamentos e benfeitorias e também o pró-labore do empresário. Se a empresa mantiver este resultado, no médio prazo a sua atividade estará comprometida.';
-        this.indicadores.mbu.fazendeiro=6;
         this.indicadores.mbu.status=2;
+        this.indicadores.mbu.fazendeiro=6;
       }
       if(this.indicadores.mbu.value>0){
         this.indicadores.mbu.help = 'A margem bruta unitária permite ao produtor comparar seu resultado com outras propriedades. A propriedade consegue pagar todo o custo operacional efetivo (custeio) e ainda tem sobras para saldar parte ou a totalidade dos custos fixos. No curto prazo se mantém na atividade, mas para melhor avaliação, deve-se avançar para a análise da margem líquida unitária.';
-        this.indicadores.mbu.fazendeiro=4;
         this.indicadores.mbu.status=3;
+        this.indicadores.mbu.fazendeiro=4;
       }
 
       if(this.indicadores.mbap.value<0){
         this.indicadores.mbap.help = 'A margem bruta por área permite ao produtor avaliar quanto de renda está sobrando no seu bolso após pagar os custos diretos da atividade por hectare. Com isso, é possível comparar, por exemplo, a atividade cafeeira com um possível arrendamento da área utilizada. A margem bruta menor que zero indica que o produtor não está pagando seus custos de desembolso direto (custeio). Em curto prazo a atividade não sobrevive, portanto, se continuar com este resultado, é melhor parar com a atividade.';
-        this.indicadores.mbap.fazendeiro=1;
         this.indicadores.mbap.status=1;
+        this.indicadores.mbap.fazendeiro=1;
       }
       if(this.indicadores.mbap.value==0){
         this.indicadores.mbap.help = 'A margem bruta por área permite ao produtor avaliar quanto de renda está sobrando no seu bolso após pagar os custos diretos da atividade por hectare. Com isso, é possível comparar, por exemplo, a atividade cafeeira com um possível arrendamento da área utilizada. A margem bruta igual a zero indica que a propriedade consegue saldar todo o seu custo operacional efetivo (custeio), porém não possui sobras para pagamento de depreciação de lavouras, máquinas, equipamentos e benfeitorias e também o pró-labore do empresário. Se a empresa mantiver este resultado, no médio prazo a sua atividade estará comprometida.';
-        this.indicadores.mbap.fazendeiro=6;
         this.indicadores.mbap.status=2;
+        this.indicadores.mbap.fazendeiro=6;
       }
       if(this.indicadores.mbap.value>0){
         this.indicadores.mbap.help = 'A margem bruta por área permite ao produtor avaliar quanto de renda está sobrando no seu bolso após pagar os custos diretos da atividade por hectare. Com isso, é possível comparar, por exemplo, a atividade cafeeira com um possível arrendamento da área utilizada. A propriedade consegue pagar todo o custo operacional efetivo (custeio) e ainda tem sobras para saldar parte ou a totalidade dos custos fixos. No curto prazo se mantém na atividade, mas para melhor avaliação, deve-se avançar para a análise da margem líquida por área.';
-        this.indicadores.mbap.fazendeiro=4;
         this.indicadores.mbap.status=3;
+        this.indicadores.mbap.fazendeiro=4;
       }
 
-      if(this.indicadores.mbu.value>0 && this.indicadores.mlu.value<0){
+      if(this.indicadores.mlu.value<0){
         this.indicadores.mlu.help = 'A margem líquida unitária permite ao produtor comparar seu resultado com outras propriedades. Com a margem líquida menor que zero, o produtor está descapitalizando. Consegue arcar com os custos de desembolso direto e somente parte dos custos fixos. Caso o resultado continuar desta forma, no médio prazo haverá um empobrecimento do produtor e ele poderá deixar a atividade.';
-        this.indicadores.mlu.fazendeiro=1;
         this.indicadores.mlu.status=1;
+        this.indicadores.mlu.fazendeiro=1;
       }
       if(this.indicadores.mlu.value==0){
         this.indicadores.mlu.help = 'A margem líquida unitária permite ao produtor comparar seu resultado com outras propriedades. Com a margem líquida igual a zero, a propriedade consegue saldar todo o custo operacional total (custeio + depreciações + pró-labore), porém não possui sobras para pagamento do custo de oportunidade sobre o capital investido na atividade. Com este resultado a empresa se mantém na atividade no médio prazo, porém sem atratividade econômica.';
-        this.indicadores.mlu.fazendeiro=6;
         this.indicadores.mlu.status=2;
+        this.indicadores.mlu.fazendeiro=6;
       }
       if(this.indicadores.mlu.value>0){
         this.indicadores.mlu.help = 'A margem líquida unitária permite ao produtor comparar seu resultado com outras propriedades. Com a margem líquida maior que zero, o produtor paga todo o custo operacional total e também parte ou a totalidade do custo de oportunidade sobre o capital investido na atividade. Deve-se avançar para a análise de Lucro para uma melhor avaliação';
-        this.indicadores.mlu.fazendeiro=4;
         this.indicadores.mlu.status=3;
+        this.indicadores.mlu.fazendeiro=4;
       }
 
-      if(this.indicadores.mbap.value>0 && this.indicadores.mlap.value<0){
+      if(this.indicadores.mlap.value<0){
         this.indicadores.mlap.help = 'A margem líquida por área demonstra quanto de capital sobra ao bolso do produtor após pagar os custos diretos e parte dos custos fixos por hectare utilizado na propriedade para a atividade cafeeira. Este indicador permite avaliar a eficiência de utilização do tamanho da área para gerar dinheiro para o produtor e compará-la com outras atividades. Com a margem líquida menor que zero, o produtor está descapitalizando. Consegue arcar com os custos de desembolso direto e somente parte dos custos fixos. Caso o resultado continuar desta forma, no médio prazo haverá um empobrecimento do produtor e ele poderá deixar a atividade.';
-        this.indicadores.mlap.fazendeiro=1;
         this.indicadores.mlap.status=1;
+        this.indicadores.mlap.fazendeiro=1;
       }
       if(this.indicadores.mlap.value==0){
         this.indicadores.mlap.help = 'A margem líquida por área demonstra quanto de capital sobra ao bolso do produtor após pagar os custos diretos e parte dos custos fixos por hectare utilizado na propriedade para a atividade cafeeira. Este indicador permite avaliar a eficiência de utilização do tamanho da área para gerar dinheiro para o produtor e compará-la com outras atividades. Com a margem líquida igual a zero, a propriedade consegue saldar todo o custo operacional total (custeio + depreciações + pró-labore), porém não possui sobras para pagamento do custo de oportunidade sobre o capital investido na atividade. Com este resultado a empresa se mantém na atividade no médio prazo, porém sem atratividade econômica.';
-        this.indicadores.mlap.fazendeiro=6;
         this.indicadores.mlap.status=2;
+        this.indicadores.mlap.fazendeiro=6;
       }
       if(this.indicadores.mlap.value>0){
         this.indicadores.mlap.help = 'A margem líquida por área demonstra quanto de capital sobra ao bolso do produtor após pagar os custos diretos e parte dos custos fixos por hectare utilizado na propriedade para a atividade cafeeira. Este indicador permite avaliar a eficiência de utilização do tamanho da área para gerar dinheiro para o produtor e compará-la com outras atividades. Com a margem líquida maior que zero, o produtor paga todo o custo operacional total e também parte ou a totalidade do custo de oportunidade sobre o capital investido na atividade. Deve-se avançar para a análise de Lucro para uma melhor avaliação';
-        this.indicadores.mlap.fazendeiro=4;
         this.indicadores.mlap.status=3;
+        this.indicadores.mlap.fazendeiro=4;
       }
 
-      if(this.indicadores.mlu.value>0 && this.indicadores.lucrou.value<0){
+      if(this.indicadores.lucrou.value<0){
         this.indicadores.lucrou.help = 'O lucro unitário permite ao produtor comparar o seu indicador com outras propriedades na atividade cafeeira. Com o lucro unitário menor que zero, o produtor paga todo seu custo operacional total, mas em um valor que proporcionou baixa atratividade econômica para a atividade. No longo prazo a atividade poderá ser comprometida pela baixa capacidade de investimento.';
-        this.indicadores.lucrou.fazendeiro=1;
         this.indicadores.lucrou.status=1;
+        this.indicadores.lucrou.fazendeiro=1;
       }
       if(this.indicadores.lucrou.value==0){
         this.indicadores.lucrou.help = 'O lucro unitário permite ao produtor comparar o seu indicador com outras propriedades na atividade cafeeira. Com o lucro unitário igual a zero, a atividade cafeeira possui lucro normal. A atividade está no ponto de cobertura total, ou seja, paga todo seu custo de desembolso direto (custeio) e todos seus custos fixos, porém deve-se focar no aumento do lucro e aumentar a atratividade do empreendimento, garantindo o crescimento da atividade.';
-        this.indicadores.lucrou.fazendeiro=6;
         this.indicadores.lucrou.status=2;
+        this.indicadores.lucrou.fazendeiro=6;
       }
       if(this.indicadores.lucrou.value>0){
         this.indicadores.lucrou.help = 'O lucro unitário permite ao produtor comparar o seu indicador com outras propriedades na atividade cafeeira. Com o lucro unitário maior que zero, o produtor paga todos os recursos aplicados na atividade e proporciona uma remuneração superior às alternativas de investimento, além de garantir que parte desse lucro poderá ser reinvestido na atividade, garantindo sua competitividade no longo prazo. A atividade cafeeira possui lucro supernormal. ';
-        this.indicadores.lucrou.fazendeiro=4;
         this.indicadores.lucrou.status=3;
+        this.indicadores.lucrou.fazendeiro=4;
       }
 
-      if(this.indicadores.mlap.value>0 && this.indicadores.lucroap.value<0){
+      if(this.indicadores.lucroap.value<0){
         this.indicadores.lucroap.help = 'O lucro por área permite a avaliação do produtor do quanto de renda sobrou após pagar todos os custos da atividade por área utilizada. Sendo assim, é possível avaliar a eficiência do uso da área pela atividade cafeeira em gerar lucro. Com o lucro menor que zero, o produtor paga todo seu custo operacional total, mas em um valor que proporcionou baixa atratividade econômica para a atividade. No longo prazo a atividade poderá ser comprometida pela baixa capacidade de investimento.';
-        this.indicadores.lucroap.fazendeiro=1;
         this.indicadores.lucroap.status=1;
+        this.indicadores.lucroap.fazendeiro=1;
       }
       if(this.indicadores.lucroap.value==0){
         this.indicadores.lucroap.help = 'O lucro por área permite a avaliação do produtor do quanto de renda sobrou após pagar todos os custos da atividade por área utilizada. Sendo assim, é possível avaliar a eficiência do uso da área pela atividade cafeeira em gerar lucro. Com o lucro igual a zero, a atividade cafeeira possui lucro normal. A atividade está no ponto de cobertura total, ou seja, paga todo seu custo de desembolso direto (custeio) e todos seus custos fixos, porém deve-se focar no aumento do lucro e aumentar a atratividade do empreendimento, garantindo o crescimento da atividade.';
-        this.indicadores.lucroap.fazendeiro=6;
         this.indicadores.lucroap.status=2;
+        this.indicadores.lucroap.fazendeiro=6;
       }
       if(this.indicadores.lucroap.value>0){
         this.indicadores.lucroap.help = 'O lucro por área permite a avaliação do produtor do quanto de renda sobrou após pagar todos os custos da atividade por área utilizada. Sendo assim, é possível avaliar a eficiência do uso da área pela atividade cafeeira em gerar lucro. Com o lucro maior que zero, o produtor paga todos os recursos aplicados na atividade e proporciona uma remuneração superior às alternativas de investimento, além de garantir que parte desse lucro poderá ser reinvestido na atividade, garantindo sua competitividade no longo prazo. A atividade cafeeira possui lucro supernormal. ';
-        this.indicadores.lucroap.fazendeiro=4;
         this.indicadores.lucroap.status=3;
+        this.indicadores.lucroap.fazendeiro=4;
       }
 
       this.indicadores.aplantada.help = 'Área destinada para a atividade cafeeira. No caso de duas atividades na mesma propriedade, deve-se realizar uma divisão das áreas para cada atividade.';
@@ -370,15 +370,15 @@ export default {
       this.indicadores.rendabruta.help = 'Soma da venda de café, venda do café escolha e de todas as outras rendas originadas da atividade cafeeira no período de uma safra ou mais.';
       this.indicadores.pcv.help = 'Média do preço do café da safra comercializado.';
 
-      if(this.indicadores.bencusto.value<1){
-        this.indicadores.bencusto.help = 'Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade. ';
-        this.indicadores.bencusto.fazendeiro=5;
-        this.indicadores.bencusto.status=1;
-      }
       if(this.indicadores.bencusto.value>=1){
         this.indicadores.bencusto.help = 'Quando a relação benefício/custo é maior que 1, significa que o custo é menor que a renda obtida na atividade. Este resultado mostra o quanto você está ganhando a cada R$1,00 investido na atividade. Quanto maior a relação benefício custo, melhor, uma vez que ao conseguir cobrir todos os custos com a renda, você se mantêm na atividade de forma viável e atrativa economicamente.';
-        this.indicadores.bencusto.fazendeiro=2;
         this.indicadores.bencusto.status=3;
+        this.indicadores.bencusto.fazendeiro=2;
+      }
+      else{
+        this.indicadores.bencusto.help = 'Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade. ';
+        this.indicadores.bencusto.status=1;
+        this.indicadores.bencusto.fazendeiro=5;
       }
     },
   },

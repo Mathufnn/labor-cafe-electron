@@ -63,7 +63,7 @@
               <v-btn color="primary" big  @click="exportdata(1)">PDF</v-btn>
             </v-flex>
             <v-flex v-if="!exporting" xs6 class="text-xs-center">
-              <v-btn color="primary" big @click="exportdata(2)">CSV</v-btn>
+              <v-btn color="primary" big @click="exportdata(2)">XLSX</v-btn>
             </v-flex>
             <v-flex v-if="exporting" xs12 text-xs-center>
               <v-progress-circular :size="70" :width="7" indeterminate color="green"></v-progress-circular>
@@ -79,6 +79,7 @@
 <script>
 import fs from 'fs'
 import { remote, ipcRenderer } from 'electron'
+import XLSX from 'XLSX'
 
 export default {
   data: () => {
@@ -137,21 +138,33 @@ export default {
     exportdata(type){
         //=============================================================  csv
       if(type==2){
-        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo csv',filters:[{name: 'Arquivo CSV (comma separeted values)', extensions: ['csv']}]}, (filename) => {
+        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo xlsx',filters:[{name: 'Arquivo XLSX', extensions: ['xlsx']}]}, (filename) => {
           if(typeof filename == 'undefined') return;
           //this.loading = true;
-          let data = 'INDICADOR,VALOR\n';
+          let data = [];
+          let count = 1;
           Object.keys(this.indicadores).forEach(key => {
             //this.indicadores[key].help = 'Para visualizar as interpretações é preciso selecionar pelo menos 1 safra para geração de indicadores.';
-            data += this.indicadores[key].text + ',';
-            data += parseFloat(this.indicadores[key].value.toFixed(2)) + '\n';
+            data.push({'ORDEM': count,
+            'INDICADORES': this.indicadores[key].text,
+            'UNIDADE': this.indicadores[key].unidade,
+            'VALOR': this.formatN(this.indicadores[key].value)});
+            count++;
           });
 
-          fs.writeFile(filename, data, 'UTF-8', (err) => {
-            if (err) remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local.');
-            else remote.dialog.showMessageBox({type:'info', title:'Arquivo csv criado com sucesso!', message: 'O arquivo csv foi salvo no local escolhido com sucesso!'});
-            //  this.loading = false;
-          });
+          let ws = XLSX.utils.json_to_sheet(data);
+          let wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, "Indicadores");
+
+          try {
+            XLSX.writeFileAsync(filename, wb, (err)=>{
+              if(err) remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local.');
+              else remote.dialog.showMessageBox({type:'info', title:'Arquivo XLSX criado com sucesso!', message: 'O arquivo XLSX foi salvo no local escolhido com sucesso!'});
+            });
+          }
+          catch (e){
+            remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local.');
+          }
         });
       }
 

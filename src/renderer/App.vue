@@ -28,7 +28,7 @@
         </v-list>
         <div id="deseinhos">
           <center>
-            <img v-bind:src="fazendeiro_image" class="fazendeiro" :style="'-webkit-filter: drop-shadow(0px 0px 5px ' + cor_sombra +'); filter: drop-shadow(0px 0px 5px ' + cor_sombra + ');'">
+            <img v-bind:src="fazendeiro_image" height="250px" class="fazendeiro" :style="'-webkit-filter: drop-shadow(0px 0px 5px ' + cor_sombra +'); filter: drop-shadow(0px 0px 5px ' + cor_sombra + ');'">
           </center>
         </div>
       </v-navigation-drawer>
@@ -107,7 +107,8 @@
 
   .fazendeiro {
     position: fixed;
-    bottom:8%;
-    right:92px;
+    bottom:6%;
+    right:52px;
+    z-index: 202!important;
   }
 </style>

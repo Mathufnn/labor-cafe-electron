@@ -1,25 +1,24 @@
 <template>
   <v-card>
-    <v-card-title class="headline">
-      <v-layout align-center justify-space-between row fill-height>
-        <v-flex xs5>
+    <v-card-title class="headline"  style="background-color:#A5D6A7;">
+      <v-layout align-center justify-space-between row fill-height >
+        <v-flex xs8 >
             Indicadores da fazenda
         </v-flex>
-        <v-flex xs5 style="text-align:left; font-size:10px; line-height:17px;">
-          <v-tooltip bottom>
+        <v-flex xs4 style="text-align:center;">
+          <v-tooltip top>
+            <v-btn icon slot="activator" @click="export_dialog = true" color="primary"> <v-icon>publish</v-icon></v-btn>
+            <span>Exportar dados</span>
+          </v-tooltip><br /><br />
+          <v-tooltip left style="text-align:center; font-size:10px; line-height:17px;">
             <div slot="activator">
-            <span style="font-size:8px;">LEGENDA:</span><br />
-            <span><v-icon style="color:#32CD32;">info</v-icon></span> Indicador positivo<br />
+            <span style="font-size:10px;">LEGENDA:</span><br />
+            <span><v-icon style="color:#32CD32; ">info</v-icon></span> Indicador positivo<br />
+            <span><v-icon style="color:#FFFF00;">info</v-icon></span> Indicador de alerta<br />
             <span ><v-icon style="color:#FF0000;">info</v-icon></span> Indicador negativo<br />
             <span><v-icon style="color:black;">info</v-icon></span> Indicador descritivo<br />
             </div>
             <span>Clicando sobre o ícone 'i' em um indicador específico você obtém a interpretação detalhada desse indicador.</span>
-          </v-tooltip>
-        </v-flex>
-        <v-flex xs2 style="text-align:right;">
-          <v-tooltip top>
-            <v-btn icon slot="activator" @click="export_dialog = true" color="primary"> <v-icon>publish</v-icon></v-btn>
-            <span>Exportar dados</span>
           </v-tooltip>
         </v-flex>
       </v-layout>

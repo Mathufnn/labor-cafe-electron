@@ -1,25 +1,24 @@
 <template>
   <v-card>
-    <v-card-title class="headline">
+    <v-card-title class="headline"  style="background-color:#A5D6A7;">
       <v-layout align-center justify-space-between row fill-height>
-        <v-flex xs5>
+        <v-flex xs8 >
             Indicadores do talhão
         </v-flex>
-        <v-flex xs5 style="text-align:left; font-size:10px; line-height:17px;">
-          <v-tooltip bottom>
+        <v-flex xs4 style="text-align:center;">
+          <v-tooltip top>
+            <v-btn icon slot="activator" @click="export_dialog = true" color="primary"> <v-icon>publish</v-icon></v-btn>
+            <span>Exportar dados</span>
+          </v-tooltip><br /><br />
+          <v-tooltip left style="text-align:center; font-size:10px; line-height:17px;">
             <div slot="activator">
-            <span style="font-size:8px;">LEGENDA:</span><br />
-            <span><v-icon style="color:#32CD32;">info</v-icon></span> Indicador positivo<br />
+            <span style="font-size:10px;">LEGENDA:</span><br />
+            <span><v-icon style="color:#32CD32; ">info</v-icon></span> Indicador positivo<br />
+            <span><v-icon style="color:#FFFF00;">info</v-icon></span> Indicador de alerta<br />
             <span ><v-icon style="color:#FF0000;">info</v-icon></span> Indicador negativo<br />
             <span><v-icon style="color:black;">info</v-icon></span> Indicador descritivo<br />
             </div>
             <span>Clicando sobre o ícone 'i' em um indicador específico você obtém a interpretação detalhada desse indicador.</span>
-          </v-tooltip>
-        </v-flex>
-        <v-flex xs2 style="text-align:right;">
-          <v-tooltip top>
-            <v-btn icon slot="activator" @click="export_dialog = true" color="primary"> <v-icon>publish</v-icon></v-btn>
-            <span>Exportar dados</span>
           </v-tooltip>
         </v-flex>
       </v-layout>
@@ -63,7 +62,7 @@
               <v-btn color="primary" big  @click="exportdata(1)">PDF</v-btn>
             </v-flex>
             <v-flex v-if="!exporting" xs6 class="text-xs-center">
-              <v-btn color="primary" big @click="exportdata(2)">CSV</v-btn>
+              <v-btn color="primary" big @click="exportdata(2)">XLSX</v-btn>
             </v-flex>
             <v-flex v-if="exporting" xs12 text-xs-center>
               <v-progress-circular :size="70" :width="7" indeterminate color="green"></v-progress-circular>
@@ -79,6 +78,7 @@
 <script>
 import fs from 'fs'
 import { remote, ipcRenderer } from 'electron'
+import XLSX from 'XLSX'
 
 export default {
   data: () => {
@@ -137,43 +137,80 @@ export default {
     exportdata(type){
         //=============================================================  csv
       if(type==2){
-        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo csv',filters:[{name: 'Arquivo CSV (comma separeted values)', extensions: ['csv']}]}, (filename) => {
+        remote.dialog.showSaveDialog({title: 'Selecione local para salvar o arquivo xlsx',filters:[{name: 'Arquivo XLSX', extensions: ['xlsx']}]}, (filename) => {
           if(typeof filename == 'undefined') return;
           //this.loading = true;
-          let data = 'INDICADOR,VALOR\n';
+          let data = [];
+          let count = 1;
           Object.keys(this.indicadores).forEach(key => {
             //this.indicadores[key].help = 'Para visualizar as interpretações é preciso selecionar pelo menos 1 safra para geração de indicadores.';
-            data += this.indicadores[key].text + ',';
-            data += parseFloat(this.indicadores[key].value.toFixed(2)) + '\n';
+            data.push({'ORDEM': count,
+            'INDICADORES': this.indicadores[key].text,
+            'UNIDADE': this.indicadores[key].unidade,
+            'VALOR': this.formatN(this.indicadores[key].value)});
+            count++;
           });
 
-          fs.writeFile(filename, data, 'UTF-8', (err) => {
-            if (err) remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local.');
-            else remote.dialog.showMessageBox({type:'info', title:'Arquivo csv criado com sucesso!', message: 'O arquivo csv foi salvo no local escolhido com sucesso!'});
-            //  this.loading = false;
-          });
+          let ws = XLSX.utils.json_to_sheet(data);
+          let wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, "Indicadores");
+
+          try {
+            XLSX.writeFileAsync(filename, wb, (err)=>{
+              if(err) remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local.');
+              else remote.dialog.showMessageBox({type:'info', title:'Arquivo XLSX criado com sucesso!', message: 'O arquivo XLSX foi salvo no local escolhido com sucesso!'});
+            });
+          }
+          catch (e){
+            remote.dialog.showErrorBox('Erro ao gravar o arquivo!', 'Não foi possível criar o arquivo no local.');
+          }
         });
       }
 
       //============================================================= PDF
 
       else if(type==1){
-        let data = `<body style="font-family: Arial, Helvetica, sans-serif; margin:20px; line-height:10px;">
+        let data = `<style>
+        table {
+          border-collapse: collapse;
+          width:100%;
+        }
+
+        table, th, td {
+          border: 1px solid black;
+        }
+        th,thead {
+          text-align:center;
+          height:35px;
+        }
+        td {
+          height:26px;
+        }
+        </style>`;
+
+        data += `<body style="font-family: Arial, Helvetica, sans-serif; margin:20px; line-height:15px;">
           <h1>Fazenda ${this.nome_fazenda}</h1>
           <h2>Talhão ${this.nome_talhao}</h2>
           <b>INDICADORES</b><br /><br />
-          <div style="width:100%;  line-height:24px;"> `;
+          <table>
+            <thead>
+              <tr><th>#</th><th>INDICADOR</th><th>UNIDADE</th><th>VALOR</th></tr>
+            </thead>
+            <tbody>`;
 
-
+        let count=1;
         Object.keys(this.indicadores).forEach(key => {
           let tmp = this.formatN(this.indicadores[key].value, this.indicadores[key].decimals);
-          data += `<div style="width:28%; vertical-align: middle; height:90px; border: 1px solid black; display:inline-block; background-color:#E8E8E8; text-align:center; padding:5px; margin:5px;">
-            <span style="font-size:14px;"><b>${this.indicadores[key].text}</b></span><br />
-            <span style="font-size:21px;">${tmp}</span> <span style="font-size:14px;">${this.indicadores[key].unidade}</span>
-          </div>`;
+          data += `<tr>
+            <td>${count}</td>
+            <td>${this.indicadores[key].text}</td>
+            <td>${this.indicadores[key].unidade}</td>
+            <td>${tmp}</td>
+          </tr>`;
+          count++;
         });
 
-        data += `</div>
+        data += `</tbody></table>
         </body>`;
         ipcRenderer.send('print-pdf', data);
       }

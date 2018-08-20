@@ -179,21 +179,46 @@ export default {
       //============================================================= PDF
 
       else if(type==1){
-        let data = `<body style="font-family: Arial, Helvetica, sans-serif; margin:20px; line-height:10px;">
+        let data = `<style>
+        table {
+          border-collapse: collapse;
+          width:100%;
+        }
+
+        table, th, td {
+          border: 1px solid black;
+        }
+        th,thead {
+          text-align:center;
+          height:35px;
+        }
+        td {
+          height:26px;
+        }
+        </style>`;
+
+        data += `<body style="font-family: Arial, Helvetica, sans-serif; margin:20px; line-height:15px;">
           <h1>Fazenda ${this.nome_fazenda}</h1>
-          <h2>INDICADORES</h2><br />
-          <div style="width:100%;  line-height:24px;"> `;
+          <b>INDICADORES</b><br /><br />
+          <table>
+            <thead>
+              <tr><th>#</th><th>INDICADOR</th><th>UNIDADE</th><th>VALOR</th></tr>
+            </thead>
+            <tbody>`;
 
-
+        let count=1;
         Object.keys(this.indicadores).forEach(key => {
           let tmp = this.formatN(this.indicadores[key].value, this.indicadores[key].decimals);
-          data += `<div style="width:28%; vertical-align: middle; height:90px; border: 1px solid black; display:inline-block; background-color:#E8E8E8; text-align:center; padding:5px; margin:5px;">
-            <span style="font-size:14px;"><b>${this.indicadores[key].text}</b></span><br />
-            <span style="font-size:21px;">${tmp}</span> <span style="font-size:14px;">${this.indicadores[key].unidade}</span>
-          </div>`;
+          data += `<tr>
+            <td>${count}</td>
+            <td>${this.indicadores[key].text}</td>
+            <td>${this.indicadores[key].unidade}</td>
+            <td>${tmp}</td>
+          </tr>`;
+          count++;
         });
 
-        data += `</div>
+        data += `</tbody></table>
         </body>`;
         ipcRenderer.send('print-pdf', data);
       }

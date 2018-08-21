@@ -55,7 +55,7 @@
     </v-dialog>-->
     <div id="dialog_p" v-if="dialog" :style="'background: url('+dialog_partezinha+')  no-repeat left 9px bottom 10px; border-right: 4px solid transparent;'">
       <div id="dialog_s">
-          <v-btn small icon color="green darken-1" style="float:right; margin:-15px;" flat="flat" @click="dialog = false, detalha = false">[X]</v-btn><br />
+          <v-btn small icon color="green darken-1" style="float:right; margin:-15px;" flat="flat" @click="dialog = false, detalha = false"><v-icon>close</v-icon></v-btn><br />
             <b>{{msg}}</b>
             <br />
             <br />

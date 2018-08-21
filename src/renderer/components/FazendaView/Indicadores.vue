@@ -35,22 +35,45 @@
                   <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
                 </v-flex>
                 <v-flex xs1>
-                  <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help " :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn>
+                  <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help, submsg=i.subhelp " :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn>
                 </v-flex>
               </v-layout>
             </v-card>
           </v-flex>
         </v-layout>
       </v-container>
-    </v-layout>
-    <v-dialog max-width="400" v-model="dialog">
-      <v-card id="dialog_interp">
-        <v-card-text>
-          <b>{{msg}}</b>
-        </v-card-text>
-        <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
-      </v-card>
-    </v-dialog>
+    </v-layout><!--
+    <v-dialog max-width="700" style="height:10px;" hide-overlay="true" v-model="dialog">
+      <div style="position: relative;">
+        <div id="partezinha"></div>
+        <v-card id="dialog_interp">
+          <v-card-text>
+            <b>{{msg}}</b>
+          </v-card-text>
+          <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
+        </v-card>
+      </div>
+    </v-dialog> -->
+    <div id="dialog_p" v-if="dialog" :style="'background: url('+dialog_partezinha+')  no-repeat left 9px bottom 10px; border-right: 4px solid transparent;'">
+      <div id="dialog_s">
+          <v-btn small icon color="green darken-1" style="float:right; margin:-15px;" flat="flat" @click="dialog = false, detalha = false">[X]</v-btn><br />
+            <b>{{msg}}</b>
+            <br />
+            <br />
+            <center>
+              <v-btn v-if="!detalha && submsg!=''" color="" @click="detalha = true">[+] INTERPRETAÇÃO DETALHADA</v-btn>
+              <v-btn v-if="detalha && submsg!=''" color="" @click="detalha = false">[-] INTERPRETAÇÃO DETALHADA</v-btn>
+            </center>
+            <br />
+            <v-card v-if="detalha">
+              <v-card-text>
+                <b>{{submsg}}</b>
+              </v-card-text>
+            </v-card>
+          <v-btn color="green darken-1" style="float:right"  flat="flat" @click="dialog = false, detalha = false">FECHAR</v-btn>
+
+      </div>
+    </div>
     <v-dialog max-width="400" v-model="export_dialog">
       <v-card>
         <v-card-text>
@@ -117,7 +140,10 @@ export default {
       dialog: false,
       export_dialog: false,
       exporting: false,
+      detalha:false,
       msg: '',
+      submsg: '',
+      dialog_partezinha: 'static/fala.png',
       nome_fazenda: ''
     }
   },
@@ -299,7 +325,7 @@ export default {
       else{                                      // verde
         this.indicadores.capitalest.help='Sua propriedade é eficiente na utilização dos recursos para produção de café, excluindo a terra.';
         this.indicadores.capitalest.subhelp='Mede a eficiência no uso de todo capital imobilizado, excluindo a terra nua, para produzir 1 saca de café. É a capacidade e eficiência que você possui em transformar patrimônio em produção de café. Quanto menor for o capital empatado a cada saca de café, maior é a sua eficiência no uso dos recursos da propriedade. Uma propriedade considerada eficiente é que possui R$ 350,00 ou menos de estoque de capital empatado por saca de café.';
-        this.indicadores.capitalest.status=3; 
+        this.indicadores.capitalest.status=3;
         this.indicadores.capitalest.fazendeiro=2;
       }
 
@@ -312,7 +338,7 @@ export default {
       else{                                      // verde
         this.indicadores.capitalct.help='Sua propriedade é eficiente na utilização dos recursos para produção de café, excluindo a terra.';
         this.indicadores.capitalct.subhelp='Mede a eficiência no uso de todo capital imobilizado, incluindo todo o valor da terra nua, para produzir 1 saca de café. É a capacidade e eficiência que você possui em transformar todo o patrimônio em produção de café. Quanto menor for o capital empatado a cada saca de café, maior é a sua eficiência no uso dos recursos da propriedade. Uma propriedade considerada eficiente é que possui R$ 800,00 ou menos de estoque de capital empatado por saca de café.';
-        this.indicadores.capitalct.status=3; 
+        this.indicadores.capitalct.status=3;
         this.indicadores.capitalct.fazendeiro=2;
       }
 
@@ -418,7 +444,7 @@ export default {
         this.indicadores.ctu.status=3;
         this.indicadores.ctu.fazendeiro=2;
       }
-      
+
       this.indicadores.coeap.help = 'COE/hectare permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por área demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada saca de café produzida. Deve-se buscar valores menores que R$ 10.000,00/hectare neste indicador.';
       this.indicadores.cotap.help = 'COT/hectare, permite ao produtor comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE + os custos com mão de obra familiar e depreciações gastos para produzir em 1 hectare de café.';
       this.indicadores.ctap.help = 'CT/hectare, permite ao produtor comparar o seu custo referente ao COT + o custo de oportunidade sobre o capital investido na atividade com outras propriedades. É o somatório que contempla todos os custos envolvidos na atividade cafeeira para produzir em 1 hectare de café.';
@@ -539,7 +565,7 @@ export default {
 
       this.indicadores.aplantada.help = 'Área destinada para a atividade cafeeira. No caso de duas atividades na mesma propriedade, deve-se realizar uma divisão das áreas para cada atividade.';
       this.indicadores.producao.help = 'Total de volume de sacas de café produzido na safra analisada';
-      
+
       if(this.indicadores.ppaplantada.value>=30){ // verde
         this.indicadores.ppaplantada.help = 'A produtividade média está acima do preconizado para alcançar sucesso econômico.';
         this.indicadores.ppaplantada.subhelp = 'Representa a produtividade das lavouras em produção. Preconiza-se que as lavouras alcancem produtividade superior a 30 sc/ha.';
@@ -551,8 +577,8 @@ export default {
         this.indicadores.ppaplantada.subhelp = 'Representa a produtividade das lavouras em produção. Preconiza-se que as lavouras alcancem produtividade superior a 30 sc/ha.';
         this.indicadores.ppaplantada.status=1;
         this.indicadores.ppaplantada.fazendeiro=5;
-      }      
-      
+      }
+
       this.indicadores.rendabruta.help = 'Soma da venda de café, venda do café escolha e de todas as outras rendas originadas da atividade cafeeira no período de uma safra ou mais.';
 
       if(this.indicadores.pcv.value>=490){ // vermelho
@@ -750,6 +776,11 @@ export default {
   },
   mounted: function() {
     //this.geraIndicadores(this.checkeds);
+    this.$root.$on('menu_fechado', (menu) => {
+              console.log(menu);
+      if(!menu.newV) this.dialog_partezinha = '';
+      else this.dialog_partezinha = 'static/fala.png';
+    });
   },
   watch: {
     checkeds: function (newV, oldV) {
@@ -785,8 +816,34 @@ export default {
 }
 
 #dialog_interp {
-  background-image: url(~@/assets/fundo_dialog.png);
-  background-position: center bottom;
-  padding-bottom:180px;
+  width:80%;
+  margin-left:20%;
+}
+
+.dialog_pai {
+  height:555px!important;
+}
+
+#dialog_p{
+  width: 770px;
+  height: 400px;
+  position: fixed;
+  bottom:21%;
+  left:251px;
+
+  z-index:1000;
+
+  -webkit-filter: drop-shadow(0px 0px 5px #000);
+   filter: drop-shadow(0px 0px 5px #000);
+}
+
+#dialog_s{
+  width:80%;
+  height: 80%;
+  margin-left:13%;
+  overflow-y: scroll;
+  overflow: auto;
+  background-color:#fff;
+  padding:21px;
 }
 </style>

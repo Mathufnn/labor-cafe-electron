@@ -8,7 +8,6 @@
         v-model="drawer"
         app
         style="background-color:#66BB6A; overflow: hidden;  padding-bottom:0;"
-
       >
         <v-list id="batata">
           <v-list-tile
@@ -84,6 +83,11 @@
         else if(status.estado==5){ this.fazendeiro_image = "static/fazendeiro_chorando.png"; this.cor_sombra ='#CFCFCF';  }
         else if(status.estado==6){ this.fazendeiro_image = "static/fazendeiro_assustado.png"; this.cor_sombra ='#CFCFCF';  }
       })
+    },
+    watch: {
+      drawer: function (newV, oldV) {
+        this.$root.$emit('menu_fechado', {newV});
+      }
     }
   }
 </script>

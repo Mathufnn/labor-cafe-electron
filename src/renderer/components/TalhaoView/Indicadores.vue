@@ -36,7 +36,7 @@
                   <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
                 </v-flex>
                 <v-flex xs1>
-                  <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help " :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn>
+                  <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help, submsg=i.subhelp " :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn>
                 </v-flex>
               </v-layout>
             </v-card>
@@ -44,7 +44,7 @@
 
         </v-layout>
       </v-container>
-    </v-layout>
+    </v-layout><!--
     <v-dialog max-width="400" v-model="dialog">
       <v-card id="dialog_interp">
         <v-card-text>
@@ -52,7 +52,27 @@
         </v-card-text>
         <v-btn color="green darken-1" flat="flat" @click="dialog = false">FECHAR</v-btn>
       </v-card>
-    </v-dialog>
+    </v-dialog>-->
+    <div id="dialog_p" v-if="dialog" :style="'background: url('+dialog_partezinha+')  no-repeat left 9px bottom 10px; border-right: 4px solid transparent;'">
+      <div id="dialog_s">
+          <v-btn small icon color="green darken-1" style="float:right; margin:-15px;" flat="flat" @click="dialog = false, detalha = false">[X]</v-btn><br />
+            <b>{{msg}}</b>
+            <br />
+            <br />
+            <center>
+              <v-btn v-if="!detalha && submsg!=''" color="" @click="detalha = true">[+] INTERPRETAÇÃO DETALHADA</v-btn>
+              <v-btn v-if="detalha && submsg!=''" color="" @click="detalha = false">[-] INTERPRETAÇÃO DETALHADA</v-btn>
+            </center>
+            <br />
+            <v-card v-if="detalha">
+              <v-card-text>
+                <b>{{submsg}}</b>
+              </v-card-text>
+            </v-card>
+          <v-btn color="green darken-1" style="float:right"  flat="flat" @click="dialog = false, detalha = false">FECHAR</v-btn>
+
+      </div>
+    </div>
     <v-dialog max-width="400" v-model="export_dialog">
       <v-card>
         <v-card-text>
@@ -84,42 +104,45 @@ export default {
   data: () => {
     return {
       indicadores: {
-        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '' },
-        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '' },
-        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '' },
-        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: ''},
-        pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
-        producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, status:4, fazendeiro:3, unidade: 'Sacas', help: '' },
-        aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Ha', help: '' },
-        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Und/Ha', help: ''  },
-        coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '' },
-        coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: ''  },
-        cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '' },
-        cotu: { text: 'COT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
-        ctap: { text: 'CT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '' },
-        ctu: { text: 'CT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
-        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: ''  },
-        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: ''  },
-        mbu: { text: 'MARGEM BRUTA POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
-        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: ''  },
-        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: ''},
-        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: ''},
-        lucro: { text: 'LUCRO',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: ''},
-        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: ''},
-        lucrou: { text: 'LUCRO POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: ''  },
-        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%', help: ''  },
-        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%', help: ''  },
-        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$', help: '' },
-        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '' },
-        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: ''  },
-        taxagiro: { text: 'TAXA DE GIRO', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%a.a', help: '' },
-        lucrativ: { text: 'LUCRATIVIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%a.a', help: '' }
+        rendabruta: { text: 'RENDA BRUTA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '', subhelp: '' },
+        coe: { text: 'CUSTO OPERACIONAL EFETIVO (COE)',  decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '', subhelp: '' },
+        cot: { text: 'CUSTO OPERACIONAL TOTAL (COT)',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '', subhelp: '' },
+        ct: { text: 'CUSTO TOTAL (CT)', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '', subhelp: ''},
+        pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: '' },
+        producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, status:4, fazendeiro:3, unidade: 'Sacas', help: '', subhelp: '' },
+        aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Ha', help: '', subhelp: '' },
+        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Und/Ha', help: '', subhelp: ''  },
+        coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: '' },
+        coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: ''  },
+        cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: '' },
+        cotu: { text: 'COT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: '' },
+        ctap: { text: 'CT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: '' },
+        ctu: { text: 'CT POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: '' },
+        mb: { text: 'MARGEM BRUTA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '', subhelp: ''  },
+        mbap: { text: 'MARGEM BRUTA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: ''  },
+        mbu: { text: 'MARGEM BRUTA POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: '' },
+        ml: { text: 'MARGEM LÍQUIDA',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '', subhelp: ''  },
+        mlap: { text: 'MARGEM LÍQUIDA POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: ''},
+        mlu: { text: 'MARGEM LÍQUIDA POR UNIDADE',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: ''},
+        lucro: { text: 'LUCRO',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/safra', help: '', subhelp: ''},
+        lucroap: { text: 'LUCRO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: ''},
+        lucrou: { text: 'LUCRO POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: ''  },
+        trcst: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL SEM TERRA',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%', help: '', subhelp: ''  },
+        trcct: { text: 'TAXA DE REMUNERAÇÃO DO CAPITAL COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%', help: '', subhelp: ''  },
+        bencusto: { text: 'RELAÇÃO BENEFÍCIO/CUSTO',decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$', help: '', subhelp: '' },
+        capitalest: { text: 'CAPITAL EMPATADO SEM TERRA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: '' },
+        capitalct: { text: 'CAPITAL EMPATADO COM TERRA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: ''  },
+        taxagiro: { text: 'TAXA DE GIRO', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%a.a', help: '', subhelp: '' },
+        lucrativ: { text: 'LUCRATIVIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: '%a.a', help: '', subhelp: '' }
       },
       dialog: false,
       export_dialog: false,
       nome_fazenda: '',
       nome_talhao: '',
-      msg: ''
+      detalha: false,
+      msg: '',
+      submsg: '',
+      dialog_partezinha: 'static/fala.png'
     }
   },
   props: {
@@ -286,7 +309,7 @@ export default {
       else{                                      // verde
         this.indicadores.capitalest.help='Sua propriedade é eficiente na utilização dos recursos para produção de café, excluindo a terra.';
         this.indicadores.capitalest.subhelp='Mede a eficiência no uso de todo capital imobilizado, excluindo a terra nua, para produzir 1 saca de café. É a capacidade e eficiência que você possui em transformar patrimônio em produção de café. Quanto menor for o capital empatado a cada saca de café, maior é a sua eficiência no uso dos recursos da propriedade. Uma propriedade considerada eficiente é que possui R$ 350,00 ou menos de estoque de capital empatado por saca de café.';
-        this.indicadores.capitalest.status=3; 
+        this.indicadores.capitalest.status=3;
         this.indicadores.capitalest.fazendeiro=2;
       }
 
@@ -299,7 +322,7 @@ export default {
       else{                                      // verde
         this.indicadores.capitalct.help='Sua propriedade é eficiente na utilização dos recursos para produção de café, excluindo a terra.';
         this.indicadores.capitalct.subhelp='Mede a eficiência no uso de todo capital imobilizado, incluindo todo o valor da terra nua, para produzir 1 saca de café. É a capacidade e eficiência que você possui em transformar todo o patrimônio em produção de café. Quanto menor for o capital empatado a cada saca de café, maior é a sua eficiência no uso dos recursos da propriedade. Uma propriedade considerada eficiente é que possui R$ 800,00 ou menos de estoque de capital empatado por saca de café.';
-        this.indicadores.capitalct.status=3; 
+        this.indicadores.capitalct.status=3;
         this.indicadores.capitalct.fazendeiro=2;
       }
 
@@ -405,7 +428,7 @@ export default {
         this.indicadores.ctu.status=3;
         this.indicadores.ctu.fazendeiro=2;
       }
-      
+
       this.indicadores.coeap.help = 'COE/hectare permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por área demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada saca de café produzida. Deve-se buscar valores menores que R$ 10.000,00/hectare neste indicador.';
       this.indicadores.cotap.help = 'COT/hectare, permite ao produtor comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE + os custos com mão de obra familiar e depreciações gastos para produzir em 1 hectare de café.';
       this.indicadores.ctap.help = 'CT/hectare, permite ao produtor comparar o seu custo referente ao COT + o custo de oportunidade sobre o capital investido na atividade com outras propriedades. É o somatório que contempla todos os custos envolvidos na atividade cafeeira para produzir em 1 hectare de café.';
@@ -526,7 +549,7 @@ export default {
 
       this.indicadores.aplantada.help = 'Área destinada para a atividade cafeeira. No caso de duas atividades na mesma propriedade, deve-se realizar uma divisão das áreas para cada atividade.';
       this.indicadores.producao.help = 'Total de volume de sacas de café produzido na safra analisada';
-      
+
       if(this.indicadores.ppaplantada.value>=30){ // verde
         this.indicadores.ppaplantada.help = 'A produtividade média está acima do preconizado para alcançar sucesso econômico.';
         this.indicadores.ppaplantada.subhelp = 'Representa a produtividade das lavouras em produção. Preconiza-se que as lavouras alcancem produtividade superior a 30 sc/ha.';
@@ -538,8 +561,8 @@ export default {
         this.indicadores.ppaplantada.subhelp = 'Representa a produtividade das lavouras em produção. Preconiza-se que as lavouras alcancem produtividade superior a 30 sc/ha.';
         this.indicadores.ppaplantada.status=1;
         this.indicadores.ppaplantada.fazendeiro=5;
-      }      
-      
+      }
+
       this.indicadores.rendabruta.help = 'Soma da venda de café, venda do café escolha e de todas as outras rendas originadas da atividade cafeeira no período de uma safra ou mais.';
 
       if(this.indicadores.pcv.value>=490){ // vermelho
@@ -571,6 +594,13 @@ export default {
     },
   },
   mounted: function() {
+    this.$root.$on('menu_fechado', (menu) => {
+              console.log(menu);
+      if(!menu.newV) this.dialog_partezinha = '';
+      else this.dialog_partezinha = 'static/fala.png';
+    });
+
+
     let estoqueCapitalObj = JSON.parse(fs.readFileSync('estoquecapital.json', 'utf8'));
     let CidadeTipoEstoque = require('./../cidades_estoque.json');
 
@@ -698,8 +728,34 @@ export default {
   }
 
   #dialog_interp {
-    background-image: url(~@/assets/fundo_dialog.png);
-    background-position: center bottom;
-    padding-bottom:180px;
-  }
+  width:80%;
+  margin-left:20%;
+}
+
+.dialog_pai {
+  height:555px!important;
+}
+
+#dialog_p{
+  width: 770px;
+  height: 400px;
+  position: fixed;
+  bottom:21%;
+  left:251px;
+
+  z-index:1000;
+
+  -webkit-filter: drop-shadow(0px 0px 5px #000);
+   filter: drop-shadow(0px 0px 5px #000);
+}
+
+#dialog_s{
+  width:80%;
+  height: 80%;
+  margin-left:13%;
+  overflow-y: scroll;
+  overflow: auto;
+  background-color:#fff;
+  padding:21px;
+}
 </style>

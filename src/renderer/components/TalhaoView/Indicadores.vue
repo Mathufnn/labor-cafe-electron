@@ -10,13 +10,16 @@
             <v-btn icon slot="activator" @click="export_dialog = true" color="primary"> <v-icon>publish</v-icon></v-btn>
             <span>Exportar dados</span>
           </v-tooltip><br /><br />
-          <v-tooltip left style="text-align:center; font-size:10px; line-height:17px;">
+          <v-tooltip left style="text-align:center; font-size:15px; line-height:17px;">
             <div slot="activator">
-            <span style="font-size:10px;">LEGENDA:</span><br />
-            <span><v-icon style="color:#32CD32; ">info</v-icon></span> Indicador positivo<br />
-            <span><v-icon style="color:#FFFF00;">info</v-icon></span> Indicador de alerta<br />
-            <span ><v-icon style="color:#FF0000;">info</v-icon></span> Indicador negativo<br />
-            <span><v-icon style="color:black;">info</v-icon></span> Indicador descritivo<br />
+            <center><span style="font-size:15px;"><b>LEGENDA</b></span><br />
+            <table>
+            <tr><td><span><v-icon style="color:#32CD32; ">info</v-icon></span></td> <td>Indicador positivo</td></tr>
+            <tr><td><span><v-icon style="color:#FFFF00;">info</v-icon></span></td> <td>Indicador de alerta</td></tr>
+            <tr><td><span ><v-icon style="color:#FF0000;">info</v-icon></span></td> <td>Indicador negativo</td></tr>
+            <tr><td><span><v-icon style="color:black;">info</v-icon></span></td> <td>Indicador descritivo</td></tr>
+            </table>
+            </center>
             </div>
             <span>Clicando sobre o ícone 'i' em um indicador específico você obtém a interpretação detalhada desse indicador.</span>
           </v-tooltip>
@@ -36,7 +39,7 @@
                   <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
                 </v-flex>
                 <v-flex xs1>
-                  <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help, submsg=i.subhelp " :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn>
+                  <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help, submsg=i.subhelp, overtoggle(1)" :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn>
                 </v-flex>
               </v-layout>
             </v-card>
@@ -55,7 +58,7 @@
     </v-dialog>-->
     <div id="dialog_p" v-if="dialog" :style="'background: url('+dialog_partezinha+')  no-repeat left 9px bottom 10px; border-right: 4px solid transparent;'">
       <div id="dialog_s">
-          <v-btn small icon color="green darken-1" style="float:right; margin:-15px;" flat="flat" @click="dialog = false, detalha = false"><v-icon>close</v-icon></v-btn><br />
+          <v-btn small icon color="green darken-1" style="float:right; margin:-15px;" flat="flat" @click="dialog = false, detalha = false, overtoggle(0)"><v-icon>close</v-icon></v-btn><br />
             <b>{{msg}}</b>
             <br />
             <br />
@@ -69,7 +72,7 @@
                 <b>{{submsg}}</b>
               </v-card-text>
             </v-card>
-          <v-btn color="green darken-1" style="float:right"  flat="flat" @click="dialog = false, detalha = false">FECHAR</v-btn>
+          <v-btn color="green darken-1" style="float:right"  flat="flat" @click="dialog = false, detalha = false, overtoggle(0)">FECHAR</v-btn>
 
       </div>
     </div>
@@ -152,10 +155,14 @@ export default {
   },
   methods: {
     formatN(vr,minimium=2){
+      if(vr=='-') return '-';
       return parseFloat(vr.toFixed(2)).toLocaleString('pt-BR', {maximumFractionDigits: 2, minimumFractionDigits: minimium});
     },
     fazendeiro_muda(estado, iit){
       this.$root.$emit('fazendeiro_muda_estado', {estado, iit});
+    },
+    overtoggle(estado){
+      this.$root.$emit('overlay_toggle', {estado});
     },
     exportdata(type){
         //=============================================================  csv
@@ -369,6 +376,7 @@ export default {
         this.indicadores.trcct.subhelp = 'O seu resultado se equivale a quanto de todo o capital imobilizado na atividade está gerando de margem líquida e retornando para o bolso do produtor. Este resultado está ligado com a eficiência no uso do capital e a atratividade econômica do empreendimento. Para a atividade cafeeira consideramos como satisfatório um resultado de no mímimo 10% ao ano.';
         this.indicadores.trcct.status=1;
         this.indicadores.trcct.fazendeiro=1;
+        this.indicadores.trcct.value='-';
       }
 
       if(this.indicadores.trcst.value>=15){ // verde
@@ -388,6 +396,7 @@ export default {
         this.indicadores.trcst.subhelp = 'O seu resultado se equivale a quanto de todo o capital imobilizado na atividade está gerando de margem líquida e retornando para o bolso do produtor. Este resultado está ligado com a eficiência no uso do capital e a atratividade econômica do empreendimento. Para a atividade cafeeira consideramos como satisfatório um resultado de no mímimo 15% ao ano.';
         this.indicadores.trcst.status=1;
         this.indicadores.trcst.fazendeiro=1;
+        this.indicadores.trcst.value='-';
       }
 
       if(this.indicadores.coeu.value>=300){ // vermelho

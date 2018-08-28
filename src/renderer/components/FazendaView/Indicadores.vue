@@ -38,7 +38,7 @@
                   <span class="indicator">{{formatN(i.value, i.decimals)}}</span> <span class="unidade"><b>{{i.unidade}}</b></span>
                 </v-flex>
                 <v-flex xs1>
-                  <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help, submsg=i.subhelp, overtoggle(1) " :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn>
+                  <v-btn v-if="i.help!=''" flat icon v-on:click="dialog = true, msg=i.help, msg_t=i.text, submsg=i.subhelp, overtoggle(1) " :class="'status'+i.status" style="text-align:right; float:right; margin:0;"><v-icon>info</v-icon></v-btn>
                 </v-flex>
               </v-layout>
             </v-card>
@@ -60,7 +60,10 @@
     <div id="dialog_p" v-if="dialog" :style="'background: url('+dialog_partezinha+')  no-repeat left 9px bottom 10px; border-right: 4px solid transparent;'">
       <div id="dialog_s">
           <v-btn small icon color="green darken-1" style="float:right; margin:-15px;" flat="flat" @click="dialog = false, detalha = false, overtoggle(0)"><v-icon>close</v-icon></v-btn><br />
-            <b>{{msg}}</b>
+            <center><b>{{msg_t}}</b></center>
+            <br />
+            <br />
+            {{msg}}
             <br />
             <br />
             <center>
@@ -70,14 +73,14 @@
             <br />
             <v-card v-if="detalha">
               <v-card-text>
-                <b>{{submsg}}</b>
+                {{submsg}}
               </v-card-text>
             </v-card>
-          <v-btn color="green darken-1" style="float:right"  flat="flat" @click="dialog = false, detalha = false, overtoggle(0)">FECHAR</v-btn>
+          <v-btn color="white" style="float:right"  @click="dialog = false, detalha = false, overtoggle(0)">FECHAR</v-btn>
 
       </div>
     </div>
-    <v-dialog max-width="400" v-model="export_dialog">
+    <v-dialog max-width="400" v-model="export_dialog" hide-overlay="true">
       <v-card>
         <v-card-text>
           <b>Selecione o formato para qual deseja exportar esses dados:</b><br /><br />
@@ -145,6 +148,7 @@ export default {
       exporting: false,
       detalha:false,
       msg: '',
+      msg_t: '',
       submsg: '',
       dialog_partezinha: 'static/fala.png',
       nome_fazenda: ''
@@ -854,5 +858,7 @@ export default {
   overflow: auto;
   background-color:#fff;
   padding:21px;
+  background-image: url(~@/assets/fundo_dialog2.png);
+  background-position: center bottom;
 }
 </style>

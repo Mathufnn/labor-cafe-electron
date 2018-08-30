@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div class="custom_overlay" id="co1"></div>
     <v-app>
       <v-navigation-drawer
         fixed
@@ -7,9 +8,9 @@
         :clipped="clipped"
         v-model="drawer"
         app
-        style="background-color:#66BB6A; overflow: hidden;  padding-bottom:0;"
-
+        style="background-color:#66BB6A; overflow: hidden;  padding-bottom:0; z-index:1000;"
       >
+      <div class="custom_overlay" id="co2"></div>
         <v-list id="batata">
           <v-list-tile
             router
@@ -17,6 +18,7 @@
             :key="i"
             v-for="(item, i) in items"
             exact
+            style="z-index:40!important;"
           >
             <v-list-tile-action>
               <v-icon v-html="item.icon"></v-icon>
@@ -83,7 +85,21 @@
         else if(status.estado==4){ this.fazendeiro_image = "static/fazendeiro_rico.png"; this.cor_sombra ='#CFCFCF';  }
         else if(status.estado==5){ this.fazendeiro_image = "static/fazendeiro_chorando.png"; this.cor_sombra ='#CFCFCF';  }
         else if(status.estado==6){ this.fazendeiro_image = "static/fazendeiro_assustado.png"; this.cor_sombra ='#CFCFCF';  }
-      })
+      });
+
+      this.$root.$on('overlay_toggle', (status) => {
+        if(status.estado==1) document.getElementById("co1").style.display = "block";
+        if(status.estado==1) document.getElementById("co2").style.display = "block";
+        if(status.estado==0) document.getElementById("co1").style.display = "none";
+        if(status.estado==0) document.getElementById("co2").style.display = "none";
+      });
+
+
+    },
+    watch: {
+      drawer: function (newV, oldV) {
+        this.$root.$emit('menu_fechado', {newV});
+      }
     }
   }
 </script>
@@ -102,13 +118,27 @@
   #deseinhos {
     height:32%;
     background-image: url(~@/assets/fundoreal.png);
-    background-position: center bottom
+    background-position: center bottom;
+    z-index: 9088!important;
   }
 
   .fazendeiro {
     position: fixed;
     bottom:6%;
     right:52px;
-    z-index: 202!important;
+    z-index: 9088!important;
+  }
+
+  .custom_overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 99; /* Specify a stack order in case you're using a different order for other elements */
   }
 </style>

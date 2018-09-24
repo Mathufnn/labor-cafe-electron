@@ -591,7 +591,7 @@ export default {
         this.indicadores.pcv.fazendeiro=2;
       }
 
-      if(this.indicadores.bencusto.value>=1){ // vermelho
+      if(this.indicadores.bencusto.value<1){ // vermelho
         this.indicadores.bencusto.help='Atenção! A atividade está incorrendo em prejuízos!';
         this.indicadores.bencusto.subhelp='Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade. ';
         this.indicadores.bencusto.status=1;

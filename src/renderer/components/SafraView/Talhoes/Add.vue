@@ -10,13 +10,13 @@
             <v-container grid-list-md>
               <v-layout row wrap>
                 <v-flex xs12 sm12>
-                  <v-text-field box label="Identificação do talhão" v-model="ident_talhao"></v-text-field>
+                  <v-text-field box label="Identificação do talhão" v-model="ident_talhao" hint = "Identificação referente ao talhão que será cadastrado."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0' label="Área de produção + reserva legal e APP" suffix="ha" v-model="area_prod"></v-text-field>
+                  <v-text-field box type="text" min='0' label="Área de produção + reserva legal e APP" suffix="ha" v-model="area_prod" hint  = "Área destinada a cafeicultura somada a área de reserva legal da propriedade."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Produção Total" suffix="Sc" v-model="prod"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Produção Total" suffix="Sc" v-model="prod" hint = "Total de sacas produzidas no talhão."></v-text-field>
                 </v-flex>
                 <!--
                 <v-flex xs12 sm4>
@@ -33,121 +33,121 @@
             <v-container grid-list-md>
               <v-layout row wrap>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Venda de subproduto" prefix="R$" suffix="/safra" v-model="venda_subp"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Venda de subproduto" prefix="R$" suffix="/safra" v-model="venda_subp" hint = "Renda obtida com a venda de subprodutos."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Mão de obra familiar" prefix="R$" suffix="/safra" v-model="mao_familiar"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Mão de obra familiar" prefix="R$" suffix="/safra" v-model="mao_familiar" hint = "Salário que os membros da família envolvidos na atividade cafeeira receberiam se estivessem exercendo a mesma função em outra propriedade como funcionário contratado."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Arrendamento da terra" prefix="R$" suffix="/safra" v-model="arrend_terra"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Arrendamento da terra" prefix="R$" suffix="/safra" v-model="arrend_terra" hint = "Gasto referente ao arredamento de áreas destinadas à cafeicultura."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Aluguel de máquinas" prefix="R$" suffix="/safra" v-model="aluguel_maq"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Aluguel de máquinas" prefix="R$" suffix="/safra" v-model="aluguel_maq" hint = "Total de despesas com serviços terceirizados de máquinas."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'   label="Combustível" prefix="R$" suffix="/safra" v-model="combustivel" ></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Combustível" prefix="R$" suffix="/safra" v-model="combustivel" hint = "Total de despesas com combustíveis na safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Manutenção de benfeitorias" prefix="R$" suffix="/safra" v-model="manu_benf"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Manutenção de benfeitorias" prefix="R$" suffix="/safra" v-model="manu_benf" hint = "Total de despesas com reformas de benfeitorias destinadas à cafeicultura."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Manutenção de máquinas" prefix="R$" suffix="/safra" v-model="manu_maq"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Manutenção de máquinas" prefix="R$" suffix="/safra" v-model="manu_maq" hint = "Total de despesas com manutenção de máquinas  utilizadas na atividade cafeeira."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Energia elétrica" prefix="R$" suffix="/safra" v-model="energia"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Energia elétrica" prefix="R$" suffix="/safra" v-model="energia" hint = "Despesa total com energia elétrica destinada a atividade cafeeira no mês."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Frete/Deslocamento" prefix="R$" suffix="/safra" v-model="frete"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Frete/Deslocamento" prefix="R$" suffix="/safra" v-model="frete" hint = "Total de despesas com fretes e deslocamentos de produtos e insumos "></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Impostos e taxas" prefix="R$" suffix="/safra" v-model="impostos"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Impostos e taxas" prefix="R$" suffix="/safra" v-model="impostos" hint = "Total de despesas com impostos e taxas na atividade cafeeira no mês (ex: FUNRURAL, IPVA, ITR)."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Mão de obra contratada" prefix="R$" suffix="/safra" v-model="mao_contratada"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Mão de obra contratada" prefix="R$" suffix="/safra" v-model="mao_contratada" hint = "Valor total gasto no mês com mão de obra esporádica para a atividade cafeeira, destinada a atividades específicas na propriedade."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Mão de obra fixa" prefix="R$" suffix="/safra" v-model="mao_fixa"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Mão de obra fixa" prefix="R$" suffix="/safra" v-model="mao_fixa" hint = "Valor total gasto no mês com mão de obra permanente para a atividade cafeeira, considerando os encargos trabalhistas."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Despesas gerais de escritório" prefix="R$" suffix="/safra" v-model="despesas_gerais"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Despesas gerais de escritório" prefix="R$" suffix="/safra" v-model="despesas_gerais" hint = "Total de despesas com materiais de escritório destinados à atividade cafeeira."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Assistência técnica e gerencial" prefix="R$" suffix="/safra" v-model="ass_tec"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Assistência técnica e gerencial" prefix="R$" suffix="/safra" v-model="ass_tec" hint = "Total de despesas com assistência técnica e gerencial destinada à atividade cafeeira."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Certificação" prefix="R$" suffix="/safra" v-model="certificacao"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Certificação" prefix="R$" suffix="/safra" v-model="certificacao" hint = "Total de despesas com taxas de auditória, cobrança de uso do selo, cobrança análises laboratoriais e outras despesas destinadas à emissão da certificação da atividade cafeeira."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Análise de solo" prefix="R$" suffix="/safra" v-model="analise_solo"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Análise de solo" prefix="R$" suffix="/safra" v-model="analise_solo" hint = "Total de despesas com análise de solo para o talhão na safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Análise foliar" prefix="R$" suffix="/safra" v-model="analise_foliar"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Análise foliar" prefix="R$" suffix="/safra" v-model="analise_foliar" hint = "Total de despesas destinadas à realização de análises foliares para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="EPI" prefix="R$" suffix="/safra" v-model="epi"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="EPI" prefix="R$" suffix="/safra" v-model="epi" hint = "Total de despesas com equipamentos de proteção individual utilizados para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Fertilizantes de solo" prefix="R$" suffix="/safra" v-model="fertilizantes"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Fertilizantes de solo" prefix="R$" suffix="/safra" v-model="fertilizantes" hint = "Total de despesas com adubos e corretivos do solo para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Ácidos/aminoácidos" prefix="R$" suffix="/safra"  v-model="acidos"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Ácidos/aminoácidos" prefix="R$" suffix="/safra"  v-model="acidos" hint = "Total de despesas com ácidos e aminoácidos destinados para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Adubos foliares" prefix="R$" suffix="/safra" v-model="adubos"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Adubos foliares" prefix="R$" suffix="/safra" v-model="adubos" hint = "Total de despesas com adubos foliares destinados para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Acaricida" prefix="R$" suffix="/safra" v-model="acaricida"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Acaricida" prefix="R$" suffix="/safra" v-model="acaricida" hint = "Total de despesas com acaricidas destinados para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Bactericida"  prefix="R$" suffix="/safra" v-model="bactericida"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Bactericida"  prefix="R$" suffix="/safra" v-model="bactericida" hint = "Total de despesas com bactericidas destinados para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Espalhante adesivo" prefix="R$" suffix="/safra" v-model="espalhante"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Espalhante adesivo" prefix="R$" suffix="/safra" v-model="espalhante" hint = "Total de despesas com espalhantes adesivos destinados para o talhão durante a safra. "></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Inseticida" prefix="R$" suffix="/safra" v-model="inseticida"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Inseticida" prefix="R$" suffix="/safra" v-model="inseticida" hint = "Total de despesas com inseticidas destinados para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Fungicida" prefix="R$" suffix="/safra" v-model="fungicida"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Fungicida" prefix="R$" suffix="/safra" v-model="fungicida" hint = "Total de despesas com fungicidas destinados para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Nematicida" prefix="R$" suffix="/safra" v-model="nematicida"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Nematicida" prefix="R$" suffix="/safra" v-model="nematicida" hint = "Total de despesas com nematicidas destinados para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Óleo mineral" prefix="R$" suffix="/safra" v-model="oleo_mineral"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Óleo mineral" prefix="R$" suffix="/safra" v-model="oleo_mineral" hint = "Total de despesas com óleos minerais utilizados no talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Herbicida" prefix="R$" suffix="/safra" v-model="herbicida"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Herbicida" prefix="R$" suffix="/safra" v-model="herbicida" hint = "Total de despesas com herbicidas utilizados no talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Hormônios" prefix="R$" suffix="/safra" v-model="hormonios"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Hormônios" prefix="R$" suffix="/safra" v-model="hormonios" hint = "Total de despesas com hormônios utilizados no talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Maturadores" prefix="R$" suffix="/safra" v-model="maturadores"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Maturadores" prefix="R$" suffix="/safra" v-model="maturadores" hint = "Total de despesas com maturadores utilizados no talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Material de colheita" prefix="R$" suffix="/safra" v-model="material_colheita" ></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Material de colheita" prefix="R$" suffix="/safra" v-model="material_colheita" hint = "Total de despesas com materiais destinados a colheita de café do talhão durante a safra. Como por exemplo: Escada, balaio, pano e/ou plástico."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Armazenamento" prefix="R$" suffix="/safra" v-model="armazenamento"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Armazenamento" prefix="R$" suffix="/safra" v-model="armazenamento" hint = "Total de despesas com armazenamento das sacas de café em galpões de terceiros."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Benefício" prefix="R$" suffix="/safra" v-model="beneficio"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Benefício" prefix="R$" suffix="/safra" v-model="beneficio" hint = "Total de despesas com beneficiamento do café na propriedade e/ou por terceiros (eliminação de cascas, pedras dos grãos)."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Gás/lenha/carvão" prefix="R$" suffix="/safra" v-model="gas_lenha"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Gás/lenha/carvão" prefix="R$" suffix="/safra" v-model="gas_lenha" hint = "Total de despesas com gás, lenha e carvão durante o processo de pós colheita."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Materiais pós-colheita" prefix="R$" suffix="/safra" v-model="poscolheita"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Materiais pós-colheita" prefix="R$" suffix="/safra" v-model="poscolheita" hint = "Total de despesas com o rebenefício do café feito por terceiros como separação simples por peneiras, separação com catação de pedras e separação completa com catação de pedras, peneiras e ventilação."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Rebenefício" prefix="R$" suffix="/safra" v-model="rebeneficio"></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Rebenefício" prefix="R$" suffix="/safra" v-model="rebeneficio" hint = ""></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Saco/Embalagens" prefix="R$" suffix="/safra" v-model="embalagens"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Saco/Embalagens" prefix="R$" suffix="/safra" v-model="embalagens" hint = ""></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Corretagem" prefix="R$" suffix="/safra" v-model="corretagem"></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Corretagem" prefix="R$" suffix="/safra" v-model="corretagem" hint = ""></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>

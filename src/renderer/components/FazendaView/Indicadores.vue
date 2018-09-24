@@ -594,28 +594,28 @@ export default {
 
       this.indicadores.rendabruta.help = 'Soma da venda de café, venda do café escolha e de todas as outras rendas originadas da atividade cafeeira no período de uma safra ou mais.';
 
-      if(this.indicadores.pcv.value>=490){ // vermelho
+      if(this.indicadores.pcv.value<490){ // vermelho
         this.indicadores.pcv.help = 'A comercialização do seu café está ineficiente!';
-        this.indicadores.pcv.subhelp = 'Média do preço da saca de café comercializado. Devemos sempre buscar alcançar os maiores preços. Como refrência, devemos sempre buscar preços médios de venda acima de R$ 490,00, que é a média histórica de preços dos últimos 14 anos de acordo com os levantamentos do CEPEA.';
+        this.indicadores.pcv.subhelp = 'Média do preço da saca de café comercializado. Devemos sempre buscar alcançar os maiores preços. Como referência, devemos buscar preços médios de venda acima de R$ 490,00, que é a média histórica de preços dos últimos 14 anos de acordo com os levantamentos do CEPEA.';
         this.indicadores.pcv.status=1;
         this.indicadores.pcv.fazendeiro=1;
       }
       else{                                // verde
         this.indicadores.pcv.help = 'Parabéns! Há eficiência na venda do seu café!';
-        this.indicadores.pcv.subhelp = 'Média do preço da saca de café comercializado. Devemos sempre buscar alcançar os maiores preços. Como refrência, devemos sempre buscar preços médios de venda acima de R$ 490,00, que é a média histórica de preços dos últimos 14 anos de acordo com os levantamentos do CEPEA.';
+        this.indicadores.pcv.subhelp = 'Média do preço da saca de café comercializado. Devemos sempre buscar alcançar os maiores preços. Como referência, devemos buscar preços médios de venda acima de R$ 490,00, que é a média histórica de preços dos últimos 14 anos de acordo com os levantamentos do CEPEA.';
         this.indicadores.pcv.status=3;
         this.indicadores.pcv.fazendeiro=2;
       }
 
       if(this.indicadores.bencusto.value<1){ // vermelho
         this.indicadores.bencusto.help='Atenção! A atividade está incorrendo em prejuízos!';
-        this.indicadores.bencusto.subhelp='Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade. ';
+        this.indicadores.bencusto.subhelp='Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade.';
         this.indicadores.bencusto.status=1;
         this.indicadores.bencusto.fazendeiro=5;
       }
       else{                                   // verde
         this.indicadores.bencusto.help='A atividade possui custo/benefício positivo!';
-        this.indicadores.bencusto.subhelp='Quando a relação benefício/custo é maior que 1, significa que o custo é menor que a renda obtida na atividade. Este resultado mostra o quanto você estáganhando a cada R$1,00 investido na atividade. Quanto maior a relação benefício custo, melhor, uma vez que ao conseguir cobrir todos os custos com a renda, você se mantêm na atividade de forma viável e atrativa economicamente.';
+        this.indicadores.bencusto.subhelp='Quando a relação benefício/custo é maior que 1, significa que o custo é menor que a renda obtida na atividade. Este resultado mostra o quanto você está ganhando a cada R$1,00 investido na atividade. Quanto maior a relação benefício custo, melhor, uma vez que ao conseguir cobrir todos os custos com a renda, você se mantêm na atividade de forma viável e atrativa economicamente.';
         this.indicadores.bencusto.status=3;
         this.indicadores.bencusto.fazendeiro=2;
       }

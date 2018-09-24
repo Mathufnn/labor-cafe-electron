@@ -48,7 +48,7 @@
       </v-content>
       <v-footer :fixed="fixed" app color="green darken-1" class="white--text">
         <v-spacer></v-spacer>
-        <span>&copy; 2018 &nbsp;</span>
+        <span>SEBRAE &copy; {{(new Date()).getFullYear()}} &nbsp;</span>
       </v-footer>
     </v-app>
   </div>

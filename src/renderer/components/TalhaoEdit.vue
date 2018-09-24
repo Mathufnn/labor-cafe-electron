@@ -196,11 +196,6 @@
           </v-card-actions>
         </v-card>
       </v-flex>
-
-      <v-flex xs11 >
-        <safras></safras>
-      </v-flex>
-
     </v-layout>
   </v-container>
 </template>

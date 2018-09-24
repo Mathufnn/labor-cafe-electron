@@ -79,6 +79,11 @@ const backend = {
           });
       },
 
+      updateFazenda(fazendaid, fObj, callback){
+        models.Fazenda.update(fObj, { where: {id: fazendaid} })
+        .then(() => callback());
+      },
+
 
         // /==================================================/
 
@@ -120,6 +125,11 @@ const backend = {
             models.Safra.destroy({ where: {id: sid} })
             .then(() => callback());
           });
+        },
+
+        updateSafra(safraid, sObj, callback){
+          models.Safra.update(sObj, { where: {id: safraid} })
+          .then(() => callback());
         },
 
         // /==================================================/

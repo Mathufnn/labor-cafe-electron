@@ -25,6 +25,9 @@
                 <v-icon>more_vert</v-icon>
               </v-btn>
               <v-list>
+                <v-list-tile router :to=' "/SafraEdit/" + props.item.id '>
+                  <v-list-tile-title>Editar</v-list-tile-title>
+                </v-list-tile>
                 <v-list-tile @click="removeS(props.item.id)">
                   <v-list-tile-title>Remover</v-list-tile-title>
                 </v-list-tile>
@@ -35,6 +38,16 @@
       </template>
       <template slot="pageText" slot-scope="item">
         Mostrando {{item.pageStart}} - {{item.pageStop}}, de um total de {{item.itemsLength}}
+      </template>
+      <template slot="no-data">
+        <v-layout class="text-xs-center pa-3">
+          <v-flex xs12>
+            <p>
+            <b>Não há safras cadastradas ainda!</b><br />
+            Clique no botão <span color="secondary"><v-icon center>add</v-icon></span> para adicionar a primeira safra!
+          </p>
+          </v-flex>
+        </v-layout>
       </template>
     </v-data-table>
   </v-flex>

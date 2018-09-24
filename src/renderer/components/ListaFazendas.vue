@@ -23,6 +23,9 @@
                 <v-icon>more_vert</v-icon>
               </v-btn>
               <v-list>
+                <v-list-tile router :to=' "/FazendaEdit/" + props.item.id '>
+                  <v-list-tile-title>Editar</v-list-tile-title>
+                </v-list-tile>
                 <v-list-tile @click="removeF(props.item.id)">
                   <v-list-tile-title>Remover</v-list-tile-title>
                 </v-list-tile>
@@ -33,6 +36,16 @@
       </template>
       <template slot="pageText" slot-scope="item">
         Mostrando {{item.pageStart}} - {{item.pageStop}}, de um total de {{item.itemsLength}}
+      </template>
+      <template slot="no-data">
+        <v-layout class="text-xs-center pa-3">
+          <v-flex xs12>
+            <p>
+              <b>Não há fazendas cadastradas ainda!</b><br />
+              Clique no botão <i>Cadastro de Fazendas</i> no menu lateral à esquerda para adicionar a primeira fazenda!
+            </p>
+          </v-flex>
+        </v-layout>
       </template>
     </v-data-table>
   </v-flex>

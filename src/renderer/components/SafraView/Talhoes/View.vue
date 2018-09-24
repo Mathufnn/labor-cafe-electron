@@ -35,6 +35,16 @@
       <template slot="pageText" slot-scope="item">
         Mostrando {{item.pageStart}} - {{item.pageStop}}, de um total de {{item.itemsLength}}
       </template>
+      <template slot="no-data">
+        <v-layout class="text-xs-center pa-3">
+          <v-flex xs12>
+            <p>
+            <b>Não há talhões cadastrados ainda!</b><br />
+            Clique no botão <span color="secondary"><v-icon center>add</v-icon></span> para adicionar o primeiro talhão!
+          </p>
+          </v-flex>
+        </v-layout>
+      </template>
     </v-data-table>
   </v-flex>
 </v-layout>

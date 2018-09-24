@@ -48,7 +48,7 @@
       </v-content>
       <v-footer :fixed="fixed" app color="green darken-1" class="white--text">
         <v-spacer></v-spacer>
-        <span>SEBRAE &copy; {{(new Date()).getFullYear()}} &nbsp;</span>
+        <span><a href="#" style="color:#fff;" @click="showhelp()"><v-icon center small dark>help</v-icon> <span style="color:#fff;">AJUDA</span></a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <b>SEBRAE</b> &copy; {{(new Date()).getFullYear()}} &nbsp;</span>
       </v-footer>
     </v-app>
   </div>
@@ -56,6 +56,7 @@
 
 <script>
   console.log(__static);
+  import { ipcRenderer } from 'electron'
   export default {
     name: 'Café',
     data: () => ({
@@ -99,6 +100,11 @@
     watch: {
       drawer: function (newV, oldV) {
         this.$root.$emit('menu_fechado', {newV});
+      }
+    },
+    methods: {
+      showhelp() {
+        ipcRenderer.send('show-help');
       }
     }
   }

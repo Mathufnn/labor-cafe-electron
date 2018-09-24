@@ -51,6 +51,12 @@ export default new Router({
       props: true
     },
     {
+      path: '/FazendaEdit/:id',
+      name: 'FazendaEdit',
+      component: require('@/components/FazendaEdit').default,
+      props: true
+    },
+    {
       path: '/Estoque',
       name: 'Estoque',
       component: require('@/components/EstoqueImport').default,

@@ -79,6 +79,11 @@ const backend = {
           });
       },
 
+      updateFazenda(fazendaid, fObj, callback){
+        models.Fazenda.update(fObj, { where: {id: fazendaid} })
+        .then(() => callback());
+      },
+
 
         // /==================================================/
 

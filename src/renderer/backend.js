@@ -122,6 +122,11 @@ const backend = {
           });
         },
 
+        updateSafra(safraid, sObj, callback){
+          models.Safra.update(sObj, { where: {id: safraid} })
+          .then(() => callback());
+        },
+
         // /==================================================/
 
         addTalhao(talhaoObj, callback=null){

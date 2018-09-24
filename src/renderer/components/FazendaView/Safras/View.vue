@@ -25,9 +25,12 @@
                 <v-icon>more_vert</v-icon>
               </v-btn>
               <v-list>
+                <v-list-tile router :to=' "/SafraEdit/" + props.item.id '>
+                  <v-list-tile-title>Editar</v-list-tile-title>
+                </v-list-tile>
                 <v-list-tile @click="removeS(props.item.id)">
                   <v-list-tile-title>Remover</v-list-tile-title>
-                </v-list-tile>
+                </v-list-tile>  
               </v-list>
             </v-menu>
           </td>

@@ -37,6 +37,16 @@
       <template slot="pageText" slot-scope="item">
         Mostrando {{item.pageStart}} - {{item.pageStop}}, de um total de {{item.itemsLength}}
       </template>
+      <template slot="no-data">
+        <v-layout class="text-xs-center pa-3">
+          <v-flex xs12>
+            <p>
+              <b>Não há fazendas cadastradas ainda!</b><br />
+              Clique no botão <i>Cadastro de Fazendas</i> no menu lateral à esquerda para adicionar a primeira fazenda!
+            </p>
+          </v-flex>
+        </v-layout>
+      </template>
     </v-data-table>
   </v-flex>
 </v-layout>

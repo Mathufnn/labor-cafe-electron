@@ -12,19 +12,19 @@
           <v-container grid-list-md>
             <v-layout row wrap>
               <v-flex xs12 sm12>
-                <v-text-field box label="Identificação da safra" v-model="identificacao_safra"></v-text-field>
+                <v-text-field box label="Identificação da safra" hint = "Identificação referente a safra que será cadastrada." v-model="identificacao_safra"></v-text-field>
               </v-flex> <!--
               <v-flex xs12 sm6>
                 <v-text-field box label="Área em produção" suffix="ha" v-model="area_producao"></v-text-field>
               </v-flex> -->
               <v-flex xs12 sm6>
-                <v-text-field box type="text" label="Preço médio da terra nua" prefix="R$" suffix="/ha" v-model="preco_medio"></v-text-field>
+                <v-text-field box type="text" label="Preço médio da terra nua" hint = "Valor da terra nua por hectare." prefix="R$" suffix="/ha" v-model="preco_medio"></v-text-field>
               </v-flex> <!--
               <v-flex xs12 sm6>
                 <v-text-field box label="Produção total da safra" suffix="Sc" v-model="producao_total"></v-text-field>
               </v-flex>-->
               <v-flex xs12 sm6 >
-                <v-text-field box type="text" label="Preço de venda" prefix="R$" suffix="/Sc" v-model="preco_venda"></v-text-field>
+                <v-text-field box type="text" label="Preço de venda" hint = "Preço da saca de café comercializado." prefix="R$" suffix="/Sc" v-model="preco_venda"></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>

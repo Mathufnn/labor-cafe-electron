@@ -33,40 +33,40 @@
             <v-container grid-list-md>
               <v-layout row wrap>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Venda de subproduto" prefix="R$" suffix="/safra" v-model="venda_subp" hint = "Renda obtida com a venda de subprodutos."></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Venda de subproduto" prefix="R$" suffix="/safra" v-model="venda_subp" hint = "Renda obtida com a venda de subprodutos do talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-text-field box type="text"  min='0' label="Mão de obra familiar" prefix="R$" suffix="/safra" v-model="mao_familiar" hint = "Salário que os membros da família envolvidos na atividade cafeeira receberiam se estivessem exercendo a mesma função em outra propriedade como funcionário contratado."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Arrendamento da terra" prefix="R$" suffix="/safra" v-model="arrend_terra" hint = "Gasto referente ao arredamento de áreas destinadas à cafeicultura."></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Arrendamento da terra" prefix="R$" suffix="/safra" v-model="arrend_terra" hint = "Gasto referente ao arredamento de áreas destinadas ao talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-text-field box type="text"  min='0' label="Aluguel de máquinas" prefix="R$" suffix="/safra" v-model="aluguel_maq" hint = "Total de despesas com serviços terceirizados de máquinas."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Combustível" prefix="R$" suffix="/safra" v-model="combustivel" hint = "Total de despesas com combustíveis na safra."></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Combustível" prefix="R$" suffix="/safra" v-model="combustivel" hint = "Total de despesas com combustíveis no talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Manutenção de benfeitorias" prefix="R$" suffix="/safra" v-model="manu_benf" hint = "Total de despesas com reformas de benfeitorias destinadas à cafeicultura."></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Manutenção de benfeitorias" prefix="R$" suffix="/safra" v-model="manu_benf" hint = "Despesas com reformas de benfeitorias destinadas à cafeicultura para o talhão."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Manutenção de máquinas" prefix="R$" suffix="/safra" v-model="manu_maq" hint = "Total de despesas com manutenção de máquinas  utilizadas na atividade cafeeira."></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Manutenção de máquinas" prefix="R$" suffix="/safra" v-model="manu_maq" hint = "Despesas com manutenção de máquinas utilizadas para o talhão."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Energia elétrica" prefix="R$" suffix="/safra" v-model="energia" hint = "Despesa total com energia elétrica destinada a atividade cafeeira no mês."></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Energia elétrica" prefix="R$" suffix="/safra" v-model="energia" hint = "Despesa total com energia elétrica destinada a atividade cafeeira para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Frete/Deslocamento" prefix="R$" suffix="/safra" v-model="frete" hint = "Total de despesas com fretes e deslocamentos de produtos e insumos "></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Frete/Deslocamento" prefix="R$" suffix="/safra" v-model="frete" hint = "Total de despesas com fretes e deslocamentos de produtos e insumos."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Impostos e taxas" prefix="R$" suffix="/safra" v-model="impostos" hint = "Total de despesas com impostos e taxas na atividade cafeeira no mês (ex: FUNRURAL, IPVA, ITR)."></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Impostos e taxas" prefix="R$" suffix="/safra" v-model="impostos" hint = "Total de despesas com impostos e taxas (ex: FUNRURAL, IPVA, ITR) na atividade cafeeira para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Mão de obra contratada" prefix="R$" suffix="/safra" v-model="mao_contratada" hint = "Valor total gasto no mês com mão de obra esporádica para a atividade cafeeira, destinada a atividades específicas na propriedade."></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Mão de obra contratada" prefix="R$" suffix="/safra" v-model="mao_contratada" hint = "Valor total gasto com mão de obra esporádica na atividade cafeeira para o talhão durante a safra, destinada a atividades específicas na propriedade."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Mão de obra fixa" prefix="R$" suffix="/safra" v-model="mao_fixa" hint = "Valor total gasto no mês com mão de obra permanente para a atividade cafeeira, considerando os encargos trabalhistas."></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Mão de obra fixa" prefix="R$" suffix="/safra" v-model="mao_fixa" hint = "Valor total gasto com mão de obra permanente na atividade cafeeira para o talhão durante a safra, considerando os encargos trabalhistas."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-text-field box type="text"  min='0' label="Despesas gerais de escritório" prefix="R$" suffix="/safra" v-model="despesas_gerais" hint = "Total de despesas com materiais de escritório destinados à atividade cafeeira."></v-text-field>

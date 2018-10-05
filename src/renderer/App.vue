@@ -147,4 +147,9 @@
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
     z-index: 99; /* Specify a stack order in case you're using a different order for other elements */
   }
+
+  .input-group__hint {
+    font-size:14px;
+    color:#000 !important;
+  }
 </style>

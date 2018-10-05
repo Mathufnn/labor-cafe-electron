@@ -89,7 +89,7 @@
               <v-btn color="primary" big  @click="exportdata(1)">PDF</v-btn>
             </v-flex>
             <v-flex v-if="!exporting" xs6 class="text-xs-center">
-              <v-btn color="primary" big @click="exportdata(2)">XLSX</v-btn>
+              <v-btn color="primary" big @click="exportdata(2)">Excel</v-btn>
             </v-flex>
             <v-flex v-if="exporting" xs12 text-xs-center>
               <v-progress-circular :size="70" :width="7" indeterminate color="green"></v-progress-circular>
@@ -421,39 +421,39 @@ export default {
 
       if(this.indicadores.coeu.value>=300){ // vermelho
         this.indicadores.coeu.help = 'Sua propriedade possui o Custo Operacional Efetivo (COE) alto.';
-        this.indicadores.coeu.subhelp = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada litro de leite produzido. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
+        this.indicadores.coeu.subhelp = 'COE/unidade permite comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada saca produzida. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
         this.indicadores.coeu.status=1;
         this.indicadores.coeu.fazendeiro=5;
       }
       else{                                // verde
         this.indicadores.coeu.help = 'Sua propriedade é eficiente na utilização dos recursos para produção de café e por isso possui Custo Operacional Efetivo (COE) equilibrado.';
-        this.indicadores.coeu.subhelp = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada litro de leite produzido. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
+        this.indicadores.coeu.subhelp = 'COE/unidade permite comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada saca produzida. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
         this.indicadores.coeu.status=3;
         this.indicadores.coeu.fazendeiro=2;
       }
 
       if(this.indicadores.cotu.value>=350){ // vermelho
         this.indicadores.cotu.help = 'Sua propriedade possui o Custo Operacional Total (COT) alto.';
-        this.indicadores.cotu.subhelp = 'COT/unidade, permite ao produtor comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE + os custos com mão de obra familiar e depreciações gastos para produzir 1 saca de café. Deve-se buscar valores menores que R$ 350,00/saca neste indicador.';
+        this.indicadores.cotu.subhelp = 'COT/unidade, permite comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE mais os custos com mão de obra familiar e depreciações gastos para produzir 1 saca de café. Deve-se buscar valores menores que R$ 350,00/saca neste indicador.';
         this.indicadores.cotu.status=1;
         this.indicadores.cotu.fazendeiro=5;
       }
       else{                                 // verde
         this.indicadores.cotu.help = 'Sua propriedade é eficiente na utilização dos recursos para produção de café e por isso possui Custo Operacional Total (COT) equilibrado.';
-        this.indicadores.cotu.subhelp = 'COT/unidade, permite ao produtor comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE + os custos com mão de obra familiar e depreciações gastos para produzir 1 saca de café. Deve-se buscar valores menores que R$ 350,00/saca neste indicador.';
+        this.indicadores.cotu.subhelp = 'COT/unidade, permite comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE mais os custos com mão de obra familiar e depreciações gastos para produzir 1 saca de café. Deve-se buscar valores menores que R$ 350,00/saca neste indicador.';
         this.indicadores.cotu.status=3;
         this.indicadores.cotu.fazendeiro=2;
       }
 
       if(this.indicadores.ctu.value>=400){ // vermelho
-        this.indicadores.ctu.help = 'Sua propriedade possui o Custo Operacional Efetivo (COE) alto.';
-        this.indicadores.ctu.subhelp = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada litro de leite produzido. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
+        this.indicadores.ctu.help = 'Sua propriedade possui o Custo Total (CT) alto.';
+        this.indicadores.ctu.subhelp = 'CT/unidade, permite comparar o seu custo referente ao COT mais o custo de oportunidade sobre o capital investido na atividade com outras propriedades. É o somatório que contempla todos os custos envolvidos na atividade cafeeira para produzir 1 saca de café. Deve-se buscar valores menores que R$ 400,00/saca neste indicador.';
         this.indicadores.ctu.status=1;
         this.indicadores.ctu.fazendeiro=5;
       }
       else{                                 // verde
-        this.indicadores.ctu.help = 'Sua propriedade é eficiente na utilização dos recursos para produção de café e por isso possui Custo Operacional Efetivo (COE) equilibrado.';
-        this.indicadores.ctu.subhelp = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada litro de leite produzido. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
+        this.indicadores.ctu.help = 'Sua propriedade é eficiente na utilização dos recursos para produção de café e por isso possui Custo Total (CT) equilibrado.';
+        this.indicadores.ctu.subhelp = 'CT/unidade, permite comparar o seu custo referente ao COT mais o custo de oportunidade sobre o capital investido na atividade com outras propriedades. É o somatório que contempla todos os custos envolvidos na atividade cafeeira para produzir 1 saca de café. Deve-se buscar valores menores que R$ 400,00/saca neste indicador.';
         this.indicadores.ctu.status=3;
         this.indicadores.ctu.fazendeiro=2;
       }

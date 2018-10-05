@@ -88,7 +88,7 @@
               <v-btn color="primary" big  @click="exportdata(1)">PDF</v-btn>
             </v-flex>
             <v-flex v-if="!exporting" xs6 class="text-xs-center">
-              <v-btn color="primary" big @click="exportdata(2)">XLSX</v-btn>
+              <v-btn color="primary" big @click="exportdata(2)">Excel</v-btn>
             </v-flex>
             <v-flex v-if="exporting" xs12 text-xs-center>
               <v-progress-circular :size="70" :width="7" indeterminate color="green"></v-progress-circular>
@@ -405,39 +405,39 @@ export default {
 
       if(this.indicadores.coeu.value>=300){ // vermelho
         this.indicadores.coeu.help = 'Sua propriedade possui o Custo Operacional Efetivo (COE) alto.';
-        this.indicadores.coeu.subhelp = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada litro de leite produzido. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
+        this.indicadores.coeu.subhelp = 'COE/unidade permite comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada saca produzida. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
         this.indicadores.coeu.status=1;
         this.indicadores.coeu.fazendeiro=5;
       }
       else{                                // verde
         this.indicadores.coeu.help = 'Sua propriedade é eficiente na utilização dos recursos para produção de café e por isso possui Custo Operacional Efetivo (COE) equilibrado.';
-        this.indicadores.coeu.subhelp = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada litro de leite produzido. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
+        this.indicadores.coeu.subhelp = 'COE/unidade permite comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada saca produzida. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
         this.indicadores.coeu.status=3;
         this.indicadores.coeu.fazendeiro=2;
       }
 
       if(this.indicadores.cotu.value>=350){ // vermelho
         this.indicadores.cotu.help = 'Sua propriedade possui o Custo Operacional Total (COT) alto.';
-        this.indicadores.cotu.subhelp = 'COT/unidade, permite ao produtor comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE + os custos com mão de obra familiar e depreciações gastos para produzir 1 saca de café. Deve-se buscar valores menores que R$ 350,00/saca neste indicador.';
+        this.indicadores.cotu.subhelp = 'COT/unidade, permite comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE mais os custos com mão de obra familiar e depreciações gastos para produzir 1 saca de café. Deve-se buscar valores menores que R$ 350,00/saca neste indicador.';
         this.indicadores.cotu.status=1;
         this.indicadores.cotu.fazendeiro=5;
       }
       else{                                 // verde
         this.indicadores.cotu.help = 'Sua propriedade é eficiente na utilização dos recursos para produção de café e por isso possui Custo Operacional Total (COT) equilibrado.';
-        this.indicadores.cotu.subhelp = 'COT/unidade, permite ao produtor comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE + os custos com mão de obra familiar e depreciações gastos para produzir 1 saca de café. Deve-se buscar valores menores que R$ 350,00/saca neste indicador.';
+        this.indicadores.cotu.subhelp = 'COT/unidade, permite comparar os custos de desembolso direto e parte dos custos fixos da atividade cafeeira da propriedade com outras propriedades. Dentro dele está o COE mais os custos com mão de obra familiar e depreciações gastos para produzir 1 saca de café. Deve-se buscar valores menores que R$ 350,00/saca neste indicador.';
         this.indicadores.cotu.status=3;
         this.indicadores.cotu.fazendeiro=2;
       }
 
       if(this.indicadores.ctu.value>=400){ // vermelho
-        this.indicadores.ctu.help = 'Sua propriedade possui o Custo Operacional Efetivo (COE) alto.';
-        this.indicadores.ctu.subhelp = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada litro de leite produzido. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
+        this.indicadores.ctu.help = 'Sua propriedade possui o Custo Total (CT) alto.';
+        this.indicadores.ctu.subhelp = 'CT/unidade, permite comparar o seu custo referente ao COT mais o custo de oportunidade sobre o capital investido na atividade com outras propriedades. É o somatório que contempla todos os custos envolvidos na atividade cafeeira para produzir 1 saca de café. Deve-se buscar valores menores que R$ 400,00/saca neste indicador.';
         this.indicadores.ctu.status=1;
         this.indicadores.ctu.fazendeiro=5;
       }
-      else{ // verde
-        this.indicadores.ctu.help = 'Sua propriedade é eficiente na utilização dos recursos para produção de café e por isso possui Custo Operacional Efetivo (COE) equilibrado.';
-        this.indicadores.ctu.subhelp = 'COE/unidade permite ao produtor comparar os seus custos de desembolso direto com outras propriedades. O COE por saca demonstra quanto dos custos de desembolso direto (pagamento de fertilizantes, energia, defensivos, etc.) estão sendo gastos a cada litro de leite produzido. Deve-se buscar valores menores que R$ 300,00/saca neste indicador.';
+      else{                                 // verde
+        this.indicadores.ctu.help = 'Sua propriedade é eficiente na utilização dos recursos para produção de café e por isso possui Custo Total (CT) equilibrado.';
+        this.indicadores.ctu.subhelp = 'CT/unidade, permite comparar o seu custo referente ao COT mais o custo de oportunidade sobre o capital investido na atividade com outras propriedades. É o somatório que contempla todos os custos envolvidos na atividade cafeeira para produzir 1 saca de café. Deve-se buscar valores menores que R$ 400,00/saca neste indicador.';
         this.indicadores.ctu.status=3;
         this.indicadores.ctu.fazendeiro=2;
       }
@@ -578,28 +578,28 @@ export default {
 
       this.indicadores.rendabruta.help = 'Soma da venda de café, venda do café escolha e de todas as outras rendas originadas da atividade cafeeira no período de uma safra ou mais.';
 
-      if(this.indicadores.pcv.value>=490){ // vermelho
+      if(this.indicadores.pcv.value<490){ // vermelho
         this.indicadores.pcv.help = 'A comercialização do seu café está ineficiente!';
-        this.indicadores.pcv.subhelp = 'Média do preço da saca de café comercializado. Devemos sempre buscar alcançar os maiores preços. Como refrência, devemos sempre buscar preços médios de venda acima de R$ 490,00, que é a média histórica de preços dos últimos 14 anos de acordo com os levantamentos do CEPEA.';
+        this.indicadores.pcv.subhelp = 'Média do preço da saca de café comercializado. Devemos sempre buscar alcançar os maiores preços. Como referência, devemos buscar preços médios de venda acima de R$ 490,00, que é a média histórica de preços dos últimos 14 anos de acordo com os levantamentos do CEPEA.';
         this.indicadores.pcv.status=1;
         this.indicadores.pcv.fazendeiro=1;
       }
       else{                                // verde
         this.indicadores.pcv.help = 'Parabéns! Há eficiência na venda do seu café!';
-        this.indicadores.pcv.subhelp = 'Média do preço da saca de café comercializado. Devemos sempre buscar alcançar os maiores preços. Como refrência, devemos sempre buscar preços médios de venda acima de R$ 490,00, que é a média histórica de preços dos últimos 14 anos de acordo com os levantamentos do CEPEA.';
+        this.indicadores.pcv.subhelp = 'Média do preço da saca de café comercializado. Devemos sempre buscar alcançar os maiores preços. Como referência, devemos buscar preços médios de venda acima de R$ 490,00, que é a média histórica de preços dos últimos 14 anos de acordo com os levantamentos do CEPEA.';
         this.indicadores.pcv.status=3;
         this.indicadores.pcv.fazendeiro=2;
       }
 
       if(this.indicadores.bencusto.value<1){ // vermelho
         this.indicadores.bencusto.help='Atenção! A atividade está incorrendo em prejuízos!';
-        this.indicadores.bencusto.subhelp='Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade. ';
+        this.indicadores.bencusto.subhelp='Quando a relação benefício/custo é menor que 1, significa que o custo é maior que a renda obtida na atividade cafeeira. Este resultado mostra o quanto você está perdendo a cada R$1,00 investido na atividade.';
         this.indicadores.bencusto.status=1;
         this.indicadores.bencusto.fazendeiro=5;
       }
       else{                                   // verde
         this.indicadores.bencusto.help='A atividade possui custo/benefício positivo!';
-        this.indicadores.bencusto.subhelp='Quando a relação benefício/custo é maior que 1, significa que o custo é menor que a renda obtida na atividade. Este resultado mostra o quanto você estáganhando a cada R$1,00 investido na atividade. Quanto maior a relação benefício custo, melhor, uma vez que ao conseguir cobrir todos os custos com a renda, você se mantêm na atividade de forma viável e atrativa economicamente.';
+        this.indicadores.bencusto.subhelp='Quando a relação benefício/custo é maior que 1, significa que o custo é menor que a renda obtida na atividade. Este resultado mostra o quanto você está ganhando a cada R$1,00 investido na atividade. Quanto maior a relação benefício custo, melhor, uma vez que ao conseguir cobrir todos os custos com a renda, você se mantêm na atividade de forma viável e atrativa economicamente.';
         this.indicadores.bencusto.status=3;
         this.indicadores.bencusto.fazendeiro=2;
       }

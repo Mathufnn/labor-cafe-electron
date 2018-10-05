@@ -39,6 +39,7 @@
         <img src="~@/assets/SEBRAE.png" width="64px">
         <v-toolbar-title v-text="title"></v-toolbar-title>
         <v-spacer></v-spacer>
+        <a href="#" style="color:#000;" @click="showhelp()"><v-icon center>help</v-icon><span style="color:#000;">AJUDA</span></a> &nbsp;&nbsp;&nbsp;
       </v-toolbar>
       <v-content>
         <v-container fluid fill-height>
@@ -49,7 +50,7 @@
       </v-content>
       <v-footer :fixed="fixed" app color="green darken-1" class="white--text">
         <v-spacer></v-spacer>
-        <span><a href="#" style="color:#fff;" @click="showhelp()"><v-icon center small dark>help</v-icon> <span style="color:#fff;">AJUDA</span></a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <b>SEBRAE</b> &copy; {{(new Date()).getFullYear()}} &nbsp;</span>
+        <span><b>SEBRAE</b> &copy; {{(new Date()).getFullYear()}} &nbsp;</span>
       </v-footer>
     </v-app>
   </div>

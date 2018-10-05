@@ -36,6 +36,7 @@
       </v-navigation-drawer>
       <v-toolbar fixed app :clipped-left="clipped">
         <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <img src="~@/assets/SEBRAE.png" width="64px">
         <v-toolbar-title v-text="title"></v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
@@ -48,7 +49,7 @@
       </v-content>
       <v-footer :fixed="fixed" app color="green darken-1" class="white--text">
         <v-spacer></v-spacer>
-        <span>SEBRAE &copy; {{(new Date()).getFullYear()}} &nbsp;</span>
+        <span><a href="#" style="color:#fff;" @click="showhelp()"><v-icon center small dark>help</v-icon> <span style="color:#fff;">AJUDA</span></a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <b>SEBRAE</b> &copy; {{(new Date()).getFullYear()}} &nbsp;</span>
       </v-footer>
     </v-app>
   </div>
@@ -56,6 +57,7 @@
 
 <script>
   console.log(__static);
+  import { ipcRenderer } from 'electron'
   export default {
     name: 'Café',
     data: () => ({
@@ -100,6 +102,11 @@
       drawer: function (newV, oldV) {
         this.$root.$emit('menu_fechado', {newV});
       }
+    },
+    methods: {
+      showhelp() {
+        ipcRenderer.send('show-help');
+      }
     }
   }
 </script>
@@ -140,5 +147,10 @@
     bottom: 0;
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
     z-index: 99; /* Specify a stack order in case you're using a different order for other elements */
+  }
+
+  .input-group__hint {
+    font-size:14px;
+    color:#000 !important;
   }
 </style>

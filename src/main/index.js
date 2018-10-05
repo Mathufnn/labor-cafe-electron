@@ -100,3 +100,12 @@ ipcMain.on('print-pdf', (event, arg) => {
   });
 
 });
+
+
+ipcMain.on('show-help', (event, arg) => {
+  let _help_win = new BrowserWindow({ parent: mainWindow, modal: true, height: 750, width: 1024, show:false });
+  _help_win.loadURL(`file://${__static}/help/index.html`)
+  _help_win.once('ready-to-show', () => {
+    _help_win.show();
+  })
+});

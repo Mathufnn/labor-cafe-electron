@@ -14,9 +14,9 @@
             <div slot="activator">
             <center><span style="font-size:15px;"><b>LEGENDA</b></span><br />
             <table>
-            <tr><td><span><v-icon style="color:#32CD32; ">info</v-icon></span></td> <td>Indicador positivo</td></tr>
+            <tr><td><span><v-icon style="color:#32CD32; ">info</v-icon></span></td> <td>Indicador favorável</td></tr>
             <tr><td><span><v-icon style="color:#FFFF00;">info</v-icon></span></td> <td>Indicador de alerta</td></tr>
-            <tr><td><span ><v-icon style="color:#FF0000;">info</v-icon></span></td> <td>Indicador negativo</td></tr>
+            <tr><td><span ><v-icon style="color:#FF0000;">info</v-icon></span></td> <td>Indicador desfavorável</td></tr>
             <tr><td><span><v-icon style="color:black;">info</v-icon></span></td> <td>Indicador descritivo</td></tr>
             </table>
             </center>
@@ -119,7 +119,7 @@ export default {
         pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: ''},
         producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, status:4, fazendeiro:3, unidade: 'Sacas', help: '', subhelp: ''},
         aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Ha', help: '', subhelp: ''},
-        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Und/Ha', help: '', subhelp: '' },
+        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Sc/Ha', help: '', subhelp: '' },
         coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: ''},
         coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: '' },
         cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: ''},

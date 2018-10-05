@@ -156,6 +156,18 @@
           <v-btn flat @click.native="e6 = 1">Voltar</v-btn>
         </v-stepper-content>
       </v-stepper>
+      <div id="dialog_p" v-if="dialog" :style="'background: url('+dialog_partezinha+')  no-repeat left 9px bottom 10px; border-right: 4px solid transparent;'">
+        <div id="dialog_s">
+            <v-btn small icon color="green darken-1" style="float:right; margin:-15px;" flat="flat" @click="dialog = false, overtoggle(0)"><v-icon>close</v-icon></v-btn><br />
+              <center><b>Atenção</b></center>
+              <br />
+              <br />
+              Quanto mais precisos forem os seus lançamentos, mais confiáveis serão os relatórios gerados.
+              <br />
+              <br />
+            <v-btn color="white" style="float:right"  @click="dialog = false, overtoggle(0)">FECHAR</v-btn>
+        </div>
+      </div>
     </v-flex>
   </v-layout>
 </template>
@@ -206,7 +218,9 @@ export default {
     rebeneficio: '',
     embalagens: '',
     corretagem: '',
-    e6: 0
+    e6: 0,
+    dialog: false,
+    dialog_partezinha: 'static/fala.png'
   }),
   props:{
     sid:{
@@ -214,15 +228,19 @@ export default {
     }
   },
   methods: {
+    overtoggle(estado){
+      this.$root.$emit('overlay_toggle', {estado});
+    },
     SalvarTalhao: function() {
       if(this.sid == -1) return;
       Object.keys(this.$data).forEach((key, original_values) => {
         this.$data[key] = this.$data[key].toString().replace(/\./g,'').replace(/,/g,'.');
       });
       this.$backend.addTalhao({
+        SafraID: this.sid,
         NomeTalhao: this.ident_talhao,
-        Area: this.area_prod,
         ProdTotal: this.prod,
+        Area: this.area_prod,
         PrecoVenda: this.preco_venda,
         VendaSubP: this.venda_subp,
         MaoObraF: this.mao_familiar,
@@ -262,17 +280,20 @@ export default {
         PosColheita: this.poscolheita,
         Rebeneficio: this.rebeneficio,
         Saco: this.embalagens,
-        Correntagem: this.corretagem,
-        SafraID: this.sid
+        Correntagem: this.corretagem
       }, (created) => {
         console.log(this.id);
         this.$router.push("/TalhaoView/"+created.id)
       });
     }
   },
+  mounted: function(){
+    this.dialog = true;
+    this.overtoggle(1);
+  },
   created: function(){
     Object.keys(this.$data).forEach((key, original_values) => {
-      if(key=='e6' || key=='msg' || key=='dialog' || key=='ident_talhao') return;
+      if(key=='e6' || key=='msg' || key=='dialog' || key=='ident_talhao' || key=='dialog_partezinha') return;
       this.$watch(() => (this.$data[key]),function (newVal, oldVal) {
         if(newVal=='' || oldVal=='') return;
         if(this.$data[key].toString().replace(/\./g,'').replace(/,/g,'')==oldVal.toString().replace(/\./g,'').replace(/,/g,'')) return;
@@ -289,4 +310,37 @@ export default {
 
 <style scoped>
 
+#dialog_interp {
+  width:80%;
+  margin-left:20%;
+}
+
+.dialog_pai {
+  height:555px!important;
+}
+
+#dialog_p{
+  width: 770px;
+  height: 400px;
+  position: fixed;
+  bottom:21%;
+  left:251px;
+
+  z-index:1000;
+
+  -webkit-filter: drop-shadow(0px 0px 5px #000);
+   filter: drop-shadow(0px 0px 5px #000);
+}
+
+#dialog_s{
+  width:80%;
+  height: 80%;
+  margin-left:13%;
+  overflow-y: scroll;
+  overflow: auto;
+  background-color:#fff;
+  padding:21px;
+  background-image: url(~@/assets/fundo_dialog2.png);
+  background-position: center bottom;
+}
 </style>

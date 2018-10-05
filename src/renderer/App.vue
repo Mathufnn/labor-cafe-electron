@@ -36,6 +36,7 @@
       </v-navigation-drawer>
       <v-toolbar fixed app :clipped-left="clipped">
         <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <img src="~@/assets/SEBRAE.png" width="64px">
         <v-toolbar-title v-text="title"></v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>

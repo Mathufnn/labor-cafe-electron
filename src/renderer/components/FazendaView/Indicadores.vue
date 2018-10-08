@@ -754,7 +754,7 @@ export default {
                 IndicadoresTalhao.trcct = (IndicadoresTalhao.ml / ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * talhaoObj.Area + talhaoObj.Area*safraObj.PrecoMTerraN))*100 ;
 
 
-                thisindicadores.bencusto.value = thisindicadores.ct.value / thisindicadores.rendabruta.value;
+                thisindicadores.bencusto.value = thisindicadores.rendabruta.value / thisindicadores.ct.value;
                 IndicadoresTalhao.bencusto = IndicadoresTalhao.ct / IndicadoresTalhao.rendabruta;
 
                 thisindicadores.capitalest.value =  ((EstoqueCapital["estoquelavouras"]+EstoqueCapital["estoquemaquinas"]+EstoqueCapital["estoquebenfeitorias"]) * thisindicadores.aplantada.value) / thisindicadores.producao.value;

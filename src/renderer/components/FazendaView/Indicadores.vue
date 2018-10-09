@@ -825,9 +825,6 @@ export default {
   watch: {
     checkeds: function (newV, oldV) {
       this.geraIndicadores(this.checkeds);
-    },
-    filt_eco: function(nv,no){
-
     }
   }
 }

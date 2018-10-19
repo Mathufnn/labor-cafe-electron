@@ -34,126 +34,126 @@
           </v-card-title>
           <v-container fluid v-if="view">
             <h2>ELEMENTOS DE DESPESA:</h2><br />
-            <hr/>
             <v-layout row wrap subheading>
-              <v-flex xs12 sm4>
-                <b>VENDA DE SUB PRODUTO</b><br /> {{formatN(venda_subp)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>MÃO DE OBRA FAMILIAR </b><br /> {{formatN(mao_familiar)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ARRENDAMENTO DE TERRAS </b><br /> {{formatN(arrend_terra)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ALUGUEL DE MÁQUINAS </b><br /> {{formatN(aluguel_maq)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>COMBUSTÍVEL </b><br /> {{formatN(combustivel)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>MANUTENÇÃO DE MÁQUINAS </b><br /> {{formatN(manu_maq)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>MANUTENÇÃO DE BENFEITORIAS </b><br /> {{formatN(manu_benf)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ENERGIA </b><br /> {{formatN(energia)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>FRETE E DESLOCAMENTO </b><br /> {{formatN(frete)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>IMPOSTOS E TAXAS </b><br /> {{formatN(impostos)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>MÃO DE OBRA CONTRATADA </b><br /> {{formatN(mao_contratada)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>MÃO DE OBRA FIXA </b><br /> {{formatN(mao_fixa)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>DESPESAS GERAIS </b><br /> {{formatN(despesas_gerais)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ASSISTÊNCIA TÉCNICA </b><br /> {{formatN(ass_tec)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>CERTIFICAÇÃO </b><br /> {{formatN(certificacao)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ANÁLISE DE SOLO </b> <br />{{formatN(analise_solo)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ANÁLISE FOLIAR </b><br /> {{formatN(analise_foliar)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>EPI </b><br /> {{formatN(epi)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>FERTILIZANTES DE SOLO </b><br /> {{formatN(fertilizantes)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ÁCIDOS </b><br /> {{formatN(acidos)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ADUBOS </b><br /> {{formatN(adubos)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ACARICIDAS </b><br /> {{formatN(acaricida)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>BACTERICIDAS </b><br /> {{formatN(bactericida)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ESPALHANTE ADESIVO </b> <br />{{formatN(espalhante)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>INSETICIDA </b><br /> {{formatN(inseticida)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>FUNGICIDA </b><br /> {{formatN(fungicida)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>NEMATICIDA </b><br /> {{formatN(nematicida)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ÓLEO MINERAL </b><br /> {{formatN(oleo_mineral)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>HERBICIDA </b><br /> {{formatN(herbicida)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>HORMÔNIOS </b><br /> {{formatN(hormonios)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>MATURADORES </b><br />{{formatN(maturadores)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>MATERIAL COLHEITA </b><br /> {{formatN(material_colheita)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>ARMAZENAMENTO </b><br /> {{formatN(armazenamento)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>BENEFÍCIO </b><br /> {{formatN(beneficio)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>GÁS/LENHA/CARVÃO </b><br /> {{formatN(gas_lenha)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>MATERIAIS PÓS COLHEITA </b><br /> {{formatN(material_pos_colheita)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>REBENEFÍCIO </b><br /> {{formatN(rebeneficio)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>SACOS/EMBALAGENS </b><br /> {{formatN(embalagens)}} <span class="caption">R$/safra</span>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <b>CORRETAGEM </b><br /> {{formatN(corretagem)}} <span class="caption">R$/safra</span>
-              </v-flex>
-
+              <table>
+              <tr><td>
+                <b>VENDA DE SUB PRODUTO</b></td><td> {{formatN(venda_subp)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>MÃO DE OBRA FAMILIAR </b></td><td> {{formatN(mao_familiar)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ARRENDAMENTO DE TERRAS </b></td><td> {{formatN(arrend_terra)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ALUGUEL DE MÁQUINAS </b></td><td> {{formatN(aluguel_maq)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>COMBUSTÍVEL </b></td><td> {{formatN(combustivel)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>MANUTENÇÃO DE MÁQUINAS </b></td><td> {{formatN(manu_maq)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>MANUTENÇÃO DE BENFEITORIAS </b></td><td> {{formatN(manu_benf)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ENERGIA </b></td><td> {{formatN(energia)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>FRETE E DESLOCAMENTO </b></td><td> {{formatN(frete)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>IMPOSTOS E TAXAS </b></td><td> {{formatN(impostos)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>MÃO DE OBRA CONTRATADA </b></td><td> {{formatN(mao_contratada)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>MÃO DE OBRA FIXA </b></td><td> {{formatN(mao_fixa)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>DESPESAS GERAIS </b></td><td> {{formatN(despesas_gerais)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ASSISTÊNCIA TÉCNICA </b></td><td> {{formatN(ass_tec)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>CERTIFICAÇÃO </b></td><td> {{formatN(certificacao)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ANÁLISE DE SOLO </b> </td><td>{{formatN(analise_solo)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ANÁLISE FOLIAR </b></td><td> {{formatN(analise_foliar)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>EPI </b></td><td> {{formatN(epi)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>FERTILIZANTES DE SOLO </b></td><td> {{formatN(fertilizantes)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ÁCIDOS </b></td><td> {{formatN(acidos)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ADUBOS </b></td><td> {{formatN(adubos)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ACARICIDAS </b></td><td> {{formatN(acaricida)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>BACTERICIDAS </b></td><td> {{formatN(bactericida)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ESPALHANTE ADESIVO </b> </td><td>{{formatN(espalhante)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>INSETICIDA </b></td><td> {{formatN(inseticida)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>FUNGICIDA </b></td><td> {{formatN(fungicida)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>NEMATICIDA </b></td><td> {{formatN(nematicida)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ÓLEO MINERAL </b></td><td> {{formatN(oleo_mineral)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>HERBICIDA </b></td><td> {{formatN(herbicida)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>HORMÔNIOS </b></td><td> {{formatN(hormonios)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>MATURADORES </b></td><td>{{formatN(maturadores)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>MATERIAL COLHEITA </b></td><td> {{formatN(material_colheita)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>ARMAZENAMENTO </b></td><td> {{formatN(armazenamento)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>BENEFÍCIO </b></td><td> {{formatN(beneficio)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>GÁS/LENHA/CARVÃO </b></td><td> {{formatN(gas_lenha)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>MATERIAIS PÓS COLHEITA </b></td><td> {{formatN(material_pos_colheita)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>REBENEFÍCIO </b></td><td> {{formatN(rebeneficio)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>SACOS/EMBALAGENS </b></td><td> {{formatN(embalagens)}} <span class="caption">R$/safra</span>
+              </td></tr>
+              <tr><td>
+                <b>CORRETAGEM </b></td><td> {{formatN(corretagem)}} <span class="caption">R$/safra</span>
+              </td></tr>
+            </table>
             </v-layout>
           </v-container>
         </v-card>
@@ -302,5 +302,19 @@ export default {
 </script>
 
 <style scoped>
+table {
+  border-collapse: collapse;
+  width:100%;
+}
 
+table, th, td {
+  border-bottom: 1px solid black;
+}
+th,thead {
+  text-align:center;
+  height:35px;
+}
+td {
+  height:26px;
+}
 </style>

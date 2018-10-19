@@ -124,15 +124,15 @@
   }
 
   #deseinhos {
-    height:32%;
-    background-image: url(~@/assets/fundoreal.png);
+    height:38%;
+    background-image: url(~@/assets/fundoreal2.png);
     background-position: center bottom;
     z-index: 9088!important;
   }
 
   .fazendeiro {
     position: fixed;
-    bottom:6%;
+    bottom:3%;
     right:52px;
     z-index: 9088!important;
   }

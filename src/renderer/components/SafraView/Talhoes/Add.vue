@@ -60,7 +60,7 @@
                   <v-text-field box type="text"  min='0' label="Frete/Deslocamento" prefix="R$" suffix="/safra" v-model="frete" hint = "Total de despesas com fretes e deslocamentos de produtos e insumos."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Impostos e taxas" prefix="R$" suffix="/safra" v-model="impostos" hint = "Total de despesas com impostos e taxas (ex: FUNRURAL, IPVA, ITR) na atividade cafeeira para o talhão durante a safra."></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Impostos e taxas" prefix="R$" suffix="/safra" v-model="impostos" hint = "Total de despesas com impostos e taxas  (ex: FUNRURAL, IPVA, ITR) na atividade cafeeira para o talhão durante a safra."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-text-field box type="text"  min='0' label="Mão de obra contratada" prefix="R$" suffix="/safra" v-model="mao_contratada" hint = "Valor total gasto com mão de obra esporádica na atividade cafeeira para o talhão durante a safra, destinada a atividades específicas na propriedade."></v-text-field>
@@ -75,7 +75,7 @@
                   <v-text-field box type="text"  min='0' label="Assistência técnica e gerencial" prefix="R$" suffix="/safra" v-model="ass_tec" hint = "Total de despesas com assistência técnica e gerencial destinada à atividade cafeeira."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Certificação" prefix="R$" suffix="/safra" v-model="certificacao" hint = "Total de despesas com taxas de auditória, cobrança de uso do selo, cobrança análises laboratoriais e outras despesas destinadas à emissão da certificação da atividade cafeeira."></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Certificação" prefix="R$" suffix="/safra" v-model="certificacao" hint = "Total de despesas com taxas de auditoria, cobrança de uso do selo, cobrança análises laboratoriais e outras despesas destinadas à emissão da certificação da atividade cafeeira."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-text-field box type="text"  min='0' label="Análise de solo" prefix="R$" suffix="/safra" v-model="analise_solo" hint = "Total de despesas com análise de solo para o talhão na safra."></v-text-field>
@@ -138,16 +138,16 @@
                   <v-text-field box type="text"  min='0' label="Gás/lenha/carvão" prefix="R$" suffix="/safra" v-model="gas_lenha" hint = "Total de despesas com gás, lenha e carvão durante o processo de pós colheita."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Materiais pós-colheita" prefix="R$" suffix="/safra" v-model="poscolheita" hint = "Total de despesas com o rebenefício do café feito por terceiros como separação simples por peneiras, separação com catação de pedras e separação completa com catação de pedras, peneiras e ventilação."></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Materiais pós-colheita" prefix="R$" suffix="/safra" v-model="poscolheita" hint = ""></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text" min='0'  label="Rebenefício" prefix="R$" suffix="/safra" v-model="rebeneficio" hint = ""></v-text-field>
+                  <v-text-field box type="text" min='0'  label="Rebenefício" prefix="R$" suffix="/safra" v-model="rebeneficio" hint = "Total de despesas com o rebenefício do café feito por terceiros como separação simples por peneiras, separação com catação de pedras e separação completa com catação de pedras, peneiras e ventilação."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Saco/Embalagens" prefix="R$" suffix="/safra" v-model="embalagens" hint = ""></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Saco/Embalagens" prefix="R$" suffix="/safra" v-model="embalagens" hint = "Total de despesas com sacos e embalagens para armazenamento do café."></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field box type="text"  min='0' label="Corretagem" prefix="R$" suffix="/safra" v-model="corretagem" hint = ""></v-text-field>
+                  <v-text-field box type="text"  min='0' label="Corretagem" prefix="R$" suffix="/safra" v-model="corretagem" hint = "Total de despesas com profissionais que indicarão a atual qualidade do café e quais são as suas possibilidades de venda a agroindústria nacional ou exportação."></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>

@@ -1,3 +1,32 @@
+/*
+                .:oddmMMMMMMmdho/.
+             .  yMMMMMMMMMMMMMMMMMmy/
+          .yMMy. .yMMMMMMMMMMMMMMMMMMMy.
+        .yMMMMMMy. .yhyooooyhmMMMMMMMMMMy.
+       /MMMMMMMMMMy.          ./ymMMMMMMMM/
+      oMMMMMMMMMMMMMy.            /mMMMMMMMo
+     oMMMMMMMMMMMMMMMMy.            yMMMMMMMo
+    :MMMMMMMo/mMMMMMMMMMy.           oMMMMMMM.
+    yMMMMMMy   /mMMMMMMMMm/           yMMMMMMy
+    MMMMMMM.     /mMMMMMMMMm/          MMMMMMM
+    MMMMMMM        /mMMMMMMMMm/        MMMMMMM
+    MMMMMMM.         /MMMMMMMMMm/     .MMMMMMM
+    oMMMMMMy          .yMMMMMMMMMm/   yMMMMMMy
+    .MMMMMMMo           .yMMMMMMMMMm/oMMMMMMM.
+     /MMMMMMMy            .yMMMMMMMMMMMMMMMMo
+      oMMMMMMMm/            .yMMMMMMMMMMMMMo
+       /mMMMMMMMMy/.          .yMMMMMMMMMm/
+        .yMMMMMMMMMMmdyooooydy. .yMMMMMMy.
+          .ymMMMMMMMMMMMMMMMMMMy. .yMmy.
+             /ymMMMMMMMMMMMMMMMMMy  .
+                .-oyhmMMMMMMhhyo-.
+          _  _  ___    ___ _   _  ___ ___
+         | \| |/ _ \  | _ ) | | |/ __/ __|
+         | .` | (_) | | _ \ |_| | (_ \__ \
+         |_|\_|\___/  |___/\___/ \___|___/
+*/
+
+
 const Sequelize = require('sequelize');
 const remote = require('electron').remote;
 const fs = require('fs')

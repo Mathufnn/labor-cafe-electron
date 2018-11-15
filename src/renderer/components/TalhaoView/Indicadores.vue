@@ -14,10 +14,10 @@
             <div slot="activator">
             <center><span style="font-size:15px;"><b>LEGENDA</b></span><br />
             <table>
-            <tr><td><span><v-icon style="color:#32CD32; ">info</v-icon></span></td> <td>Indicador favorável</td></tr>
-            <tr><td><span><v-icon style="color:#FFFF00;">info</v-icon></span></td> <td>Indicador de alerta</td></tr>
-            <tr><td><span ><v-icon style="color:#FF0000;">info</v-icon></span></td> <td>Indicador desfavorável</td></tr>
-            <tr><td><span><v-icon style="color:black;">info</v-icon></span></td> <td>Indicador descritivo</td></tr>
+            <tr><td><span><v-icon style="color:#32CD32; ">info</v-icon></span></td> <td>Indicadores favoráveis</td></tr>
+            <tr><td><span><v-icon style="color:#FFFF00;">info</v-icon></span></td> <td>Indicadores de alerta</td></tr>
+            <tr><td><span ><v-icon style="color:#FF0000;">info</v-icon></span></td> <td>Indicadores desfavoráveis</td></tr>
+            <tr><td><span><v-icon style="color:black;">info</v-icon></span></td> <td>Indicadores descritivos</td></tr>
             </table>
             </center>
             </div>

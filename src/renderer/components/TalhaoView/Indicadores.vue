@@ -207,7 +207,8 @@ export default {
             data.push({'ORDEM': count,
             'INDICADORES': this.indicadores[key].text,
             'UNIDADE': this.indicadores[key].unidade,
-            'VALOR': this.formatN(this.indicadores[key].value)});
+            'VALOR': this.formatN(this.indicadores[key].value),
+          'INTERPRETAÇÃO': this.indicadores[key].help + ' ' + this.indicadores[key].subhelp});
             count++;
           });
 
@@ -254,7 +255,7 @@ export default {
           <b>INDICADORES</b><br /><br />
           <table>
             <thead>
-              <tr><th>#</th><th>INDICADOR</th><th>UNIDADE</th><th>VALOR</th></tr>
+              <tr><th>#</th><th>INDICADOR</th><th>UNIDADE</th><th>VALOR</th><th>INTERPRETAÇÃO</th></tr>
             </thead>
             <tbody>`;
 
@@ -266,6 +267,7 @@ export default {
             <td>${this.indicadores[key].text}</td>
             <td>${this.indicadores[key].unidade}</td>
             <td>${tmp}</td>
+            <td style="width:30%; font-size:10px;"><b>${this.indicadores[key].help}</b> ${this.indicadores[key].subhelp}</td>
           </tr>`;
           count++;
         });

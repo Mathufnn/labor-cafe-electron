@@ -140,7 +140,7 @@ export default {
         pcv: { text: 'PREÇO MÉDIO DE VENDA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: '', categoria: 2},
         producao: { text: 'PRODUÇÃO',decimals: 0, value: 0, status:4, fazendeiro:3, unidade: 'Sacas', help: '', subhelp: '', categoria: 1},
         aplantada: { text: 'ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Ha', help: '', subhelp: '', categoria: 1},
-        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Und/Ha', help: '', subhelp: '', categoria: 1 },
+        ppaplantada: { text: 'PRODUÇÃO POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'Sc/Ha', help: '', subhelp: '', categoria: 1 },
         coeap: { text: 'COE POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: '', categoria: 2},
         coeu: { text: 'COE POR UNIDADE', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Sc', help: '', subhelp: '', categoria: 2 },
         cotap: { text: 'COT POR ÁREA PLANTADA', decimals: 2, value: 0, status:4, fazendeiro:3, unidade: 'R$/Ha', help: '', subhelp: '', categoria: 2},

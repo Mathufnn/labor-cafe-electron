@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { remote } from "electron";
 
 export default {
   data: () => ({
@@ -59,6 +60,11 @@ export default {
   }),
   methods: {
     SalvarFazenda: function () {
+      if(this.nome_fazenda=='' || this.sistema_producao=='' || this.states=='' || this.cidade==''){
+        remote.dialog.showErrorBox('Campos em branco!', 'Preencha todos campos.');
+        return;
+      }
+
       let result = this.$backend.addFazenda({
         nome_fazenda: this.nome_fazenda,
         sistema_producao: this.sistema_producao,

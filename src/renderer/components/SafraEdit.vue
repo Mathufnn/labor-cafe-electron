@@ -108,7 +108,7 @@ export default {
   },
   created: function(){
     Object.keys(this.$data).forEach((key, original_values) => {
-      if(key=='fazenda_id' || key=='fazenda_ident') return;
+      if(key=='fazenda_id' || key=='fazenda_ident' || key=='identificacao_safra') return;
       this.$watch(() => (this.$data[key]),function (newVal, oldVal) {
         if(newVal=='' || oldVal=='') return;
         if(this.$data[key].toString().replace(/\./g,'').replace(/,/g,'')==oldVal.toString().replace(/\./g,'').replace(/,/g,'')) return;

@@ -277,7 +277,7 @@ export default {
           });
 
           let obj = {
-            talhao_ident: this.talhao_ident,
+            NomeTalhao: this.talhao_ident,
             ProdTotal: this.producao_total,
             PrecoVenda: this.preco_venda,
             Area: this.area,
@@ -299,6 +299,7 @@ export default {
             AnaliseSolo: this.analise_solo,
             AnaliseFoliar: this.analise_foliar,
             EPi: this.epi,
+            Fertilizantes: this.fertilizantes,
             Acidos: this.acidos,
             Adubos: this.adubos,
             Acaricida: this.acaricida,

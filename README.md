@@ -7,7 +7,7 @@
 
 Execute o comando abaixo para clonar
 ```console
-$ git clone http://gitlab.nobugs.com.br/projetos/labor-cafe-electron.git
+$ git clone https://github.com/Mathufnn/labor-cafe-electron/
 $ cd labor-cafe-electron
 ```
 
